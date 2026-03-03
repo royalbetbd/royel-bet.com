@@ -3,641 +3,1754 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ESP8266 Deauther — SecureTech Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<title>Royal Bet ✈</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@300;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --card: #16161f;
-    --border: #2a2a3a;
-    --accent: #00f5a0;
-    --accent2: #00c3f5;
-    --danger: #ff3c5a;
-    --text: #e8e8f0;
-    --muted: #888899;
-    --font-head: 'Syne', sans-serif;
-    --font-mono: 'Space Mono', monospace;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--bg); color:var(--text); font-family:var(--font-mono); min-height:100vh; overflow-x:hidden; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#c9a84c;--gl:#f0d060;--gd:#8a6a1f;--cream:#fdf6e3;--green:#27ae60;--red:#e74c3c;}
+body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-x:hidden;}
+.felt-bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,#1a5c30 0%,#0d3b1e 45%,#061509 100%);}
+.felt-bg::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%23ffffff' fill-opacity='0.015'/%3E%3C/svg%3E");background-size:4px 4px;}
+.rim{position:fixed;width:110vw;height:90vh;border-radius:50%;box-shadow:0 0 0 4px #8a6a1f,0 0 0 10px #c9a84c,0 0 0 14px #8a6a1f,0 0 60px rgba(201,168,76,0.15),inset 0 0 60px rgba(0,0,0,0.5);top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;pointer-events:none;}
+.suits-bg{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden;}
+.suit{position:absolute;font-size:3rem;opacity:0.04;animation:floatS 15s ease-in-out infinite;user-select:none;}
+.suit:nth-child(1){top:10%;left:5%;font-size:4rem;}
+.suit:nth-child(2){top:20%;right:8%;animation-delay:3s;font-size:2.5rem;}
+.suit:nth-child(3){bottom:15%;left:10%;animation-delay:6s;font-size:3.5rem;}
+.suit:nth-child(4){bottom:25%;right:5%;animation-delay:9s;}
+.suit:nth-child(5){top:45%;left:2%;animation-delay:2s;}
+.suit:nth-child(6){top:55%;right:3%;animation-delay:7s;}
+@keyframes floatS{0%,100%{transform:translateY(0) rotate(0deg)}33%{transform:translateY(-20px) rotate(5deg)}66%{transform:translateY(10px) rotate(-3deg)}}
 
-  /* ── NOISE OVERLAY ── */
-  body::before {
-    content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity:0.4;
-  }
+/* PAGES */
+.page{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.35s ease;overflow-y:auto;}
+.page.active{opacity:1;pointer-events:all;}
+@keyframes sheen{0%,100%{left:-100%}50%{left:0%}}
+@keyframes cardIn{from{opacity:0;transform:translateY(40px) scale(0.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes numPop{from{transform:scale(1.6);opacity:0.2}to{transform:scale(1);opacity:1}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+@keyframes planeFly{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-6px) rotate(5deg)}}
+@keyframes cglow{from{box-shadow:0 4px 15px rgba(39,174,96,0.4)}to{box-shadow:0 4px 30px rgba(39,174,96,0.9)}}
+@keyframes ringP{from{box-shadow:0 0 20px rgba(255,165,0,0.2)}to{box-shadow:0 0 40px rgba(255,165,0,0.5)}}
+@keyframes tringP{from{box-shadow:0 0 15px rgba(0,255,136,0.2)}to{box-shadow:0 0 35px rgba(0,255,136,0.5)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes rewardGlow{0%,100%{box-shadow:0 0 15px rgba(255,165,0,0.3)}50%{box-shadow:0 0 35px rgba(255,165,0,0.8)}}
 
-  /* ── GRID LINES ── */
-  body::after {
-    content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-    background-image: linear-gradient(rgba(0,245,160,0.03) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(0,245,160,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
+/* LOGIN */
+.login-card{width:92%;max-width:400px;background:linear-gradient(160deg,#1c0e02,#120900,#0a0500);border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #8a6a1f,0 0 0 3px #c9a84c,0 0 0 4px #8a6a1f,0 30px 80px rgba(0,0,0,0.8);animation:cardIn 0.7s cubic-bezier(.16,1,.3,1) both;}
+.card-hdr{background:linear-gradient(135deg,#8a6a1f,#c9a84c,#f0d060,#c9a84c,#8a6a1f);padding:22px 30px 18px;text-align:center;position:relative;overflow:hidden;}
+.card-hdr::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:sheen 4s ease-in-out infinite;}
+.hdr-suits{display:flex;justify-content:center;gap:10px;font-size:1.1rem;margin-bottom:6px;color:rgba(12,6,0,0.6);}
+.logo-title{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:#0d0500;letter-spacing:4px;}
+.logo-sub{font-size:10px;letter-spacing:4px;color:rgba(12,6,0,0.55);text-transform:uppercase;margin-top:2px;font-weight:700;}
+.login-body{padding:28px 32px 24px;}
+.chips-row{display:flex;justify-content:center;gap:8px;margin-bottom:20px;}
+.chip{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;border:2px dashed;font-family:'Cinzel',serif;}
+.c-r{background:rgba(192,57,43,0.15);border-color:rgba(192,57,43,0.4);color:rgba(192,57,43,0.7);}
+.c-b{background:rgba(52,152,219,0.12);border-color:rgba(52,152,219,0.3);color:rgba(52,152,219,0.6);}
+.c-g{background:rgba(39,174,96,0.12);border-color:rgba(39,174,96,0.3);color:rgba(39,174,96,0.6);}
+.c-w{background:rgba(253,246,227,0.06);border-color:rgba(253,246,227,0.2);color:rgba(253,246,227,0.4);}
+.c-k{background:rgba(0,0,0,0.3);border-color:rgba(201,168,76,0.25);color:rgba(201,168,76,0.5);}
+.st-msg{display:none;font-size:12px;padding:10px 14px;border-radius:6px;margin-bottom:16px;font-weight:700;text-align:center;}
+.st-msg.err{display:block;background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.4);color:#e74c3c;}
+.btn-goog{width:100%;padding:14px 16px;background:linear-gradient(135deg,#1e1008,#2a1a08);border:1px solid #8a6a1f;border-radius:8px;color:var(--gl);font-family:'Lato',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.25s;}
+.btn-goog:hover{border-color:var(--gl);transform:translateY(-1px);}
+.btn-goog svg{width:20px;height:20px;flex-shrink:0;}
+.login-foot{border-top:1px solid rgba(201,168,76,0.1);padding:14px 32px;text-align:center;display:flex;justify-content:center;gap:6px;align-items:center;}
+.login-foot span{font-size:11px;letter-spacing:1px;color:rgba(201,168,76,0.25);font-family:'Cinzel',serif;}
+.login-foot span.hl{color:rgba(201,168,76,0.5);}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.2);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;}
 
-  .page-wrap { position:relative; z-index:1; }
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:linear-gradient(180deg,rgba(6,21,9,0.98),#040e06);border-top:1px solid rgba(201,168,76,0.2);display:flex;z-index:200;padding-bottom:env(safe-area-inset-bottom);}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px 8px;cursor:pointer;transition:all 0.2s;border:none;background:none;}
+.bn-icon{font-size:20px;line-height:1;margin-bottom:3px;}
+.bn-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:rgba(201,168,76,0.4);font-weight:700;text-transform:uppercase;}
+.bn-item.active .bn-label{color:var(--gl);}
+.bn-item.active .bn-icon{filter:drop-shadow(0 0 6px rgba(240,208,96,0.8));}
 
-  /* ── NAV ── */
-  nav {
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 40px; border-bottom:1px solid var(--border);
-    background:rgba(10,10,15,0.9); backdrop-filter:blur(20px);
-    position:sticky; top:0; z-index:100;
-  }
-  .logo { font-family:var(--font-head); font-size:1.3rem; font-weight:800; letter-spacing:2px; }
-  .logo span { color:var(--accent); }
-  .nav-tag { font-size:0.65rem; letter-spacing:3px; color:var(--accent); padding:4px 10px; border:1px solid var(--accent); text-transform:uppercase; }
+/* COMMON PAGE WRAP */
+.pg-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;padding-bottom:68px;}
 
-  /* ── HERO ── */
-  .hero {
-    display:grid; grid-template-columns:1fr 1fr; gap:0; min-height:90vh; align-items:center;
-    padding:80px 40px; max-width:1200px; margin:0 auto;
-  }
-  .hero-text { padding-right:60px; }
-  .tag-line { font-size:0.65rem; letter-spacing:4px; color:var(--accent); text-transform:uppercase; margin-bottom:20px; display:flex; align-items:center; gap:10px; }
-  .tag-line::before { content:''; display:block; width:30px; height:1px; background:var(--accent); }
-  h1 {
-    font-family:var(--font-head); font-size:clamp(2.5rem,5vw,4rem); font-weight:800; line-height:1.05;
-    margin-bottom:24px;
-    background: linear-gradient(135deg, #fff 40%, var(--accent) 100%);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  }
-  .hero-desc { color:var(--muted); line-height:1.8; font-size:0.85rem; margin-bottom:40px; }
-  .price-block { display:flex; align-items:flex-end; gap:16px; margin-bottom:36px; }
-  .price { font-family:var(--font-head); font-size:3.5rem; font-weight:800; color:var(--accent); }
-  .price-note { color:var(--muted); font-size:0.7rem; margin-bottom:14px; }
-  .btn-order {
-    display:inline-block; background:var(--accent); color:#000; font-family:var(--font-mono);
-    font-size:0.9rem; font-weight:700; letter-spacing:2px; padding:18px 48px;
-    border:none; cursor:pointer; text-transform:uppercase; transition:all 0.2s;
-    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
-  }
-  .btn-order:hover { background:#fff; transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,245,160,0.3); }
+/* TOPBAR */
+.topbar{background:linear-gradient(135deg,#8a6a1f,#c9a84c,#f0d060,#c9a84c,#8a6a1f);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;flex-shrink:0;}
+.topbar::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);animation:sheen 5s ease-in-out infinite;}
+.topbar-logo{font-family:'Cinzel',serif;font-size:18px;font-weight:900;color:#0d0500;letter-spacing:3px;}
+.topbar-suits{font-size:0.9rem;color:rgba(12,6,0,0.5);letter-spacing:4px;}
+.user-info{display:flex;align-items:center;gap:8px;position:relative;}
+.u-avatar{width:34px;height:34px;border-radius:50%;border:2px solid rgba(12,6,0,0.3);object-fit:cover;}
+.u-av-ph{width:34px;height:34px;border-radius:50%;border:2px solid rgba(12,6,0,0.3);background:rgba(12,6,0,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;}
+.u-name{font-size:12px;font-weight:700;color:rgba(12,6,0,0.7);letter-spacing:1px;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.three-dot-btn{background:none;border:none;cursor:pointer;padding:4px 6px;display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:center;z-index:1;}
+.three-dot-btn span{display:block;width:4px;height:4px;border-radius:50%;background:rgba(12,6,0,0.6);}
+.dot-menu{position:absolute;top:calc(100% + 6px);right:0;background:linear-gradient(160deg,#1c0e02,#0a0500);border:1px solid rgba(201,168,76,0.3);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.7);min-width:160px;z-index:500;display:none;overflow:hidden;animation:fadeUp 0.2s ease;}
+.dot-menu.open{display:block;}
+.dot-menu-item{padding:12px 16px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(201,168,76,0.7);cursor:pointer;border-bottom:1px solid rgba(201,168,76,0.08);transition:all 0.2s;}
+.dot-menu-item:last-child{border-bottom:none;}
+.dot-menu-item:hover{background:rgba(201,168,76,0.08);color:var(--gl);}
+.dot-menu-item.admin-item{color:rgba(255,100,100,0.8);}
+.dot-menu-item.admin-item:hover{color:#ff6b6b;background:rgba(255,100,100,0.08);}
 
-  /* ── PRODUCT VISUAL ── */
-  .hero-visual {
-    display:flex; align-items:center; justify-content:center; position:relative;
-  }
-  .product-card {
-    background:var(--card); border:1px solid var(--border); padding:40px;
-    width:100%; max-width:400px; position:relative; overflow:hidden;
-    animation: float 4s ease-in-out infinite;
-  }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-  .product-card::before {
-    content:''; position:absolute; top:0; left:0; right:0; height:2px;
-    background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent);
-    animation: scan 3s linear infinite;
-  }
-  @keyframes scan { 0%{opacity:0.3} 50%{opacity:1} 100%{opacity:0.3} }
-  .product-img-area {
-    background:#0d0d15; border:1px solid var(--border); padding:30px;
-    display:flex; align-items:center; justify-content:center; margin-bottom:24px;
-    position:relative; height:200px;
-  }
-  .chip-svg { width:120px; height:120px; }
-  .product-badge {
-    position:absolute; top:12px; right:12px; background:var(--accent); color:#000;
-    font-size:0.6rem; font-weight:700; letter-spacing:2px; padding:4px 8px;
-    text-transform:uppercase;
-  }
-  .spec-row { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); font-size:0.72rem; }
-  .spec-row:last-child { border:none; }
-  .spec-key { color:var(--muted); }
-  .spec-val { color:var(--accent2); }
-  .glow-ring {
-    position:absolute; width:300px; height:300px; border-radius:50%;
-    background:radial-gradient(circle, rgba(0,245,160,0.08) 0%, transparent 70%);
-    pointer-events:none; top:50%; left:50%; transform:translate(-50%,-50%);
-    animation: pulse 4s ease-in-out infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+/* HOME */
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 16px 10px;}
+.action-btn{padding:14px 12px;border-radius:10px;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:1px;transition:all 0.25s;}
+.action-btn-icon{font-size:22px;}
+.btn-dep{background:linear-gradient(135deg,#0a3d20,#155c30);border:1px solid rgba(39,174,96,0.4);color:#2ecc71;}
+.btn-dep:hover{transform:translateY(-2px);}
+.btn-wdw{background:linear-gradient(135deg,#3d1500,#5c2200);border:1px solid rgba(201,168,76,0.4);color:var(--gl);}
+.btn-wdw:hover{transform:translateY(-2px);}
+.bal-card{margin:0 16px 14px;background:linear-gradient(160deg,#1c0e02,#0a0500);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px 20px;}
+.bal-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:rgba(201,168,76,0.4);text-transform:uppercase;margin-bottom:4px;}
+.bal-amt{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--gl);letter-spacing:2px;}
+.bal-amt span{font-size:13px;color:rgba(201,168,76,0.5);margin-right:4px;}
+.bal-sub{font-size:10px;color:rgba(255,255,255,0.2);margin-top:3px;letter-spacing:1px;}
+.sec-title{padding:0 16px 10px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(201,168,76,0.5);text-transform:uppercase;}
+.games-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px 14px;}
 
-  /* ── FEATURES ── */
-  .features { padding:80px 40px; max-width:1200px; margin:0 auto; }
-  .section-label { font-size:0.6rem; letter-spacing:4px; color:var(--accent); text-transform:uppercase; margin-bottom:40px; display:flex; align-items:center; gap:16px; }
-  .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
-  .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); }
-  .feat-item { background:var(--card); padding:30px; transition:background 0.2s; }
-  .feat-item:hover { background:#1a1a25; }
-  .feat-icon { font-size:1.5rem; margin-bottom:16px; }
-  .feat-title { font-family:var(--font-head); font-size:1rem; font-weight:700; margin-bottom:8px; }
-  .feat-desc { color:var(--muted); font-size:0.72rem; line-height:1.7; }
+/* DAILY REWARD */
+.reward-card{margin:0 16px 14px;background:linear-gradient(135deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(255,165,0,0.4);border-radius:14px;overflow:hidden;position:relative;animation:rewardGlow 3s ease-in-out infinite;}
+.reward-card::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,165,0,0.07),transparent);animation:sheen 3s ease-in-out infinite;}
+.reward-hdr{background:rgba(255,165,0,0.1);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,165,0,0.15);}
+.reward-title{font-family:'Cinzel',serif;font-size:12px;font-weight:900;color:#ffa500;letter-spacing:2px;}
+.reward-streak{background:rgba(255,165,0,0.2);border:1px solid rgba(255,165,0,0.4);border-radius:20px;padding:3px 10px;font-family:'Cinzel',serif;font-size:10px;color:#ffa500;font-weight:700;}
+.reward-days{display:flex;gap:6px;padding:12px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.reward-day{flex-shrink:0;width:54px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,165,0,0.15);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative;}
+.reward-day.claimed{border-color:rgba(39,174,96,0.5);background:rgba(39,174,96,0.1);}
+.reward-day.today{border-color:#ffa500;background:rgba(255,165,0,0.15);animation:pulse 2s ease-in-out infinite;}
+.reward-day.locked{opacity:0.35;cursor:not-allowed;}
+.rd-day{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1px;color:rgba(255,255,255,0.4);margin-bottom:4px;}
+.rd-ico{font-size:18px;line-height:1;margin-bottom:3px;}
+.rd-amt{font-family:'Cinzel',serif;font-size:9px;font-weight:700;color:#ffa500;}
+.rd-claimed{position:absolute;top:3px;right:3px;font-size:10px;}
 
-  /* ── MODAL BASE ── */
-  .modal { display:none; position:fixed; inset:0; z-index:1000; align-items:center; justify-content:center; padding:20px; }
-  .modal.active { display:flex; }
-  .modal-bg { position:absolute; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); }
-  .modal-box {
-    position:relative; z-index:1; background:var(--card); border:1px solid var(--border);
-    padding:40px; width:100%; max-width:480px; animation:slideUp 0.3s ease;
-  }
-  @keyframes slideUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
-  .modal-box::before {
-    content:''; position:absolute; top:0; left:0; right:0; height:2px;
-    background:linear-gradient(90deg,var(--accent),var(--accent2));
-  }
-  .modal-title { font-family:var(--font-head); font-size:1.4rem; font-weight:800; margin-bottom:6px; }
-  .modal-sub { color:var(--muted); font-size:0.72rem; margin-bottom:28px; }
-  .modal-close { position:absolute; top:16px; right:16px; background:none; border:none; color:var(--muted); cursor:pointer; font-size:1.2rem; }
-  .modal-close:hover { color:var(--danger); }
+/* GAME CARDS */
+.av-home-card{background:linear-gradient(160deg,#0a0018,#1a0030,#0d001a);border:1px solid rgba(201,168,76,0.3);border-radius:12px;overflow:hidden;cursor:pointer;transition:all 0.3s;}
+.av-home-card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,0.7),0 0 20px rgba(150,50,255,0.15);}
+.av-banner{background:linear-gradient(135deg,#1a0035,#2d0050,#0d001a);padding:14px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;}
+.av-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(255,60,60,0.2),transparent 60%);}
+.av-card-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:2px;text-shadow:0 0 15px rgba(255,100,100,0.8);}
+.av-card-sub{font-size:9px;letter-spacing:3px;color:rgba(255,180,180,0.5);margin-top:3px;}
+.av-plane-ico{font-size:26px;animation:planeFly 3s ease-in-out infinite;}
+.av-card-info{display:flex;justify-content:space-around;padding:8px 14px;border-top:1px solid rgba(201,168,76,0.1);}
+.av-ci{text-align:center;}
+.av-ci-val{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:#ff6b6b;}
+.av-ci-key{font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.3);margin-top:2px;}
+.tr-home-card{background:linear-gradient(160deg,#001a0f,#003020,#001a0f);border:1px solid rgba(39,174,96,0.3);border-radius:12px;overflow:hidden;cursor:pointer;transition:all 0.3s;}
+.tr-home-card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,0.7),0 0 20px rgba(39,174,96,0.15);}
+.tr-banner{background:linear-gradient(135deg,#001a12,#003525,#001a12);padding:14px;display:flex;align-items:center;justify-content:space-between;}
+.tr-card-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#00ff88;letter-spacing:2px;text-shadow:0 0 15px rgba(0,255,136,0.6);}
+.tr-card-sub{font-size:9px;letter-spacing:3px;color:rgba(100,255,180,0.5);margin-top:3px;}
+.tr-card-ico{font-size:26px;}
+.tr-card-info{display:flex;justify-content:space-around;padding:8px 14px;border-top:1px solid rgba(39,174,96,0.1);}
+.tr-ci{text-align:center;}
+.tr-ci-val{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:#00ff88;}
+.tr-ci-key{font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.3);margin-top:2px;}
 
-  /* ── PAYMENT MODAL ── */
-  .step-bar { display:flex; gap:0; margin-bottom:32px; }
-  .step { flex:1; text-align:center; font-size:0.65rem; letter-spacing:2px; padding:10px; background:var(--surface); color:var(--muted); border-bottom:2px solid var(--border); text-transform:uppercase; }
-  .step.active { color:var(--accent); border-bottom-color:var(--accent); background:#0d1a15; }
-  .step.done { color:var(--accent); background:#0d1a15; }
+/* SUPPORT BUTTON */
+.support-btn{margin:0 16px 14px;background:linear-gradient(135deg,#001840,#003080);border:1px solid rgba(52,152,219,0.4);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all 0.25s;}
+.support-btn:hover{transform:translateY(-1px);border-color:rgba(52,152,219,0.7);}
+.support-ico{font-size:28px;flex-shrink:0;}
+.support-txt .st{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:#3498db;letter-spacing:2px;}
+.support-txt .ss{font-size:11px;color:rgba(52,152,219,0.5);margin-top:2px;letter-spacing:1px;}
+.support-badge{background:rgba(52,152,219,0.2);border:1px solid rgba(52,152,219,0.4);border-radius:20px;padding:3px 10px;font-family:'Cinzel',serif;font-size:9px;color:#3498db;margin-left:auto;flex-shrink:0;white-space:nowrap;}
 
-  .payment-info { background:var(--surface); border:1px solid var(--border); padding:20px; margin-bottom:20px; }
-  .pay-row { display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.75rem; }
-  .pay-label { color:var(--muted); }
-  .pay-val { color:var(--text); }
-  .binance-box {
-    background:#0d1a15; border:1px solid var(--accent); padding:16px;
-    margin-bottom:20px; text-align:center;
-  }
-  .binance-label { font-size:0.6rem; letter-spacing:3px; color:var(--accent); text-transform:uppercase; margin-bottom:8px; }
-  .binance-id { font-family:var(--font-head); font-size:1.4rem; font-weight:800; color:var(--accent); letter-spacing:4px; }
-  .copy-btn { background:none; border:1px solid var(--accent); color:var(--accent); font-family:var(--font-mono); font-size:0.65rem; padding:4px 12px; cursor:pointer; margin-top:8px; transition:all 0.2s; }
-  .copy-btn:hover { background:var(--accent); color:#000; }
+/* PROFILE PAGE */
+#profilePage{align-items:flex-start;padding:0;}
+.prof-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;padding-bottom:68px;}
+.prof-topbar{background:linear-gradient(135deg,#0a0020,#1a0040);padding:14px 20px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,168,76,0.2);flex-shrink:0;}
+.prof-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:var(--gl);letter-spacing:3px;}
+.prof-hero{background:linear-gradient(160deg,#0a0020,#1a0040,#0a0020);padding:28px 20px 20px;display:flex;flex-direction:column;align-items:center;border-bottom:1px solid rgba(201,168,76,0.1);}
+.prof-avatar-wrap{position:relative;margin-bottom:14px;}
+.prof-avatar{width:88px;height:88px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;background:linear-gradient(135deg,#2d0050,#1a0030);display:flex;align-items:center;justify-content:center;font-size:36px;}
+.prof-edit-ico{position:absolute;bottom:0;right:0;width:28px;height:28px;background:linear-gradient(135deg,#8a6a1f,#c9a84c);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;border:2px solid #061509;}
+.prof-name{font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:2px;margin-bottom:4px;}
+.prof-email{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.5px;margin-bottom:14px;}
+.prof-bal-pill{background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:6px 20px;font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:var(--gl);}
+.prof-edit-name-wrap{display:flex;gap:8px;margin-top:12px;align-items:center;}
+.prof-name-inp{background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:8px 14px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;outline:none;transition:all 0.2s;text-align:center;}
+.prof-name-inp:focus{border-color:rgba(201,168,76,0.7);}
+.prof-save-btn{padding:8px 16px;background:linear-gradient(135deg,#0e5c2b,#27ae60);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;}
+.prof-info-section{margin:16px;}
+.prof-info-card{background:rgba(0,0,0,0.3);border:1px solid rgba(201,168,76,0.1);border-radius:12px;overflow:hidden;}
+.prof-info-title{background:rgba(201,168,76,0.06);padding:10px 16px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:rgba(201,168,76,0.5);border-bottom:1px solid rgba(201,168,76,0.08);}
+.prof-info-row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.prof-info-row:last-child{border-bottom:none;}
+.pir-key{font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;}
+.pir-val{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:rgba(255,255,255,0.8);}
+.pir-val.gold{color:var(--gl);}
+.pir-val.green{color:#2ecc71;}
+.logout-btn{margin:0 16px 16px;padding:13px;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.2);border-radius:8px;color:rgba(231,76,60,0.6);font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;cursor:pointer;transition:all 0.2s;text-transform:uppercase;width:calc(100% - 32px);}
+.logout-btn:hover{border-color:rgba(231,76,60,0.5);color:#e74c3c;}
 
-  label { display:block; font-size:0.65rem; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:6px; margin-top:16px; }
-  input[type=email], input[type=text], input[type=password] {
-    width:100%; background:var(--surface); border:1px solid var(--border); color:var(--text);
-    font-family:var(--font-mono); font-size:0.85rem; padding:12px 16px; outline:none;
-    transition:border 0.2s;
-  }
-  input:focus { border-color:var(--accent); }
-  .btn-submit {
-    width:100%; background:var(--accent); color:#000; font-family:var(--font-mono);
-    font-size:0.85rem; font-weight:700; letter-spacing:2px; padding:16px;
-    border:none; cursor:pointer; text-transform:uppercase; margin-top:20px; transition:all 0.2s;
-  }
-  .btn-submit:hover { background:#00c87a; }
-  .btn-submit:disabled { background:var(--border); color:var(--muted); cursor:not-allowed; }
+/* BET HISTORY PAGE */
+#historyPage{align-items:flex-start;padding:0;}
+.hist-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;padding-bottom:68px;}
+.hist-topbar{background:linear-gradient(135deg,#080008,#180020);padding:14px 20px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,168,76,0.15);flex-shrink:0;}
+.hist-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:var(--gl);letter-spacing:3px;}
+.hist-summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:14px 16px;}
+.hs-card{background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;text-align:center;}
+.hs-val{font-family:'Cinzel',serif;font-size:16px;font-weight:900;}
+.hs-val.gold{color:var(--gl);}
+.hs-val.green{color:#2ecc71;}
+.hs-val.red{color:#e74c3c;}
+.hs-lbl{font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.25);margin-top:3px;text-transform:uppercase;}
+.hist-list{margin:0 16px;}
+.hist-empty{text-align:center;padding:40px 20px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;color:rgba(255,255,255,0.2);}
+.hist-item{background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;}
+.hi-game{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.hi-game.av{background:linear-gradient(135deg,#1a0030,#2d0050);}
+.hi-game.tr{background:linear-gradient(135deg,#001a0f,#003020);}
+.hi-info{flex:1;}
+.hi-name{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:rgba(255,255,255,0.8);}
+.hi-detail{font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;letter-spacing:0.5px;}
+.hi-result{text-align:right;}
+.hi-amt{font-family:'Cinzel',serif;font-size:14px;font-weight:900;}
+.hi-amt.profit{color:#2ecc71;}
+.hi-amt.loss{color:#e74c3c;}
+.hi-status{font-size:9px;letter-spacing:1px;color:rgba(255,255,255,0.3);margin-top:2px;}
 
-  .success-msg { text-align:center; padding:20px 0; }
-  .success-icon { font-size:3rem; margin-bottom:16px; }
-  .success-title { font-family:var(--font-head); font-size:1.5rem; font-weight:800; color:var(--accent); margin-bottom:8px; }
-  .success-desc { color:var(--muted); font-size:0.75rem; line-height:1.8; }
+/* ADMIN PAGE */
+#adminPage{align-items:flex-start;padding:0;z-index:20;}
+.admin-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:#0a0a0a;}
+.admin-topbar{background:linear-gradient(135deg,#1a0000,#3a0000,#1a0000);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,60,60,0.3);}
+.admin-title{font-family:'Cinzel',serif;font-size:15px;font-weight:900;color:#ff6b6b;letter-spacing:3px;}
+.admin-back{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:7px 12px;color:#fff;font-size:11px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;}
+.admin-tabs{display:flex;border-bottom:1px solid rgba(255,60,60,0.15);}
+.admin-tab{flex:1;padding:11px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-align:center;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all 0.2s;}
+.admin-tab.active{color:#ff6b6b;border-bottom-color:#ff6b6b;}
+.admin-tab-content{display:none;}
+.admin-tab-content.active{display:block;}
+.admin-section{margin:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,60,60,0.15);border-radius:12px;overflow:hidden;}
+.admin-sec-title{background:rgba(255,60,60,0.08);padding:10px 16px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:rgba(255,100,100,0.7);border-bottom:1px solid rgba(255,60,60,0.1);}
+.user-list{max-height:450px;overflow-y:auto;}
+.user-row{display:flex;align-items:center;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.user-row:last-child{border-bottom:none;}
+.ur-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2d0050,#1a0030);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border:1px solid rgba(201,168,76,0.2);}
+.ur-info{flex:1;margin:0 10px;}
+.ur-name{font-size:12px;color:rgba(255,255,255,0.85);font-weight:700;}
+.ur-email{font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;}
+.ur-bal{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:var(--gl);}
+.add-bal-btn{background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:8px;padding:6px 10px;color:#2ecc71;font-size:10px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;white-space:nowrap;transition:all 0.2s;flex-shrink:0;}
+.add-bal-btn:hover{background:rgba(39,174,96,0.25);}
+.admin-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px;}
+.admin-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px 16px;}
+.admin-stat-val{font-family:'Cinzel',serif;font-size:20px;font-weight:900;color:var(--gl);}
+.admin-stat-lbl{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);margin-top:4px;text-transform:uppercase;}
 
-  /* ── ADMIN PANEL ── */
-  #admin-panel { display:none; position:fixed; inset:0; z-index:2000; overflow-y:auto; background:var(--bg); }
-  .admin-nav {
-    display:flex; align-items:center; justify-content:space-between;
-    padding:16px 32px; background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0;
-  }
-  .admin-logo { font-family:var(--font-head); font-size:1rem; font-weight:800; }
-  .admin-logo span { color:var(--danger); }
-  .btn-logout { background:none; border:1px solid var(--border); color:var(--muted); font-family:var(--font-mono); font-size:0.7rem; padding:6px 14px; cursor:pointer; }
-  .btn-logout:hover { border-color:var(--danger); color:var(--danger); }
-  .admin-body { max-width:1000px; margin:0 auto; padding:40px 32px; }
-  .admin-header { margin-bottom:32px; }
-  .admin-header h2 { font-family:var(--font-head); font-size:1.8rem; font-weight:800; }
-  .admin-header p { color:var(--muted); font-size:0.75rem; margin-top:6px; }
-  .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:40px; }
-  .stat-card { background:var(--card); border:1px solid var(--border); padding:24px; }
-  .stat-label { font-size:0.6rem; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-bottom:8px; }
-  .stat-value { font-family:var(--font-head); font-size:2rem; font-weight:800; color:var(--accent); }
-  .orders-table { width:100%; border-collapse:collapse; }
-  .orders-table th { text-align:left; font-size:0.6rem; letter-spacing:3px; color:var(--muted); text-transform:uppercase; padding:12px 16px; border-bottom:1px solid var(--border); }
-  .orders-table td { padding:14px 16px; font-size:0.75rem; border-bottom:1px solid rgba(42,42,58,0.5); }
-  .orders-table tr:hover td { background:var(--surface); }
-  .status-pill { display:inline-block; padding:3px 10px; font-size:0.6rem; letter-spacing:1px; text-transform:uppercase; }
-  .status-pending { background:rgba(255,180,0,0.15); color:#ffb400; border:1px solid rgba(255,180,0,0.3); }
-  .status-sent { background:rgba(0,245,160,0.1); color:var(--accent); border:1px solid rgba(0,245,160,0.3); }
-  .btn-send { background:var(--accent); color:#000; border:none; font-family:var(--font-mono); font-size:0.65rem; font-weight:700; padding:6px 14px; cursor:pointer; letter-spacing:1px; }
-  .btn-send:hover { background:#00c87a; }
-  .btn-send:disabled { background:var(--border); color:var(--muted); cursor:not-allowed; }
-  .no-orders { text-align:center; padding:60px; color:var(--muted); font-size:0.8rem; }
+/* SUPPORT MESSAGES IN ADMIN */
+.msg-list{max-height:500px;overflow-y:auto;}
+.msg-item{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.msg-item:last-child{border-bottom:none;}
+.msg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.msg-user{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:rgba(255,255,255,0.8);}
+.msg-time{font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:1px;}
+.msg-text{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5;}
+.msg-new-badge{background:rgba(255,100,100,0.2);border:1px solid rgba(255,100,100,0.4);border-radius:10px;padding:2px 8px;font-family:'Cinzel',serif;font-size:8px;color:#ff6b6b;margin-left:8px;}
 
-  /* ── ADMIN LOGIN ── */
-  #admin-login { display:none; position:fixed; inset:0; z-index:1500; background:var(--bg); align-items:center; justify-content:center; }
-  #admin-login.active { display:flex; }
-  .login-box { background:var(--card); border:1px solid var(--border); padding:48px; width:100%; max-width:380px; position:relative; }
-  .login-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--danger),#ff8c00); }
-  .login-box h2 { font-family:var(--font-head); font-size:1.4rem; font-weight:800; margin-bottom:4px; }
-  .login-box p { color:var(--muted); font-size:0.7rem; margin-bottom:28px; }
-  .err-msg { color:var(--danger); font-size:0.7rem; margin-top:8px; display:none; }
-  .err-msg.show { display:block; }
+/* ADD BALANCE MODAL */
+.add-bal-modal{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.add-bal-modal.open{opacity:1;pointer-events:all;}
+.add-bal-box{width:320px;background:linear-gradient(160deg,#0f0f0f,#0a0a0a);border:1px solid rgba(39,174,96,0.3);border-radius:14px;padding:22px;animation:cardIn 0.3s ease;}
+.abl-title{font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:2px;color:#2ecc71;margin-bottom:4px;}
+.abl-user{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:16px;}
+.abl-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(39,174,96,0.25);border-radius:8px;padding:12px 16px;color:#fff;font-family:'Cinzel',serif;font-size:18px;font-weight:700;outline:none;text-align:center;transition:all 0.2s;margin-bottom:12px;}
+.abl-input:focus{border-color:rgba(39,174,96,0.6);}
+.abl-quick{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+.abl-qb{flex:1;min-width:55px;padding:7px 4px;background:rgba(39,174,96,0.08);border:1px solid rgba(39,174,96,0.2);border-radius:6px;color:rgba(39,174,96,0.8);font-size:10px;cursor:pointer;font-family:'Cinzel',serif;text-align:center;transition:all 0.2s;}
+.abl-qb:hover{background:rgba(39,174,96,0.18);}
+.abl-btns{display:flex;gap:10px;}
+.abl-cancel{flex:1;padding:11px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:rgba(255,255,255,0.5);font-family:'Cinzel',serif;font-size:10px;cursor:pointer;}
+.abl-confirm{flex:1;padding:11px;background:linear-gradient(135deg,#0e5c2b,#27ae60);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:1px;cursor:pointer;}
 
-  /* Secret admin access */
-  .admin-access { position:fixed; bottom:20px; right:20px; width:8px; height:8px; background:var(--border); cursor:pointer; z-index:500; border-radius:50%; transition:background 0.3s; }
-  .admin-access:hover { background:var(--danger); }
+/* ADMIN PASSWORD MODAL */
+.admin-pw-modal{position:fixed;inset:0;z-index:998;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.admin-pw-modal.open{opacity:1;pointer-events:all;}
+.admin-pw-box{width:300px;background:linear-gradient(160deg,#150000,#0a0000);border:1px solid rgba(255,60,60,0.3);border-radius:14px;padding:24px;animation:cardIn 0.3s ease;text-align:center;}
+.apw-title{font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:3px;color:#ff6b6b;margin-bottom:6px;}
+.apw-sub{font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:20px;letter-spacing:1px;}
+.apw-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,60,60,0.25);border-radius:8px;padding:12px 16px;color:#fff;font-family:'Share Tech Mono',monospace;font-size:20px;font-weight:700;outline:none;text-align:center;letter-spacing:8px;margin-bottom:12px;}
+.apw-error{color:#ff4444;font-size:11px;margin-bottom:10px;display:none;font-family:'Cinzel',serif;letter-spacing:1px;}
+.apw-btns{display:flex;gap:10px;}
+.apw-cancel{flex:1;padding:11px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:rgba(255,255,255,0.4);font-family:'Cinzel',serif;font-size:10px;cursor:pointer;}
+.apw-confirm{flex:1;padding:11px;background:linear-gradient(135deg,#5c0000,#c0392b);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:1px;cursor:pointer;}
 
-  @media(max-width:768px) {
-    .hero { grid-template-columns:1fr; padding:60px 20px; }
-    .hero-text { padding-right:0; margin-bottom:40px; }
-    .features-grid { grid-template-columns:1fr; }
-    nav { padding:16px 20px; }
-    .stats-row { grid-template-columns:1fr; }
-    .modal-box { padding:24px; }
-  }
+/* MODAL SHARED */
+.modal-ov{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.85);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.modal-ov.open{opacity:1;pointer-events:all;}
+.modal{width:100%;max-width:480px;background:linear-gradient(160deg,#1c0e02,#0a0500);border-radius:16px 16px 0 0;border:1px solid rgba(201,168,76,0.3);border-bottom:none;transform:translateY(100%);transition:transform 0.4s cubic-bezier(.16,1,.3,1);max-height:90vh;overflow-y:auto;}
+.modal-ov.open .modal{transform:translateY(0);}
+.modal-handle{width:36px;height:4px;background:rgba(201,168,76,0.3);border-radius:2px;margin:12px auto 0;}
+.modal-hdr{padding:14px 20px 12px;border-bottom:1px solid rgba(201,168,76,0.1);display:flex;align-items:center;justify-content:space-between;}
+.modal-title{font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--gl);text-transform:uppercase;}
+.modal-x{background:none;border:none;color:rgba(201,168,76,0.4);font-size:20px;cursor:pointer;padding:4px 8px;}
+.modal-body{padding:18px;}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.method-card{background:rgba(0,0,0,0.3);border:1px solid rgba(201,168,76,0.15);border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;}
+.method-card:hover,.method-card.sel{border-color:var(--gold);background:rgba(201,168,76,0.08);}
+.method-ico{font-size:22px;margin-bottom:5px;}
+.method-nm{font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:1px;color:rgba(201,168,76,0.6);text-transform:uppercase;}
+.igrp{margin-bottom:12px;}
+.ilbl{display:block;font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.4);margin-bottom:6px;}
+.iwrap{position:relative;}
+.iwrap .ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;pointer-events:none;color:rgba(201,168,76,0.4);}
+input[type="text"],input[type="number"],input[type="tel"],input[type="password"]{width:100%;background:rgba(0,0,0,0.35);border:1px solid rgba(201,168,76,0.2);border-radius:7px;padding:11px 13px 11px 36px;color:var(--cream);font-family:'Lato',sans-serif;font-size:14px;outline:none;transition:all 0.2s;}
+input:focus{border-color:rgba(201,168,76,0.6);}
+input::placeholder{color:rgba(253,246,227,0.18);}
+.notice{background:rgba(39,174,96,0.07);border:1px solid rgba(39,174,96,0.2);border-radius:8px;padding:10px 13px;margin-bottom:14px;font-size:11px;color:rgba(39,174,96,0.8);line-height:1.6;}
+.notice.warn{background:rgba(201,168,76,0.07);border-color:rgba(201,168,76,0.2);color:rgba(201,168,76,0.7);}
+.notice.err{background:rgba(231,76,60,0.1);border-color:rgba(231,76,60,0.3);color:#e74c3c;display:none;}
+.notice.err.show{display:block;}
+.btn-sub{width:100%;padding:13px;background:linear-gradient(135deg,#8a6a1f,#c9a84c,#f0d060,#c9a84c,#8a6a1f);border:none;border-radius:8px;color:#0d0500;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all 0.3s;}
+.btn-sub:hover{transform:translateY(-2px);}
+.mform{display:none;}
+.mform.active{display:block;animation:fadeUp 0.3s ease;}
+.sep{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.2),transparent);margin:14px 0;}
 
-  .loading-dot { animation: blink 1s infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+/* BINANCE PREMIUM */
+.bnb-card{background:linear-gradient(135deg,#0d0800,#1a1000,#0d0800);border:1px solid #f0b90b;border-radius:12px;padding:16px;margin-bottom:14px;position:relative;overflow:hidden;}
+.bnb-card::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(240,185,11,0.08),transparent);animation:sheen 4s ease-in-out infinite;}
+.bnb-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.bnb-logo-svg{width:42px;height:42px;flex-shrink:0;}
+.bnb-brand{display:flex;flex-direction:column;}
+.bnb-name{font-family:'Cinzel',serif;font-size:17px;font-weight:900;color:#f0b90b;letter-spacing:3px;}
+.bnb-tagline{font-size:8px;color:rgba(240,185,11,0.5);letter-spacing:3px;margin-top:1px;}
+.bnb-field{background:rgba(240,185,11,0.06);border:1px solid rgba(240,185,11,0.2);border-radius:8px;padding:10px 13px;margin-bottom:8px;}
+.bnb-field:last-child{margin-bottom:0;}
+.bnb-field-key{font-size:8px;letter-spacing:2px;color:rgba(240,185,11,0.45);font-family:'Cinzel',serif;margin-bottom:4px;text-transform:uppercase;}
+.bnb-field-val{font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:#f0d060;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.bnb-copy{background:rgba(240,185,11,0.15);border:1px solid rgba(240,185,11,0.3);border-radius:5px;padding:3px 8px;color:#f0b90b;font-size:9px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;white-space:nowrap;transition:all 0.2s;}
+.bnb-copy:hover{background:rgba(240,185,11,0.25);}
+.bnb-network-badge{display:inline-flex;gap:5px;margin-top:2px;}
+.bnb-net{background:rgba(240,185,11,0.12);border:1px solid rgba(240,185,11,0.25);border-radius:12px;padding:2px 8px;font-size:9px;color:rgba(240,185,11,0.8);font-family:'Cinzel',serif;letter-spacing:1px;}
+
+/* TX ERROR BOX */
+.tx-error-box{background:rgba(231,76,60,0.12);border:2px solid rgba(231,76,60,0.5);border-radius:10px;padding:16px;text-align:center;display:none;margin-bottom:12px;animation:cardIn 0.3s ease;}
+.tx-error-box.show{display:block;}
+.tx-error-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#ff4444;letter-spacing:2px;margin-bottom:6px;}
+.tx-error-sub{font-size:12px;color:rgba(255,100,100,0.7);letter-spacing:1px;}
+
+/* SUPPORT CHAT MODAL */
+.support-modal{position:fixed;inset:0;z-index:150;background:rgba(0,0,0,0.9);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.support-modal.open{opacity:1;pointer-events:all;}
+.support-chat{width:100%;max-width:480px;height:85vh;background:linear-gradient(160deg,#020820,#010510);border-radius:16px 16px 0 0;border:1px solid rgba(52,152,219,0.3);border-bottom:none;transform:translateY(100%);transition:transform 0.4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;}
+.support-modal.open .support-chat{transform:translateY(0);}
+.sc-hdr{padding:16px 20px 14px;border-bottom:1px solid rgba(52,152,219,0.15);display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.sc-ico{width:40px;height:40px;background:rgba(52,152,219,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid rgba(52,152,219,0.3);}
+.sc-info{flex:1;}
+.sc-name{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:#3498db;letter-spacing:2px;}
+.sc-status{font-size:10px;color:rgba(52,152,219,0.5);letter-spacing:1px;display:flex;align-items:center;gap:5px;margin-top:2px;}
+.sc-dot{width:5px;height:5px;border-radius:50%;background:#2ecc71;}
+.sc-close{background:none;border:none;color:rgba(52,152,219,0.4);font-size:22px;cursor:pointer;padding:4px;}
+.sc-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;}
+.sc-msg{max-width:75%;padding:10px 14px;border-radius:12px;font-size:12px;line-height:1.5;}
+.sc-msg.support{background:rgba(52,152,219,0.15);border:1px solid rgba(52,152,219,0.2);color:rgba(255,255,255,0.8);border-radius:4px 12px 12px 12px;align-self:flex-start;}
+.sc-msg.user{background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.2);color:rgba(255,255,255,0.8);border-radius:12px 4px 12px 12px;align-self:flex-end;}
+.sc-msg-time{font-size:9px;color:rgba(255,255,255,0.25);margin-top:4px;letter-spacing:0.5px;}
+.sc-input-row{padding:14px 16px;border-top:1px solid rgba(52,152,219,0.1);display:flex;gap:10px;flex-shrink:0;}
+.sc-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(52,152,219,0.2);border-radius:24px;padding:10px 16px;color:#fff;font-family:'Lato',sans-serif;font-size:13px;outline:none;transition:all 0.2s;}
+.sc-inp:focus{border-color:rgba(52,152,219,0.5);}
+.sc-send{width:42px;height:42px;background:linear-gradient(135deg,#1a5c9b,#3498db);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+.sc-send:hover{transform:scale(1.05);}
+
+/* AVIATOR PAGE */
+#aviatorPage{align-items:flex-start;padding:0;z-index:15;}
+.av-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:linear-gradient(180deg,#0d0018,#0a0014);}
+.av-topbar{background:linear-gradient(135deg,#1a0030,#2d0050,#1a0030);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,100,100,0.2);flex-shrink:0;}
+.av-back{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:7px 12px;color:#fff;font-size:12px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;transition:background 0.2s;}
+.av-back:hover{background:rgba(255,255,255,0.15);}
+.av-tb-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:3px;text-shadow:0 0 15px rgba(255,80,80,0.7);}
+.av-bal-pill{background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:5px 12px;font-family:'Cinzel',serif;font-size:12px;color:var(--gl);font-weight:700;}
+.demo-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:7px 16px;background:rgba(0,0,0,0.3);border-bottom:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;}
+.demo-badge{background:rgba(255,165,0,0.15);border:1px solid rgba(255,165,0,0.4);border-radius:20px;padding:3px 12px;font-family:'Cinzel',serif;font-size:10px;color:#ffa500;font-weight:700;letter-spacing:2px;}
+.demo-bal-txt{font-family:'Cinzel',serif;font-size:12px;color:#ffa500;font-weight:700;}
+.tog-sw{position:relative;display:inline-block;width:44px;height:24px;}
+.tog-sw input{opacity:0;width:0;height:0;}
+.tog-sl{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,0.1);border-radius:24px;transition:0.3s;border:1px solid rgba(255,255,255,0.2);}
+.tog-sl:before{content:'';position:absolute;width:16px;height:16px;left:3px;bottom:3px;background:rgba(255,255,255,0.5);border-radius:50%;transition:0.3s;}
+.tog-sw input:checked+.tog-sl{background:rgba(255,165,0,0.3);border-color:rgba(255,165,0,0.5);}
+.tog-sw input:checked+.tog-sl:before{transform:translateX(20px);background:#ffa500;}
+.demo-lbl{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px;font-family:'Cinzel',serif;}
+.av-canvas{min-height:220px;background:linear-gradient(180deg,#050010,#0a001a);position:relative;overflow:hidden;flex-shrink:0;}
+.av-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 30px;}
+.av-cv{position:absolute;inset:0;z-index:4;}
+.cd-ov{position:absolute;inset:0;z-index:9;background:rgba(5,0,18,0.82);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+.cd-ring{width:100px;height:100px;border-radius:50%;border:3px solid rgba(255,165,0,0.4);background:rgba(255,165,0,0.06);display:flex;align-items:center;justify-content:center;animation:ringP 1s ease-in-out infinite alternate;}
+.cd-num{font-family:'Cinzel',serif;font-size:55px;font-weight:900;color:#ffa500;text-shadow:0 0 20px rgba(255,165,0,0.9);line-height:1;}
+.cd-num.pop{animation:numPop 0.35s cubic-bezier(.16,1,.3,1);}
+.cd-txt{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;color:rgba(255,165,0,0.6);}
+.cd-hint{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35);padding:5px 14px;border:1px solid rgba(255,165,0,0.2);border-radius:20px;background:rgba(255,165,0,0.06);}
+.av-mult-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:5;}
+.av-mn{font-family:'Cinzel',serif;font-size:50px;font-weight:900;color:#fff;text-shadow:0 0 30px rgba(255,100,100,0.9),0 0 60px rgba(255,50,50,0.4);line-height:1;}
+.av-mn.crashed{color:#ff3333;text-shadow:0 0 40px #f00;}
+.av-mn.cashed{color:#00ff88;text-shadow:0 0 30px rgba(0,255,136,0.9);}
+.av-mn-x{font-size:22px;color:rgba(255,255,255,0.5);}
+.av-plbl{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.35);margin-top:6px;}
+.av-plane-el{position:absolute;font-size:28px;z-index:6;filter:drop-shadow(0 0 10px rgba(255,150,150,0.8));display:none;}
+.crash-fl{position:absolute;inset:0;background:rgba(255,0,0,0.18);z-index:7;display:none;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:#ff4444;letter-spacing:4px;}
+.ph-badge{position:absolute;top:10px;left:10px;z-index:8;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;font-weight:700;padding:4px 12px;border-radius:12px;}
+.ph-badge.bet{background:rgba(255,165,0,0.18);border:1px solid rgba(255,165,0,0.5);color:#ffa500;}
+.ph-badge.fly{background:rgba(39,174,96,0.18);border:1px solid rgba(39,174,96,0.5);color:#2ecc71;}
+.ph-badge.crash{background:rgba(231,76,60,0.18);border:1px solid rgba(231,76,60,0.5);color:#e74c3c;}
+.av-ctrl{background:rgba(0,0,0,0.55);border-top:1px solid rgba(255,255,255,0.05);padding:12px 16px;flex-shrink:0;}
+.av-bet-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.av-bet-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);white-space:nowrap;}
+.av-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:9px 13px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;outline:none;text-align:center;transition:all 0.2s;}
+.av-inp:focus{border-color:rgba(255,165,0,0.5);}
+.av-inp:disabled{opacity:0.35;cursor:not-allowed;}
+.av-qbs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.av-qb{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:5px 9px;color:rgba(255,255,255,0.5);font-size:10px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;transition:all 0.2s;}
+.av-qb:hover:not(:disabled){background:rgba(255,165,0,0.15);border-color:rgba(255,165,0,0.3);color:#ffa500;}
+.av-qb:disabled{opacity:0.25;cursor:not-allowed;}
+.av-acts{display:flex;gap:10px;}
+.btn-bet{flex:1;padding:13px;border:none;border-radius:10px;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:all 0.3s;background:linear-gradient(135deg,#9b1a0e,#e74c3c,#9b1a0e);color:#fff;box-shadow:0 4px 15px rgba(231,76,60,0.4);}
+.btn-bet:hover:not(:disabled){transform:translateY(-2px);}
+.btn-bet:disabled{opacity:0.4;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-cash{flex:1;padding:13px;border:none;border-radius:10px;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer;background:linear-gradient(135deg,#0e5c2b,#27ae60,#0e5c2b);color:#fff;box-shadow:0 4px 15px rgba(39,174,96,0.4);display:none;animation:cglow 0.9s ease-in-out infinite alternate;}
+.btn-cash:hover{transform:translateY(-2px);}
+.av-lb{margin:8px 16px 10px;background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.15);border-radius:10px;overflow:hidden;}
+.av-lb-hdr{background:rgba(201,168,76,0.06);padding:9px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,168,76,0.1);}
+.av-lb-ttl{font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:3px;color:rgba(201,168,76,0.6);}
+.av-lb-live{font-size:10px;color:rgba(39,174,96,0.7);display:flex;align-items:center;gap:5px;}
+.lb-dot{width:6px;height:6px;border-radius:50%;background:#2ecc71;animation:blink 1.5s ease-in-out infinite;}
+.lb-row{display:flex;align-items:center;padding:7px 14px;border-bottom:1px solid rgba(255,255,255,0.03);}
+.lb-row:last-child{border-bottom:none;}
+.lb-row:hover{background:rgba(255,255,255,0.02);}
+.lb-rank{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:rgba(201,168,76,0.35);width:26px;flex-shrink:0;}
+.lb-rank.g{color:#f0d060;}.lb-rank.s{color:rgba(192,192,192,0.8);}.lb-rank.b{color:rgba(205,127,50,0.8);}
+.lb-name{flex:1;font-size:12px;color:rgba(255,255,255,0.75);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lb-mult{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:#ff7070;width:66px;text-align:right;flex-shrink:0;}
+.lb-bet{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:#ffa040;width:80px;text-align:right;flex-shrink:0;}
+.lb-row.you{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);}
+.lb-row.you .lb-name{color:#f0d060;font-weight:700;}
+
+/* TRADING PAGE */
+#tradingPage{align-items:flex-start;padding:0;z-index:15;}
+.tr-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:#050f08;}
+.tr-topbar{background:linear-gradient(135deg,#001a0f,#003520,#001a0f);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,255,136,0.15);flex-shrink:0;}
+.tr-back{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:7px 12px;color:#fff;font-size:12px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;}
+.tr-tb-title{font-family:'Cinzel',serif;font-size:15px;font-weight:900;color:#00ff88;letter-spacing:2px;text-shadow:0 0 10px rgba(0,255,136,0.5);}
+.tr-bal-pill{background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:5px 12px;font-family:'Cinzel',serif;font-size:12px;color:var(--gl);font-weight:700;}
+.tr-demo-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:7px 16px;background:rgba(0,0,0,0.3);border-bottom:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;}
+.tr-pair-bar{background:rgba(0,0,0,0.4);border-bottom:1px solid rgba(0,255,136,0.08);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;}
+.tr-pair-name{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:2px;}
+.tr-pair-price{font-family:'Share Tech Mono',monospace;font-size:20px;font-weight:700;color:#00ff88;}
+.tr-pair-change{font-size:11px;padding:3px 10px;border-radius:12px;font-family:'Cinzel',serif;letter-spacing:1px;}
+.tr-pair-change.up{background:rgba(39,174,96,0.15);color:#2ecc71;border:1px solid rgba(39,174,96,0.3);}
+.tr-pair-change.dn{background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.3);}
+.tr-chart-wrap{background:#060e08;height:220px;position:relative;overflow:hidden;border-bottom:1px solid rgba(0,255,136,0.06);}
+.tr-chart-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,136,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.03) 1px,transparent 1px);background-size:40px 30px;}
+.tr-cv{position:absolute;inset:0;}
+.tr-cd-ov{position:absolute;inset:0;z-index:9;background:rgba(2,8,4,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+.tr-cd-ring{width:90px;height:90px;border-radius:50%;border:3px solid rgba(0,255,136,0.4);background:rgba(0,255,136,0.04);display:flex;align-items:center;justify-content:center;animation:tringP 1s ease-in-out infinite alternate;}
+.tr-cd-num{font-family:'Cinzel',serif;font-size:48px;font-weight:900;color:#00ff88;text-shadow:0 0 20px rgba(0,255,136,0.8);line-height:1;}
+.tr-cd-num.pop{animation:numPop 0.35s cubic-bezier(.16,1,.3,1);}
+.tr-cd-txt{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:rgba(0,255,136,0.5);}
+.tr-cd-hint{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35);padding:5px 14px;border:1px solid rgba(0,255,136,0.15);border-radius:20px;}
+.tr-result-ov{position:absolute;inset:0;z-index:9;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
+.tr-result-ov.show{display:flex;}
+.tr-result-box{font-family:'Cinzel',serif;font-size:22px;font-weight:900;letter-spacing:3px;padding:16px 30px;border-radius:12px;text-align:center;}
+.tr-result-box.win{background:rgba(39,174,96,0.2);border:2px solid rgba(39,174,96,0.5);color:#00ff88;text-shadow:0 0 20px rgba(0,255,136,0.7);}
+.tr-result-box.lose{background:rgba(231,76,60,0.2);border:2px solid rgba(231,76,60,0.5);color:#ff4444;}
+.tr-result-sub{font-family:'Cinzel',serif;font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:2px;}
+.tr-predict-row{display:flex;gap:12px;padding:12px 16px;flex-shrink:0;}
+.btn-up{flex:1;padding:15px;border:none;border-radius:12px;font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:2px;cursor:pointer;background:linear-gradient(135deg,#0e5c2b,#27ae60,#0e5c2b);color:#fff;box-shadow:0 4px 15px rgba(39,174,96,0.4);transition:all 0.3s;}
+.btn-up:hover:not(:disabled){transform:translateY(-2px);}
+.btn-up:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.btn-dn{flex:1;padding:15px;border:none;border-radius:12px;font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:2px;cursor:pointer;background:linear-gradient(135deg,#5c0a0a,#c0392b,#5c0a0a);color:#fff;box-shadow:0 4px 15px rgba(192,57,43,0.4);transition:all 0.3s;}
+.btn-dn:hover:not(:disabled){transform:translateY(-2px);}
+.btn-dn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.tr-ctrl{background:rgba(0,0,0,0.5);border-top:1px solid rgba(0,255,136,0.06);padding:10px 16px;flex-shrink:0;}
+.tr-bet-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.tr-bet-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);white-space:nowrap;}
+.tr-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(0,255,136,0.15);border-radius:8px;padding:9px 13px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;outline:none;text-align:center;transition:all 0.2s;}
+.tr-inp:focus{border-color:rgba(0,255,136,0.4);}
+.tr-inp:disabled{opacity:0.35;cursor:not-allowed;}
+.tr-qbs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
+.tr-qb{background:rgba(255,255,255,0.05);border:1px solid rgba(0,255,136,0.1);border-radius:6px;padding:5px 9px;color:rgba(0,255,136,0.5);font-size:10px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;transition:all 0.2s;}
+.tr-qb:hover:not(:disabled){background:rgba(0,255,136,0.1);border-color:rgba(0,255,136,0.3);color:#00ff88;}
+.tr-qb:disabled{opacity:0.25;cursor:not-allowed;}
+.tr-phase-info{text-align:center;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.3);padding-bottom:4px;}
+.tr-lb{margin:8px 16px 10px;background:rgba(0,0,0,0.4);border:1px solid rgba(0,255,136,0.1);border-radius:10px;overflow:hidden;}
+.tr-lb-hdr{background:rgba(0,255,136,0.04);padding:9px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,255,136,0.08);}
+.tr-lb-ttl{font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:3px;color:rgba(0,255,136,0.5);}
+.tr-lb-dot{width:6px;height:6px;border-radius:50%;background:#00ff88;animation:blink 1.5s ease-in-out infinite;}
+.tr-lb-live{font-size:10px;color:rgba(0,255,136,0.6);display:flex;align-items:center;gap:5px;}
+.tr-lb-row{display:flex;align-items:center;padding:7px 14px;border-bottom:1px solid rgba(255,255,255,0.03);}
+.tr-lb-row:last-child{border-bottom:none;}
+.tr-lb-row.you{background:rgba(0,255,136,0.05);border-left:2px solid rgba(0,255,136,0.4);}
+.tr-lb-rank{width:26px;flex-shrink:0;font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:rgba(0,255,136,0.3);}
+.tr-lb-rank.g{color:#f0d060;}.tr-lb-rank.s{color:rgba(192,192,192,0.8);}.tr-lb-rank.b{color:rgba(205,127,50,0.8);}
+.tr-lb-name{flex:1;font-size:12px;color:rgba(255,255,255,0.7);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.tr-lb-dir{width:50px;text-align:center;flex-shrink:0;}
+.tr-lb-dir.up{color:#2ecc71;font-size:14px;}
+.tr-lb-dir.dn{color:#e74c3c;font-size:14px;}
+.tr-lb-amt{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:#ffa040;width:80px;text-align:right;flex-shrink:0;}
+
+/* TOAST */
+.toast{position:fixed;top:70px;left:50%;transform:translateX(-50%) translateY(-16px);border-radius:12px;padding:11px 18px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:#fff;letter-spacing:1px;text-align:center;z-index:400;opacity:0;pointer-events:none;transition:all 0.4s;max-width:90vw;border:1px solid transparent;line-height:1.5;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* REWARD CLAIM MODAL */
+.reward-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.reward-modal.open{opacity:1;pointer-events:all;}
+.reward-claim-box{width:300px;background:linear-gradient(160deg,#0d0800,#1a1000);border:2px solid #ffa500;border-radius:16px;padding:28px 24px;text-align:center;animation:cardIn 0.35s ease;}
+.rc-emoji{font-size:48px;margin-bottom:12px;}
+.rc-day{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:rgba(255,165,0,0.5);margin-bottom:4px;}
+.rc-title{font-family:'Cinzel',serif;font-size:20px;font-weight:900;color:#ffa500;letter-spacing:2px;margin-bottom:8px;}
+.rc-note{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:20px;line-height:1.5;}
+.rc-claim{width:100%;padding:14px;background:linear-gradient(135deg,#8a4a00,#ffa500,#8a4a00);border:none;border-radius:10px;color:#0d0500;font-family:'Cinzel',serif;font-size:12px;font-weight:900;letter-spacing:3px;cursor:pointer;transition:all 0.2s;margin-bottom:10px;}
+.rc-claim:hover{transform:translateY(-2px);}
+.rc-cancel{background:none;border:none;color:rgba(255,255,255,0.3);font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;cursor:pointer;}
 </style>
 </head>
 <body>
-<div class="page-wrap">
+<div class="felt-bg"></div>
+<div class="rim"></div>
+<div class="suits-bg">
+  <div class="suit">♠</div><div class="suit">♥</div>
+  <div class="suit">♦</div><div class="suit">♣</div>
+  <div class="suit">♠</div><div class="suit">♦</div>
+</div>
 
-<!-- ── NAV ── -->
-<nav>
-  <div class="logo">SECURE<span>TECH</span></div>
-  <div class="nav-tag">VERIFIED STORE</div>
-</nav>
-
-<!-- ── HERO ── -->
-<section class="hero">
-  <div class="hero-text">
-    <div class="tag-line">Limited Stock Available</div>
-    <h1>ESP8266<br/>Deauther<br/>V2.6.1</h1>
-    <p class="hero-desc">
-      DSTIKE Deauther OLED V6 — pre-flashed and ready to go. 
-      Firmware version 2.6.1 included. Perfect for network security research, 
-      penetration testing labs, and educational purposes.
-    </p>
-    <div class="price-block">
-      <div class="price">$40</div>
-      <div class="price-note">One-time payment<br/>Digital delivery via email</div>
+<!-- ===== LOGIN ===== -->
+<div class="page active" id="loginPage">
+  <div class="login-card">
+    <div class="card-hdr">
+      <div class="hdr-suits">♠ ♥ ♦ ♣</div>
+      <div class="logo-title">Royal Bet</div>
+      <div class="logo-sub">Play Smart · Win Big</div>
     </div>
-    <button class="btn-order" onclick="openPayment()">ORDER NOW →</button>
+    <div class="login-body">
+      <div class="chips-row">
+        <div class="chip c-r">5</div><div class="chip c-b">10</div>
+        <div class="chip c-g">25</div><div class="chip c-w">50</div><div class="chip c-k">100</div>
+      </div>
+      <div class="st-msg" id="loginSt"></div>
+      <button class="btn-goog" onclick="loginWithGoogle()" id="gBtn">
+        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Sign In with Google
+      </button>
+    </div>
+    <div class="login-foot"><span>♠</span><span class="hl">18+ · Play Responsibly</span><span>♠</span></div>
   </div>
+</div>
 
-  <div class="hero-visual">
-    <div class="glow-ring"></div>
-    <div class="product-card">
-      <div class="product-img-area">
-        <span class="product-badge">IN STOCK</span>
-        <svg class="chip-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="25" y="25" width="70" height="70" rx="4" fill="#111" stroke="#00f5a0" stroke-width="1.5"/>
-          <rect x="35" y="35" width="50" height="50" rx="2" fill="#0d1a15" stroke="#00c3f5" stroke-width="1"/>
-          <text x="60" y="57" text-anchor="middle" fill="#00f5a0" font-size="7" font-family="monospace">ESP8266</text>
-          <text x="60" y="68" text-anchor="middle" fill="#00c3f5" font-size="5.5" font-family="monospace">DEAUTHER</text>
-          <text x="60" y="78" text-anchor="middle" fill="#888" font-size="4.5" font-family="monospace">v2.6.1 OLED V6</text>
-          <!-- Pins left -->
-          <rect x="10" y="37" width="15" height="3" rx="1" fill="#00f5a0" opacity="0.6"/>
-          <rect x="10" y="45" width="15" height="3" rx="1" fill="#00f5a0" opacity="0.6"/>
-          <rect x="10" y="53" width="15" height="3" rx="1" fill="#00f5a0" opacity="0.6"/>
-          <rect x="10" y="61" width="15" height="3" rx="1" fill="#00f5a0" opacity="0.6"/>
-          <rect x="10" y="69" width="15" height="3" rx="1" fill="#00f5a0" opacity="0.6"/>
-          <rect x="10" y="77" width="15" height="3" rx="1" fill="#00f5a0" opacity="0.6"/>
-          <!-- Pins right -->
-          <rect x="95" y="37" width="15" height="3" rx="1" fill="#00c3f5" opacity="0.6"/>
-          <rect x="95" y="45" width="15" height="3" rx="1" fill="#00c3f5" opacity="0.6"/>
-          <rect x="95" y="53" width="15" height="3" rx="1" fill="#00c3f5" opacity="0.6"/>
-          <rect x="95" y="61" width="15" height="3" rx="1" fill="#00c3f5" opacity="0.6"/>
-          <rect x="95" y="69" width="15" height="3" rx="1" fill="#00c3f5" opacity="0.6"/>
-          <rect x="95" y="77" width="15" height="3" rx="1" fill="#00c3f5" opacity="0.6"/>
-          <!-- Pins top -->
-          <rect x="37" y="10" width="3" height="15" rx="1" fill="#00f5a0" opacity="0.4"/>
-          <rect x="45" y="10" width="3" height="15" rx="1" fill="#00f5a0" opacity="0.4"/>
-          <rect x="53" y="10" width="3" height="15" rx="1" fill="#00f5a0" opacity="0.4"/>
-          <rect x="61" y="10" width="3" height="15" rx="1" fill="#00c3f5" opacity="0.4"/>
-          <rect x="69" y="10" width="3" height="15" rx="1" fill="#00c3f5" opacity="0.4"/>
-          <rect x="77" y="10" width="3" height="15" rx="1" fill="#00c3f5" opacity="0.4"/>
-          <!-- Pins bottom -->
-          <rect x="37" y="95" width="3" height="15" rx="1" fill="#00f5a0" opacity="0.4"/>
-          <rect x="45" y="95" width="3" height="15" rx="1" fill="#00f5a0" opacity="0.4"/>
-          <rect x="53" y="95" width="3" height="15" rx="1" fill="#00f5a0" opacity="0.4"/>
-          <rect x="61" y="95" width="3" height="15" rx="1" fill="#00c3f5" opacity="0.4"/>
-          <rect x="69" y="95" width="3" height="15" rx="1" fill="#00c3f5" opacity="0.4"/>
-          <rect x="77" y="95" width="3" height="15" rx="1" fill="#00c3f5" opacity="0.4"/>
-        </svg>
+<!-- ===== HOME ===== -->
+<div class="page" id="homePage">
+  <div class="pg-wrap">
+    <div class="topbar">
+      <div><div class="topbar-logo">Royal Bet</div><div class="topbar-suits">♠ ♥ ♦ ♣</div></div>
+      <div class="user-info">
+        <div id="uName" class="u-name"></div>
+        <div id="uAvWrap" class="u-av-ph">👤</div>
+        <button class="three-dot-btn" onclick="toggleDotMenu()" id="dotBtn">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="dot-menu" id="dotMenu">
+          <div class="dot-menu-item admin-item" onclick="openAdminPw()">🔐 Admin Panel</div>
+          <div class="dot-menu-item" onclick="openModal('deposit')">💰 Deposit</div>
+          <div class="dot-menu-item" onclick="checkWithdraw()">💸 Withdraw</div>
+          <div class="dot-menu-item" onclick="logout()">⬅ Sign Out</div>
+        </div>
       </div>
-      <div class="spec-row"><span class="spec-key">FIRMWARE</span><span class="spec-val">v2.6.1</span></div>
-      <div class="spec-row"><span class="spec-key">BOARD</span><span class="spec-val">DSTIKE OLED V6</span></div>
-      <div class="spec-row"><span class="spec-key">DELIVERY</span><span class="spec-val">EMAIL (INSTANT)</span></div>
-      <div class="spec-row"><span class="spec-key">PRICE</span><span class="spec-val">$40 USD</span></div>
+    </div>
+
+    <div class="action-row">
+      <button class="action-btn btn-dep" onclick="openModal('deposit')"><span class="action-btn-icon">💰</span>Deposit</button>
+      <button class="action-btn btn-wdw" onclick="checkWithdraw()"><span class="action-btn-icon">💸</span>Withdraw</button>
+    </div>
+
+    <div class="bal-card">
+      <div class="bal-lbl">Total Balance</div>
+      <div class="bal-amt" id="homeBal"><span>৳</span>0.00</div>
+      <div class="bal-sub">Real-time updated</div>
+    </div>
+
+    <!-- DAILY REWARD -->
+    <div class="reward-card" id="rewardCard">
+      <div class="reward-hdr">
+        <div class="reward-title">🎁 Daily Reward</div>
+        <div class="reward-streak" id="rewardStreak">Day 1</div>
+      </div>
+      <div class="reward-days" id="rewardDays"></div>
+    </div>
+
+    <div class="sec-title">🎮 Games</div>
+    <div class="games-row">
+      <div class="av-home-card" onclick="goAviator()">
+        <div class="av-banner">
+          <div><div class="av-card-title">✈ AVIATOR</div><div class="av-card-sub">CRASH GAME</div></div>
+          <div class="av-plane-ico">✈️</div>
+        </div>
+        <div class="av-card-info">
+          <div class="av-ci"><div class="av-ci-val">100K×</div><div class="av-ci-key">Max Win</div></div>
+          <div class="av-ci"><div class="av-ci-val">LIVE</div><div class="av-ci-key">Status</div></div>
+        </div>
+      </div>
+      <div class="tr-home-card" onclick="goTrading()">
+        <div class="tr-banner">
+          <div><div class="tr-card-title">📈 TRADE</div><div class="tr-card-sub">USD/JPY</div></div>
+          <div class="tr-card-ico">📊</div>
+        </div>
+        <div class="tr-card-info">
+          <div class="tr-ci"><div class="tr-ci-val">2×</div><div class="tr-ci-key">Win</div></div>
+          <div class="tr-ci"><div class="tr-ci-val">LIVE</div><div class="tr-ci-key">Status</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="support-btn" onclick="openSupport()">
+      <div class="support-ico">🎧</div>
+      <div class="support-txt">
+        <div class="st">Support Team</div>
+        <div class="ss">24/7 Customer Service</div>
+      </div>
+      <div class="support-badge">● Online</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ── FEATURES ── -->
-<section class="features">
-  <div class="section-label">What's Included</div>
-  <div class="features-grid">
-    <div class="feat-item">
-      <div class="feat-icon">📦</div>
-      <div class="feat-title">Pre-Flashed .BIN</div>
-      <div class="feat-desc">Ready-to-flash firmware file delivered directly to your inbox after payment confirmation.</div>
+<!-- ===== PROFILE ===== -->
+<div class="page" id="profilePage">
+  <div class="prof-wrap">
+    <div class="prof-topbar"><div class="prof-title">👤 PROFILE</div></div>
+    <div class="prof-hero">
+      <div class="prof-avatar-wrap">
+        <div class="prof-avatar" id="profAvatar">👤</div>
+        <div class="prof-edit-ico" onclick="document.getElementById('profAvatarInput').click()">✏️</div>
+        <input type="file" id="profAvatarInput" accept="image/*" style="display:none" onchange="uploadAvatar(this)"/>
+      </div>
+      <div class="prof-name" id="profName">Player</div>
+      <div class="prof-email" id="profEmail">—</div>
+      <div class="prof-bal-pill">৳<span id="profBalNum">0.00</span></div>
+      <div class="prof-edit-name-wrap">
+        <input type="text" class="prof-name-inp" id="profNameInp" placeholder="Change name..."/>
+        <button class="prof-save-btn" onclick="saveProfileName()">Save</button>
+      </div>
     </div>
-    <div class="feat-item">
-      <div class="feat-icon">⚡</div>
-      <div class="feat-title">Instant Delivery</div>
-      <div class="feat-desc">Digital product sent via email. No shipping, no waiting. Get it within minutes of payment.</div>
+    <div class="prof-info-section">
+      <div class="prof-info-card">
+        <div class="prof-info-title">📋 ACCOUNT INFORMATION</div>
+        <div class="prof-info-row"><span class="pir-key">Member Since</span><span class="pir-val" id="piJoin">—</span></div>
+        <div class="prof-info-row"><span class="pir-key">Real Balance</span><span class="pir-val gold" id="piBalance">৳0</span></div>
+        <div class="prof-info-row"><span class="pir-key">Total Bets</span><span class="pir-val" id="piTotalBets">0</span></div>
+        <div class="prof-info-row"><span class="pir-key">Total Profit</span><span class="pir-val green" id="piProfit">৳0</span></div>
+        <div class="prof-info-row"><span class="pir-key">Daily Streak</span><span class="pir-val gold" id="piStreak">0 Days 🔥</span></div>
+        <div class="prof-info-row"><span class="pir-key">Account ID</span><span class="pir-val" id="piUID" style="font-size:10px;letter-spacing:0">—</span></div>
+      </div>
     </div>
-    <div class="feat-item">
-      <div class="feat-icon">🔒</div>
-      <div class="feat-title">v2.6.1 Stable Build</div>
-      <div class="feat-desc">Specific stable release for DSTIKE OLED V6 hardware. Tested and verified working build.</div>
-    </div>
+    <button class="logout-btn" onclick="logout()">⬅ Sign Out</button>
   </div>
-</section>
+</div>
 
-</div><!-- /page-wrap -->
-
-<!-- ══════════════════════════════════════
-     PAYMENT MODAL
-══════════════════════════════════════ -->
-<div class="modal" id="payment-modal">
-  <div class="modal-bg" onclick="closePayment()"></div>
-  <div class="modal-box">
-    <button class="modal-close" onclick="closePayment()">✕</button>
-
-    <!-- Step 1: Payment -->
-    <div id="step1">
-      <div class="step-bar">
-        <div class="step active">01 Payment</div>
-        <div class="step" id="step2-tab">02 Confirm</div>
-      </div>
-      <div class="modal-title">Complete Your Order</div>
-      <div class="modal-sub">Send exactly $40 via Binance Pay to the ID below</div>
-
-      <div class="payment-info">
-        <div class="pay-row"><span class="pay-label">Product</span><span class="pay-val">ESP8266 Deauther v2.6.1</span></div>
-        <div class="pay-row"><span class="pay-label">Amount</span><span class="pay-val" style="color:var(--accent);font-weight:700">$40.00 USD</span></div>
-        <div class="pay-row"><span class="pay-label">Method</span><span class="pay-val">Binance Pay</span></div>
-      </div>
-
-      <div class="binance-box">
-        <div class="binance-label">Binance Pay ID</div>
-        <div class="binance-id" id="binance-id-text">894307667</div>
-        <button class="copy-btn" onclick="copyID()">📋 COPY ID</button>
-      </div>
-
-      <button class="btn-submit" onclick="goStep2()">I HAVE PAID → NEXT</button>
+<!-- ===== BET HISTORY ===== -->
+<div class="page" id="historyPage">
+  <div class="hist-wrap">
+    <div class="hist-topbar"><div class="hist-title">📋 BET HISTORY</div></div>
+    <div class="hist-summary">
+      <div class="hs-card"><div class="hs-val gold" id="hsTotalBets">0</div><div class="hs-lbl">Total Bets</div></div>
+      <div class="hs-card"><div class="hs-val green" id="hsTotalProfit">৳0</div><div class="hs-lbl">Profit</div></div>
+      <div class="hs-card"><div class="hs-val red" id="hsTotalLoss">৳0</div><div class="hs-lbl">Loss</div></div>
     </div>
+    <div class="hist-list" id="histList"><div class="hist-empty">No bets yet — go play!</div></div>
+  </div>
+</div>
 
-    <!-- Step 2: Email + confirm -->
-    <div id="step2" style="display:none">
-      <div class="step-bar">
-        <div class="step done">01 Payment ✓</div>
-        <div class="step active" id="step2-tab2">02 Confirm</div>
-      </div>
-      <div class="modal-title">Enter Your Email</div>
-      <div class="modal-sub">We'll send your .BIN file to this address after verifying payment</div>
-
-      <label for="buyer-email">Your Email Address</label>
-      <input type="email" id="buyer-email" placeholder="you@example.com"/>
-
-      <label for="buyer-txid">Transaction Reference (optional)</label>
-      <input type="text" id="buyer-txid" placeholder="Binance Pay TX ID or any ref"/>
-
-      <button class="btn-submit" id="submit-order-btn" onclick="submitOrder()">SUBMIT ORDER →</button>
-
-      <div id="submit-error" class="err-msg"></div>
+<!-- ===== ADMIN PAGE ===== -->
+<div class="page" id="adminPage">
+  <div class="admin-wrap">
+    <div class="admin-topbar">
+      <button class="admin-back" onclick="showPage('homePage')">← Back</button>
+      <div class="admin-title">🔐 ADMIN</div>
+      <div style="width:60px"></div>
     </div>
-
-    <!-- Step 3: Success -->
-    <div id="step3" style="display:none">
-      <div class="success-msg">
-        <div class="success-icon">✅</div>
-        <div class="success-title">Order Received!</div>
-        <div class="success-desc">
-          Thank you for your purchase.<br/>
-          We'll verify your Binance payment and send<br/>
-          the <strong>.BIN file</strong> to your email shortly.<br/><br/>
-          <span style="color:var(--accent)">Usually within 1–24 hours.</span>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('users',this)">👥 Users</button>
+      <button class="admin-tab" onclick="switchAdminTab('messages',this)">💬 Messages</button>
+      <button class="admin-tab" onclick="switchAdminTab('stats',this)">📊 Stats</button>
+    </div>
+    <div class="admin-tab-content active" id="atab-users">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">👥 ALL USERS</div>
+        <div class="user-list" id="userList">
+          <div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.2);">Loading...</div>
+        </div>
+      </div>
+    </div>
+    <div class="admin-tab-content" id="atab-messages">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">💬 SUPPORT MESSAGES</div>
+        <div class="msg-list" id="adminMsgList">
+          <div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.2);">No messages yet</div>
+        </div>
+      </div>
+    </div>
+    <div class="admin-tab-content" id="atab-stats">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">📊 OVERVIEW</div>
+        <div class="admin-stats-grid">
+          <div class="admin-stat"><div class="admin-stat-val" id="adTotalUsers">0</div><div class="admin-stat-lbl">Total Users</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adTotalBal">৳0</div><div class="admin-stat-lbl">Total Balance</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adTotalMsgs">0</div><div class="admin-stat-lbl">Messages</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adTotalBets">0</div><div class="admin-stat-lbl">Total Bets</div></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     ADMIN LOGIN MODAL
-══════════════════════════════════════ -->
-<div id="admin-login">
-  <div class="login-box">
-    <h2>Admin Access</h2>
-    <p>Enter password to access the control panel</p>
-    <label for="admin-pass">Password</label>
-    <input type="password" id="admin-pass" placeholder="••••••" onkeydown="if(event.key==='Enter')checkAdminLogin()"/>
-    <button class="btn-submit" style="background:var(--danger);margin-top:16px" onclick="checkAdminLogin()">LOGIN →</button>
-    <div class="err-msg" id="login-err">Incorrect password. Try again.</div>
-    <button style="width:100%;background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--font-mono);font-size:0.7rem;padding:10px;cursor:pointer;margin-top:10px" onclick="closeAdmin()">← BACK TO STORE</button>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     ADMIN PANEL
-══════════════════════════════════════ -->
-<div id="admin-panel">
-  <div class="admin-nav">
-    <div class="admin-logo">ADMIN <span>PANEL</span></div>
-    <button class="btn-logout" onclick="logoutAdmin()">LOGOUT →</button>
-  </div>
-  <div class="admin-body">
-    <div class="admin-header">
-      <h2>Order Dashboard</h2>
-      <p>All incoming orders from buyers — send the .BIN file via email after verifying Binance payment</p>
+<!-- ADD BALANCE MODAL -->
+<div class="add-bal-modal" id="addBalModal">
+  <div class="add-bal-box">
+    <div class="abl-title">💰 ADD BALANCE</div>
+    <div class="abl-user" id="ablUserName">User</div>
+    <input type="number" class="abl-input" id="ablAmount" placeholder="৳ Amount"/>
+    <div class="abl-quick">
+      <div class="abl-qb" onclick="setAblAmt(500)">৳500</div>
+      <div class="abl-qb" onclick="setAblAmt(1000)">৳1K</div>
+      <div class="abl-qb" onclick="setAblAmt(5000)">৳5K</div>
+      <div class="abl-qb" onclick="setAblAmt(10000)">৳10K</div>
+      <div class="abl-qb" onclick="setAblAmt(50000)">৳50K</div>
+      <div class="abl-qb" onclick="setAblAmt(100000)">৳1L</div>
     </div>
-    <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-label">Total Orders</div>
-        <div class="stat-value" id="stat-total">—</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Pending</div>
-        <div class="stat-value" id="stat-pending" style="color:#ffb400">—</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">File Sent</div>
-        <div class="stat-value" id="stat-sent">—</div>
-      </div>
-    </div>
-
-    <div class="section-label">All Orders</div>
-
-    <div id="orders-container">
-      <div class="no-orders">Loading orders<span class="loading-dot">...</span></div>
+    <div class="abl-btns">
+      <button class="abl-cancel" onclick="closeAddBal()">Cancel</button>
+      <button class="abl-confirm" onclick="confirmAddBal()">✅ ADD</button>
     </div>
   </div>
 </div>
 
-<!-- Secret admin dot -->
-<div class="admin-access" title="Admin" onclick="openAdminLogin()"></div>
+<!-- ADMIN PW MODAL -->
+<div class="admin-pw-modal" id="adminPwModal">
+  <div class="admin-pw-box">
+    <div style="font-size:32px;margin-bottom:10px">🔐</div>
+    <div class="apw-title">ADMIN ACCESS</div>
+    <div class="apw-sub">Enter admin password</div>
+    <input type="password" class="apw-input" id="apwInput" placeholder="• • • • • •" maxlength="10" onkeydown="if(event.key==='Enter')checkAdminPw()"/>
+    <div class="apw-error" id="apwError">❌ Wrong Password!</div>
+    <div class="apw-btns">
+      <button class="apw-cancel" onclick="document.getElementById('adminPwModal').classList.remove('open')">Cancel</button>
+      <button class="apw-confirm" onclick="checkAdminPw()">Enter →</button>
+    </div>
+  </div>
+</div>
 
-<!-- ══════════════════════════════════════
-     FIREBASE SDK
-══════════════════════════════════════ -->
+<!-- AVIATOR PAGE -->
+<div class="page" id="aviatorPage">
+  <div class="av-wrap">
+    <div class="av-topbar">
+      <button class="av-back" onclick="showPage('homePage')">← Back</button>
+      <div class="av-tb-title">✈ AVIATOR</div>
+      <div class="av-bal-pill">৳<span id="avBalNum">0.00</span></div>
+    </div>
+    <div class="demo-bar">
+      <span class="demo-lbl">REAL</span>
+      <label class="tog-sw"><input type="checkbox" id="demoTog" onchange="toggleDemo()"><span class="tog-sl"></span></label>
+      <span class="demo-lbl">DEMO</span>
+      <div id="demoBadgeAv" style="display:none" class="demo-badge">DEMO</div>
+      <div id="demoBalAv" style="display:none" class="demo-bal-txt">৳<span id="demoBalNumAv">10,000</span></div>
+    </div>
+    <div class="av-canvas" id="avCanvas">
+      <div class="av-grid"></div>
+      <canvas id="avCv" class="av-cv"></canvas>
+      <div class="cd-ov" id="avCdOv">
+        <div class="cd-ring"><div class="cd-num" id="avCdNum">10</div></div>
+        <div class="cd-txt">NEXT ROUND</div>
+        <div class="cd-hint">✅ এখন Bet দিন!</div>
+      </div>
+      <div class="av-mult-wrap" id="avMW" style="display:none">
+        <div class="av-mn" id="avMN">1.00<span class="av-mn-x">x</span></div>
+        <div class="av-plbl" id="avPL">FLYING...</div>
+      </div>
+      <div class="av-plane-el" id="avPlane">✈️</div>
+      <div class="crash-fl" id="avCrashFl">💥 CRASHED!</div>
+      <div class="ph-badge bet" id="avPhBadge">🟡 BETTING OPEN</div>
+    </div>
+    <div class="av-ctrl">
+      <div class="av-bet-row">
+        <span class="av-bet-lbl">BET ৳</span>
+        <input type="number" class="av-inp" id="avBetInp" value="1000" min="1000" max="200000"/>
+      </div>
+      <div class="av-qbs" id="avQbs">
+        <button class="av-qb" onclick="avQb(1000)">1K</button>
+        <button class="av-qb" onclick="avQb(5000)">5K</button>
+        <button class="av-qb" onclick="avQb(10000)">10K</button>
+        <button class="av-qb" onclick="avQb(50000)">50K</button>
+        <button class="av-qb" onclick="avQb(100000)">1L</button>
+        <button class="av-qb" onclick="avQb(200000)">2L</button>
+      </div>
+      <div class="av-acts">
+        <button class="btn-bet" id="avBetBtn" onclick="avPlaceBet()">🎲 BET NOW</button>
+        <button class="btn-cash" id="avCashBtn" onclick="avCashOut()">💰 STOP</button>
+      </div>
+    </div>
+    <div class="av-lb">
+      <div class="av-lb-hdr">
+        <div class="av-lb-ttl">🏆 LIVE LEADERBOARD</div>
+        <div class="av-lb-live"><div class="lb-dot"></div>LIVE</div>
+      </div>
+      <div id="avLbBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TRADING PAGE -->
+<div class="page" id="tradingPage">
+  <div class="tr-wrap">
+    <div class="tr-topbar">
+      <button class="tr-back" onclick="showPage('homePage')">← Back</button>
+      <div class="tr-tb-title">📈 USD/JPY</div>
+      <div class="tr-bal-pill">৳<span id="trBalNum">0.00</span></div>
+    </div>
+    <div class="tr-demo-bar">
+      <span class="demo-lbl">REAL</span>
+      <label class="tog-sw"><input type="checkbox" id="trDemoTog" onchange="toggleTrDemo()"><span class="tog-sl"></span></label>
+      <span class="demo-lbl">DEMO</span>
+      <div id="trDemoBadge" style="display:none" class="demo-badge">DEMO</div>
+      <div id="trDemoBalWrap" style="display:none" class="demo-bal-txt">৳<span id="trDemoBalNum">10,000</span></div>
+    </div>
+    <div class="tr-pair-bar">
+      <div>
+        <div class="tr-pair-name">USD/JPY</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-top:2px;">Forex · Live</div>
+      </div>
+      <div style="text-align:right">
+        <div class="tr-pair-price" id="trPrice">149.82</div>
+        <div class="tr-pair-change up" id="trChange">+0.12%</div>
+      </div>
+    </div>
+    <div class="tr-chart-wrap" id="trChartWrap">
+      <div class="tr-chart-grid"></div>
+      <canvas id="trCv" class="tr-cv"></canvas>
+      <div class="tr-cd-ov" id="trCdOv">
+        <div class="tr-cd-ring"><div class="tr-cd-num" id="trCdNum">10</div></div>
+        <div class="tr-cd-txt">NEXT CANDLE</div>
+        <div class="tr-cd-hint">📊 UP ▲ or DOWN ▼ predict করুন</div>
+      </div>
+      <div class="tr-result-ov" id="trResultOv">
+        <div class="tr-result-box" id="trResultBox">WIN!</div>
+        <div class="tr-result-sub" id="trResultSub"></div>
+      </div>
+    </div>
+    <div class="tr-predict-row">
+      <button class="btn-up" id="trUpBtn" onclick="trPredict('up')">▲ UP</button>
+      <button class="btn-dn" id="trDnBtn" onclick="trPredict('down')">▼ DOWN</button>
+    </div>
+    <div class="tr-ctrl">
+      <div class="tr-bet-row">
+        <span class="tr-bet-lbl">BET ৳</span>
+        <input type="number" class="tr-inp" id="trBetInp" value="500" min="500" max="200000"/>
+      </div>
+      <div class="tr-qbs">
+        <button class="tr-qb" onclick="trQb(500)">500</button>
+        <button class="tr-qb" onclick="trQb(1000)">1K</button>
+        <button class="tr-qb" onclick="trQb(5000)">5K</button>
+        <button class="tr-qb" onclick="trQb(10000)">10K</button>
+        <button class="tr-qb" onclick="trQb(50000)">50K</button>
+        <button class="tr-qb" onclick="trQb(200000)">2L</button>
+      </div>
+      <div class="tr-phase-info" id="trPhaseInfo">Bet দিন ও next candle predict করুন</div>
+    </div>
+    <div class="tr-lb">
+      <div class="tr-lb-hdr">
+        <div class="tr-lb-ttl">🏆 RECENT TRADES</div>
+        <div class="tr-lb-live"><div class="tr-lb-dot"></div>LIVE</div>
+      </div>
+      <div id="trLbBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DEPOSIT MODAL -->
+<div class="modal-ov" id="depositModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-hdr"><div class="modal-title">💰 Deposit</div><button class="modal-x" onclick="closeModal('deposit')">✕</button></div>
+    <div class="modal-body">
+      <div class="bnb-card">
+        <div class="bnb-logo-row">
+          <svg class="bnb-logo-svg" viewBox="0 0 126.61 126.61" xmlns="http://www.w3.org/2000/svg" style="width:42px;height:42px;flex-shrink:0">
+            <polygon points="38.73 53.2 63.3 28.58 87.89 53.2 102.07 39 63.3 0.19 24.56 39" fill="#F0B90B"/>
+            <rect x="15.4" y="53.78" width="20" height="20" transform="translate(-31.1 34.4) rotate(-45)" fill="#F0B90B"/>
+            <polygon points="38.73 73.4 63.3 98.02 87.89 73.4 102.15 87.61 63.3 126.42 24.48 87.64" fill="#F0B90B"/>
+            <rect x="91.21" y="53.78" width="20" height="20" transform="translate(-14.1 92.2) rotate(-45)" fill="#F0B90B"/>
+            <polygon points="63.3 41.54 78.83 57.09 63.3 72.62 47.77 57.09" fill="#F0B90B"/>
+          </svg>
+          <div class="bnb-brand">
+            <div class="bnb-name">BINANCE</div>
+            <div class="bnb-tagline">WORLD'S LEADING EXCHANGE</div>
+          </div>
+        </div>
+        <div class="bnb-field">
+          <div class="bnb-field-key">Binance ID</div>
+          <div class="bnb-field-val">894307667<button class="bnb-copy" onclick="copyTxt('894307667',this)">📋 Copy</button></div>
+        </div>
+        <div class="bnb-field">
+          <div class="bnb-field-key">Accepted Networks</div>
+          <div class="bnb-field-val" style="font-size:12px">
+            <div class="bnb-network-badge"><span class="bnb-net">USDT</span><span class="bnb-net">TRC20</span><span class="bnb-net">BEP20</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="igrp"><label class="ilbl">Amount (USDT)</label><div class="iwrap"><span class="ico">💵</span><input type="number" id="depAmt" placeholder="Min 50 USDT"/></div></div>
+      <div class="igrp">
+        <label class="ilbl">Transaction ID (ends with ..)</label>
+        <div class="iwrap"><span class="ico">🔗</span><input type="text" id="depTx" placeholder="e.g. a3f9c2..b7" oninput="validateTxInput(this)"/></div>
+      </div>
+      <!-- TX ERROR -->
+      <div class="tx-error-box" id="txErrorBox">
+        <div class="tx-error-title">❌ Your Transaction ID Wrong</div>
+        <div class="tx-error-sub">Transaction ID must end with <b>..</b> (two dots)</div>
+      </div>
+      <div class="notice warn">⚠️ TxID must end with <b>..</b> · Min 50 USDT · 5–15 min processing</div>
+      <button class="btn-sub" onclick="submitDeposit()">Submit Deposit</button>
+    </div>
+  </div>
+</div>
+
+<!-- WITHDRAW MODAL -->
+<div class="modal-ov" id="withdrawModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-hdr"><div class="modal-title">💸 Withdraw</div><button class="modal-x" onclick="closeModal('withdraw')">✕</button></div>
+    <div class="modal-body">
+      <div class="ilbl" style="margin-bottom:10px">Select Method</div>
+      <div class="method-grid">
+        <div class="method-card" onclick="swm('bkash',this)"><div class="method-ico">📱</div><div class="method-nm">bKash</div></div>
+        <div class="method-card" onclick="swm('nagad',this)"><div class="method-ico">🟠</div><div class="method-nm">Nagad</div></div>
+        <div class="method-card" onclick="swm('binance',this)"><div class="method-ico">🔶</div><div class="method-nm">Binance</div></div>
+        <div class="method-card" onclick="swm('upay',this)"><div class="method-ico">💜</div><div class="method-nm">Upay</div></div>
+        <div class="method-card" onclick="swm('rocket',this)"><div class="method-ico">🚀</div><div class="method-nm">Rocket</div></div>
+      </div>
+      <div class="sep"></div>
+      <div class="mform" id="form-bkash"><div class="igrp"><label class="ilbl">bKash Number</label><div class="iwrap"><span class="ico">📱</span><input type="tel" placeholder="+880 1X XXX XXXXX"/></div></div><div class="igrp"><label class="ilbl">Amount ৳</label><div class="iwrap"><span class="ico">💵</span><input type="number" placeholder="Min ৳5000"/></div></div><div class="notice warn">⚠️ Min ৳5000 · 1–24h</div><button class="btn-sub" onclick="doWdw('bKash')">Withdraw via bKash</button></div>
+      <div class="mform" id="form-nagad"><div class="igrp"><label class="ilbl">Nagad Number</label><div class="iwrap"><span class="ico">🟠</span><input type="tel" placeholder="+880 1X XXX XXXXX"/></div></div><div class="igrp"><label class="ilbl">Amount ৳</label><div class="iwrap"><span class="ico">💵</span><input type="number" placeholder="Min ৳5000"/></div></div><div class="notice warn">⚠️ Min ৳5000 · 1–24h</div><button class="btn-sub" onclick="doWdw('Nagad')">Withdraw via Nagad</button></div>
+      <div class="mform" id="form-binance"><div class="igrp"><label class="ilbl">Binance ID</label><div class="iwrap"><span class="ico">🔶</span><input type="text" placeholder="Your Binance ID"/></div></div><div class="igrp"><label class="ilbl">Amount (USDT)</label><div class="iwrap"><span class="ico">💵</span><input type="number" placeholder="Min 50 USDT"/></div></div><div class="notice warn">⚠️ Min 50 USDT · 15–60min</div><button class="btn-sub" onclick="doWdw('Binance')">Withdraw via Binance</button></div>
+      <div class="mform" id="form-upay"><div class="igrp"><label class="ilbl">Upay Number</label><div class="iwrap"><span class="ico">💜</span><input type="tel" placeholder="+880 1X XXX XXXXX"/></div></div><div class="igrp"><label class="ilbl">Amount ৳</label><div class="iwrap"><span class="ico">💵</span><input type="number" placeholder="Min ৳10000"/></div></div><div class="notice warn">⚠️ Min ৳10000 · 1–24h</div><button class="btn-sub" onclick="doWdw('Upay')">Withdraw via Upay</button></div>
+      <div class="mform" id="form-rocket"><div class="igrp"><label class="ilbl">Rocket Number</label><div class="iwrap"><span class="ico">🚀</span><input type="tel" placeholder="+880 1X XXX XXXXX"/></div></div><div class="igrp"><label class="ilbl">Amount ৳</label><div class="iwrap"><span class="ico">💵</span><input type="number" placeholder="Min ৳10000"/></div></div><div class="notice warn">⚠️ Min ৳10000 · 1–24h</div><button class="btn-sub" onclick="doWdw('Rocket')">Withdraw via Rocket</button></div>
+      <div id="noMethMsg" style="text-align:center;padding:12px 0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;">↑ Select a method above</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPORT CHAT MODAL -->
+<div class="support-modal" id="supportModal">
+  <div class="support-chat">
+    <div class="sc-hdr">
+      <div class="sc-ico">🎧</div>
+      <div class="sc-info">
+        <div class="sc-name">SUPPORT TEAM</div>
+        <div class="sc-status"><div class="sc-dot"></div>Online · Replies within minutes</div>
+      </div>
+      <button class="sc-close" onclick="document.getElementById('supportModal').classList.remove('open')">✕</button>
+    </div>
+    <div class="sc-messages" id="scMessages">
+      <div class="sc-msg support">
+        Welcome to Royal Bet! 👋 How can we help you today?
+        <div class="sc-msg-time">Support Team · Now</div>
+      </div>
+    </div>
+    <div class="sc-input-row">
+      <input type="text" class="sc-inp" id="scInp" placeholder="Type your message..." onkeydown="if(event.key==='Enter')sendSupportMsg()"/>
+      <button class="sc-send" onclick="sendSupportMsg()">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- REWARD CLAIM MODAL -->
+<div class="reward-modal" id="rewardModal">
+  <div class="reward-claim-box">
+    <div class="rc-emoji" id="rcEmoji">🎁</div>
+    <div class="rc-day" id="rcDay">DAY 1</div>
+    <div class="rc-title" id="rcTitle">৳500 Reward!</div>
+    <div class="rc-note">Deposit করলেই এই reward claim করতে পারবেন।<br>আপনার account এ balance থাকলে অথবা deposit করুন।</div>
+    <button class="rc-claim" onclick="claimReward()">🎁 CLAIM NOW</button>
+    <button class="rc-cancel" onclick="document.getElementById('rewardModal').classList.remove('open')">Cancel</button>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav" id="bottomNav" style="display:none">
+  <button class="bn-item" id="bn-home" onclick="navTo('home')">
+    <div class="bn-icon">🏠</div>
+    <div class="bn-label">Home</div>
+  </button>
+  <button class="bn-item active" id="bn-profile" onclick="navTo('profile')">
+    <div class="bn-icon">👤</div>
+    <div class="bn-label">Profile</div>
+  </button>
+  <button class="bn-item" id="bn-history" onclick="navTo('history')">
+    <div class="bn-icon">📋</div>
+    <div class="bn-label">History</div>
+  </button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- FIREBASE -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getDatabase, ref, push, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getDatabase, ref, set, get, onValue, update, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-  const firebaseConfig = {
-    databaseURL: "https://jhasdjhbjhdcbnwdced-default-rtdb.firebaseio.com/"
-  };
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
+const app = initializeApp({
+  apiKey:"AIzaSyB_8Bw60xdifJmE7dqhW7a-79qiC1NMqZg",
+  authDomain:"game-v-app.firebaseapp.com",
+  projectId:"game-v-app",
+  storageBucket:"game-v-app.firebasestorage.app",
+  messagingSenderId:"791868402912",
+  appId:"1:791868402912:web:f5f456496656a6589a7485",
+  databaseURL:"https://game-v-app-default-rtdb.firebaseio.com"
+});
 
-  // Expose globally
-  window._db = db;
-  window._ref = ref;
-  window._push = push;
-  window._onValue = onValue;
-  window._update = update;
-  window._dbReady = true;
+const auth = getAuth(app);
+const db = getDatabase(app);
+window._db = db; window._ref = ref; window._set = set; window._get = get;
+window._update = update; window._push = push; window._onValue = onValue;
 
-  // ── SUBMIT ORDER ──
-  window.submitOrder = async function() {
-    const email = document.getElementById('buyer-email').value.trim();
-    const txid  = document.getElementById('buyer-txid').value.trim();
-    const errEl = document.getElementById('submit-error');
-    const btn   = document.getElementById('submit-order-btn');
-
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errEl.textContent = 'Please enter a valid email address.';
-      errEl.classList.add('show');
-      return;
+onAuthStateChanged(auth, async user => {
+  if (user) {
+    window._curUser = user;
+    const nm = user.displayName ? user.displayName.split(' ')[0] : 'Player';
+    document.getElementById('uName').textContent = nm;
+    const w = document.getElementById('uAvWrap');
+    if (user.photoURL) {
+      w.innerHTML = `<img src="${user.photoURL}" class="u-avatar" onerror="this.parentElement.innerHTML='👤'"/>`;
+      document.getElementById('profAvatar').innerHTML = `<img src="${user.photoURL}" style="width:88px;height:88px;border-radius:50%;object-fit:cover"/>`;
     }
-    errEl.classList.remove('show');
-    btn.disabled = true;
-    btn.textContent = 'SUBMITTING...';
+    // Profile page
+    document.getElementById('profName').textContent = nm;
+    document.getElementById('profEmail').textContent = user.email || '';
+    document.getElementById('profNameInp').value = nm;
+    document.getElementById('piUID').textContent = user.uid.substring(0,16)+'...';
 
-    try {
-      const ordersRef = ref(db, 'orders');
-      await push(ordersRef, {
-        email: email,
-        txid: txid || 'Not provided',
-        product: 'ESP8266 Deauther v2.6.1',
-        price: '$40',
-        status: 'pending',
-        timestamp: new Date().toISOString(),
-        timestampMs: Date.now()
-      });
-      document.getElementById('step2').style.display = 'none';
-      document.getElementById('step3').style.display = 'block';
-    } catch(e) {
-      btn.disabled = false;
-      btn.textContent = 'SUBMIT ORDER →';
-      errEl.textContent = 'Error saving order. Check connection & try again.';
-      errEl.classList.add('show');
-      console.error(e);
+    const userRef = ref(db, 'users/' + user.uid);
+    const snap = await get(userRef);
+    if (!snap.exists()) {
+      const today = new Date().toDateString();
+      await set(userRef, { name: user.displayName||'Player', email: user.email||'', balance: 0, photoURL: user.photoURL||'', createdAt: Date.now(), totalBets: 0, totalProfit: 0, dailyStreak: 0, lastClaimedDay: 0, lastClaimDate: '', lastSeen: today });
     }
-  };
 
-  // ── LOAD ORDERS (admin) ──
-  window.loadOrders = function() {
-    const ordersRef = ref(db, 'orders');
-    onValue(ordersRef, (snapshot) => {
-      const data = snapshot.val();
-      const container = document.getElementById('orders-container');
-      if (!data) {
-        container.innerHTML = '<div class="no-orders">No orders yet. Share your store link!</div>';
-        document.getElementById('stat-total').textContent = '0';
-        document.getElementById('stat-pending').textContent = '0';
-        document.getElementById('stat-sent').textContent = '0';
-        return;
-      }
-      const orders = Object.entries(data).map(([id, val]) => ({ id, ...val }));
-      orders.sort((a,b) => (b.timestampMs||0) - (a.timestampMs||0));
-      const total   = orders.length;
-      const pending = orders.filter(o => o.status === 'pending').length;
-      const sent    = orders.filter(o => o.status === 'sent').length;
-      document.getElementById('stat-total').textContent   = total;
-      document.getElementById('stat-pending').textContent = pending;
-      document.getElementById('stat-sent').textContent    = sent;
-
-      let html = `<table class="orders-table">
-        <thead><tr>
-          <th>#</th><th>Email</th><th>TX Ref</th><th>Date</th><th>Status</th><th>Action</th>
-        </tr></thead><tbody>`;
-
-      orders.forEach((order, i) => {
-        const date = order.timestamp ? new Date(order.timestamp).toLocaleString() : '—';
-        const statusClass = order.status === 'sent' ? 'status-sent' : 'status-pending';
-        const statusLabel = order.status === 'sent' ? '✓ SENT' : 'PENDING';
-        const btnDisabled = order.status === 'sent' ? 'disabled' : '';
-        html += `<tr>
-          <td style="color:var(--muted)">${total - i}</td>
-          <td><a href="mailto:${order.email}?subject=Your ESP8266 Deauther v2.6.1 File&body=Hi,%0A%0AThank you for your purchase!%0APlease find your ESP8266 Deauther v2.6.1 .BIN file attached.%0A%0AInstructions:%0A1. Download the attached .bin file%0A2. Flash it to your DSTIKE OLED V6 board%0A3. Enjoy!%0A%0ABest regards,%0ASecureTech Store" style="color:var(--accent2)">${order.email}</a></td>
-          <td style="color:var(--muted);font-size:0.7rem">${order.txid || '—'}</td>
-          <td style="color:var(--muted);font-size:0.7rem">${date}</td>
-          <td><span class="status-pill ${statusClass}">${statusLabel}</span></td>
-          <td><button class="btn-send" ${btnDisabled} onclick="markSent('${order.id}', '${order.email}')">SEND FILE</button></td>
-        </tr>`;
-      });
-      html += '</tbody></table>';
-      container.innerHTML = html;
+    onValue(ref(db, 'users/' + user.uid), snap => {
+      const d = snap.val() || {};
+      window._realBal = d.balance || 0;
+      window._userProfile = d;
+      updateBals();
+      updateProfileUI(d);
     });
-  };
 
-  // ── MARK AS SENT ──
-  window.markSent = function(orderId, email) {
-    if (!confirm(`Mark order from ${email} as SENT?`)) return;
-    const orderRef = ref(db, 'orders/' + orderId);
-    update(orderRef, { status: 'sent', sentAt: new Date().toISOString() })
-      .then(() => { /* realtime update via onValue */ })
-      .catch(e => alert('Error: ' + e.message));
+    document.getElementById('piJoin').textContent = user.metadata.creationTime ? new Date(user.metadata.creationTime).toLocaleDateString('en') : '—';
+    showPage('homePage');
+    document.getElementById('bottomNav').style.display = 'flex';
+    navTo('home');
+    renderRewardDays();
+  } else {
+    window._curUser = null;
+    document.getElementById('bottomNav').style.display = 'none';
+    showPage('loginPage');
+  }
+});
+
+window.loginWithGoogle = async () => {
+  const btn = document.getElementById('gBtn'), st = document.getElementById('loginSt');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Signing in...';
+  st.className = 'st-msg';
+  try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+  catch(e) {
+    st.textContent = '❌ ' + e.message; st.className = 'st-msg err';
+    btn.disabled = false;
+    btn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Sign In with Google`;
+  }
+};
+window.logout = async () => { await signOut(auth); document.getElementById('bottomNav').style.display='none'; };
+
+window.saveProfileName = async () => {
+  const nm = document.getElementById('profNameInp').value.trim();
+  if (!nm) { toast('❌ Name দিন', true); return; }
+  if (!window._curUser) return;
+  await update(ref(db, 'users/' + window._curUser.uid), { name: nm });
+  document.getElementById('profName').textContent = nm;
+  document.getElementById('uName').textContent = nm;
+  toast('✅ Name update হয়েছে!', false);
+};
+
+window.uploadAvatar = (inp) => {
+  const file = inp.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const data = e.target.result;
+    document.getElementById('profAvatar').innerHTML = `<img src="${data}" style="width:88px;height:88px;border-radius:50%;object-fit:cover"/>`;
+    document.getElementById('uAvWrap').innerHTML = `<img src="${data}" class="u-avatar"/>`;
+    if (window._curUser) update(ref(db, 'users/' + window._curUser.uid), { photoURL: data });
+    toast('✅ Profile photo updated!', false);
   };
+  reader.readAsDataURL(file);
+};
+
+// ADMIN
+window.loadAdminUsers = async () => {
+  const snap = await get(ref(db, 'users'));
+  if (!snap.exists()) { document.getElementById('userList').innerHTML='<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2);font-family:Cinzel,serif;font-size:11px">No users</div>'; return; }
+  const users = snap.val();
+  const uids = Object.keys(users);
+  document.getElementById('adTotalUsers').textContent = uids.length;
+  let tb = 0, totalBets = 0;
+  uids.forEach(uid => { tb += (users[uid].balance||0); totalBets += (users[uid].totalBets||0); });
+  document.getElementById('adTotalBal').textContent = '৳' + tb.toLocaleString('en');
+  document.getElementById('adTotalBets').textContent = totalBets;
+  document.getElementById('userList').innerHTML = uids.map(uid => {
+    const u = users[uid];
+    return `<div class="user-row">
+      <div class="ur-avatar">${u.photoURL && !u.photoURL.startsWith('data') ? `<img src="${u.photoURL}" style="width:36px;height:36px;border-radius:50%;object-fit:cover" onerror="this.parentElement.textContent='👤'"/>` : '👤'}</div>
+      <div class="ur-info">
+        <div class="ur-name">${u.name||'Unknown'}</div>
+        <div class="ur-email">${u.email||uid.substring(0,12)}</div>
+      </div>
+      <div style="text-align:right;margin-right:10px">
+        <div class="ur-bal">৳${(u.balance||0).toLocaleString('en')}</div>
+      </div>
+      <button class="add-bal-btn" onclick="openAddBal('${uid}','${(u.name||'User').replace(/'/g,"\\'")}','${u.balance||0}')">+ Add</button>
+    </div>`;
+  }).join('');
+};
+
+window.loadAdminMessages = async () => {
+  const snap = await get(ref(db, 'messages'));
+  if (!snap.exists()) { document.getElementById('adminMsgList').innerHTML='<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2);font-family:Cinzel,serif;font-size:11px">No messages yet</div>'; document.getElementById('adTotalMsgs').textContent=0; return; }
+  const msgs = snap.val();
+  const arr = Object.values(msgs).sort((a,b)=>b.time-a.time);
+  document.getElementById('adTotalMsgs').textContent = arr.length;
+  document.getElementById('adminMsgList').innerHTML = arr.map(m => `
+    <div class="msg-item">
+      <div class="msg-header">
+        <span class="msg-user">👤 ${m.userName||'User'}<span class="msg-new-badge">NEW</span></span>
+        <span class="msg-time">${new Date(m.time).toLocaleString('en')}</span>
+      </div>
+      <div class="msg-text">${m.text}</div>
+    </div>`).join('');
+};
+
+// Add balance
+let _ablUid=null, _ablCurBal=0;
+window.openAddBal = (uid, name, bal) => {
+  _ablUid=uid; _ablCurBal=parseFloat(bal);
+  document.getElementById('ablUserName').textContent = name + ' — ৳' + parseFloat(bal).toLocaleString('en');
+  document.getElementById('ablAmount').value='';
+  document.getElementById('addBalModal').classList.add('open');
+};
+window.closeAddBal = () => document.getElementById('addBalModal').classList.remove('open');
+window.setAblAmt = v => document.getElementById('ablAmount').value = v;
+window.confirmAddBal = async () => {
+  const amt = parseFloat(document.getElementById('ablAmount').value);
+  if (!amt||amt<=0) { toast('⚠️ Valid amount দিন', true); return; }
+  if (!_ablUid) return;
+  const newBal = _ablCurBal + amt;
+  await update(ref(db, 'users/' + _ablUid), { balance: newBal });
+  toast(`✅ ৳${amt.toLocaleString('en')} add হয়েছে!`, false);
+  closeAddBal();
+  loadAdminUsers();
+};
+
+window._writeBalance = async (newBal) => {
+  if (!window._curUser||window._isDemo) return;
+  await update(ref(db, 'users/' + window._curUser.uid), { balance: newBal });
+};
+
+window._saveBetHistory = async (entry) => {
+  if (!window._curUser) return;
+  const uid = window._curUser.uid;
+  await push(ref(db, 'users/' + uid + '/bets'), entry);
+  const prof = window._userProfile || {};
+  const totalBets = (prof.totalBets||0) + 1;
+  const totalProfit = (prof.totalProfit||0) + (entry.profit||0);
+  await update(ref(db, 'users/' + uid), { totalBets, totalProfit });
+  loadBetHistory();
+};
+
+window.sendSupportMsg = async () => {
+  const inp = document.getElementById('scInp');
+  const txt = inp.value.trim();
+  if (!txt) return;
+  const user = window._curUser;
+  const userName = user ? (window._userProfile?.name || user.displayName || 'User') : 'Guest';
+  const msgs = document.getElementById('scMessages');
+  const t = new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
+  msgs.innerHTML += `<div class="sc-msg user">${txt}<div class="sc-msg-time">You · ${t}</div></div>`;
+  msgs.scrollTop = msgs.scrollHeight;
+  inp.value = '';
+  if (user) {
+    await push(ref(db, 'messages'), { text: txt, userName, userId: user.uid, time: Date.now() });
+  }
+  setTimeout(() => {
+    msgs.innerHTML += `<div class="sc-msg support">আপনার message পেয়েছি! ⚡ আমরা শীঘ্রই reply করব।<div class="sc-msg-time">Support · ${new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}</div></div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1500);
+};
+
+// Load bet history
+window.loadBetHistory = async () => {
+  if (!window._curUser) return;
+  const snap = await get(ref(db, 'users/' + window._curUser.uid + '/bets'));
+  const histList = document.getElementById('histList');
+  if (!snap.exists()) { histList.innerHTML='<div class="hist-empty">No bets yet — go play!</div>'; return; }
+  const bets = Object.values(snap.val()).reverse();
+  let totalProfit = 0, totalLoss = 0;
+  document.getElementById('hsTotalBets').textContent = bets.length;
+  histList.innerHTML = bets.map(b => {
+    const isProfit = b.profit >= 0;
+    if (isProfit) totalProfit += b.profit; else totalLoss += Math.abs(b.profit);
+    return `<div class="hist-item">
+      <div class="hi-game ${b.game==='Aviator'?'av':'tr'}">${b.game==='Aviator'?'✈️':'📈'}</div>
+      <div class="hi-info">
+        <div class="hi-name">${b.game}</div>
+        <div class="hi-detail">${b.detail} · ${new Date(b.time).toLocaleDateString('en')}</div>
+      </div>
+      <div class="hi-result">
+        <div class="hi-amt ${isProfit?'profit':'loss'}">${isProfit?'+':'-'}৳${Math.abs(b.profit).toLocaleString('en')}</div>
+        <div class="hi-status">${isProfit?'WIN':'LOSS'} · ৳${b.bet.toLocaleString('en')} bet</div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('hsTotalProfit').textContent = '৳'+totalProfit.toLocaleString('en');
+  document.getElementById('hsTotalLoss').textContent = '৳'+totalLoss.toLocaleString('en');
+};
+
+// Daily reward claim
+window.claimReward = async () => {
+  if (!window._curUser) return;
+  const prof = window._userProfile || {};
+  const today = new Date().toDateString();
+  if (prof.lastClaimDate === today) { toast('⚠️ আজকের reward ইতোমধ্যে নেওয়া!', true); document.getElementById('rewardModal').classList.remove('open'); return; }
+  if (window._realBal <= 0) { toast('❌ Deposit থাকতে হবে reward নিতে!', true); document.getElementById('rewardModal').classList.remove('open'); setTimeout(()=>openModal('deposit'),600); return; }
+  const dayNum = Math.min((prof.lastClaimedDay || 0) + 1, 7);
+  const rewards = [500,800,1000,1200,1500,2000,3000];
+  const amt = rewards[dayNum-1];
+  const newBal = window._realBal + amt;
+  await update(ref(db, 'users/' + window._curUser.uid), { balance: newBal, lastClaimedDay: dayNum >= 7 ? 0 : dayNum, lastClaimDate: today, dailyStreak: dayNum });
+  document.getElementById('rewardModal').classList.remove('open');
+  toast(`🎁 Day ${dayNum} Reward: ৳${amt.toLocaleString('en')} পেলেন! 🎉`, false);
+  renderRewardDays();
+};
+
+window.renderRewardDays = () => {
+  const prof = window._userProfile || {};
+  const today = new Date().toDateString();
+  const claimedDay = prof.lastClaimedDay || 0;
+  const claimedToday = prof.lastClaimDate === today;
+  const rewards = [500,800,1000,1200,1500,2000,3000];
+  const icons = ['🎁','🎀','💎','🌟','👑','🔥','🏆'];
+  document.getElementById('rewardStreak').textContent = `Day ${claimedDay||1}`;
+  document.getElementById('historyPage'); // init
+  document.getElementById('rewardDays').innerHTML = rewards.map((r,i) => {
+    const dayN = i+1;
+    const isClaimed = dayN <= claimedDay && !(dayN === claimedDay && !claimedToday);
+    const isToday = dayN === (claimedToday ? claimedDay : claimedDay+1);
+    const isLocked = dayN > (claimedToday ? claimedDay : claimedDay+1);
+    return `<div class="reward-day ${isClaimed?'claimed':''} ${isToday?'today':''} ${isLocked?'locked':''}" onclick="${isLocked?'':isToday?`openRewardClaim(${dayN},${r})`:'void(0)'}">
+      ${isClaimed?`<div class="rd-claimed">✅</div>`:''}
+      <div class="rd-day">DAY ${dayN}</div>
+      <div class="rd-ico">${icons[i]}</div>
+      <div class="rd-amt">৳${r>=1000?Math.floor(r/1000)+'K':r}</div>
+    </div>`;
+  }).join('');
+};
+
+window.openRewardClaim = (day, amt) => {
+  const icons=['🎁','🎀','💎','🌟','👑','🔥','🏆'];
+  document.getElementById('rcEmoji').textContent = icons[day-1];
+  document.getElementById('rcDay').textContent = `DAY ${day}`;
+  document.getElementById('rcTitle').textContent = `৳${amt.toLocaleString('en')} Reward!`;
+  document.getElementById('rewardModal').classList.add('open');
+};
+
+function updateProfileUI(d) {
+  document.getElementById('profBalNum').textContent = (d.balance||0).toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('piBalance').textContent = '৳'+(d.balance||0).toLocaleString('en');
+  document.getElementById('piTotalBets').textContent = d.totalBets || 0;
+  document.getElementById('piProfit').textContent = '৳'+(d.totalProfit||0).toLocaleString('en');
+  document.getElementById('piStreak').textContent = (d.dailyStreak||0)+' Days 🔥';
+  if (d.name) { document.getElementById('profName').textContent = d.name; document.getElementById('profNameInp').value = d.name; document.getElementById('uName').textContent = d.name.split(' ')[0]; }
+  if (d.photoURL && d.photoURL.startsWith('data')) {
+    document.getElementById('profAvatar').innerHTML = `<img src="${d.photoURL}" style="width:88px;height:88px;border-radius:50%;object-fit:cover"/>`;
+    document.getElementById('uAvWrap').innerHTML = `<img src="${d.photoURL}" class="u-avatar"/>`;
+  }
+  renderRewardDays();
 }
 </script>
 
 <script>
-  // ── PAYMENT MODAL ──
-  function openPayment() {
-    document.getElementById('payment-modal').classList.add('active');
-    // Reset to step 1
-    document.getElementById('step1').style.display = 'block';
-    document.getElementById('step2').style.display = 'none';
-    document.getElementById('step3').style.display = 'none';
-  }
-  function closePayment() {
-    document.getElementById('payment-modal').classList.remove('active');
-  }
-  function goStep2() {
-    document.getElementById('step1').style.display = 'none';
-    document.getElementById('step2').style.display = 'block';
-    document.getElementById('step2-tab').classList.add('active');
-  }
-  function copyID() {
-    const txt = document.getElementById('binance-id-text').textContent;
-    navigator.clipboard.writeText(txt).then(() => {
-      const btn = event.target;
-      btn.textContent = '✓ COPIED!';
-      setTimeout(() => btn.textContent = '📋 COPY ID', 2000);
-    });
-  }
+// =================== GLOBAL ===================
+window._realBal = 0;
+window._demoBal = 10000;
+window._isDemo = false;
+window._trDemoActive = false;
+window._trDemoBal = 10000;
+window._userProfile = {};
 
-  // ── ADMIN ──
-  const ADMIN_PASS = '308580';
-  function openAdminLogin() {
-    document.getElementById('admin-login').classList.add('active');
-    setTimeout(() => document.getElementById('admin-pass').focus(), 100);
-  }
-  function closeAdmin() {
-    document.getElementById('admin-login').classList.remove('active');
-    document.getElementById('admin-pass').value = '';
-    document.getElementById('login-err').classList.remove('show');
-  }
-  function checkAdminLogin() {
-    const pass = document.getElementById('admin-pass').value;
-    if (pass === ADMIN_PASS) {
-      document.getElementById('admin-login').classList.remove('active');
-      document.getElementById('admin-panel').style.display = 'block';
-      document.body.style.overflow = 'auto';
-      if (window.loadOrders) window.loadOrders();
-    } else {
-      document.getElementById('login-err').classList.add('show');
-      document.getElementById('admin-pass').value = '';
-    }
-  }
-  function logoutAdmin() {
-    document.getElementById('admin-panel').style.display = 'none';
-    document.getElementById('admin-pass').value = '';
-  }
+function getBal() { return window._isDemo ? window._demoBal : window._realBal; }
+function getTrBal() { return window._trDemoActive ? window._trDemoBal : window._realBal; }
+function setBal(v) {
+  v = Math.max(0, v);
+  if (window._isDemo) { window._demoBal = v; updateBals(); }
+  else { window._realBal = v; updateBals(); window._writeBalance(v); }
+}
+function setTrBal(v) {
+  v = Math.max(0,v);
+  if (window._trDemoActive) { window._trDemoBal = v; updateBals(); }
+  else { window._realBal = v; updateBals(); window._writeBalance(v); }
+}
+function updateBals() {
+  const b = getBal(), trB = getTrBal();
+  document.getElementById('homeBal').innerHTML = `<span>৳</span>${window._realBal.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+  document.getElementById('avBalNum').textContent = b.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2});
+  document.getElementById('trBalNum').textContent = trB.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2});
+  if(window._isDemo) document.getElementById('demoBalNumAv').textContent = window._demoBal.toLocaleString('en');
+  if(window._trDemoActive) document.getElementById('trDemoBalNum').textContent = window._trDemoBal.toLocaleString('en');
+}
 
-  // Close modal on Escape
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      closePayment();
-      closeAdmin();
+// =================== PAGES ===================
+window.showPage = id => {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('dotMenu').classList.remove('open');
+};
+window.navTo = tab => {
+  document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('bn-'+tab).classList.add('active');
+  if (tab === 'home') showPage('homePage');
+  else if (tab === 'profile') { showPage('profilePage'); }
+  else if (tab === 'history') { showPage('historyPage'); window.loadBetHistory && loadBetHistory(); }
+};
+window.toggleDotMenu = () => document.getElementById('dotMenu').classList.toggle('open');
+document.addEventListener('click', e => { if (!e.target.closest('.user-info')) document.getElementById('dotMenu').classList.remove('open'); });
+window.goAviator = () => { showPage('aviatorPage'); updateBals(); if(avPhase==='idle') avStartRound(); };
+window.goTrading = () => { showPage('tradingPage'); updateBals(); trInit(); };
+window.openAdminPw = () => { document.getElementById('dotMenu').classList.remove('open'); document.getElementById('apwInput').value=''; document.getElementById('apwError').style.display='none'; document.getElementById('adminPwModal').classList.add('open'); setTimeout(()=>document.getElementById('apwInput').focus(),200); };
+window.checkAdminPw = () => {
+  const pw = document.getElementById('apwInput').value;
+  if (pw === '308580') {
+    document.getElementById('adminPwModal').classList.remove('open');
+    showPage('adminPage');
+    window.loadAdminUsers && loadAdminUsers();
+    window.loadAdminMessages && loadAdminMessages();
+  } else {
+    document.getElementById('apwError').style.display = 'block';
+    document.getElementById('apwInput').value = '';
+  }
+};
+window.switchAdminTab = (tab, el) => {
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab-content').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('atab-'+tab).classList.add('active');
+  if(tab==='messages') window.loadAdminMessages && loadAdminMessages();
+  if(tab==='users') window.loadAdminUsers && loadAdminUsers();
+};
+window.openSupport = () => document.getElementById('supportModal').classList.add('open');
+
+// =================== MODALS ===================
+window.openModal = t => document.getElementById(t+'Modal').classList.add('open');
+window.closeModal = t => document.getElementById(t+'Modal').classList.remove('open');
+document.querySelectorAll('.modal-ov').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');}));
+window.swm = (m, card) => {
+  document.querySelectorAll('.method-card').forEach(c=>c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.querySelectorAll('.mform').forEach(f=>f.classList.remove('active'));
+  document.getElementById('noMethMsg').style.display='none';
+  document.getElementById('form-'+m).classList.add('active');
+};
+window.copyTxt = (t,btn) => navigator.clipboard.writeText(t).then(()=>{btn.textContent='✅ Copied!';setTimeout(()=>btn.textContent='📋 Copy',2000);});
+window.checkWithdraw = () => {
+  if(window._realBal<=0){toast('❌ Balance নেই! Deposit করুন।',true);setTimeout(()=>openModal('deposit'),600);return;}
+  openModal('withdraw');
+};
+
+// TX VALIDATION — must end with ..
+window.validateTxInput = (inp) => {
+  const v = inp.value.trim();
+  const box = document.getElementById('txErrorBox');
+  if (v.length > 2) {
+    if (!v.endsWith('..')) { box.classList.add('show'); }
+    else { box.classList.remove('show'); }
+  } else { box.classList.remove('show'); }
+};
+window.submitDeposit = () => {
+  const a = document.getElementById('depAmt').value;
+  const tx = document.getElementById('depTx').value.trim();
+  if (!a || !tx) { toast('⚠️ সব field পূরণ করুন', true); return; }
+  if (!tx.endsWith('..')) {
+    document.getElementById('txErrorBox').classList.add('show');
+    toast('❌ Your Transaction ID Wrong', true);
+    return;
+  }
+  alert(`✅ Deposit submitted!\nAmount: ${a} USDT\nTxID: ${tx}\n\n5–15 min এ verify হবে।`);
+  closeModal('deposit');
+};
+window.doWdw = m => { alert(`✅ Withdrawal via ${m} submitted!`); closeModal('withdraw'); };
+
+// TOAST
+function toast(msg, isErr) {
+  const t = document.getElementById('toast');
+  t.innerHTML = msg;
+  t.style.background = isErr ? 'linear-gradient(135deg,#5c0a0a,#c0392b)' : 'linear-gradient(135deg,#0a3d1a,#27ae60)';
+  t.style.borderColor = isErr ? 'rgba(231,76,60,0.5)' : 'rgba(39,174,96,0.5)';
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t = setTimeout(()=>t.classList.remove('show'), 3500);
+}
+
+// DEMO TOGGLE
+window.toggleDemo = () => {
+  window._isDemo = document.getElementById('demoTog').checked;
+  document.getElementById('demoBadgeAv').style.display = window._isDemo ? 'inline-block' : 'none';
+  document.getElementById('demoBalAv').style.display = window._isDemo ? 'flex' : 'none';
+  if (window._isDemo && window._demoBal <= 0) window._demoBal = 10000;
+  updateBals();
+  if (avBetPlaced) { avBetPlaced=false; avUpdateUI(); }
+};
+window.toggleTrDemo = () => {
+  window._trDemoActive = document.getElementById('trDemoTog').checked;
+  document.getElementById('trDemoBadge').style.display = window._trDemoActive ? 'inline-block' : 'none';
+  document.getElementById('trDemoBalWrap').style.display = window._trDemoActive ? 'flex' : 'none';
+  if (window._trDemoActive && window._trDemoBal <= 0) window._trDemoBal = 10000;
+  updateBals();
+  if (trBetPlaced) { trBetPlaced=false; trUpdateUI(); }
+};
+
+// =================== AVIATOR ENGINE ===================
+let avPhase='idle', avBetPlaced=false, avBetAmt=0;
+let avMult=1.00, avCrashAt=1.00, avRaf=null, avRoundStart=0, avCdTimer=null;
+const avPts=[]; let avCtx=null;
+
+function avCrashPt() {
+  const r=Math.random();
+  if(r<0.08) return 10+Math.random()*15;
+  if(r<0.22) return 25+Math.random()*75;
+  if(r<0.40) return 100+Math.random()*400;
+  if(r<0.58) return 500+Math.random()*1500;
+  if(r<0.72) return 2000+Math.random()*8000;
+  if(r<0.84) return 10000+Math.random()*20000;
+  if(r<0.93) return 30000+Math.random()*40000;
+  return 70000+Math.random()*30000;
+}
+function avInitCanvas() {
+  const cv=document.getElementById('avCv'),c=document.getElementById('avCanvas');
+  cv.width=c.offsetWidth||420; cv.height=c.offsetHeight||220;
+  avCtx=cv.getContext('2d'); avCtx.clearRect(0,0,cv.width,cv.height);
+}
+function avStartRound() {
+  cancelAnimationFrame(avRaf); clearInterval(avCdTimer);
+  avPhase='countdown'; avMult=1.00; avCrashAt=avCrashPt();
+  avBetPlaced=false; avPts.length=0;
+  document.getElementById('avCdOv').style.display='flex';
+  document.getElementById('avMW').style.display='none';
+  document.getElementById('avPlane').style.display='none';
+  document.getElementById('avCrashFl').style.display='none';
+  document.getElementById('avMW').querySelector('.av-mn').className='av-mn';
+  avInitCanvas(); avSetBadge('bet'); avUpdateUI(); avBuildLB();
+  let n=10; avSetCd(n);
+  avCdTimer=setInterval(()=>{ n--; if(n>0) avSetCd(n); else { clearInterval(avCdTimer); avCdTimer=null; avBeginFly(); } },1000);
+}
+function avSetCd(n) {
+  const el=document.getElementById('avCdNum');
+  el.textContent=n; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+}
+function avBeginFly() {
+  avPhase='flying'; avRoundStart=performance.now();
+  document.getElementById('avCdOv').style.display='none';
+  document.getElementById('avMW').style.display='block';
+  document.getElementById('avMN').innerHTML='1.00<span class="av-mn-x">x</span>';
+  document.getElementById('avPL').textContent='FLYING...';
+  document.getElementById('avPlane').style.display='block';
+  document.getElementById('avPlane').style.left='4%';
+  document.getElementById('avPlane').style.bottom='7%';
+  avSetBadge('fly'); avUpdateUI(); avTick();
+}
+function avTick() {
+  if(avPhase!=='flying') return;
+  const t=(performance.now()-avRoundStart)/1000;
+  avMult=parseFloat((1+t*2+t*t*0.8).toFixed(2));
+  document.getElementById('avMN').innerHTML=avMult.toFixed(2)+'<span class="av-mn-x">x</span>';
+  if(avBetPlaced) {
+    const pot=Math.floor(avBetAmt*avMult);
+    document.getElementById('avCashBtn').textContent='💰 STOP — ৳'+pot.toLocaleString('en');
+  }
+  updateBals();
+  const cv=document.getElementById('avCv'),prog=Math.min(t/20,1);
+  const px=4+prog*82,py=7+prog*74+prog*prog*8;
+  document.getElementById('avPlane').style.left=px+'%';
+  document.getElementById('avPlane').style.bottom=py+'%';
+  avPts.push({x:px/100*cv.width,y:cv.height-py/100*cv.height});
+  avDrawCurve(cv.width,cv.height);
+  if(avMult>=avCrashAt){avDoCrash();return;}
+  avRaf=requestAnimationFrame(avTick);
+}
+function avDrawCurve(w,h) {
+  if(!avCtx||avPts.length<2) return;
+  avCtx.clearRect(0,0,w,h);
+  const gr=avCtx.createLinearGradient(0,h,w*0.9,0);
+  gr.addColorStop(0,'rgba(255,80,80,0.1)'); gr.addColorStop(0.5,'rgba(255,100,100,0.7)'); gr.addColorStop(1,'rgba(255,220,80,1)');
+  avCtx.beginPath(); avCtx.moveTo(avPts[0].x,avPts[0].y);
+  for(let i=1;i<avPts.length;i++) avCtx.lineTo(avPts[i].x,avPts[i].y);
+  avCtx.strokeStyle=gr; avCtx.lineWidth=3; avCtx.shadowColor='rgba(255,120,80,0.8)'; avCtx.shadowBlur=12; avCtx.stroke();
+  avCtx.lineTo(avPts[avPts.length-1].x,h); avCtx.lineTo(avPts[0].x,h); avCtx.closePath();
+  const fg=avCtx.createLinearGradient(0,0,0,h); fg.addColorStop(0,'rgba(255,100,100,0.15)'); fg.addColorStop(1,'rgba(255,100,100,0)');
+  avCtx.fillStyle=fg; avCtx.shadowBlur=0; avCtx.fill();
+}
+function avDoCrash() {
+  avPhase='crashed'; cancelAnimationFrame(avRaf);
+  document.getElementById('avPlane').style.display='none';
+  document.getElementById('avMN').className='av-mn crashed';
+  document.getElementById('avPL').textContent='💥 CRASHED!';
+  document.getElementById('avCrashFl').style.display='flex';
+  avSetBadge('crash'); avUpdateUI();
+  if(avBetPlaced) {
+    avBetPlaced=false; avUpdateUI();
+    toast(`💥 ${avMult.toFixed(2)}x crash! ৳${avBetAmt.toLocaleString('en')} হারালেন`,true);
+    if (!window._isDemo) window._saveBetHistory({game:'Aviator',detail:`Crash at ${avMult.toFixed(2)}x`,bet:avBetAmt,profit:-avBetAmt,time:Date.now()});
+  }
+  setTimeout(()=>{ document.getElementById('avCrashFl').style.display='none'; avStartRound(); },2800);
+}
+window.avPlaceBet = () => {
+  if(avPhase!=='countdown'){toast('⏳ Countdown এ Bet দিন!',true);return;}
+  if(avBetPlaced){toast('✅ ইতোমধ্যে Bet দেওয়া!',false);return;}
+  const v=parseInt(document.getElementById('avBetInp').value);
+  if(isNaN(v)||v<1000||v>200000){toast('⚠️ Bet ৳1,000–৳2,00,000',true);return;}
+  if(getBal()<v){toast(window._isDemo?'❌ Demo balance শেষ!':'❌ Balance কম! Deposit করুন।',true);if(!window._isDemo)setTimeout(()=>openModal('deposit'),800);return;}
+  avBetAmt=v; setBal(getBal()-v); avBetPlaced=true; avUpdateUI();
+  toast(`✅ Bet: ৳${v.toLocaleString('en')} placed!`,false);
+  avBuildLB(true); // show user in LB
+};
+window.avCashOut = () => {
+  if(!avBetPlaced||avPhase!=='flying') return;
+  const m=avMult,win=Math.floor(avBetAmt*m),profit=win-avBetAmt;
+  setBal(getBal()+win); avBetPlaced=false; avUpdateUI();
+  document.getElementById('avMN').className='av-mn cashed';
+  document.getElementById('avPL').textContent=`✅ CASHED ${m.toFixed(2)}x`;
+  toast(`🎉 ${m.toFixed(2)}x — ৳${avBetAmt.toLocaleString('en')} → ৳${win.toLocaleString('en')} (+৳${profit.toLocaleString('en')})`,false);
+  if (!window._isDemo) window._saveBetHistory({game:'Aviator',detail:`Cashed out ${m.toFixed(2)}x`,bet:avBetAmt,profit,time:Date.now()});
+};
+window.avQb = amt => { if(avPhase==='countdown'&&!avBetPlaced) document.getElementById('avBetInp').value=amt; };
+function avUpdateUI() {
+  const bb=document.getElementById('avBetBtn'),cb=document.getElementById('avCashBtn');
+  const inp=document.getElementById('avBetInp'); const qbs=document.querySelectorAll('.av-qb');
+  if(avPhase==='flying') {
+    if(avBetPlaced){bb.style.display='none';cb.style.display='flex';}
+    else{bb.style.display='flex';bb.disabled=true;bb.textContent='🔒 FLYING...';cb.style.display='none';}
+    inp.disabled=true; qbs.forEach(b=>b.disabled=true);
+  } else if(avPhase==='countdown') {
+    cb.style.display='none'; bb.style.display='flex';
+    if(avBetPlaced){bb.disabled=true;bb.textContent='✅ BET PLACED';}
+    else{bb.disabled=false;bb.textContent='🎲 BET NOW';}
+    inp.disabled=avBetPlaced; qbs.forEach(b=>b.disabled=avBetPlaced);
+  } else {
+    bb.style.display='flex';bb.disabled=true;bb.textContent='⏳ NEXT ROUND...';
+    cb.style.display='none';inp.disabled=true;qbs.forEach(b=>b.disabled=true);
+  }
+}
+function avSetBadge(p) {
+  const b=document.getElementById('avPhBadge'); b.className='ph-badge '+p;
+  if(p==='bet')b.textContent='🟡 BETTING OPEN';
+  else if(p==='fly')b.textContent='🟢 FLYING';
+  else b.textContent='🔴 CRASHED';
+}
+
+// AV LB — 20 players
+const AV_NAMES=['Rahim_X','Karim99','Sumon★','NightKing','BetKing88','GoldRush','Lucky7','SpeedBet','TigerBet','AcePlayer','RoyalFly','DiamondX','StormBet','PhoenixUp','NightHawk','PlatinumK','IronFist','CobraKing','MaxBet99','UltraFly','ShadowWin','BlazeFly','NazmulPro','JakirBoss','TareqVip','SabbirX','MonirFly','RafiulBet','HasanKing','JamilAce','SujanGold','FarukPro','BelalStar','RakibMax','KamalAce','TofazzalX','AlaminVip','ShohagBet','MamunFly','ImranPro','RidoyKing','NahidGold','MasudStar','TarikPro','SaifulX'];
+let avUsedNames=new Set();
+function avBuildLB(showUser=false) {
+  if(avUsedNames.size>AV_NAMES.length-22) avUsedNames.clear();
+  const avail=AV_NAMES.filter(n=>!avUsedNames.has(n)),entries=[],used=new Set();
+  const count=20;
+  while(entries.length<count&&avail.length>entries.length) {
+    const i=Math.floor(Math.random()*avail.length),n=avail[i];
+    if(!used.has(n)){used.add(n);avUsedNames.add(n);const m=parseFloat((10+Math.random()*990).toFixed(2)),b=Math.min(Math.floor(1000+Math.random()*199001),200000);entries.push({n,m,b,isUser:false});}
+  }
+  if(showUser && avBetPlaced && window._curUser) {
+    const userName=(window._userProfile?.name||window._curUser.displayName||'You').split(' ')[0];
+    entries.unshift({n:'⭐ '+userName,m:avMult||1.00,b:avBetAmt,isUser:true});
+    entries.sort((a,b)=>b.m-a.m);
+  }
+  entries.sort((a,b)=>b.m-a.m);
+  document.getElementById('avLbBody').innerHTML=entries.map((e,i)=>{
+    let rc='',rl='#'+(i+1);
+    if(i===0){rc='g';rl='🥇';}else if(i===1){rc='s';rl='🥈';}else if(i===2){rc='b';rl='🥉';}
+    return `<div class="lb-row ${e.isUser?'you':''}"><div class="lb-rank ${rc}">${rl}</div><div class="lb-name">${e.n}</div><div class="lb-mult">${e.m.toFixed(2)}x</div><div class="lb-bet">৳${e.b.toLocaleString('en')}</div></div>`;
+  }).join('');
+}
+setInterval(()=>{ if(document.getElementById('aviatorPage').classList.contains('active')&&avPhase==='flying') avBuildLB(avBetPlaced); },9000);
+
+// =================== TRADING ENGINE ===================
+let trPhase='betting',trBetPlaced=false,trBetAmt=0,trPrediction=null;
+let trCurPrice=149.82,trCdTimer=null;
+const trCandles=[];
+
+function trInit() {
+  if(trCdTimer) return;
+  if(trCandles.length===0) {
+    let p=149.82;
+    for(let i=0;i<12;i++){
+      const o=p,move=(Math.random()-0.48)*0.4;
+      const c=parseFloat((o+move).toFixed(3));
+      const h=parseFloat((Math.max(o,c)+Math.random()*0.15).toFixed(3));
+      const l=parseFloat((Math.min(o,c)-Math.random()*0.15).toFixed(3));
+      trCandles.push({o,h,l,c}); p=c;
     }
+    trCurPrice=p;
+  }
+  trDrawChart();
+  trStartBettingPhase();
+}
+function trStartBettingPhase() {
+  clearInterval(trCdTimer);
+  trPhase='betting'; trBetPlaced=false; trPrediction=null;
+  document.getElementById('trCdOv').style.display='flex';
+  document.getElementById('trResultOv').classList.remove('show');
+  trUpdateUI();
+  let n=10; trSetCd(n);
+  trCdTimer=setInterval(()=>{ n--; if(n>0) trSetCd(n); else { clearInterval(trCdTimer); trCdTimer=null; trRevealCandle(); } },1000);
+}
+function trSetCd(n) {
+  const el=document.getElementById('trCdNum');
+  el.textContent=n; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+}
+function trRevealCandle() {
+  trPhase='revealing'; document.getElementById('trCdOv').style.display='none'; trUpdateUI();
+  const last=trCandles[trCandles.length-1];
+  const o=last.c,move=(Math.random()-0.5)*0.5;
+  const c=parseFloat((o+move).toFixed(3));
+  const h=parseFloat((Math.max(o,c)+Math.random()*0.18).toFixed(3));
+  const l=parseFloat((Math.min(o,c)-Math.random()*0.18).toFixed(3));
+  const newCandle={o,h,l,c};
+  const direction=c>=o?'up':'down';
+  animateTrPrice(last.c,c);
+  setTimeout(()=>{
+    if(trCandles.length>=14) trCandles.shift();
+    trCandles.push(newCandle);
+    trCurPrice=c;
+    trDrawChart();
+    trShowResult(direction);
+  },800);
+}
+function animateTrPrice(from,to) {
+  const steps=20,diff=(to-from)/steps; let step=0;
+  const iv=setInterval(()=>{
+    step++;
+    const cur=parseFloat((from+diff*step).toFixed(3));
+    document.getElementById('trPrice').textContent=cur.toFixed(3);
+    const pct=((to-from)/from*100).toFixed(2);
+    const el=document.getElementById('trChange');
+    el.textContent=(pct>=0?'+':'')+pct+'%';
+    el.className='tr-pair-change '+(pct>=0?'up':'dn');
+    if(step>=steps) clearInterval(iv);
+  },40);
+}
+function trShowResult(direction) {
+  const won=trBetPlaced&&trPrediction===direction;
+  const rv=document.getElementById('trResultOv'),rb=document.getElementById('trResultBox'),rs=document.getElementById('trResultSub');
+  if(!trBetPlaced){setTimeout(()=>trStartBettingPhase(),1500);return;}
+  if(won){
+    const win=trBetAmt*2; setTrBal(getTrBal()+win);
+    rb.className='tr-result-box win'; rb.textContent='🎉 WIN!';
+    rs.textContent=`৳${trBetAmt.toLocaleString('en')} → ৳${win.toLocaleString('en')}`;
+    toast(`🎉 ${direction.toUpperCase()} ছিল! ৳${win.toLocaleString('en')} পেলেন!`,false);
+    if(!window._trDemoActive) window._saveBetHistory({game:'Trading',detail:`${direction.toUpperCase()} correct at ${trCurPrice.toFixed(3)}`,bet:trBetAmt,profit:trBetAmt,time:Date.now()});
+  } else {
+    rb.className='tr-result-box lose'; rb.textContent='💥 LOSE!';
+    rs.textContent=`${direction.toUpperCase()} ছিল — ৳${trBetAmt.toLocaleString('en')} হারালেন`;
+    toast(`💥 ${direction.toUpperCase()} ছিল! ৳${trBetAmt.toLocaleString('en')} হারালেন`,true);
+    if(!window._trDemoActive) window._saveBetHistory({game:'Trading',detail:`${direction.toUpperCase()} wrong at ${trCurPrice.toFixed(3)}`,bet:trBetAmt,profit:-trBetAmt,time:Date.now()});
+  }
+  rv.classList.add('show');
+  setTimeout(()=>{ rv.classList.remove('show'); trBuildLB(); trStartBettingPhase(); },2800);
+}
+function trDrawChart() {
+  const wrap=document.getElementById('trChartWrap'),cv=document.getElementById('trCv');
+  cv.width=wrap.offsetWidth||420; cv.height=wrap.offsetHeight||220;
+  const ctx=cv.getContext('2d'); ctx.clearRect(0,0,cv.width,cv.height);
+  if(!trCandles.length) return;
+  const allP=trCandles.flatMap(c=>[c.h,c.l]);
+  const pMin=Math.min(...allP)-0.1,pMax=Math.max(...allP)+0.1,pRange=pMax-pMin;
+  const W=cv.width,H=cv.height,pad=14;
+  const candleW=Math.floor((W-pad*2)/trCandles.length)-3;
+  const cSpacing=(W-pad*2)/trCandles.length;
+  function p2y(p){return pad+(1-(p-pMin)/pRange)*(H-pad*2);}
+  ctx.strokeStyle='rgba(0,255,136,0.08)'; ctx.lineWidth=1;
+  for(let i=0;i<=4;i++){const y=pad+i*(H-pad*2)/4;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();const p=(pMax-i*(pRange/4)).toFixed(3);ctx.fillStyle='rgba(0,255,136,0.3)';ctx.font='9px Share Tech Mono,monospace';ctx.fillText(p,2,y-2);}
+  trCandles.forEach((c,i)=>{
+    const x=pad+i*cSpacing+cSpacing/2;
+    const oY=p2y(c.o),cY=p2y(c.c),hY=p2y(c.h),lY=p2y(c.l);
+    const isUp=c.c>=c.o,color=isUp?'#00cc66':'#ff3333',glow=isUp?'rgba(0,255,100,0.3)':'rgba(255,50,50,0.3)';
+    ctx.strokeStyle=color; ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(x,hY);ctx.lineTo(x,lY);ctx.stroke();
+    const bodyTop=Math.min(oY,cY),bodyH=Math.max(Math.abs(cY-oY),2);
+    ctx.shadowColor=glow; ctx.shadowBlur=6;
+    ctx.fillStyle=color; ctx.fillRect(x-candleW/2,bodyTop,candleW,bodyH);
+    ctx.shadowBlur=0;
   });
+}
+window.trPredict = (dir) => {
+  if(trPhase!=='betting'){toast('⏳ Countdown এ predict করুন!',true);return;}
+  if(trBetPlaced){toast('✅ ইতোমধ্যে bet দেওয়া!',false);return;}
+  const v=parseInt(document.getElementById('trBetInp').value);
+  if(isNaN(v)||v<500||v>200000){toast('⚠️ Bet ৳500–৳2,00,000',true);return;}
+  if(getTrBal()<v){toast(window._trDemoActive?'❌ Demo balance শেষ!':'❌ Balance কম!',true);if(!window._trDemoActive)setTimeout(()=>openModal('deposit'),800);return;}
+  trBetAmt=v; setTrBal(getTrBal()-v); trBetPlaced=true; trPrediction=dir;
+  trUpdateUI(); trBuildLB(true);
+  toast(`✅ ${dir==='up'?'▲':'▼'} ${dir.toUpperCase()} Bet: ৳${v.toLocaleString('en')}`,false);
+};
+window.trQb = amt => { if(trPhase==='betting'&&!trBetPlaced) document.getElementById('trBetInp').value=amt; };
+function trUpdateUI() {
+  const upBtn=document.getElementById('trUpBtn'),dnBtn=document.getElementById('trDnBtn');
+  const inp=document.getElementById('trBetInp'),qbs=document.querySelectorAll('.tr-qb');
+  const info=document.getElementById('trPhaseInfo');
+  if(trPhase==='betting'&&!trBetPlaced){
+    upBtn.disabled=false;dnBtn.disabled=false;inp.disabled=false;qbs.forEach(b=>b.disabled=false);
+    info.textContent='Bet দিন ও next candle direction predict করুন';
+  } else if(trPhase==='betting'&&trBetPlaced){
+    upBtn.disabled=true;dnBtn.disabled=true;inp.disabled=true;qbs.forEach(b=>b.disabled=true);
+    info.textContent=`✅ ${trPrediction?.toUpperCase()} bet — candle revealing...`;
+  } else {
+    upBtn.disabled=true;dnBtn.disabled=true;inp.disabled=true;qbs.forEach(b=>b.disabled=true);
+    info.textContent='⏳ Result...';
+  }
+}
+
+// TR LB — 20 players
+const TR_NAMES=['FXKing_BD','PipMaster','TrendWin','CandleAce','ChartBoss','BullRun88','BearHunt','FXRoyal','PriceAct','MomentumX','ScalpKing','SwingTrade','BreakoutX','SupportLvl','ResistWin','EMAKing','RSIBoss','MACDBet','BollingerX','FibonacciK','VolumeAce','PatternWin','DivergenceX','TrendLineBD','ChannelKing','PivotBoss','GapTrader','ReversalX','ContinueWin','HammerAce','DojiKing','MarubozuX','SpinTop99','EngulfBet','HaramiWin','TweezerPro','MorningStar','EveningStar'];
+let trUsedNames=new Set();
+function trBuildLB(showUser=false) {
+  if(trUsedNames.size>TR_NAMES.length-22) trUsedNames.clear();
+  const avail=TR_NAMES.filter(n=>!trUsedNames.has(n)),entries=[],used=new Set();
+  const count=20;
+  while(entries.length<count&&avail.length>entries.length){
+    const i=Math.floor(Math.random()*avail.length),n=avail[i];
+    if(!used.has(n)){used.add(n);trUsedNames.add(n);const dir=Math.random()>0.5?'up':'down';const b=Math.min(Math.floor(500+Math.random()*199501),200000);const won=Math.random()>0.4;entries.push({n,dir,b,won,isUser:false});}
+  }
+  if(showUser&&trBetPlaced&&window._curUser){
+    const userName=(window._userProfile?.name||window._curUser.displayName||'You').split(' ')[0];
+    entries.unshift({n:'⭐ '+userName,dir:trPrediction||'up',b:trBetAmt,won:false,isUser:true});
+  }
+  document.getElementById('trLbBody').innerHTML=entries.slice(0,20).map((e,i)=>{
+    let rc='',rl='#'+(i+1);
+    if(i===0){rc='g';rl='🥇';}else if(i===1){rc='s';rl='🥈';}else if(i===2){rc='b';rl='🥉';}
+    const dirEl=e.dir==='up'?'<div class="tr-lb-dir up">▲ UP</div>':'<div class="tr-lb-dir dn">▼ DOWN</div>';
+    const winLoss=e.isUser?`<span style="color:#ffa500">LIVE</span>`:e.won?`<span style="color:#00ff88">+৳${e.b.toLocaleString('en')}</span>`:`<span style="color:#ff4444">-৳${e.b.toLocaleString('en')}</span>`;
+    return `<div class="tr-lb-row ${e.isUser?'you':''}"><div class="tr-lb-rank ${rc}">${rl}</div><div class="tr-lb-name">${e.n}</div>${dirEl}<div class="tr-lb-amt">${winLoss}</div></div>`;
+  }).join('');
+}
+trBuildLB();
+setInterval(()=>{ if(document.getElementById('tradingPage').classList.contains('active')) trBuildLB(trBetPlaced); },8000);
+
+// Init
+updateBals();
+avStartRound();
 </script>
 </body>
 </html>
