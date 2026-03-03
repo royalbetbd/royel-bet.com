@@ -1190,7 +1190,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       </div>
       <div class="tx-error-box" id="txErrorBox">
         <div class="tx-error-title">❌ Transaction ID Wrong</div>
-        <div class="tx-error-sub">Transaction ID must end with <b>..</b> (two dots)</div>
+        <div class="tx-error-sub">Transaction ID  <b>..</b> </div>
       </div>
       <div class="notice warn">⚠️ TxID must end with <b>..</b> · Min 50 USDT · 5–15 min</div>
       <button class="btn-sub" onclick="submitDeposit()">Submit Deposit</button>
@@ -1688,7 +1688,7 @@ window.updateDiceInfo=()=>{
 window.rollDice=async()=>{
   if(diceRolling)return;
   const v=parseInt(document.getElementById('diceBetInp').value);
-  if(isNaN(v)||v<100){toast('⚠️ Min ৳100',true);return;}
+  if(isNaN(v)||v<100){toast('⚠️ Min ৳10000',true);return;}
   if(getBalForGame('dice')<v){toast('❌ Balance কম!',true);if(!window._diceDemoActive)setTimeout(()=>openModal('deposit'),800);return;}
   const target=parseInt(document.getElementById('diceTarget').value)||7;
   setBalForGame('dice',getBalForGame('dice')-v);
@@ -1730,7 +1730,7 @@ function buildMinesGrid(){
 }
 window.startMines=()=>{
   const v=parseInt(document.getElementById('minesBetInp').value);
-  if(isNaN(v)||v<100){toast('⚠️ Min ৳100',true);return;}
+  if(isNaN(v)||v<100){toast('⚠️ Min ৳10000',true);return;}
   if(getBalForGame('mines')<v){toast('❌ Balance কম!',true);if(!window._minesDemoActive)setTimeout(()=>openModal('deposit'),800);return;}
   mineBetAmt=v;mineRevealed=0;setBalForGame('mines',getBalForGame('mines')-v);minesActive=true;
   document.getElementById('minesCount').disabled=true;
@@ -1784,7 +1784,7 @@ selectCoin('heads');
 window.flipCoin=async()=>{
   if(coinFlipping)return;
   const v=parseInt(document.getElementById('coinBetInp').value);
-  if(isNaN(v)||v<100){toast('⚠️ Min ৳100',true);return;}
+  if(isNaN(v)||v<100){toast('⚠️ Min ৳10000',true);return;}
   if(getBalForGame('coin')<v){toast('❌ Balance কম!',true);if(!window._coinDemoActive)setTimeout(()=>openModal('deposit'),800);return;}
   setBalForGame('coin',getBalForGame('coin')-v);coinFlipping=true;
   document.getElementById('coinFlipBtn').disabled=true;
@@ -1814,7 +1814,7 @@ window.playLimbo=async()=>{
   if(limboPlaying)return;
   const v=parseInt(document.getElementById('limboBetInp').value);
   const target=parseFloat(document.getElementById('limboTarget').value)||2;
-  if(isNaN(v)||v<100){toast('⚠️ Min ৳100',true);return;}
+  if(isNaN(v)||v<100){toast('⚠️ Min ৳10000',true);return;}
   if(target<1.01){toast('⚠️ Min target 1.01×',true);return;}
   if(getBalForGame('limbo')<v){toast('❌ Balance কম!',true);if(!window._limboDemoActive)setTimeout(()=>openModal('deposit'),800);return;}
   setBalForGame('limbo',getBalForGame('limbo')-v);
@@ -1840,3 +1840,4 @@ avStartRound();
 </script>
 </body>
 </html>
+
