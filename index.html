@@ -38,6 +38,31 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 @keyframes winPop{0%{transform:scale(0.5);opacity:0}60%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
 @keyframes dotMenuSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
+/* HOME LEADERBOARD */
+.hlb-row{display:flex;align-items:center;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);gap:10px;}
+.hlb-row:last-child{border-bottom:none;}
+.hlb-rank-badge{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;font-family:'Cinzel',serif;flex-shrink:0;}
+.hlb-rank-1{background:linear-gradient(135deg,#8a6a1f,#f0d060);box-shadow:0 0 12px rgba(240,208,96,0.5);}
+.hlb-rank-2{background:linear-gradient(135deg,#666,#c0c0c0);box-shadow:0 0 8px rgba(192,192,192,0.3);}
+.hlb-rank-3{background:linear-gradient(135deg,#7a4a00,#cd7f32);box-shadow:0 0 8px rgba(205,127,50,0.3);}
+.hlb-rank-other{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:11px;}
+.hlb-info{flex:1;}
+.hlb-name{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:#fff;}
+.hlb-country{font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;letter-spacing:1px;}
+.hlb-amt{font-family:'Cinzel',serif;font-size:14px;font-weight:900;color:var(--gl);text-align:right;}
+.hlb-crown{font-size:11px;margin-top:2px;text-align:right;}
+
+/* ADMIN LB EDIT */
+.alb-row{padding:12px 14px;border-bottom:1px solid rgba(255,60,60,0.08);display:flex;flex-direction:column;gap:8px;}
+.alb-row:last-child{border-bottom:none;}
+.alb-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.alb-inp{background:rgba(255,255,255,0.06);border:1px solid rgba(255,60,60,0.2);border-radius:6px;padding:7px 10px;color:#fff;font-family:'Cinzel',serif;font-size:11px;outline:none;width:100%;}
+.alb-inp-full{background:rgba(255,255,255,0.06);border:1px solid rgba(255,60,60,0.2);border-radius:6px;padding:7px 10px;color:#fff;font-family:'Cinzel',serif;font-size:11px;outline:none;width:100%;}
+.alb-actions{display:flex;gap:6px;}
+.alb-save{flex:1;padding:7px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:6px;color:#2ecc71;font-family:'Cinzel',serif;font-size:9px;cursor:pointer;letter-spacing:1px;}
+.alb-delete{padding:7px 10px;background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.3);border-radius:6px;color:#e74c3c;font-family:'Cinzel',serif;font-size:9px;cursor:pointer;}
+.alb-rank-lbl{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,100,100,0.6);letter-spacing:2px;margin-bottom:2px;}
+
 .page{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;overflow-y:auto;}
 .page.active{opacity:1;pointer-events:all;}
 
@@ -176,6 +201,9 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .gc-limbo .game-banner{background:linear-gradient(135deg,#200010,#350020);}
 .gc-limbo .game-title{color:#ff3366;text-shadow:0 0 10px rgba(255,50,100,0.6);}
 .gc-limbo .game-ci-val{color:#ff3366;}
+
+/* LEADERBOARD SECTION */
+#homeLbCard{background:linear-gradient(160deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(201,168,76,0.3);border-radius:14px;overflow:hidden}
 
 /* SUPPORT */
 .support-btn{margin:0 16px 14px;background:linear-gradient(135deg,#001840,#003080);border:1px solid rgba(52,152,219,0.4);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all 0.25s;}
@@ -729,6 +757,17 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ff3366">∞×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
       </div>
     </div>
+    <!-- LEADERBOARD SECTION -->
+    <div class="sec-title">🏆 Top Winners</div>
+    <div style="margin:0 16px 14px">
+      <div id="homeLbCard" style="background:linear-gradient(160deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(201,168,76,0.3);border-radius:14px;overflow:hidden">
+        <div style="background:rgba(201,168,76,0.08);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,0.12)">
+          <span style="font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(201,168,76,0.7)">🏆 ALL TIME LEADERBOARD</span>
+          <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.4);letter-spacing:1px">LIVE</span>
+        </div>
+        <div id="homeLbList"></div>
+      </div>
+    </div>
     <div class="support-btn" onclick="openSupport()">
       <div class="support-ico">🎧</div>
       <div class="support-txt"><div class="st">Support Team</div><div class="ss">24/7 Customer Service</div></div>
@@ -800,6 +839,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <button class="admin-tab active" onclick="switchAdminTab('users',this)">👥 Users</button>
       <button class="admin-tab" onclick="switchAdminTab('messages',this)">💬 Messages</button>
       <button class="admin-tab" onclick="switchAdminTab('stats',this)">📊 Stats</button>
+      <button class="admin-tab" onclick="switchAdminTab('leaderboard',this)">🏆 Leaderboard</button>
     </div>
     <div class="admin-tab-content active" id="atab-users">
       <div class="admin-section" style="margin-top:14px">
@@ -822,6 +862,15 @@ input::placeholder{color:rgba(253,246,227,0.18);}
           <div class="admin-stat"><div class="admin-stat-val" id="adTotalMsgs">0</div><div class="admin-stat-lbl">Messages</div></div>
           <div class="admin-stat"><div class="admin-stat-val" id="adTotalBets">0</div><div class="admin-stat-lbl">Total Bets</div></div>
         </div>
+      </div>
+    </div>
+    <div class="admin-tab-content" id="atab-leaderboard">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">🏆 LEADERBOARD MANAGEMENT</div>
+        <div style="padding:12px 14px;border-bottom:1px solid rgba(255,60,60,0.1)">
+          <button onclick="addLbEntry()" style="width:100%;padding:10px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:8px;color:#2ecc71;font-family:'Cinzel',serif;font-size:11px;cursor:pointer;letter-spacing:2px">➕ ADD NEW ENTRY</button>
+        </div>
+        <div id="adminLbList" style="max-height:600px;overflow-y:auto"></div>
       </div>
     </div>
   </div>
@@ -1542,7 +1591,7 @@ window.navTo=tab=>{
   document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
   const el=document.getElementById('bn-'+tab);
   if(el)el.classList.add('active');
-  if(tab==='home')showPage('homePage');
+  if(tab==='home'){showPage('homePage');loadHomeLb();}
   else if(tab==='profile')showPage('profilePage');
   else if(tab==='history'){showPage('historyPage');window.loadBetHistory&&loadBetHistory();}
 };
@@ -1590,6 +1639,7 @@ window.switchAdminTab=(tab,el)=>{
   el.classList.add('active');document.getElementById('atab-'+tab).classList.add('active');
   if(tab==='messages')window.loadAdminMessages&&loadAdminMessages();
   if(tab==='users')window.loadAdminUsers&&loadAdminUsers();
+  if(tab==='leaderboard')window.loadAdminLeaderboard&&loadAdminLeaderboard();
 };
 window.openSupport=()=>document.getElementById('supportModal').classList.add('open');
 
@@ -1688,7 +1738,7 @@ window.updateDiceInfo=()=>{
 window.rollDice=async()=>{
   if(diceRolling)return;
   const v=parseInt(document.getElementById('diceBetInp').value);
-  if(isNaN(v)||v<100){toast('⚠️ Min ৳10000',true);return;}
+  if(isNaN(v)||v<100){toast('⚠️ Min ৳100',true);return;}
   if(getBalForGame('dice')<v){toast('❌ Balance কম!',true);if(!window._diceDemoActive)setTimeout(()=>openModal('deposit'),800);return;}
   const target=parseInt(document.getElementById('diceTarget').value)||7;
   setBalForGame('dice',getBalForGame('dice')-v);
@@ -1730,7 +1780,7 @@ function buildMinesGrid(){
 }
 window.startMines=()=>{
   const v=parseInt(document.getElementById('minesBetInp').value);
-  if(isNaN(v)||v<100){toast('⚠️ Min ৳10000',true);return;}
+  if(isNaN(v)||v<100){toast('⚠️ Min ৳100',true);return;}
   if(getBalForGame('mines')<v){toast('❌ Balance কম!',true);if(!window._minesDemoActive)setTimeout(()=>openModal('deposit'),800);return;}
   mineBetAmt=v;mineRevealed=0;setBalForGame('mines',getBalForGame('mines')-v);minesActive=true;
   document.getElementById('minesCount').disabled=true;
@@ -1784,7 +1834,7 @@ selectCoin('heads');
 window.flipCoin=async()=>{
   if(coinFlipping)return;
   const v=parseInt(document.getElementById('coinBetInp').value);
-  if(isNaN(v)||v<100){toast('⚠️ Min ৳10000',true);return;}
+  if(isNaN(v)||v<100){toast('⚠️ Min ৳100',true);return;}
   if(getBalForGame('coin')<v){toast('❌ Balance কম!',true);if(!window._coinDemoActive)setTimeout(()=>openModal('deposit'),800);return;}
   setBalForGame('coin',getBalForGame('coin')-v);coinFlipping=true;
   document.getElementById('coinFlipBtn').disabled=true;
@@ -1814,7 +1864,7 @@ window.playLimbo=async()=>{
   if(limboPlaying)return;
   const v=parseInt(document.getElementById('limboBetInp').value);
   const target=parseFloat(document.getElementById('limboTarget').value)||2;
-  if(isNaN(v)||v<100){toast('⚠️ Min ৳10000',true);return;}
+  if(isNaN(v)||v<100){toast('⚠️ Min ৳100',true);return;}
   if(target<1.01){toast('⚠️ Min target 1.01×',true);return;}
   if(getBalForGame('limbo')<v){toast('❌ Balance কম!',true);if(!window._limboDemoActive)setTimeout(()=>openModal('deposit'),800);return;}
   setBalForGame('limbo',getBalForGame('limbo')-v);
@@ -1834,10 +1884,122 @@ window.playLimbo=async()=>{
 };
 updateLimboInfo();
 
+// =================== HOME LEADERBOARD ===================
+const DEFAULT_LB = [
+  {id:'lb1', name:'RahimBetKing', country:'🇧🇩 Bangladesh', amount:485000},
+  {id:'lb2', name:'Sumon_Royal', country:'🇧🇩 Bangladesh', amount:362000},
+  {id:'lb3', name:'NightHawk99', country:'🇮🇳 India', amount:298000},
+  {id:'lb4', name:'GoldRush_X', country:'🇵🇰 Pakistan', amount:241000},
+  {id:'lb5', name:'TigerBet88', country:'🇧🇩 Bangladesh', amount:187000},
+  {id:'lb6', name:'AcePlayer_BD', country:'🇧🇩 Bangladesh', amount:154000},
+  {id:'lb7', name:'LuckyKing7', country:'🇱🇰 Sri Lanka', amount:132000},
+  {id:'lb8', name:'SpeedBet_Pro', country:'🇧🇩 Bangladesh', amount:118000},
+];
+
+async function loadHomeLb(){
+  if(!window._db||!window._ref||!window._get){
+    renderHomeLb(DEFAULT_LB);return;
+  }
+  try{
+    const snap=await window._get(window._ref(window._db,'leaderboard'));
+    if(snap.exists()){
+      const data=snap.val();
+      const arr=Object.entries(data).map(([id,v])=>({id,...v})).sort((a,b)=>b.amount-a.amount);
+      renderHomeLb(arr.length?arr:DEFAULT_LB);
+    } else {
+      renderHomeLb(DEFAULT_LB);
+    }
+  } catch(e){renderHomeLb(DEFAULT_LB);}
+}
+
+function renderHomeLb(entries){
+  const medals=['🥇','🥈','🥉'];
+  const rankClass=['hlb-rank-1','hlb-rank-2','hlb-rank-3'];
+  const colors=['#f0d060','#c0c0c0','#cd7f32'];
+  document.getElementById('homeLbList').innerHTML=entries.map((e,i)=>{
+    const isTop=i<3;
+    const rankEl=isTop
+      ?`<div class="hlb-rank-badge ${rankClass[i]}" style="color:#000">${medals[i]}</div>`
+      :`<div class="hlb-rank-badge hlb-rank-other">#${i+1}</div>`;
+    return`<div class="hlb-row">
+      ${rankEl}
+      <div class="hlb-info">
+        <div class="hlb-name" style="${isTop?'color:'+colors[i]:''}">${e.name}</div>
+        <div class="hlb-country">${e.country}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="hlb-amt">৳${Number(e.amount).toLocaleString('en')}</div>
+        ${isTop?`<div class="hlb-crown">${i===0?'👑 Champion':i===1?'⭐ Runner-up':'🏅 3rd Place'}</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// =================== ADMIN LEADERBOARD ===================
+window.loadAdminLeaderboard=async()=>{
+  if(!window._db)return;
+  const snap=await window._get(window._ref(window._db,'leaderboard'));
+  let entries=[];
+  if(snap.exists()){
+    entries=Object.entries(snap.val()).map(([id,v])=>({id,...v})).sort((a,b)=>b.amount-a.amount);
+  } else {
+    // save defaults
+    for(const e of DEFAULT_LB){
+      await window._set(window._ref(window._db,'leaderboard/'+e.id),{name:e.name,country:e.country,amount:e.amount});
+    }
+    entries=DEFAULT_LB;
+  }
+  renderAdminLb(entries);
+};
+
+function renderAdminLb(entries){
+  const medals=['🥇','🥈','🥉'];
+  document.getElementById('adminLbList').innerHTML=entries.map((e,i)=>`
+    <div class="alb-row" id="alb-${e.id}">
+      <div class="alb-rank-lbl">${i<3?medals[i]:('#'+(i+1)+' PLACE')} — RANK ${i+1}</div>
+      <input class="alb-inp-full" id="albn-${e.id}" value="${e.name}" placeholder="Name"/>
+      <div class="alb-fields">
+        <input class="alb-inp" id="albc-${e.id}" value="${e.country}" placeholder="🇧🇩 Country"/>
+        <input class="alb-inp" id="alba-${e.id}" value="${e.amount}" type="number" placeholder="Amount"/>
+      </div>
+      <div class="alb-actions">
+        <button class="alb-save" onclick="saveLbEntry('${e.id}')">💾 SAVE</button>
+        <button class="alb-delete" onclick="deleteLbEntry('${e.id}')">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+window.saveLbEntry=async(id)=>{
+  const name=document.getElementById('albn-'+id)?.value?.trim();
+  const country=document.getElementById('albc-'+id)?.value?.trim();
+  const amount=parseFloat(document.getElementById('alba-'+id)?.value)||0;
+  if(!name){toast('⚠️ Name দিন',true);return;}
+  await window._set(window._ref(window._db,'leaderboard/'+id),{name,country,amount});
+  toast('✅ Leaderboard updated!',false);
+  loadAdminLeaderboard();
+  loadHomeLb();
+};
+
+window.deleteLbEntry=async(id)=>{
+  if(!confirm('Delete this entry?'))return;
+  await window._set(window._ref(window._db,'leaderboard/'+id),null);
+  toast('🗑 Deleted',false);
+  loadAdminLeaderboard();
+  loadHomeLb();
+};
+
+window.addLbEntry=async()=>{
+  const id='lb_'+Date.now();
+  await window._set(window._ref(window._db,'leaderboard/'+id),{name:'New Player',country:'🇧🇩 Bangladesh',amount:0});
+  toast('✅ New entry added!',false);
+  loadAdminLeaderboard();
+};
+
 // INIT
 updateBals();
 avStartRound();
+loadHomeLb();
 </script>
 </body>
 </html>
-
