@@ -265,14 +265,53 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .hi-amt.loss{color:#e74c3c;}
 .hi-status{font-size:9px;letter-spacing:1px;color:rgba(255,255,255,0.3);margin-top:2px;}
 
+/* TRANSACTION HISTORY */
+.tx-tabs{display:flex;padding:10px 16px;gap:8px;}
+.tx-tab{flex:1;padding:10px;background:rgba(0,0,0,0.3);border:1px solid rgba(201,168,76,0.15);border-radius:8px;color:rgba(255,255,255,0.5);font-family:'Cinzel',serif;font-size:11px;cursor:pointer;text-align:center;transition:all 0.2s;}
+.tx-tab.active{background:rgba(201,168,76,0.15);border-color:rgba(201,168,76,0.4);color:var(--gl);}
+.tx-content{display:none;padding:0 16px 20px;}
+.tx-content.active{display:block;}
+.tx-item{background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.04);border-radius:10px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;}
+.tx-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.tx-icon.deposit{background:rgba(39,174,96,0.1);color:#2ecc71;}
+.tx-icon.withdraw{background:rgba(231,76,60,0.1);color:#e74c3c;}
+.tx-info{flex:1;}
+.tx-method{font-family:'Cinzel',serif;font-size:12px;color:#fff;}
+.tx-detail{font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;}
+.tx-amount{font-family:'Cinzel',serif;font-size:14px;font-weight:900;}
+.tx-amount.deposit{color:#2ecc71;}
+.tx-amount.withdraw{color:#e74c3c;}
+.tx-status{padding:3px 8px;border-radius:12px;font-size:8px;font-weight:700;margin-left:8px;}
+.tx-status.pending{background:rgba(255,165,0,0.15);color:#ffa500;border:1px solid rgba(255,165,0,0.3);}
+.tx-status.completed{background:rgba(39,174,96,0.15);color:#2ecc71;border:1px solid rgba(39,174,96,0.3);}
+.tx-status.rejected{background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.3);}
+
+/* ADMIN WITHDRAWAL REQUESTS */
+.wd-request-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,60,60,0.15);border-radius:8px;padding:12px 14px;margin-bottom:8px;}
+.wd-req-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.wd-req-user{font-family:'Cinzel',serif;font-size:12px;color:#ff6b6b;}
+.wd-req-amount{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--gl);}
+.wd-req-method{font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:4px;}
+.wd-req-detail{font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:8px;}
+.wd-req-actions{display:flex;gap:8px;}
+.wd-accept{flex:1;padding:8px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:6px;color:#2ecc71;font-size:10px;cursor:pointer;font-family:'Cinzel',serif;}
+.wd-reject{flex:1;padding:8px;background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.3);border-radius:6px;color:#e74c3c;font-size:10px;cursor:pointer;font-family:'Cinzel',serif;}
+
+/* ADMIN DEPOSIT HISTORY */
+.deposit-item{background:rgba(255,255,255,0.03);border:1px solid rgba(39,174,96,0.15);border-radius:8px;padding:12px 14px;margin-bottom:8px;}
+.dep-user{font-family:'Cinzel',serif;font-size:12px;color:#2ecc71;}
+.dep-amount{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--gl);}
+.dep-method{font-size:10px;color:rgba(39,174,96,0.5);margin-bottom:4px;}
+.dep-time{font-size:10px;color:rgba(255,255,255,0.3);}
+
 /* ADMIN */
 #adminPage{align-items:flex-start;padding:0;z-index:20;}
 .admin-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:#0a0a0a;padding-bottom:20px;}
 .admin-topbar{background:linear-gradient(135deg,#1a0000,#3a0000);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,60,60,0.3);}
 .admin-title{font-family:'Cinzel',serif;font-size:15px;font-weight:900;color:#ff6b6b;letter-spacing:3px;}
 .admin-back{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:7px 12px;color:#fff;font-size:11px;cursor:pointer;font-family:'Cinzel',serif;}
-.admin-tabs{display:flex;border-bottom:1px solid rgba(255,60,60,0.15);}
-.admin-tab{flex:1;padding:11px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:rgba(255,255,255,0.3);text-align:center;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all 0.2s;}
+.admin-tabs{display:flex;border-bottom:1px solid rgba(255,60,60,0.15);overflow-x:auto;}
+.admin-tab{flex:1;padding:11px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:rgba(255,255,255,0.3);text-align:center;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;}
 .admin-tab.active{color:#ff6b6b;border-bottom-color:#ff6b6b;}
 .admin-tab-content{display:none;}
 .admin-tab-content.active{display:block;}
@@ -521,34 +560,33 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .dice-back{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:7px 12px;color:#fff;font-size:12px;cursor:pointer;font-family:'Cinzel',serif;}
 .dice-tb-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#bb88ff;text-shadow:0 0 10px rgba(150,50,255,0.7);}
 .dice-bal-pill{background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:5px 12px;font-family:'Cinzel',serif;font-size:12px;color:var(--gl);font-weight:700;}
-.dice-area{display:flex;flex-direction:column;align-items:center;padding:30px 20px 20px;flex:1;}
-.dice-display{display:flex;gap:20px;margin-bottom:30px;justify-content:center;}
-.dice-el{width:80px;height:80px;background:linear-gradient(135deg,#2d0060,#4a0090);border:2px solid rgba(150,50,255,0.5);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:40px;font-family:'Cinzel',serif;color:#bb88ff;font-weight:900;box-shadow:0 0 20px rgba(150,50,255,0.3);}
+.dice-area{display:flex;flex-direction:column;align-items:center;padding:20px 20px;flex:1;}
+.dice-display{display:flex;gap:20px;margin-bottom:20px;justify-content:center;}
+.dice-el{width:70px;height:70px;background:linear-gradient(135deg,#2d0060,#4a0090);border:2px solid rgba(150,50,255,0.5);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;font-family:'Cinzel',serif;color:#bb88ff;font-weight:900;box-shadow:0 0 20px rgba(150,50,255,0.3);}
 .dice-el.rolling{animation:diceRoll 0.5s ease-in-out;}
-.dice-result-ring{width:120px;height:120px;border-radius:50%;border:3px solid rgba(150,50,255,0.4);display:flex;align-items:center;justify-content:center;margin-bottom:20px;position:relative;}
-.dice-result-num{font-family:'Cinzel',serif;font-size:48px;font-weight:900;color:#bb88ff;}
-.dice-target-row{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;justify-content:center;}
-.dice-target-lbl{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:2px;}
-.dice-target-input{width:80px;background:rgba(150,50,255,0.1);border:1px solid rgba(150,50,255,0.3);border-radius:8px;padding:8px;color:#bb88ff;font-family:'Cinzel',serif;font-size:16px;font-weight:700;text-align:center;outline:none;}
-.dice-over-under{display:flex;gap:8px;}
-.dou-btn{padding:7px 14px;border-radius:20px;border:1px solid rgba(150,50,255,0.3);background:rgba(150,50,255,0.1);color:rgba(150,50,255,0.6);font-family:'Cinzel',serif;font-size:10px;cursor:pointer;transition:all 0.2s;}
-.dou-btn.active{background:rgba(150,50,255,0.3);border-color:rgba(150,50,255,0.7);color:#bb88ff;}
-.dice-chance{font-family:'Cinzel',serif;font-size:12px;color:rgba(255,255,255,0.4);text-align:center;margin-bottom:16px;letter-spacing:1px;}
-.dice-mult-info{font-family:'Cinzel',serif;font-size:20px;font-weight:900;color:#bb88ff;text-align:center;margin-bottom:20px;}
-.dice-ctrl{background:rgba(0,0,0,0.5);border-top:1px solid rgba(150,50,255,0.1);padding:14px 16px;flex-shrink:0;}
-.dice-bet-row{display:flex;gap:10px;margin-bottom:10px;}
-.dice-lbl{font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:2px;margin-bottom:6px;}
-.dice-inp{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(150,50,255,0.2);border-radius:8px;padding:10px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
-.dice-qbs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
-.dice-qb{flex:1;min-width:50px;padding:6px;background:rgba(150,50,255,0.08);border:1px solid rgba(150,50,255,0.2);border-radius:6px;color:rgba(150,50,255,0.6);font-size:10px;cursor:pointer;font-family:'Cinzel',serif;text-align:center;transition:all 0.2s;}
-.dice-qb:hover{background:rgba(150,50,255,0.2);}
-.btn-roll{width:100%;padding:14px;background:linear-gradient(135deg,#4a0090,#8b00ff,#4a0090);border:none;border-radius:10px;color:#fff;font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:all 0.3s;}
-.btn-roll:hover:not(:disabled){transform:translateY(-2px);}
-.btn-roll:disabled{opacity:0.4;cursor:not-allowed;}
-.dice-result-msg{font-family:'Cinzel',serif;font-size:16px;font-weight:900;text-align:center;padding:10px;border-radius:10px;margin-bottom:16px;display:none;}
+.dice-result-ring{width:90px;height:90px;border-radius:50%;border:3px solid rgba(150,50,255,0.4);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.dice-result-num{font-family:'Cinzel',serif;font-size:36px;font-weight:900;color:#bb88ff;}
+.dice-result-msg{font-family:'Cinzel',serif;font-size:14px;font-weight:900;text-align:center;padding:8px;border-radius:8px;margin-bottom:12px;display:none;}
 .dice-result-msg.show{display:block;animation:winPop 0.5s ease;}
 .dice-result-msg.win{color:#00ff88;background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.3);}
 .dice-result-msg.lose{color:#ff4444;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);}
+.dice-target-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;justify-content:center;}
+.dice-target-lbl{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:2px;}
+.dice-target-input{width:60px;background:rgba(150,50,255,0.1);border:1px solid rgba(150,50,255,0.3);border-radius:8px;padding:6px;color:#bb88ff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
+.dice-over-under{display:flex;gap:6px;}
+.dou-btn{padding:5px 10px;border-radius:16px;border:1px solid rgba(150,50,255,0.3);background:rgba(150,50,255,0.1);color:rgba(150,50,255,0.6);font-family:'Cinzel',serif;font-size:9px;cursor:pointer;transition:all 0.2s;}
+.dou-btn.active{background:rgba(150,50,255,0.3);border-color:rgba(150,50,255,0.7);color:#bb88ff;}
+.dice-chance{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.4);text-align:center;margin-bottom:12px;}
+.dice-ctrl{background:rgba(0,0,0,0.5);border-top:1px solid rgba(150,50,255,0.1);padding:12px 16px;flex-shrink:0;}
+.dice-bet-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.dice-lbl{font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:2px;margin-bottom:0;white-space:nowrap;}
+.dice-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(150,50,255,0.2);border-radius:8px;padding:8px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
+.dice-qbs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.dice-qb{flex:1;min-width:50px;padding:5px;background:rgba(150,50,255,0.08);border:1px solid rgba(150,50,255,0.2);border-radius:6px;color:rgba(150,50,255,0.6);font-size:9px;cursor:pointer;font-family:'Cinzel',serif;text-align:center;transition:all 0.2s;}
+.dice-qb:hover{background:rgba(150,50,255,0.2);}
+.btn-roll{width:100%;padding:12px;background:linear-gradient(135deg,#4a0090,#8b00ff,#4a0090);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.3s;}
+.btn-roll:hover:not(:disabled){transform:translateY(-2px);}
+.btn-roll:disabled{opacity:0.4;cursor:not-allowed;}
 
 /* MINES GAME */
 #minesPage{align-items:flex-start;padding:0;z-index:15;}
@@ -558,31 +596,31 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .mines-tb-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#ff9900;}
 .mines-bal-pill{background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:5px 12px;font-family:'Cinzel',serif;font-size:12px;color:var(--gl);font-weight:700;}
 .mines-area{padding:16px;flex:1;}
-.mines-info-row{display:flex;gap:10px;margin-bottom:14px;}
-.mines-info-card{flex:1;background:rgba(0,0,0,0.3);border:1px solid rgba(255,120,0,0.15);border-radius:10px;padding:10px;text-align:center;}
-.mic-val{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#ff9900;}
-.mic-lbl{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-top:3px;}
-.mines-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px;}
-.mine-cell{aspect-ratio:1;background:linear-gradient(135deg,#1a0a00,#2a1500);border:1px solid rgba(255,120,0,0.25);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
+.mines-info-row{display:flex;gap:8px;margin-bottom:12px;}
+.mines-info-card{flex:1;background:rgba(0,0,0,0.3);border:1px solid rgba(255,120,0,0.15);border-radius:8px;padding:8px;text-align:center;}
+.mic-val{font-family:'Cinzel',serif;font-size:14px;font-weight:900;color:#ff9900;}
+.mic-lbl{font-size:8px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-top:2px;}
+.mines-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px;}
+.mine-cell{aspect-ratio:1;background:linear-gradient(135deg,#1a0a00,#2a1500);border:1px solid rgba(255,120,0,0.25);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all 0.2s;}
 .mine-cell:hover:not(.revealed):not(.disabled){transform:scale(1.05);border-color:rgba(255,120,0,0.6);background:rgba(255,120,0,0.1);}
 .mine-cell.revealed{cursor:default;}
 .mine-cell.revealed.gem{background:linear-gradient(135deg,#0a3d20,#155c30);border-color:rgba(39,174,96,0.5);animation:mineReveal 0.4s ease;}
 .mine-cell.revealed.bomb{background:linear-gradient(135deg,#3d0000,#5c0000);border-color:rgba(231,76,60,0.5);animation:mineReveal 0.3s ease;}
 .mine-cell.disabled{cursor:not-allowed;opacity:0.5;}
-.mines-ctrl{background:rgba(0,0,0,0.5);border-top:1px solid rgba(255,120,0,0.1);padding:14px 16px;flex-shrink:0;}
-.mines-bet-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.mines-ctrl{background:rgba(0,0,0,0.5);border-top:1px solid rgba(255,120,0,0.1);padding:12px 16px;flex-shrink:0;}
+.mines-bet-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
 .mines-bet-lbl{font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:2px;white-space:nowrap;}
-.mines-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,120,0,0.2);border-radius:8px;padding:9px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
+.mines-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,120,0,0.2);border-radius:8px;padding:8px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
 .mines-inp:disabled{opacity:0.35;}
 .mines-qbs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
-.mines-qb{flex:1;padding:6px 4px;background:rgba(255,120,0,0.06);border:1px solid rgba(255,120,0,0.15);border-radius:6px;color:rgba(255,120,0,0.6);font-size:10px;cursor:pointer;font-family:'Cinzel',serif;text-align:center;transition:all 0.2s;min-width:45px;}
+.mines-qb{flex:1;padding:5px 4px;background:rgba(255,120,0,0.06);border:1px solid rgba(255,120,0,0.15);border-radius:6px;color:rgba(255,120,0,0.6);font-size:9px;cursor:pointer;font-family:'Cinzel',serif;text-align:center;transition:all 0.2s;min-width:40px;}
 .mines-qb:hover{background:rgba(255,120,0,0.15);}
-.mines-count-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.mines-count-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 .mines-count-lbl{font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:2px;white-space:nowrap;}
-.mines-count-sel{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,120,0,0.2);border-radius:8px;padding:9px;color:#ff9900;font-family:'Cinzel',serif;font-size:13px;font-weight:700;text-align:center;outline:none;cursor:pointer;}
+.mines-count-sel{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,120,0,0.2);border-radius:8px;padding:8px;color:#ff9900;font-family:'Cinzel',serif;font-size:12px;font-weight:700;text-align:center;outline:none;cursor:pointer;}
 .mines-act{display:flex;gap:10px;}
-.btn-mines-start{flex:1;padding:13px;background:linear-gradient(135deg,#7a3a00,#ff9900);border:none;border-radius:10px;color:#fff;font-family:'Cinzel',serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.3s;}
-.btn-mines-cashout{flex:1;padding:13px;background:linear-gradient(135deg,#0e5c2b,#27ae60);border:none;border-radius:10px;color:#fff;font-family:'Cinzel',serif;font-size:12px;font-weight:700;cursor:pointer;display:none;animation:cglow 0.9s infinite alternate;}
+.btn-mines-start{flex:1;padding:12px;background:linear-gradient(135deg,#7a3a00,#ff9900);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.3s;}
+.btn-mines-cashout{flex:1;padding:12px;background:linear-gradient(135deg,#0e5c2b,#27ae60);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:11px;font-weight:700;cursor:pointer;display:none;animation:cglow 0.9s infinite alternate;}
 .btn-mines-start:disabled,.btn-mines-cashout:disabled{opacity:0.4;cursor:not-allowed;}
 
 /* COIN FLIP */
@@ -592,27 +630,27 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .coin-back{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:7px 12px;color:#fff;font-size:12px;cursor:pointer;font-family:'Cinzel',serif;}
 .coin-tb-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#3498db;}
 .coin-bal-pill{background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:5px 12px;font-family:'Cinzel',serif;font-size:12px;color:var(--gl);font-weight:700;}
-.coin-area{display:flex;flex-direction:column;align-items:center;padding:30px 20px;flex:1;}
-.coin-display{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:60px;margin-bottom:24px;position:relative;border:4px solid rgba(52,152,219,0.4);background:linear-gradient(135deg,#001a40,#003080);box-shadow:0 0 30px rgba(52,152,219,0.2);}
+.coin-area{display:flex;flex-direction:column;align-items:center;padding:20px 20px;flex:1;}
+.coin-display{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:50px;margin-bottom:16px;border:3px solid rgba(52,152,219,0.4);background:linear-gradient(135deg,#001a40,#003080);box-shadow:0 0 30px rgba(52,152,219,0.2);}
 .coin-display.flipping{animation:coinFlip 1.5s ease-in-out;}
-.coin-pick{display:flex;gap:16px;margin-bottom:24px;}
-.coin-side{width:90px;height:90px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:2px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);transition:all 0.3s;font-size:28px;gap:4px;}
+.coin-pick{display:flex;gap:12px;margin-bottom:16px;}
+.coin-side{width:70px;height:70px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:2px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);transition:all 0.3s;font-size:22px;gap:2px;}
 .coin-side:hover{transform:scale(1.05);}
 .coin-side.sel.heads{border-color:#f0d060;background:rgba(240,208,96,0.15);}
 .coin-side.sel.tails{border-color:#3498db;background:rgba(52,152,219,0.15);}
-.coin-side-lbl{font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.5);}
-.coin-result-msg{font-family:'Cinzel',serif;font-size:20px;font-weight:900;text-align:center;margin-bottom:16px;min-height:32px;}
+.coin-side-lbl{font-family:'Cinzel',serif;font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);}
+.coin-result-msg{font-family:'Cinzel',serif;font-size:16px;font-weight:900;text-align:center;margin-bottom:10px;min-height:24px;}
 .coin-result-msg.win{color:#00ff88;}
 .coin-result-msg.lose{color:#ff4444;}
-.coin-ctrl{background:rgba(0,0,0,0.5);border-top:1px solid rgba(52,152,219,0.1);padding:14px 16px;flex-shrink:0;}
+.coin-ctrl{background:rgba(0,0,0,0.5);border-top:1px solid rgba(52,152,219,0.1);padding:12px 16px;flex-shrink:0;}
 .coin-bet-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
 .coin-bet-lbl{font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:2px;white-space:nowrap;}
-.coin-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(52,152,219,0.2);border-radius:8px;padding:9px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
+.coin-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(52,152,219,0.2);border-radius:8px;padding:8px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
 .coin-inp:disabled{opacity:0.35;}
-.coin-qbs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px;}
-.coin-qb{flex:1;padding:6px;background:rgba(52,152,219,0.06);border:1px solid rgba(52,152,219,0.15);border-radius:6px;color:rgba(52,152,219,0.6);font-size:10px;cursor:pointer;font-family:'Cinzel',serif;text-align:center;transition:all 0.2s;min-width:50px;}
+.coin-qbs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.coin-qb{flex:1;padding:5px;background:rgba(52,152,219,0.06);border:1px solid rgba(52,152,219,0.15);border-radius:6px;color:rgba(52,152,219,0.6);font-size:9px;cursor:pointer;font-family:'Cinzel',serif;text-align:center;transition:all 0.2s;min-width:45px;}
 .coin-qb:hover{background:rgba(52,152,219,0.15);}
-.btn-coin-flip{width:100%;padding:14px;background:linear-gradient(135deg,#1a5c9b,#3498db);border:none;border-radius:10px;color:#fff;font-family:'Cinzel',serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.3s;}
+.btn-coin-flip{width:100%;padding:12px;background:linear-gradient(135deg,#1a5c9b,#3498db);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.3s;}
 .btn-coin-flip:hover:not(:disabled){transform:translateY(-2px);}
 .btn-coin-flip:disabled{opacity:0.4;cursor:not-allowed;}
 
@@ -623,27 +661,26 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .limbo-back{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:7px 12px;color:#fff;font-size:12px;cursor:pointer;font-family:'Cinzel',serif;}
 .limbo-tb-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#ff3366;}
 .limbo-bal-pill{background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:5px 12px;font-family:'Cinzel',serif;font-size:12px;color:var(--gl);font-weight:700;}
-.limbo-area{display:flex;flex-direction:column;align-items:center;padding:30px 20px;flex:1;}
-.limbo-result-ring{width:160px;height:160px;border-radius:50%;border:4px solid rgba(255,50,100,0.4);background:linear-gradient(135deg,#1a0010,#2d0020);display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 0 30px rgba(255,50,100,0.2);}
-.limbo-mult-num{font-family:'Cinzel',serif;font-size:44px;font-weight:900;color:#ff3366;line-height:1;}
+.limbo-area{display:flex;flex-direction:column;align-items:center;padding:20px 20px;flex:1;}
+.limbo-result-ring{width:120px;height:120px;border-radius:50%;border:3px solid rgba(255,50,100,0.4);background:linear-gradient(135deg,#1a0010,#2d0020);display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 0 30px rgba(255,50,100,0.2);}
+.limbo-mult-num{font-family:'Cinzel',serif;font-size:36px;font-weight:900;color:#ff3366;line-height:1;}
 .limbo-mult-num.counting{animation:numPop 0.2s ease;}
 .limbo-mult-num.win{color:#00ff88;}
 .limbo-mult-num.lose{color:#ff4444;}
-.limbo-mult-x{font-family:'Cinzel',serif;font-size:18px;color:rgba(255,50,100,0.5);margin-top:2px;}
-.limbo-target-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
-.limbo-target-lbl{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:2px;}
-.limbo-target-inp{width:100px;background:rgba(255,50,100,0.1);border:1px solid rgba(255,50,100,0.3);border-radius:8px;padding:8px;color:#ff3366;font-family:'Cinzel',serif;font-size:18px;font-weight:700;text-align:center;outline:none;}
-.limbo-chance{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.35);text-align:center;margin-bottom:8px;}
-.limbo-mult-info{font-family:'Cinzel',serif;font-size:18px;font-weight:900;color:#ff3366;text-align:center;margin-bottom:20px;}
-.limbo-ctrl{background:rgba(0,0,0,0.5);border-top:1px solid rgba(255,50,100,0.1);padding:14px 16px;flex-shrink:0;}
+.limbo-mult-x{font-family:'Cinzel',serif;font-size:14px;color:rgba(255,50,100,0.5);}
+.limbo-target-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.limbo-target-lbl{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:2px;}
+.limbo-target-inp{width:70px;background:rgba(255,50,100,0.1);border:1px solid rgba(255,50,100,0.3);border-radius:8px;padding:6px;color:#ff3366;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
+.limbo-chance{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.35);text-align:center;margin-bottom:12px;}
+.limbo-ctrl{background:rgba(0,0,0,0.5);border-top:1px solid rgba(255,50,100,0.1);padding:12px 16px;flex-shrink:0;}
 .limbo-bet-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
 .limbo-bet-lbl{font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:2px;white-space:nowrap;}
-.limbo-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,50,100,0.2);border-radius:8px;padding:9px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
+.limbo-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,50,100,0.2);border-radius:8px;padding:8px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
 .limbo-inp:disabled{opacity:0.35;}
-.limbo-qbs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px;}
-.limbo-qb{flex:1;padding:6px;background:rgba(255,50,100,0.06);border:1px solid rgba(255,50,100,0.15);border-radius:6px;color:rgba(255,50,100,0.6);font-size:10px;cursor:pointer;font-family:'Cinzel',serif;text-align:center;transition:all 0.2s;min-width:50px;}
+.limbo-qbs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.limbo-qb{flex:1;padding:5px;background:rgba(255,50,100,0.06);border:1px solid rgba(255,50,100,0.15);border-radius:6px;color:rgba(255,50,100,0.6);font-size:9px;cursor:pointer;font-family:'Cinzel',serif;text-align:center;transition:all 0.2s;min-width:45px;}
 .limbo-qb:hover{background:rgba(255,50,100,0.15);}
-.btn-limbo{width:100%;padding:14px;background:linear-gradient(135deg,#5c001a,#ff3366);border:none;border-radius:10px;color:#fff;font-family:'Cinzel',serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.3s;}
+.btn-limbo{width:100%;padding:12px;background:linear-gradient(135deg,#5c001a,#ff3366);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.3s;}
 .btn-limbo:hover:not(:disabled){transform:translateY(-2px);}
 .btn-limbo:disabled{opacity:0.4;cursor:not-allowed;}
 
@@ -710,6 +747,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="dot-menu" id="dotMenu">
           <div class="dot-menu-item" onclick="openModal('deposit')">💰 Deposit</div>
           <div class="dot-menu-item" onclick="checkWithdraw()">💸 Withdraw</div>
+          <div class="dot-menu-item" onclick="openTransactionHistory()">📋 Transactions</div>
           <div class="dot-menu-item" onclick="logout()">⬅ Sign Out</div>
         </div>
       </div>
@@ -773,11 +811,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div class="support-txt"><div class="st">Support Team</div><div class="ss">24/7 Customer Service</div></div>
       <div class="support-badge">● Online</div>
     </div>
-    <div class="support-btn" onclick="openAdminPw()" style="background:linear-gradient(135deg,#1a0000,#2a0000);border-color:rgba(255,60,60,0.35);">
-      <div class="support-ico">🔐</div>
-      <div class="support-txt"><div class="st" style="color:#ff6b6b;">Admin Panel</div><div class="ss" style="color:rgba(255,100,100,0.45);">Restricted Access</div></div>
-      <div class="support-badge" style="background:rgba(255,60,60,0.15);border-color:rgba(255,60,60,0.4);color:#ff6b6b;">● Secure</div>
-    </div>
   </div>
 </div>
 
@@ -814,16 +847,24 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
-<!-- HISTORY -->
-<div class="page" id="historyPage">
+<!-- TRANSACTION HISTORY PAGE -->
+<div class="page" id="transactionPage">
   <div class="hist-wrap">
-    <div class="hist-topbar"><div class="hist-title">📋 BET HISTORY</div></div>
-    <div class="hist-summary">
-      <div class="hs-card"><div class="hs-val gold" id="hsTotalBets">0</div><div class="hs-lbl">Total Bets</div></div>
-      <div class="hs-card"><div class="hs-val green" id="hsTotalProfit">৳0</div><div class="hs-lbl">Profit</div></div>
-      <div class="hs-card"><div class="hs-val red" id="hsTotalLoss">৳0</div><div class="hs-lbl">Loss</div></div>
+    <div class="hist-topbar">
+      <button class="av-back" onclick="showPage('homePage')" style="position:absolute;left:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:7px 12px;color:#fff;font-size:12px;">←</button>
+      <div class="hist-title">📋 TRANSACTIONS</div>
+      <div style="width:40px"></div>
     </div>
-    <div class="hist-list" id="histList"><div class="hist-empty">No bets yet — go play!</div></div>
+    <div class="tx-tabs">
+      <div class="tx-tab active" onclick="switchTxTab('deposit')" id="txTabDeposit">💰 Deposits</div>
+      <div class="tx-tab" onclick="switchTxTab('withdraw')" id="txTabWithdraw">💸 Withdrawals</div>
+    </div>
+    <div class="tx-content active" id="txDepositList">
+      <div class="hist-empty">No deposits yet</div>
+    </div>
+    <div class="tx-content" id="txWithdrawList">
+      <div class="hist-empty">No withdrawals yet</div>
+    </div>
   </div>
 </div>
 
@@ -836,23 +877,51 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div style="width:60px"></div>
     </div>
     <div class="admin-tabs">
-      <button class="admin-tab active" onclick="switchAdminTab('users',this)">👥 Users</button>
+      <button class="admin-tab active" onclick="switchAdminTab('withdrawals',this)">💸 Withdrawals</button>
+      <button class="admin-tab" onclick="switchAdminTab('deposits',this)">💰 Deposits</button>
+      <button class="admin-tab" onclick="switchAdminTab('users',this)">👥 Users</button>
       <button class="admin-tab" onclick="switchAdminTab('messages',this)">💬 Messages</button>
       <button class="admin-tab" onclick="switchAdminTab('stats',this)">📊 Stats</button>
       <button class="admin-tab" onclick="switchAdminTab('leaderboard',this)">🏆 Leaderboard</button>
     </div>
-    <div class="admin-tab-content active" id="atab-users">
+    
+    <!-- Withdrawals Tab -->
+    <div class="admin-tab-content active" id="atab-withdrawals">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">💸 PENDING WITHDRAWALS</div>
+        <div class="user-list" id="withdrawRequestsList">
+          <div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.2)">Loading...</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Deposits Tab -->
+    <div class="admin-tab-content" id="atab-deposits">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">💰 DEPOSIT HISTORY</div>
+        <div class="user-list" id="adminDepositList">
+          <div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.2)">Loading...</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Users Tab -->
+    <div class="admin-tab-content" id="atab-users">
       <div class="admin-section" style="margin-top:14px">
         <div class="admin-sec-title">👥 ALL USERS — Balance Management</div>
         <div class="user-list" id="userList"><div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.2)">Loading...</div></div>
       </div>
     </div>
+    
+    <!-- Messages Tab -->
     <div class="admin-tab-content" id="atab-messages">
       <div class="admin-section" style="margin-top:14px">
         <div class="admin-sec-title">💬 SUPPORT MESSAGES</div>
         <div class="msg-list" id="adminMsgList"><div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.2)">No messages yet</div></div>
       </div>
     </div>
+    
+    <!-- Stats Tab -->
     <div class="admin-tab-content" id="atab-stats">
       <div class="admin-section" style="margin-top:14px">
         <div class="admin-sec-title">📊 OVERVIEW</div>
@@ -861,9 +930,13 @@ input::placeholder{color:rgba(253,246,227,0.18);}
           <div class="admin-stat"><div class="admin-stat-val" id="adTotalBal">৳0</div><div class="admin-stat-lbl">Total Balance</div></div>
           <div class="admin-stat"><div class="admin-stat-val" id="adTotalMsgs">0</div><div class="admin-stat-lbl">Messages</div></div>
           <div class="admin-stat"><div class="admin-stat-val" id="adTotalBets">0</div><div class="admin-stat-lbl">Total Bets</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adPendingWithdrawals">0</div><div class="admin-stat-lbl">Pending WD</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adTotalDeposits">৳0</div><div class="admin-stat-lbl">Total Deposits</div></div>
         </div>
       </div>
     </div>
+    
+    <!-- Leaderboard Tab -->
     <div class="admin-tab-content" id="atab-leaderboard">
       <div class="admin-section" style="margin-top:14px">
         <div class="admin-sec-title">🏆 LEADERBOARD MANAGEMENT</div>
@@ -899,7 +972,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   <div class="admin-pw-box">
     <div style="font-size:32px;margin-bottom:10px">🔐</div>
     <div class="apw-title">ADMIN ACCESS</div>
-    <div class="apw-sub">Enter admin password</div>
+    <div class="apw-sub">Double-click anywhere to open</div>
     <input type="password" class="apw-input" id="apwInput" placeholder="• • • • • •" maxlength="10" onkeydown="if(event.key==='Enter')checkAdminPw()"/>
     <div class="apw-error" id="apwError">❌ Wrong Password!</div>
     <div class="apw-btns">
@@ -1056,9 +1129,11 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div class="dice-chance" id="diceChance">Chance: 41.7% · Multiplier: 2.40×</div>
     </div>
     <div class="dice-ctrl">
-      <div class="dice-lbl">BET AMOUNT ৳</div>
-      <input type="number" class="dice-inp" id="diceBetInp" value="500" min="100"/>
-      <div class="dice-qbs" style="margin-top:8px">
+      <div class="dice-bet-row">
+        <span class="dice-lbl">BET ৳</span>
+        <input type="number" class="dice-inp" id="diceBetInp" value="500" min="100"/>
+      </div>
+      <div class="dice-qbs">
         <div class="dice-qb" onclick="document.getElementById('diceBetInp').value=500">500</div>
         <div class="dice-qb" onclick="document.getElementById('diceBetInp').value=1000">1K</div>
         <div class="dice-qb" onclick="document.getElementById('diceBetInp').value=5000">5K</div>
@@ -1239,7 +1314,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       </div>
       <div class="tx-error-box" id="txErrorBox">
         <div class="tx-error-title">❌ Transaction ID Wrong</div>
-        <div class="tx-error-sub">Transaction ID  <b>..</b> </div>
+        <div class="tx-error-sub">Transaction ID must end with <b>..</b></div>
       </div>
       <div class="notice warn">⚠️ TxID must end with <b>..</b> · Min 50 USDT · 5–15 min</div>
       <button class="btn-sub" onclick="submitDeposit()">Submit Deposit</button>
@@ -1247,27 +1322,123 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
-<!-- WITHDRAW MODAL -->
+<!-- WITHDRAW MODAL - PROFESSIONAL UI -->
 <div class="modal-ov" id="withdrawModal">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-hdr"><div class="modal-title">💸 Withdraw</div><button class="modal-x" onclick="closeModal('withdraw')">✕</button></div>
+    <div class="modal-hdr"><div class="modal-title">💸 Withdraw Funds</div><button class="modal-x" onclick="closeModal('withdraw')">✕</button></div>
     <div class="modal-body">
-      <div class="ilbl" style="margin-bottom:10px">Select Method</div>
       <div class="method-grid">
-        <div class="method-card" onclick="swm('bkash',this)"><div class="method-ico">📱</div><div class="method-nm">bKash</div></div>
-        <div class="method-card" onclick="swm('nagad',this)"><div class="method-ico">🟠</div><div class="method-nm">Nagad</div></div>
-        <div class="method-card" onclick="swm('binance',this)"><div class="method-ico">🔶</div><div class="method-nm">Binance</div></div>
-        <div class="method-card" onclick="swm('upay',this)"><div class="method-ico">💜</div><div class="method-nm">Upay</div></div>
-        <div class="method-card" onclick="swm('rocket',this)"><div class="method-ico">🚀</div><div class="method-nm">Rocket</div></div>
+        <div class="method-card" onclick="swm('bkash',this)"><div class="method-ico">📱</div><div class="method-nm">bKash</div><div style="font-size:8px;color:rgba(201,168,76,0.3)">Personal</div></div>
+        <div class="method-card" onclick="swm('nagad',this)"><div class="method-ico">🟠</div><div class="method-nm">Nagad</div><div style="font-size:8px;color:rgba(201,168,76,0.3)">Instant</div></div>
+        <div class="method-card" onclick="swm('binance',this)"><div class="method-ico">🔶</div><div class="method-nm">Binance</div><div style="font-size:8px;color:rgba(201,168,76,0.3)">Crypto</div></div>
+        <div class="method-card" onclick="swm('upay',this)"><div class="method-ico">💜</div><div class="method-nm">Upay</div><div style="font-size:8px;color:rgba(201,168,76,0.3)">Wallet</div></div>
+        <div class="method-card" onclick="swm('rocket',this)"><div class="method-ico">🚀</div><div class="method-nm">Rocket</div><div style="font-size:8px;color:rgba(201,168,76,0.3)">Fast</div></div>
       </div>
+      
       <div class="sep"></div>
-      <div class="mform" id="form-bkash"><div class="igrp"><label class="ilbl">bKash Number</label><div class="iwrap"><span class="ico">📱</span><input type="tel" placeholder="+880 1X XXX XXXXX"/></div></div><div class="igrp"><label class="ilbl">Amount ৳</label><div class="iwrap"><span class="ico">💵</span><input type="number" placeholder="Min ৳5000"/></div></div><div class="notice warn">⚠️ Min ৳5000 · 1–24h</div><button class="btn-sub" onclick="doWdw('bKash')">Withdraw via bKash</button></div>
-      <div class="mform" id="form-nagad"><div class="igrp"><label class="ilbl">Nagad Number</label><div class="iwrap"><span class="ico">🟠</span><input type="tel" placeholder="+880 1X XXX XXXXX"/></div></div><div class="igrp"><label class="ilbl">Amount ৳</label><div class="iwrap"><span class="ico">💵</span><input type="number" placeholder="Min ৳5000"/></div></div><div class="notice warn">⚠️ Min ৳5000 · 1–24h</div><button class="btn-sub" onclick="doWdw('Nagad')">Withdraw via Nagad</button></div>
-      <div class="mform" id="form-binance"><div class="igrp"><label class="ilbl">Binance ID</label><div class="iwrap"><span class="ico">🔶</span><input type="text" placeholder="Your Binance ID"/></div></div><div class="igrp"><label class="ilbl">Amount (USDT)</label><div class="iwrap"><span class="ico">💵</span><input type="number" placeholder="Min 50 USDT"/></div></div><div class="notice warn">⚠️ Min 50 USDT · 15–60min</div><button class="btn-sub" onclick="doWdw('Binance')">Withdraw via Binance</button></div>
-      <div class="mform" id="form-upay"><div class="igrp"><label class="ilbl">Upay Number</label><div class="iwrap"><span class="ico">💜</span><input type="tel" placeholder="+880 1X XXX XXXXX"/></div></div><div class="igrp"><label class="ilbl">Amount ৳</label><div class="iwrap"><span class="ico">💵</span><input type="number" placeholder="Min ৳10000"/></div></div><div class="notice warn">⚠️ Min ৳10000 · 1–24h</div><button class="btn-sub" onclick="doWdw('Upay')">Withdraw via Upay</button></div>
-      <div class="mform" id="form-rocket"><div class="igrp"><label class="ilbl">Rocket Number</label><div class="iwrap"><span class="ico">🚀</span><input type="tel" placeholder="+880 1X XXX XXXXX"/></div></div><div class="igrp"><label class="ilbl">Amount ৳</label><div class="iwrap"><span class="ico">💵</span><input type="number" placeholder="Min ৳10000"/></div></div><div class="notice warn">⚠️ Min ৳10000 · 1–24h</div><button class="btn-sub" onclick="doWdw('Rocket')">Withdraw via Rocket</button></div>
-      <div id="noMethMsg" style="text-align:center;padding:12px 0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;">↑ Select a method above</div>
+      
+      <!-- bKash Form -->
+      <div class="mform" id="form-bkash">
+        <div style="background:rgba(201,168,76,0.05);border-radius:12px;padding:16px;margin-bottom:16px;border:1px solid rgba(201,168,76,0.15)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:50px;height:50px;background:rgba(201,168,76,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px">📱</div>
+            <div><div style="font-family:'Cinzel',serif;font-size:16px;color:#fff">bKash</div><div style="font-size:10px;color:rgba(201,168,76,0.4)">Personal Wallet</div></div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">bKash Number</label>
+            <div class="iwrap"><span class="ico">📱</span><input type="tel" id="wdBkashNum" placeholder="+880 1XXXXXXXXX"/></div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Amount ৳</label>
+            <div class="iwrap"><span class="ico">💵</span><input type="number" id="wdBkashAmt" placeholder="Min ৳5000"/></div>
+          </div>
+        </div>
+        <div class="notice warn" style="margin-bottom:16px">⏱️ Your withdrawal is being processed. It will be verified by admin.</div>
+        <button class="btn-sub" onclick="submitWithdraw('bKash')">Withdraw via bKash</button>
+      </div>
+      
+      <!-- Nagad Form -->
+      <div class="mform" id="form-nagad">
+        <div style="background:rgba(255,165,0,0.05);border-radius:12px;padding:16px;margin-bottom:16px;border:1px solid rgba(255,165,0,0.15)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:50px;height:50px;background:rgba(255,165,0,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px">🟠</div>
+            <div><div style="font-family:'Cinzel',serif;font-size:16px;color:#fff">Nagad</div><div style="font-size:10px;color:rgba(255,165,0,0.4)">Mobile Banking</div></div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Nagad Number</label>
+            <div class="iwrap"><span class="ico">🟠</span><input type="tel" id="wdNagadNum" placeholder="+880 1XXXXXXXXX"/></div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Amount ৳</label>
+            <div class="iwrap"><span class="ico">💵</span><input type="number" id="wdNagadAmt" placeholder="Min ৳5000"/></div>
+          </div>
+        </div>
+        <div class="notice warn" style="margin-bottom:16px">⏱️ Your withdrawal is being processed. It will be verified by admin.</div>
+        <button class="btn-sub" onclick="submitWithdraw('Nagad')">Withdraw via Nagad</button>
+      </div>
+      
+      <!-- Binance Form -->
+      <div class="mform" id="form-binance">
+        <div style="background:rgba(240,185,11,0.05);border-radius:12px;padding:16px;margin-bottom:16px;border:1px solid rgba(240,185,11,0.15)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:50px;height:50px;background:rgba(240,185,11,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px">🔶</div>
+            <div><div style="font-family:'Cinzel',serif;font-size:16px;color:#f0b90b">Binance</div><div style="font-size:10px;color:rgba(240,185,11,0.4)">Crypto Exchange</div></div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Binance ID</label>
+            <div class="iwrap"><span class="ico">🔶</span><input type="text" id="wdBinanceId" placeholder="Your Binance ID"/></div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Amount (USDT)</label>
+            <div class="iwrap"><span class="ico">💵</span><input type="number" id="wdBinanceAmt" placeholder="Min 50 USDT"/></div>
+          </div>
+        </div>
+        <div class="notice warn" style="margin-bottom:16px">⏱️ Your withdrawal is being processed. It will be verified by admin.</div>
+        <button class="btn-sub" onclick="submitWithdraw('Binance')">Withdraw via Binance</button>
+      </div>
+      
+      <!-- Upay Form -->
+      <div class="mform" id="form-upay">
+        <div style="background:rgba(155,89,182,0.05);border-radius:12px;padding:16px;margin-bottom:16px;border:1px solid rgba(155,89,182,0.15)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:50px;height:50px;background:rgba(155,89,182,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px">💜</div>
+            <div><div style="font-family:'Cinzel',serif;font-size:16px;color:#9b59b6">Upay</div><div style="font-size:10px;color:rgba(155,89,182,0.4)">Digital Wallet</div></div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Upay Number</label>
+            <div class="iwrap"><span class="ico">💜</span><input type="tel" id="wdUpayNum" placeholder="+880 1XXXXXXXXX"/></div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Amount ৳</label>
+            <div class="iwrap"><span class="ico">💵</span><input type="number" id="wdUpayAmt" placeholder="Min ৳10000"/></div>
+          </div>
+        </div>
+        <div class="notice warn" style="margin-bottom:16px">⏱️ Your withdrawal is being processed. It will be verified by admin.</div>
+        <button class="btn-sub" onclick="submitWithdraw('Upay')">Withdraw via Upay</button>
+      </div>
+      
+      <!-- Rocket Form -->
+      <div class="mform" id="form-rocket">
+        <div style="background:rgba(46,204,113,0.05);border-radius:12px;padding:16px;margin-bottom:16px;border:1px solid rgba(46,204,113,0.15)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:50px;height:50px;background:rgba(46,204,113,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px">🚀</div>
+            <div><div style="font-family:'Cinzel',serif;font-size:16px;color:#2ecc71">Rocket</div><div style="font-size:10px;color:rgba(46,204,113,0.4)">Fast Transfer</div></div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Rocket Number</label>
+            <div class="iwrap"><span class="ico">🚀</span><input type="tel" id="wdRocketNum" placeholder="+880 1XXXXXXXXX"/></div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Amount ৳</label>
+            <div class="iwrap"><span class="ico">💵</span><input type="number" id="wdRocketAmt" placeholder="Min ৳10000"/></div>
+          </div>
+        </div>
+        <div class="notice warn" style="margin-bottom:16px">⏱️ Your withdrawal is being processed. It will be verified by admin.</div>
+        <button class="btn-sub" onclick="submitWithdraw('Rocket')">Withdraw via Rocket</button>
+      </div>
+      
+      <div id="noMethMsg" style="text-align:center;padding:12px 0;color:rgba(201,168,76,0.3);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;">↑ Select a payment method above</div>
     </div>
   </div>
 </div>
@@ -1316,9 +1487,9 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div class="bn-dots-lbl">Menu</div>
     </button>
     <div class="bn-dot-menu" id="bnDotMenu">
-      <div class="bn-dot-menu-item admin-item" onclick="closeBnDotMenu();openAdminPw()">🔐 Admin Panel</div>
       <div class="bn-dot-menu-item" onclick="closeBnDotMenu();openModal('deposit')">💰 Deposit</div>
       <div class="bn-dot-menu-item" onclick="closeBnDotMenu();checkWithdraw()">💸 Withdraw</div>
+      <div class="bn-dot-menu-item" onclick="closeBnDotMenu();openTransactionHistory()">📋 Transactions</div>
       <div class="bn-dot-menu-item" onclick="closeBnDotMenu();logout()">⬅ Sign Out</div>
     </div>
   </div>
@@ -1332,11 +1503,23 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import{getDatabase,ref,set,get,onValue,update,push}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import{getDatabase,ref,set,get,onValue,update,push,remove}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const app=initializeApp({apiKey:"AIzaSyB_8Bw60xdifJmE7dqhW7a-79qiC1NMqZg",authDomain:"game-v-app.firebaseapp.com",projectId:"game-v-app",storageBucket:"game-v-app.firebasestorage.app",messagingSenderId:"791868402912",appId:"1:791868402912:web:f5f456496656a6589a7485",databaseURL:"https://game-v-app-default-rtdb.firebaseio.com"});
 const auth=getAuth(app),db=getDatabase(app);
-window._db=db;window._ref=ref;window._set=set;window._get=get;window._update=update;window._push=push;window._onValue=onValue;
+window._db=db;window._ref=ref;window._set=set;window._get=get;window._update=update;window._push=push;window._remove=remove;window._onValue=onValue;
+
+let doubleClickTimer = null;
+document.addEventListener('dblclick', function(e) {
+  if (!window._curUser) return;
+  clearTimeout(doubleClickTimer);
+  doubleClickTimer = setTimeout(() => {
+    document.getElementById('apwInput').value = '';
+    document.getElementById('apwError').style.display = 'none';
+    document.getElementById('adminPwModal').classList.add('open');
+    setTimeout(() => document.getElementById('apwInput').focus(), 200);
+  }, 200);
+});
 
 onAuthStateChanged(auth,async user=>{
   if(user){
@@ -1355,6 +1538,7 @@ onAuthStateChanged(auth,async user=>{
     onValue(ref(db,'users/'+user.uid),snap=>{const d=snap.val()||{};window._realBal=d.balance||0;window._userProfile=d;updateBals();updateProfileUI(d);});
     document.getElementById('piJoin').textContent=user.metadata.creationTime?new Date(user.metadata.creationTime).toLocaleDateString('en'):'—';
     showPage('homePage');document.getElementById('bottomNav').style.display='flex';navTo('home');renderRewardDays();
+    loadUserTransactions(user.uid);
   } else {
     window._curUser=null;document.getElementById('bottomNav').style.display='none';showPage('loginPage');
   }
@@ -1389,7 +1573,307 @@ window.uploadAvatar=(inp)=>{
   };reader.readAsDataURL(file);
 };
 
-// ADMIN
+// ========== TRANSACTION HISTORY ==========
+window.openTransactionHistory = () => {
+  closeBnDotMenu();
+  document.getElementById('dotMenu').classList.remove('open');
+  showPage('transactionPage');
+  loadUserTransactions(window._curUser?.uid);
+};
+
+window.switchTxTab = (tab) => {
+  document.querySelectorAll('.tx-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tx-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('txTab' + (tab === 'deposit' ? 'Deposit' : 'Withdraw')).classList.add('active');
+  document.getElementById('tx' + (tab === 'deposit' ? 'DepositList' : 'WithdrawList')).classList.add('active');
+};
+
+async function loadUserTransactions(uid) {
+  if (!uid) return;
+  const depSnap = await get(ref(db, 'deposits/' + uid));
+  const wdSnap = await get(ref(db, 'withdrawals/' + uid));
+  
+  // Load deposits
+  if (depSnap.exists()) {
+    const deposits = Object.values(depSnap.val()).sort((a,b) => b.time - a.time);
+    document.getElementById('txDepositList').innerHTML = deposits.map(d => `
+      <div class="tx-item">
+        <div class="tx-icon deposit">💰</div>
+        <div class="tx-info">
+          <div class="tx-method">Binance Deposit</div>
+          <div class="tx-detail">${new Date(d.time).toLocaleString('en')}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="tx-amount deposit">+$${d.amount} USDT</div>
+          <span class="tx-status completed">Completed</span>
+        </div>
+      </div>
+    `).join('');
+  } else {
+    document.getElementById('txDepositList').innerHTML = '<div class="hist-empty">No deposits yet</div>';
+  }
+  
+  // Load withdrawals
+  if (wdSnap.exists()) {
+    const wds = Object.values(wdSnap.val()).sort((a,b) => b.time - a.time);
+    document.getElementById('txWithdrawList').innerHTML = wds.map(w => `
+      <div class="tx-item">
+        <div class="tx-icon withdraw">💸</div>
+        <div class="tx-info">
+          <div class="tx-method">${w.method}</div>
+          <div class="tx-detail">${new Date(w.time).toLocaleString('en')} · ${w.account}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="tx-amount withdraw">-৳${w.amount.toLocaleString('en')}</div>
+          <span class="tx-status ${w.status}">${w.status === 'pending' ? '⏳ Pending' : w.status === 'completed' ? '✅ Completed' : '❌ Rejected'}</span>
+        </div>
+      </div>
+    `).join('');
+  } else {
+    document.getElementById('txWithdrawList').innerHTML = '<div class="hist-empty">No withdrawals yet</div>';
+  }
+}
+
+// ========== WITHDRAWAL SYSTEM ==========
+window.submitWithdraw = async (method) => {
+  if (!window._curUser) return;
+  
+  let account, amount;
+  if (method === 'bKash') {
+    account = document.getElementById('wdBkashNum')?.value;
+    amount = parseFloat(document.getElementById('wdBkashAmt')?.value);
+  } else if (method === 'Nagad') {
+    account = document.getElementById('wdNagadNum')?.value;
+    amount = parseFloat(document.getElementById('wdNagadAmt')?.value);
+  } else if (method === 'Binance') {
+    account = document.getElementById('wdBinanceId')?.value;
+    amount = parseFloat(document.getElementById('wdBinanceAmt')?.value);
+    if (method === 'Binance') amount = amount * 120; // Convert USDT to BDT approx
+  } else if (method === 'Upay') {
+    account = document.getElementById('wdUpayNum')?.value;
+    amount = parseFloat(document.getElementById('wdUpayAmt')?.value);
+  } else if (method === 'Rocket') {
+    account = document.getElementById('wdRocketNum')?.value;
+    amount = parseFloat(document.getElementById('wdRocketAmt')?.value);
+  }
+  
+  if (!account || !amount || amount < 5000) {
+    toast('⚠️ সঠিক তথ্য দিন (মিনিমাম ৳5000)', true);
+    return;
+  }
+  
+  if (window._realBal < amount) {
+    toast('❌ আপনার ব্যালেন্স অপ্রতুল!', true);
+    return;
+  }
+  
+  // Create withdrawal request
+  const wdId = 'wd_' + Date.now();
+  const wdData = {
+    userId: window._curUser.uid,
+    userName: window._userProfile?.name || window._curUser.displayName || 'User',
+    method: method,
+    account: account,
+    amount: amount,
+    status: 'pending',
+    time: Date.now()
+  };
+  
+  await set(ref(db, 'withdrawalRequests/' + wdId), wdData);
+  await set(ref(db, 'withdrawals/' + window._curUser.uid + '/' + wdId), wdData);
+  
+  toast('✅ আপনার উইথড্রয়াল অনুরোধ পাঠানো হয়েছে! অ্যাডমিন যাচাই করবে।', false);
+  closeModal('withdraw');
+  loadUserTransactions(window._curUser.uid);
+};
+
+window.acceptWithdrawal = async (wdId, userId, amount) => {
+  if (!confirm(`এই উইথড্রয়াল অনুমোদন করবেন? ৳${amount.toLocaleString('en')}`)) return;
+  
+  // Get user data
+  const userSnap = await get(ref(db, 'users/' + userId));
+  if (userSnap.exists()) {
+    const userBal = userSnap.val().balance || 0;
+    if (userBal < amount) {
+      toast('❌ ইউজারের ব্যালেন্স অপ্রতুল!', true);
+      return;
+    }
+    
+    // Subtract balance
+    await update(ref(db, 'users/' + userId), { balance: userBal - amount });
+    
+    // Update withdrawal status
+    await update(ref(db, 'withdrawalRequests/' + wdId), { status: 'completed' });
+    await update(ref(db, 'withdrawals/' + userId + '/' + wdId), { status: 'completed' });
+    
+    // Add to transaction history
+    await push(ref(db, 'transactions/' + userId), {
+      type: 'withdraw',
+      method: 'Withdrawal',
+      amount: amount,
+      status: 'completed',
+      time: Date.now()
+    });
+    
+    toast('✅ উইথড্রয়াল অনুমোদিত! ব্যালেন্স কেটে নেওয়া হয়েছে।', false);
+    loadWithdrawalRequests();
+  }
+};
+
+window.rejectWithdrawal = async (wdId, userId) => {
+  if (!confirm('এই উইথড্রয়াল বাতিল করবেন?')) return;
+  
+  await update(ref(db, 'withdrawalRequests/' + wdId), { status: 'rejected' });
+  await update(ref(db, 'withdrawals/' + userId + '/' + wdId), { status: 'rejected' });
+  
+  toast('❌ উইথড্রয়াল বাতিল করা হয়েছে।', true);
+  loadWithdrawalRequests();
+};
+
+// ========== DEPOSIT SYSTEM ==========
+window.submitDeposit = async () => {
+  const amt = parseFloat(document.getElementById('depAmt').value);
+  const tx = document.getElementById('depTx').value.trim();
+  
+  if (!amt || !tx) {
+    toast('⚠️ সব field পূরণ করুন', true);
+    return;
+  }
+  
+  if (!tx.endsWith('..')) {
+    document.getElementById('txErrorBox').classList.add('show');
+    toast('❌ Transaction ID Wrong', true);
+    return;
+  }
+  
+  if (!window._curUser) return;
+  
+  // Create deposit record
+  const depId = 'dep_' + Date.now();
+  const depData = {
+    userId: window._curUser.uid,
+    userName: window._userProfile?.name || window._curUser.displayName || 'User',
+    method: 'Binance',
+    amount: amt,
+    txId: tx,
+    status: 'pending',
+    time: Date.now()
+  };
+  
+  await set(ref(db, 'depositRequests/' + depId), depData);
+  await set(ref(db, 'deposits/' + window._curUser.uid + '/' + depId), depData);
+  
+  toast('✅ ডিপোজিট অনুরোধ পাঠানো হয়েছে! অ্যাডমিন যাচাই করবে।', false);
+  closeModal('deposit');
+  loadUserTransactions(window._curUser.uid);
+};
+
+window.acceptDeposit = async (depId, userId, amount) => {
+  if (!confirm(`এই ডিপোজিট অনুমোদন করবেন? $${amount} USDT (~৳${amount*120})`)) return;
+  
+  const bdtAmount = amount * 120;
+  
+  // Add balance
+  const userSnap = await get(ref(db, 'users/' + userId));
+  if (userSnap.exists()) {
+    const userBal = userSnap.val().balance || 0;
+    await update(ref(db, 'users/' + userId), { balance: userBal + bdtAmount });
+  }
+  
+  // Update deposit status
+  await update(ref(db, 'depositRequests/' + depId), { status: 'completed' });
+  await update(ref(db, 'deposits/' + userId + '/' + depId), { status: 'completed' });
+  
+  // Add to transaction history
+  await push(ref(db, 'transactions/' + userId), {
+    type: 'deposit',
+    method: 'Binance',
+    amount: amount,
+    bdtAmount: bdtAmount,
+    status: 'completed',
+    time: Date.now()
+  });
+  
+  toast(`✅ ডিপোজিট অনুমোদিত! ৳${bdtAmount.toLocaleString('en')} যোগ করা হয়েছে।`, false);
+  loadDepositRequests();
+};
+
+window.rejectDeposit = async (depId, userId) => {
+  if (!confirm('এই ডিপোজিট বাতিল করবেন?')) return;
+  
+  await update(ref(db, 'depositRequests/' + depId), { status: 'rejected' });
+  await update(ref(db, 'deposits/' + userId + '/' + depId), { status: 'rejected' });
+  
+  toast('❌ ডিপোজিট বাতিল করা হয়েছে।', true);
+  loadDepositRequests();
+};
+
+// ========== ADMIN FUNCTIONS ==========
+window.loadWithdrawalRequests = async () => {
+  const snap = await get(ref(db, 'withdrawalRequests'));
+  const list = document.getElementById('withdrawRequestsList');
+  
+  if (!snap.exists()) {
+    list.innerHTML = '<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2)">No pending withdrawals</div>';
+    document.getElementById('adPendingWithdrawals').textContent = '0';
+    return;
+  }
+  
+  const requests = Object.entries(snap.val())
+    .filter(([_,v]) => v.status === 'pending')
+    .sort((a,b) => b[1].time - a[1].time);
+  
+  document.getElementById('adPendingWithdrawals').textContent = requests.length;
+  
+  list.innerHTML = requests.map(([id, r]) => `
+    <div class="wd-request-item">
+      <div class="wd-req-header">
+        <span class="wd-req-user">👤 ${r.userName}</span>
+        <span class="wd-req-amount">৳${r.amount.toLocaleString('en')}</span>
+      </div>
+      <div class="wd-req-method">${r.method} · ${r.account}</div>
+      <div class="wd-req-detail">${new Date(r.time).toLocaleString('en')}</div>
+      <div class="wd-req-actions">
+        <button class="wd-accept" onclick="acceptWithdrawal('${id}','${r.userId}',${r.amount})">✅ Accept</button>
+        <button class="wd-reject" onclick="rejectWithdrawal('${id}','${r.userId}')">❌ Reject</button>
+      </div>
+    </div>
+  `).join('');
+};
+
+window.loadDepositRequests = async () => {
+  const snap = await get(ref(db, 'depositRequests'));
+  const list = document.getElementById('adminDepositList');
+  
+  if (!snap.exists()) {
+    list.innerHTML = '<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2)">No deposit requests</div>';
+    return;
+  }
+  
+  const requests = Object.entries(snap.val())
+    .filter(([_,v]) => v.status === 'pending')
+    .sort((a,b) => b[1].time - a[1].time);
+  
+  let totalDeposits = 0;
+  Object.values(snap.val()).forEach(v => { if (v.status === 'completed') totalDeposits += v.amount * 120; });
+  document.getElementById('adTotalDeposits').textContent = '৳' + totalDeposits.toLocaleString('en');
+  
+  list.innerHTML = requests.map(([id, d]) => `
+    <div class="deposit-item">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <span class="dep-user">👤 ${d.userName}</span>
+        <span class="dep-amount">$${d.amount} USDT (~৳${(d.amount*120).toLocaleString('en')})</span>
+      </div>
+      <div class="dep-method">Binance · TxID: ${d.txId}</div>
+      <div class="dep-time">${new Date(d.time).toLocaleString('en')}</div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="wd-accept" onclick="acceptDeposit('${id}','${d.userId}',${d.amount})" style="flex:1">✅ Accept & Add Balance</button>
+        <button class="wd-reject" onclick="rejectDeposit('${id}','${d.userId}')" style="flex:1">❌ Reject</button>
+      </div>
+    </div>
+  `).join('');
+};
+
 window.loadAdminUsers=async()=>{
   const snap=await get(ref(db,'users'));
   if(!snap.exists()){document.getElementById('userList').innerHTML='<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2);font-family:Cinzel,serif;font-size:11px">No users</div>';return;}
@@ -1439,6 +1923,16 @@ window.confirmAddBal=async()=>{
   if(!_ablUid)return;
   let newBal=_ablIsAdd?_ablCurBal+amt:Math.max(0,_ablCurBal-amt);
   await update(ref(db,'users/'+_ablUid),{balance:newBal});
+  
+  // Add to transaction history
+  await push(ref(db,'transactions/'+_ablUid), {
+    type: _ablIsAdd ? 'deposit' : 'withdraw',
+    method: _ablIsAdd ? 'Admin Add' : 'Admin Subtract',
+    amount: amt,
+    status: 'completed',
+    time: Date.now()
+  });
+  
   toast(`✅ Balance ${_ablIsAdd?'added':'subtracted'}: ৳${amt.toLocaleString('en')}`,false);
   closeAddBal();loadAdminUsers();
 };
@@ -1491,6 +1985,16 @@ window.claimReward=async()=>{
   const rewards=[500,800,1000,1200,1500,2000,3000];
   const amt=rewards[dayNum-1];
   await update(ref(db,'users/'+window._curUser.uid),{balance:window._realBal+amt,lastClaimedDay:dayNum>=7?0:dayNum,lastClaimDate:today,dailyStreak:dayNum});
+  
+  // Add to transaction history
+  await push(ref(db,'transactions/'+window._curUser.uid), {
+    type: 'deposit',
+    method: 'Daily Reward',
+    amount: amt,
+    status: 'completed',
+    time: Date.now()
+  });
+  
   document.getElementById('rewardModal').classList.remove('open');
   toast(`🎁 Day ${dayNum} Reward: ৳${amt.toLocaleString('en')} পেলেন! 🎉`,false);
   renderRewardDays();
@@ -1614,18 +2118,12 @@ window.closeBnDotMenu=()=>{
   document.getElementById('bnDotsBtn').classList.remove('menu-open');
 };
 
-window.openAdminPw=()=>{
-  document.getElementById('dotMenu').classList.remove('open');
-  closeBnDotMenu();
-  document.getElementById('apwInput').value='';
-  document.getElementById('apwError').style.display='none';
-  document.getElementById('adminPwModal').classList.add('open');
-  setTimeout(()=>document.getElementById('apwInput').focus(),200);
-};
 window.checkAdminPw=()=>{
   if(document.getElementById('apwInput').value==='308580'){
     document.getElementById('adminPwModal').classList.remove('open');
     showPage('adminPage');
+    window.loadWithdrawalRequests && loadWithdrawalRequests();
+    window.loadDepositRequests && loadDepositRequests();
     window.loadAdminUsers&&loadAdminUsers();
     window.loadAdminMessages&&loadAdminMessages();
   } else {
@@ -1633,10 +2131,13 @@ window.checkAdminPw=()=>{
     document.getElementById('apwInput').value='';
   }
 };
+
 window.switchAdminTab=(tab,el)=>{
   document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.admin-tab-content').forEach(c=>c.classList.remove('active'));
   el.classList.add('active');document.getElementById('atab-'+tab).classList.add('active');
+  if(tab==='withdrawals') window.loadWithdrawalRequests && loadWithdrawalRequests();
+  if(tab==='deposits') window.loadDepositRequests && loadDepositRequests();
   if(tab==='messages')window.loadAdminMessages&&loadAdminMessages();
   if(tab==='users')window.loadAdminUsers&&loadAdminUsers();
   if(tab==='leaderboard')window.loadAdminLeaderboard&&loadAdminLeaderboard();
@@ -1659,14 +2160,6 @@ window.validateTxInput=(inp)=>{
   const v=inp.value.trim(),box=document.getElementById('txErrorBox');
   if(v.length>2){if(!v.endsWith('..'))box.classList.add('show');else box.classList.remove('show');}else box.classList.remove('show');
 };
-window.submitDeposit=()=>{
-  const a=document.getElementById('depAmt').value,tx=document.getElementById('depTx').value.trim();
-  if(!a||!tx){toast('⚠️ সব field পূরণ করুন',true);return;}
-  if(!tx.endsWith('..')){document.getElementById('txErrorBox').classList.add('show');toast('❌ Transaction ID Wrong',true);return;}
-  alert(`✅ Deposit submitted!\nAmount: ${a} USDT\nTxID: ${tx}\n\n5–15 min এ verify হবে।`);
-  closeModal('deposit');
-};
-window.doWdw=m=>{alert(`✅ Withdrawal via ${m} submitted!`);closeModal('withdraw');};
 
 // TOAST
 window.toast=(msg,isErr)=>{
