@@ -96,7 +96,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .tx-tabs{display:flex;border-bottom:1px solid rgba(201,168,76,0.1);}
 .tx-tab{flex:1;padding:10px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-align:center;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all 0.2s;}
 .tx-tab.active{color:#f0d060;border-bottom-color:#f0d060;}
-.tx-list{max-height:250px;overflow-y:auto;padding:0;}
+.tx-list{max-height:300px;overflow-y:auto;padding:0;}
 .tx-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.04);}
 .tx-item:last-child{border-bottom:none;}
 .tx-icon{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
@@ -106,10 +106,14 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .tx-amount{font-family:'Cinzel',serif;font-size:14px;font-weight:900;text-align:right;}
 .tx-amount.deposit{color:#2ecc71;}
 .tx-amount.withdraw{color:#e74c3c;}
+.tx-amount.bet-win{color:#2ecc71;}
+.tx-amount.bet-loss{color:#e74c3c;}
 .tx-status{font-size:8px;letter-spacing:1px;margin-top:2px;text-align:right;}
 .tx-status.pending{color:#ffa500;}
 .tx-status.completed{color:#2ecc71;}
 .tx-status.rejected{color:#e74c3c;}
+.tx-status.win{color:#2ecc71;}
+.tx-status.loss{color:#e74c3c;}
 .tx-empty{padding:30px 20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.2);}
 
 .page{position:fixed;inset:0;z-index:10;display:flex;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;overflow-y:auto;padding-bottom:68px;}
@@ -825,6 +829,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="dot-menu" id="dotMenu">
           <div class="dot-menu-item" onclick="openModal('deposit')">💰 Deposit</div>
           <div class="dot-menu-item" onclick="checkWithdraw()">💸 Withdraw</div>
+          <div class="dot-menu-item" onclick="navTo('history')">📋 Bet History</div>
           <div class="dot-menu-item" onclick="logout()">⬅ Sign Out</div>
         </div>
       </div>
@@ -846,7 +851,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div class="reward-days" id="rewardDays"></div>
     </div>
     
-    <!-- NEW: Transaction History Card -->
+    <!-- Transaction History Card (Deposits, Withdrawals, Bet History) -->
     <div class="tx-card" id="transactionHistoryCard">
       <div class="tx-header">
         <div class="tx-header-left"><span>📋</span> TRANSACTION HISTORY</div>
@@ -856,13 +861,14 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <button class="tx-tab active" id="txTabAll" onclick="switchTxTab('all')">ALL</button>
         <button class="tx-tab" id="txTabDeposit" onclick="switchTxTab('deposit')">DEPOSITS</button>
         <button class="tx-tab" id="txTabWithdraw" onclick="switchTxTab('withdraw')">WITHDRAWALS</button>
+        <button class="tx-tab" id="txTabBets" onclick="switchTxTab('bets')">BETS</button>
       </div>
       <div class="tx-list" id="txList">
         <div class="tx-empty">No transactions yet</div>
       </div>
     </div>
     
-    <!-- NEW: LIVE CRICKET BETTING SECTION -->
+    <!-- LIVE CRICKET BETTING SECTION -->
     <div class="live-cricket-card" id="cricketLiveCard">
       <div class="cricket-header">
         <div class="cricket-title"><span>🏏</span> LIVE CRICKET</div>
@@ -1770,6 +1776,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
     <div class="bn-dot-menu" id="bnDotMenu">
       <div class="bn-dot-menu-item" onclick="closeBnDotMenu();openModal('deposit')">💰 Deposit</div>
       <div class="bn-dot-menu-item" onclick="closeBnDotMenu();checkWithdraw()">💸 Withdraw</div>
+      <div class="bn-dot-menu-item" onclick="closeBnDotMenu();navTo('history')">📋 Bet History</div>
       <div class="bn-dot-menu-item" onclick="closeBnDotMenu();logout()">⬅ Sign Out</div>
     </div>
   </div>
@@ -1886,16 +1893,18 @@ window.loadBetHistory=async()=>{
   document.getElementById('hsTotalLoss').textContent='৳'+totalLoss.toLocaleString('en');
 };
 
-// TRANSACTION HISTORY (Deposits & Withdrawals)
+// TRANSACTION HISTORY (Deposits, Withdrawals & Bets)
 let currentTxTab = 'all';
 window.loadTransactionHistory = async () => {
   if (!window._curUser) return;
   
   const depositsSnap = await get(ref(db, 'depositRequests'));
   const withdrawalsSnap = await get(ref(db, 'withdrawalRequests'));
+  const betsSnap = await get(ref(db, 'users/' + window._curUser.uid + '/bets'));
   
   let allTxs = [];
   
+  // Add deposits
   if (depositsSnap.exists()) {
     const deposits = Object.entries(depositsSnap.val())
       .filter(([_, d]) => d.userId === window._curUser.uid)
@@ -1906,11 +1915,13 @@ window.loadTransactionHistory = async () => {
         amount: d.amount * 120, // Convert to BDT
         status: d.status || 'pending',
         time: d.time || Date.now(),
-        detail: `${d.amount} USDT ~ ৳${(d.amount * 120).toLocaleString('en')}`
+        detail: `${d.amount} USDT ~ ৳${(d.amount * 120).toLocaleString('en')}`,
+        icon: '💰'
       }));
     allTxs = [...allTxs, ...deposits];
   }
   
+  // Add withdrawals
   if (withdrawalsSnap.exists()) {
     const withdrawals = Object.entries(withdrawalsSnap.val())
       .filter(([_, w]) => w.userId === window._curUser.uid)
@@ -1921,9 +1932,34 @@ window.loadTransactionHistory = async () => {
         amount: w.amount || 0,
         status: w.status || 'pending',
         time: w.time || Date.now(),
-        detail: `${w.account}`
+        detail: `${w.account}`,
+        icon: '💸'
       }));
     allTxs = [...allTxs, ...withdrawals];
+  }
+  
+  // Add bets
+  if (betsSnap.exists()) {
+    const bets = Object.values(betsSnap.val())
+      .map((b, index) => ({
+        id: 'bet_' + index + '_' + b.time,
+        type: 'bet',
+        method: b.game,
+        amount: b.profit >= 0 ? b.profit : -b.profit,
+        status: b.profit >= 0 ? 'win' : 'loss',
+        time: b.time || Date.now(),
+        detail: `${b.detail}`,
+        bet: b.bet,
+        profit: b.profit,
+        icon: b.game === 'Aviator' ? '✈️' : 
+               b.game === 'Trading' ? '📈' : 
+               b.game === 'Dice' ? '🎲' : 
+               b.game === 'Mines' ? '💣' : 
+               b.game === 'Coin Flip' ? '🪙' : 
+               b.game === 'Limbo' ? '🔮' : 
+               b.game === 'Cricket' ? '🏏' : '🎮'
+      }));
+    allTxs = [...allTxs, ...bets];
   }
   
   allTxs.sort((a, b) => b.time - a.time);
@@ -1946,37 +1982,59 @@ function renderTransactionHistory(txs) {
   const statusIcons = {
     pending: '⏳',
     completed: '✅',
-    rejected: '❌'
+    rejected: '❌',
+    win: '🎉',
+    loss: '💥'
   };
   
   const statusColors = {
     pending: '#ffa500',
     completed: '#2ecc71',
-    rejected: '#e74c3c'
+    rejected: '#e74c3c',
+    win: '#2ecc71',
+    loss: '#e74c3c'
   };
   
-  list.innerHTML = filtered.map(t => `
+  list.innerHTML = filtered.map(t => {
+    let amountClass = '';
+    let amountPrefix = '';
+    
+    if (t.type === 'deposit') {
+      amountClass = 'deposit';
+      amountPrefix = '+';
+    } else if (t.type === 'withdraw') {
+      amountClass = 'withdraw';
+      amountPrefix = '-';
+    } else if (t.type === 'bet') {
+      amountClass = t.profit >= 0 ? 'bet-win' : 'bet-loss';
+      amountPrefix = t.profit >= 0 ? '+' : '-';
+    }
+    
+    let displayAmount = t.type === 'bet' ? Math.abs(t.profit) : t.amount;
+    
+    return `
     <div class="tx-item">
-      <div class="tx-icon" style="background:${t.type === 'deposit' ? 'rgba(46,204,113,0.1)' : 'rgba(231,76,60,0.1)'}">
-        ${t.type === 'deposit' ? '💰' : '💸'}
+      <div class="tx-icon" style="background:${t.type === 'deposit' ? 'rgba(46,204,113,0.1)' : t.type === 'withdraw' ? 'rgba(231,76,60,0.1)' : 'rgba(52,152,219,0.1)'}">
+        ${t.icon || (t.type === 'deposit' ? '💰' : t.type === 'withdraw' ? '💸' : '🎮')}
       </div>
       <div class="tx-info">
-        <div class="tx-title">${t.type === 'deposit' ? 'Deposit' : 'Withdrawal'} via ${t.method}</div>
+        <div class="tx-title">${t.type === 'bet' ? t.method : (t.type === 'deposit' ? 'Deposit' : 'Withdrawal')} ${t.type === 'bet' ? '' : 'via ' + t.method}</div>
         <div class="tx-detail">
           <span>${new Date(t.time).toLocaleDateString('en')}</span>
           <span>${t.detail}</span>
+          ${t.type === 'bet' ? `<span>Bet: ৳${t.bet.toLocaleString('en')}</span>` : ''}
         </div>
       </div>
       <div style="text-align:right">
-        <div class="tx-amount ${t.type === 'deposit' ? 'deposit' : 'withdraw'}">
-          ${t.type === 'deposit' ? '+' : '-'}৳${t.amount.toLocaleString('en')}
+        <div class="tx-amount ${amountClass}">
+          ${amountPrefix}৳${displayAmount.toLocaleString('en')}
         </div>
         <div class="tx-status ${t.status}" style="color:${statusColors[t.status] || '#ffa500'}">
           ${statusIcons[t.status] || '⏳'} ${t.status.toUpperCase()}
         </div>
       </div>
     </div>
-  `).join('');
+  `}).join('');
 }
 
 window.switchTxTab = (tab) => {
@@ -1984,6 +2042,7 @@ window.switchTxTab = (tab) => {
   document.getElementById('txTabAll').classList.toggle('active', tab === 'all');
   document.getElementById('txTabDeposit').classList.toggle('active', tab === 'deposit');
   document.getElementById('txTabWithdraw').classList.toggle('active', tab === 'withdraw');
+  document.getElementById('txTabBets').classList.toggle('active', tab === 'bets');
   loadTransactionHistory();
 };
 
@@ -2334,6 +2393,7 @@ window._saveBetHistory=async(entry)=>{
   const prof=window._userProfile||{};
   await update(ref(db,'users/'+uid),{totalBets:(prof.totalBets||0)+1,totalProfit:(prof.totalProfit||0)+(entry.profit||0)});
   loadBetHistory();
+  loadTransactionHistory(); // Refresh transaction history after bet
   loadHomeLb();
 };
 
@@ -2464,7 +2524,7 @@ window.sendAIMessage = () => {
       } else if (lowerMsg.includes('bonus') || lowerMsg.includes('বোনাস')) {
         response = 'Daily Reward claim করুন! প্রতিদিন ৳500 থেকে ৳3000 পর্যন্ত বোনাস পান।';
       } else if (lowerMsg.includes('history') || lowerMsg.includes('হিস্ট্রি')) {
-        response = 'আপনার বেট হিস্ট্রি এবং ট্রানজেকশন হিস্ট্রি দেখতে Profile অথবা Home পেজের Transaction History সেকশন দেখুন।';
+        response = 'আপনার বেট হিস্ট্রি এবং ট্রানজেকশন হিস্ট্রি দেখতে Home পেজের Transaction History সেকশন দেখুন।';
       } else {
         response = `"${msg}" — আপনার প্রশ্নের উত্তর দিচ্ছি: Royal Bet-এ স্বাগতম! আরও জানতে আমাদের Support-এ যোগাযোগ করুন।`;
       }
