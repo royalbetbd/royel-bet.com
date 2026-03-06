@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Royal Bet </title>
+<title>Royal Bet ✈ | Premium Casino</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@300;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -39,10 +39,35 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 @keyframes dotMenuSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes aiThinking{0%,100%{opacity:0.3}50%{opacity:1}}
 @keyframes quantum{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.2)}100%{transform:rotate(360deg) scale(1)}}
-@keyframes lbUpdate{0%{transform:scale(1)}50%{transform:scale(1.02);background:rgba(255,215,0,0.1)}100%{transform:scale(1)}}
-@keyframes inboxPulse{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
-@keyframes notificationSlide{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
-@keyframes commentPop{from{transform:scale(0.9);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes notificationPulse{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+
+/* INBOX & NOTIFICATION SYSTEM */
+.inbox-icon{position:relative;margin-right:10px;cursor:pointer;}
+.inbox-badge{position:absolute;top:-5px;right:-5px;background:#e74c3c;color:#fff;font-size:9px;font-weight:700;padding:2px 5px;border-radius:10px;min-width:16px;text-align:center;animation:notificationPulse 2s infinite;}
+.inbox-modal{position:fixed;inset:0;z-index:250;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.inbox-modal.open{opacity:1;pointer-events:all;}
+.inbox-box{width:92%;max-width:420px;background:linear-gradient(160deg,#1c0e02,#0a0500);border:2px solid rgba(201,168,76,0.3);border-radius:16px;max-height:80vh;overflow:hidden;}
+.inbox-hdr{padding:16px 20px;background:linear-gradient(135deg,#8a6a1f,#c9a84c);display:flex;align-items:center;justify-content:space-between;}
+.inbox-hdr-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#0d0500;}
+.inbox-close{background:none;border:none;color:#0d0500;font-size:20px;cursor:pointer;}
+.inbox-tabs{display:flex;border-bottom:1px solid rgba(201,168,76,0.2);}
+.inbox-tab{flex:1;padding:12px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.5);text-align:center;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;}
+.inbox-tab.active{color:var(--gl);border-bottom-color:var(--gl);}
+.inbox-content{height:400px;overflow-y:auto;padding:12px;}
+.announcement-item{padding:16px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.15);border-radius:10px;margin-bottom:12px;}
+.announcement-title{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--gl);margin-bottom:6px;}
+.announcement-text{font-size:12px;color:rgba(255,255,255,0.8);margin-bottom:8px;line-height:1.5;}
+.announcement-footer{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:rgba(255,255,255,0.4);}
+.announcement-actions{display:flex;gap:12px;}
+.announcement-like,.announcement-comment{cursor:pointer;display:flex;align-items:center;gap:4px;}
+.announcement-like:hover,.announcement-comment:hover{color:var(--gl);}
+.comment-section{margin-top:12px;border-top:1px solid rgba(201,168,76,0.1);padding-top:12px;}
+.comment-item{padding:8px;background:rgba(0,0,0,0.3);border-radius:6px;margin-bottom:8px;font-size:11px;}
+.comment-user{font-weight:700;color:var(--gl);margin-right:6px;}
+.comment-text{color:rgba(255,255,255,0.7);}
+.comment-input{display:flex;gap:8px;margin-top:8px;}
+.comment-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:8px;color:#fff;font-size:11px;outline:none;}
+.comment-send{width:32px;height:32px;background:linear-gradient(135deg,#8a6a1f,#c9a84c);border:none;border-radius:50%;color:#0d0500;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 
 /* AI ASSISTANT */
 .ai-assistant{position:fixed;bottom:80px;right:16px;z-index:999;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#8a6a1f,#c9a84c);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 20px rgba(201,168,76,0.5);animation:quantum 3s infinite;transition:all 0.3s;}
@@ -66,46 +91,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .ai-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:8px 12px;color:#fff;font-family:'Lato',sans-serif;font-size:12px;outline:none;}
 .ai-send{width:36px;height:36px;background:linear-gradient(135deg,#8a6a1f,#c9a84c);border:none;border-radius:50%;color:#0d0500;font-size:16px;cursor:pointer;margin-left:8px;display:flex;align-items:center;justify-content:center;}
 
-/* INBOX & NOTIFICATION SYSTEM */
-.inbox-icon{position:relative;margin-right:10px;cursor:pointer;}
-.inbox-badge{position:absolute;top:-5px;right:-5px;background:#e74c3c;color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;animation:inboxPulse 1.5s infinite;}
-.inbox-dropdown{position:absolute;top:100%;right:0;width:300px;background:linear-gradient(160deg,#1c0e02,#0a0500);border:1px solid rgba(201,168,76,0.3);border-radius:10px;margin-top:10px;z-index:1000;display:none;box-shadow:0 10px 30px rgba(0,0,0,0.7);}
-.inbox-dropdown.open{display:block;}
-.inbox-header{padding:12px 16px;border-bottom:1px solid rgba(201,168,76,0.1);display:flex;justify-content:space-between;align-items:center;}
-.inbox-header h3{font-family:'Cinzel',serif;font-size:12px;color:var(--gl);}
-.inbox-close{background:none;border:none;color:rgba(201,168,76,0.4);font-size:16px;cursor:pointer;}
-.inbox-tabs{display:flex;border-bottom:1px solid rgba(201,168,76,0.1);}
-.inbox-tab{flex:1;padding:8px;font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.4);text-align:center;cursor:pointer;border:none;background:none;}
-.inbox-tab.active{color:var(--gl);border-bottom:2px solid var(--gl);}
-.inbox-content{padding:12px;max-height:300px;overflow-y:auto;}
-.inbox-item{padding:12px;border-bottom:1px solid rgba(201,168,76,0.05);cursor:pointer;transition:all 0.2s;}
-.inbox-item:hover{background:rgba(201,168,76,0.05);}
-.inbox-item.unread{background:rgba(255,215,0,0.05);border-left:2px solid var(--gl);}
-.inbox-item-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:#fff;margin-bottom:4px;}
-.inbox-item-preview{font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;}
-.inbox-item-time{font-size:8px;color:rgba(201,168,76,0.3);}
-.announcement-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
-.announcement-modal.open{opacity:1;pointer-events:all;}
-.announcement-box{width:90%;max-width:400px;background:linear-gradient(160deg,#1c0e02,#0a0500);border:2px solid var(--gl);border-radius:16px;padding:24px;}
-.announcement-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
-.announcement-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:var(--gl);}
-.announcement-close{background:none;border:none;color:rgba(201,168,76,0.4);font-size:20px;cursor:pointer;}
-.announcement-date{font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:8px;}
-.announcement-content{font-size:14px;color:#fff;line-height:1.6;margin-bottom:20px;}
-.comment-section{padding:16px;background:rgba(0,0,0,0.3);border-radius:12px;}
-.comment-input{width:100%;padding:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:8px;color:#fff;margin-bottom:10px;}
-.comment-list{max-height:200px;overflow-y:auto;}
-.comment-item{padding:8px;border-bottom:1px solid rgba(201,168,76,0.05);animation:commentPop 0.3s ease;}
-.comment-user{font-family:'Cinzel',serif;font-size:10px;color:var(--gl);margin-bottom:2px;}
-.comment-text{font-size:11px;color:rgba(255,255,255,0.7);}
-.comment-time{font-size:8px;color:rgba(255,255,255,0.3);text-align:right;margin-top:2px;}
-.like-btn{display:flex;align-items:center;gap:5px;padding:5px 10px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:12px;cursor:pointer;font-size:10px;color:rgba(255,255,255,0.7);margin-top:8px;transition:all 0.2s;}
-.like-btn:hover{background:rgba(201,168,76,0.2);}
-.like-btn.liked{color:#ff6b6b;border-color:#ff6b6b;}
-
-/* HOME LEADERBOARD - UPDATED */
-#homeLbCard{background:linear-gradient(160deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(201,168,76,0.3);border-radius:14px;overflow:hidden}
-.lb-update{animation:lbUpdate 0.5s ease;}
+/* HOME LEADERBOARD */
 .hlb-row{display:flex;align-items:center;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);gap:10px;}
 .hlb-row:last-child{border-bottom:none;}
 .hlb-rank-badge{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;font-family:'Cinzel',serif;flex-shrink:0;}
@@ -119,21 +105,21 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .hlb-amt{font-family:'Cinzel',serif;font-size:14px;font-weight:900;color:var(--gl);text-align:right;}
 .hlb-crown{font-size:11px;margin-top:2px;text-align:right;}
 
-/* ADMIN LB EDIT - COMPACT */
-.alb-row{padding:8px;border-bottom:1px solid rgba(255,60,60,0.08);display:flex;flex-direction:column;gap:6px;}
+/* ADMIN LB EDIT */
+.alb-row{padding:12px 14px;border-bottom:1px solid rgba(255,60,60,0.08);display:flex;flex-direction:column;gap:8px;}
 .alb-row:last-child{border-bottom:none;}
-.alb-fields{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.alb-inp{background:rgba(255,255,255,0.06);border:1px solid rgba(255,60,60,0.2);border-radius:4px;padding:5px;color:#fff;font-family:'Cinzel',serif;font-size:10px;outline:none;width:100%;}
-.alb-inp-full{background:rgba(255,255,255,0.06);border:1px solid rgba(255,60,60,0.2);border-radius:4px;padding:5px;color:#fff;font-family:'Cinzel',serif;font-size:10px;outline:none;width:100%;}
-.alb-actions{display:flex;gap:4px;}
-.alb-save{flex:1;padding:4px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:4px;color:#2ecc71;font-family:'Cinzel',serif;font-size:8px;cursor:pointer;letter-spacing:1px;}
-.alb-delete{padding:4px 6px;background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.3);border-radius:4px;color:#e74c3c;font-family:'Cinzel',serif;font-size:8px;cursor:pointer;}
-.alb-rank-lbl{font-family:'Cinzel',serif;font-size:9px;color:rgba(255,100,100,0.6);letter-spacing:1px;}
+.alb-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.alb-inp{background:rgba(255,255,255,0.06);border:1px solid rgba(255,60,60,0.2);border-radius:6px;padding:7px 10px;color:#fff;font-family:'Cinzel',serif;font-size:11px;outline:none;width:100%;}
+.alb-inp-full{background:rgba(255,255,255,0.06);border:1px solid rgba(255,60,60,0.2);border-radius:6px;padding:7px 10px;color:#fff;font-family:'Cinzel',serif;font-size:11px;outline:none;width:100%;}
+.alb-actions{display:flex;gap:6px;}
+.alb-save{flex:1;padding:7px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:6px;color:#2ecc71;font-family:'Cinzel',serif;font-size:9px;cursor:pointer;letter-spacing:1px;}
+.alb-delete{padding:7px 10px;background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.3);border-radius:6px;color:#e74c3c;font-family:'Cinzel',serif;font-size:9px;cursor:pointer;}
+.alb-rank-lbl{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,100,100,0.6);letter-spacing:2px;margin-bottom:2px;}
 
 .page{position:fixed;inset:0;z-index:10;display:flex;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;overflow-y:auto;padding-bottom:68px;}
 .page.active{opacity:1;pointer-events:all;}
 
-/* LOGIN PAGE */
+/* LOGIN PAGE - MODERN UI */
 #loginPage{align-items:center;padding-bottom:0;background:radial-gradient(circle at 30% 30%, #1a5c30, #061509);}
 .login-card{width:92%;max-width:420px;background:rgba(6,21,9,0.8);backdrop-filter:blur(10px);border-radius:24px;overflow:hidden;box-shadow:0 0 0 2px #8a6a1f,0 0 0 4px #c9a84c,0 0 50px rgba(201,168,76,0.3);animation:cardIn 0.7s cubic-bezier(.16,1,.3,1) both;}
 .card-hdr{background:linear-gradient(135deg,#8a6a1f,#c9a84c,#f0d060,#c9a84c,#8a6a1f);padding:28px 30px 22px;text-align:center;position:relative;overflow:hidden;}
@@ -190,7 +176,6 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .pg-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;padding-bottom:68px;}
 .topbar{background:linear-gradient(135deg,#8a6a1f,#c9a84c,#f0d060,#c9a84c,#8a6a1f);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;flex-shrink:0;}
 .topbar::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);animation:sheen 5s ease-in-out infinite;}
-.topbar-left{display:flex;align-items:center;gap:12px;}
 .topbar-logo{font-family:'Cinzel',serif;font-size:18px;font-weight:900;color:#0d0500;letter-spacing:3px;}
 .topbar-suits{font-size:0.9rem;color:rgba(12,6,0,0.5);letter-spacing:4px;}
 .user-info{display:flex;align-items:center;gap:8px;position:relative;}
@@ -370,78 +355,69 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .hi-amt.loss{color:#e74c3c;}
 .hi-status{font-size:9px;letter-spacing:1px;color:rgba(255,255,255,0.3);margin-top:2px;}
 
-/* ADMIN PAGE - COMPACT */
+/* ADMIN */
 #adminPage{align-items:flex-start;padding:0;z-index:20;}
 .admin-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:#0a0a0a;padding-bottom:20px;}
-.admin-topbar{background:linear-gradient(135deg,#1a0000,#3a0000);padding:10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,60,60,0.3);}
-.admin-title{font-family:'Cinzel',serif;font-size:14px;font-weight:900;color:#ff6b6b;letter-spacing:2px;}
-.admin-back{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:4px 8px;color:#fff;font-size:10px;cursor:pointer;font-family:'Cinzel',serif;}
-.admin-tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid rgba(255,60,60,0.15);gap:2px;padding:2px;}
-.admin-tab{flex:1 0 auto;padding:6px 4px;font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.5px;color:rgba(255,255,255,0.3);text-align:center;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;min-width:50px;}
+.admin-topbar{background:linear-gradient(135deg,#1a0000,#3a0000);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,60,60,0.3);}
+.admin-title{font-family:'Cinzel',serif;font-size:15px;font-weight:900;color:#ff6b6b;letter-spacing:3px;}
+.admin-back{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:7px 12px;color:#fff;font-size:11px;cursor:pointer;font-family:'Cinzel',serif;}
+.admin-tabs{display:flex;border-bottom:1px solid rgba(255,60,60,0.15);overflow-x:auto;}
+.admin-tab{flex:1;padding:11px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:rgba(255,255,255,0.3);text-align:center;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;}
 .admin-tab.active{color:#ff6b6b;border-bottom-color:#ff6b6b;}
 .admin-tab-content{display:none;}
 .admin-tab-content.active{display:block;}
-.admin-section{margin:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,60,60,0.15);border-radius:6px;overflow:hidden;}
-.admin-sec-title{background:rgba(255,60,60,0.08);padding:6px 10px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:rgba(255,100,100,0.7);border-bottom:1px solid rgba(255,60,60,0.1);}
-.user-list{max-height:400px;overflow-y:auto;}
-.user-row{display:flex;align-items:center;padding:8px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.admin-section{margin:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,60,60,0.15);border-radius:12px;overflow:hidden;}
+.admin-sec-title{background:rgba(255,60,60,0.08);padding:10px 16px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:rgba(255,100,100,0.7);border-bottom:1px solid rgba(255,60,60,0.1);}
+.user-list{max-height:500px;overflow-y:auto;}
+.user-row{display:flex;align-items:center;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.04);}
 .user-row:last-child{border-bottom:none;}
-.ur-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#2d0050,#1a0030);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;border:1px solid rgba(201,168,76,0.2);overflow:hidden;}
-.ur-info{flex:1;margin:0 6px;}
-.ur-name{font-size:10px;color:rgba(255,255,255,0.85);font-weight:700;}
-.ur-email{font-size:8px;color:rgba(255,255,255,0.3);margin-top:1px;}
-.ur-bal{font-family:'Cinzel',serif;font-size:10px;font-weight:700;color:var(--gl);}
-.admin-btn-row{display:flex;gap:3px;flex-shrink:0;}
-.add-bal-btn{background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:3px;padding:3px 4px;color:#2ecc71;font-size:7px;cursor:pointer;font-family:'Cinzel',serif;white-space:nowrap;transition:all 0.2s;}
-.sub-bal-btn{background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.3);border-radius:3px;padding:3px 4px;color:#e74c3c;font-size:7px;cursor:pointer;font-family:'Cinzel',serif;white-space:nowrap;transition:all 0.2s;}
+.ur-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2d0050,#1a0030);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border:1px solid rgba(201,168,76,0.2);overflow:hidden;}
+.ur-info{flex:1;margin:0 10px;}
+.ur-name{font-size:12px;color:rgba(255,255,255,0.85);font-weight:700;}
+.ur-email{font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;}
+.ur-bal{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:var(--gl);}
+.admin-btn-row{display:flex;gap:6px;flex-shrink:0;}
+.add-bal-btn{background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:6px;padding:5px 8px;color:#2ecc71;font-size:9px;cursor:pointer;font-family:'Cinzel',serif;white-space:nowrap;transition:all 0.2s;}
+.sub-bal-btn{background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.3);border-radius:6px;padding:5px 8px;color:#e74c3c;font-size:9px;cursor:pointer;font-family:'Cinzel',serif;white-space:nowrap;transition:all 0.2s;}
 .add-bal-btn:hover{background:rgba(39,174,96,0.25);}
 .sub-bal-btn:hover{background:rgba(231,76,60,0.25);}
-.admin-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px;}
-.admin-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px;}
-.admin-stat-val{font-family:'Cinzel',serif;font-size:14px;font-weight:900;color:var(--gl);}
-.admin-stat-lbl{font-size:7px;letter-spacing:1px;color:rgba(255,255,255,0.3);margin-top:2px;text-transform:uppercase;}
-.msg-item{padding:8px;border-bottom:1px solid rgba(255,255,255,0.05);}
-.msg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
-.msg-user{font-family:'Cinzel',serif;font-size:9px;font-weight:700;color:rgba(255,255,255,0.8);}
-.msg-time{font-size:7px;color:rgba(255,255,255,0.25);}
-.msg-text{font-size:10px;color:rgba(255,255,255,0.6);line-height:1.4;}
-.msg-new-badge{background:rgba(255,100,100,0.2);border:1px solid rgba(255,100,100,0.4);border-radius:6px;padding:1px 4px;font-family:'Cinzel',serif;font-size:6px;color:#ff6b6b;margin-left:4px;}
-.wd-request-item{padding:8px;border-bottom:1px solid rgba(255,255,255,0.05);}
-.wd-req-header{display:flex;justify-content:space-between;margin-bottom:4px;}
-.wd-req-user{font-family:'Cinzel',serif;font-size:9px;color:var(--gl);}
-.wd-req-amount{font-family:'Cinzel',serif;font-size:9px;color:#fff;}
-.wd-req-method{font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:2px;}
-.wd-req-detail{font-size:7px;color:rgba(255,255,255,0.3);margin-bottom:4px;}
-.wd-req-actions{display:flex;gap:4px;}
-.wd-accept,.wd-reject{padding:3px 6px;border-radius:3px;font-size:7px;cursor:pointer;border:none;font-family:'Cinzel',serif;}
-.wd-accept{background:rgba(39,174,96,0.2);color:#2ecc71;border:1px solid rgba(39,174,96,0.3);}
-.wd-reject{background:rgba(231,76,60,0.2);color:#e74c3c;border:1px solid rgba(231,76,60,0.3);}
-.deposit-item{padding:8px;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;}
-.deposit-item:hover{background:rgba(255,255,255,0.02);}
-.dep-user{font-family:'Cinzel',serif;font-size:9px;color:var(--gl);}
-.dep-amount{font-size:9px;color:#2ecc71;}
-.dep-method{font-size:8px;color:rgba(255,255,255,0.4);}
-.dep-time{font-size:7px;color:rgba(255,255,255,0.3);margin-top:2px;}
+.admin-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px;}
+.admin-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px 16px;}
+.admin-stat-val{font-family:'Cinzel',serif;font-size:20px;font-weight:900;color:var(--gl);}
+.admin-stat-lbl{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);margin-top:4px;text-transform:uppercase;}
+.msg-list{max-height:500px;overflow-y:auto;}
+.msg-item{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.msg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.msg-user{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:rgba(255,255,255,0.8);}
+.msg-time{font-size:9px;color:rgba(255,255,255,0.25);}
+.msg-text{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5;}
+.msg-new-badge{background:rgba(255,100,100,0.2);border:1px solid rgba(255,100,100,0.4);border-radius:10px;padding:2px 8px;font-family:'Cinzel',serif;font-size:8px;color:#ff6b6b;margin-left:8px;}
 
-/* NEW BINANCE DEPOSIT MODAL */
-.binance-deposit-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
-.binance-deposit-modal.open{opacity:1;pointer-events:all;}
-.binance-deposit-box{width:90%;max-width:400px;background:linear-gradient(160deg,#0f0f0f,#0a0a0a);border:2px solid #f0b90b;border-radius:16px;padding:24px;}
-.binance-deposit-title{font-family:'Cinzel',serif;font-size:18px;font-weight:900;color:#f0b90b;margin-bottom:8px;text-align:center;}
-.binance-deposit-sub{font-size:12px;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:20px;}
-.binance-info-card{background:rgba(240,185,11,0.05);border:1px solid rgba(240,185,11,0.2);border-radius:12px;padding:16px;margin-bottom:16px;}
-.binance-info-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(240,185,11,0.1);}
-.binance-info-row:last-child{border-bottom:none;}
-.binance-info-label{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.4);}
-.binance-info-value{font-family:'Cinzel',serif;font-size:12px;color:#f0b90b;display:flex;align-items:center;gap:8px;}
-.binance-copy{background:rgba(240,185,11,0.15);border:1px solid rgba(240,185,11,0.3);border-radius:4px;padding:2px 6px;color:#f0b90b;font-size:8px;cursor:pointer;font-family:'Cinzel',serif;}
-.binance-deposit-form{margin-bottom:16px;}
-.binance-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(240,185,11,0.3);border-radius:8px;padding:12px 16px;color:#fff;font-family:'Cinzel',serif;font-size:14px;outline:none;margin-bottom:12px;}
-.binance-input::placeholder{color:rgba(255,255,255,0.2);}
-.binance-btns{display:flex;gap:10px;}
-.binance-btn{flex:1;padding:12px;border:none;border-radius:8px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;cursor:pointer;}
-.binance-btn.cancel{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);}
-.binance-btn.submit{background:linear-gradient(135deg,#b87c00,#f0b90b);color:#0d0500;}
+/* DEPOSIT MODAL - NEW VERSION (NO SCREENSHOT) */
+.deposit-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.deposit-modal.open{opacity:1;pointer-events:all;}
+.deposit-box{width:92%;max-width:400px;background:linear-gradient(160deg,#0f0f0f,#0a0a0a);border:2px solid rgba(39,174,96,0.3);border-radius:16px;padding:24px;text-align:center;}
+.deposit-title{font-family:'Cinzel',serif;font-size:18px;font-weight:900;color:#2ecc71;margin-bottom:8px;}
+.deposit-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:20px;}
+.bnb-card{background:linear-gradient(135deg,#0d0800,#1a1000);border:1px solid #f0b90b;border-radius:12px;padding:16px;margin-bottom:16px;position:relative;overflow:hidden;}
+.bnb-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.bnb-logo-svg{width:42px;height:42px;flex-shrink:0;}
+.bnb-name{font-family:'Cinzel',serif;font-size:17px;font-weight:900;color:#f0b90b;letter-spacing:3px;}
+.bnb-tagline{font-size:8px;color:rgba(240,185,11,0.5);letter-spacing:3px;margin-top:1px;}
+.bnb-field{background:rgba(240,185,11,0.06);border:1px solid rgba(240,185,11,0.2);border-radius:8px;padding:10px 13px;margin-bottom:8px;}
+.bnb-field-key{font-size:8px;letter-spacing:2px;color:rgba(240,185,11,0.45);font-family:'Cinzel',serif;margin-bottom:4px;}
+.bnb-field-val{font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:#f0d060;display:flex;align-items:center;justify-content:space-between;}
+.bnb-copy{background:rgba(240,185,11,0.15);border:1px solid rgba(240,185,11,0.3);border-radius:5px;padding:3px 8px;color:#f0b90b;font-size:9px;cursor:pointer;font-family:'Cinzel',serif;}
+.igrp{margin-bottom:12px;}
+.ilbl{display:block;font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.4);margin-bottom:6px;text-align:left;}
+.iwrap{position:relative;}
+.iwrap .ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;pointer-events:none;color:rgba(201,168,76,0.4);}
+.iwrap input{width:100%;background:rgba(0,0,0,0.35);border:1px solid rgba(201,168,76,0.2);border-radius:7px;padding:11px 13px 11px 36px;color:var(--cream);font-family:'Lato',sans-serif;font-size:14px;outline:none;}
+.deposit-note{background:rgba(255,165,0,0.12);border:1px solid rgba(255,165,0,0.3);border-radius:8px;padding:12px;margin:16px 0;font-size:12px;color:#ffa500;line-height:1.6;}
+.deposit-btns{display:flex;gap:10px;}
+.deposit-btn{flex:1;padding:12px;border:none;border-radius:8px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;cursor:pointer;}
+.deposit-btn.cancel{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);}
+.deposit-btn.submit{background:linear-gradient(135deg,#0e5c2b,#27ae60);color:#fff;}
 
 /* SUPPORT CHAT WITH ADMIN REPLY */
 .support-modal{position:fixed;inset:0;z-index:150;background:rgba(0,0,0,0.9);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
@@ -459,11 +435,47 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .sc-msg{max-width:75%;padding:10px 14px;border-radius:12px;font-size:12px;line-height:1.5;}
 .sc-msg.support{background:rgba(52,152,219,0.15);border:1px solid rgba(52,152,219,0.2);color:rgba(255,255,255,0.8);border-radius:4px 12px 12px 12px;align-self:flex-start;}
 .sc-msg.user{background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.2);color:rgba(255,255,255,0.8);border-radius:12px 4px 12px 12px;align-self:flex-end;}
-.sc-msg.admin{background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.2);color:#ff6b6b;border-radius:4px 12px 12px 12px;align-self:flex-start;}
+.sc-msg.admin{background:rgba(255,60,60,0.15);border:1px solid rgba(255,60,60,0.2);color:#ff6b6b;border-radius:4px 12px 12px 12px;align-self:flex-start;}
 .sc-msg-time{font-size:9px;color:rgba(255,255,255,0.25);margin-top:4px;}
 .sc-input-row{padding:14px 16px;border-top:1px solid rgba(52,152,219,0.1);display:flex;gap:10px;flex-shrink:0;}
 .sc-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(52,152,219,0.2);border-radius:24px;padding:10px 16px;color:#fff;font-family:'Lato',sans-serif;font-size:13px;outline:none;}
 .sc-send{width:42px;height:42px;background:linear-gradient(135deg,#1a5c9b,#3498db);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* ADMIN SUPPORT REPLY */
+.admin-support-reply{position:fixed;inset:0;z-index:350;background:rgba(0,0,0,0.98);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.admin-support-reply.open{opacity:1;pointer-events:all;}
+.asr-box{width:90%;max-width:400px;background:linear-gradient(160deg,#150000,#0a0000);border:1px solid rgba(255,60,60,0.3);border-radius:14px;padding:20px;}
+.asr-title{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:#ff6b6b;margin-bottom:12px;text-align:center;}
+.asr-msg{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px;margin-bottom:16px;font-size:12px;color:rgba(255,255,255,0.8);max-height:100px;overflow-y:auto;}
+.asr-user{font-weight:700;color:var(--gl);margin-bottom:4px;}
+.asr-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,60,60,0.25);border-radius:8px;padding:12px;color:#fff;font-size:13px;outline:none;margin-bottom:16px;min-height:80px;resize:vertical;}
+.asr-btns{display:flex;gap:10px;}
+.asr-btn{flex:1;padding:12px;border:none;border-radius:8px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;cursor:pointer;}
+.asr-btn.send{background:linear-gradient(135deg,#0e5c2b,#27ae60);color:#fff;}
+.asr-btn.cancel{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);}
+
+/* WITHDRAW MODAL - PROFESSIONAL UI */
+.modal-ov{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.85);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.modal-ov.open{opacity:1;pointer-events:all;}
+.modal{width:100%;max-width:480px;background:linear-gradient(160deg,#1c0e02,#0a0500);border-radius:16px 16px 0 0;border:1px solid rgba(201,168,76,0.3);border-bottom:none;transform:translateY(100%);transition:transform 0.4s cubic-bezier(.16,1,.3,1);max-height:85vh;overflow-y:auto;}
+.modal-ov.open .modal{transform:translateY(0);}
+.modal-handle{width:36px;height:4px;background:rgba(201,168,76,0.3);border-radius:2px;margin:12px auto 0;}
+.modal-hdr{padding:14px 20px 12px;border-bottom:1px solid rgba(201,168,76,0.1);display:flex;align-items:center;justify-content:space-between;}
+.modal-title{font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--gl);text-transform:uppercase;}
+.modal-x{background:none;border:none;color:rgba(201,168,76,0.4);font-size:20px;cursor:pointer;padding:4px 8px;}
+.modal-body{padding:18px;}
+.method-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px;}
+.method-card{background:rgba(0,0,0,0.35);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;transition:all 0.2s;}
+.method-card.sel{border-color:var(--gl);background:rgba(201,168,76,0.1);}
+.method-ico{font-size:20px;margin-bottom:2px;}
+.method-nm{font-family:'Cinzel',serif;font-size:9px;font-weight:700;color:rgba(201,168,76,0.7);}
+.mform{display:none;}
+.mform.active{display:block;}
+.sep{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.2),transparent);margin:14px 0;}
+.notice{background:rgba(39,174,96,0.07);border:1px solid rgba(39,174,96,0.2);border-radius:8px;padding:10px 13px;margin-bottom:14px;font-size:11px;color:rgba(39,174,96,0.8);line-height:1.6;}
+.notice.warn{background:rgba(201,168,76,0.07);border-color:rgba(201,168,76,0.2);color:rgba(201,168,76,0.7);}
+.btn-sub{width:100%;padding:13px;background:linear-gradient(135deg,#8a6a1f,#c9a84c,#f0d060,#c9a84c,#8a6a1f);border:none;border-radius:8px;color:#0d0500;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;cursor:pointer;transition:all 0.3s;}
+.btn-sub:hover{transform:translateY(-2px);}
 
 /* AVIATOR PAGE */
 #aviatorPage{align-items:flex-start;padding:0;}
@@ -763,42 +775,24 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 <div class="page" id="homePage">
   <div class="pg-wrap">
     <div class="topbar">
-      <div class="topbar-left">
-        <div class="topbar-logo">Royal Bet</div>
-        <div class="topbar-suits">♠ ♥ ♦ ♣</div>
-      </div>
+      <div><div class="topbar-logo">Royal Bet</div><div class="topbar-suits">♠ ♥ ♦ ♣</div></div>
       <div class="user-info">
-        <div class="inbox-icon" id="inboxIcon" onclick="toggleInbox()">
-          <span>📬</span>
+        <div class="inbox-icon" onclick="openInbox()">
+          <span class="bn-icon">📬</span>
           <span class="inbox-badge" id="inboxBadge" style="display:none">0</span>
         </div>
         <div id="uName" class="u-name"></div>
         <div id="uAvWrap" class="u-av-ph">👤</div>
         <button class="three-dot-btn" onclick="toggleDotMenu()" id="dotBtn"><span></span><span></span><span></span></button>
         <div class="dot-menu" id="dotMenu">
-          <div class="dot-menu-item" onclick="openModal('deposit')">💰 Deposit</div>
+          <div class="dot-menu-item" onclick="openDepositModal()">💰 Deposit</div>
           <div class="dot-menu-item" onclick="checkWithdraw()">💸 Withdraw</div>
           <div class="dot-menu-item" onclick="logout()">⬅ Sign Out</div>
         </div>
       </div>
     </div>
-    
-    <!-- Inbox Dropdown -->
-    <div class="inbox-dropdown" id="inboxDropdown">
-      <div class="inbox-header">
-        <h3>📬 Inbox</h3>
-        <button class="inbox-close" onclick="toggleInbox()">✕</button>
-      </div>
-      <div class="inbox-tabs">
-        <button class="inbox-tab active" onclick="switchInboxTab('announcements',this)">📢 Announcements</button>
-        <button class="inbox-tab" onclick="switchInboxTab('messages',this)">💬 Messages</button>
-      </div>
-      <div class="inbox-content" id="inboxAnnouncements"></div>
-      <div class="inbox-content" id="inboxMessages" style="display:none"></div>
-    </div>
-    
     <div class="action-row">
-      <button class="action-btn btn-dep" onclick="openBinanceDepositModal()"><span class="action-btn-icon">💰</span>Deposit</button>
+      <button class="action-btn btn-dep" onclick="openDepositModal()"><span class="action-btn-icon">💰</span>Deposit</button>
       <button class="action-btn btn-wdw" onclick="checkWithdraw()"><span class="action-btn-icon">💸</span>Withdraw</button>
     </div>
     <div class="bal-card">
@@ -814,7 +808,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
       <div class="reward-days" id="rewardDays"></div>
     </div>
     
-    <!-- LIVE CRICKET BETTING SECTION -->
+    <!-- NEW: LIVE CRICKET BETTING SECTION -->
     <div class="live-cricket-card" id="cricketLiveCard">
       <div class="cricket-header">
         <div class="cricket-title"><span>🏏</span> LIVE CRICKET</div>
@@ -887,13 +881,13 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
         <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ff3366">∞×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
       </div>
     </div>
-    <!-- LEADERBOARD SECTION - 10 Entries (3 Real, 7 Fake) -->
+    <!-- LEADERBOARD SECTION -->
     <div class="sec-title">🏆 Top Winners</div>
     <div style="margin:0 16px 14px">
-      <div id="homeLbCard">
+      <div id="homeLbCard" style="background:linear-gradient(160deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(201,168,76,0.3);border-radius:14px;overflow:hidden">
         <div style="background:rgba(201,168,76,0.08);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,0.12)">
-          <span style="font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(201,168,76,0.7)">🏆 GLOBAL LEADERBOARD</span>
-          <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.4);letter-spacing:1px" id="lbUpdateTimer">24h</span>
+          <span style="font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(201,168,76,0.7)">🏆 LEADERBOARD</span>
+          <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.4);letter-spacing:1px">TOP 10</span>
         </div>
         <div id="homeLbList"></div>
       </div>
@@ -958,224 +952,269 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
   </div>
 </div>
 
-<!-- ADMIN PAGE - COMPACT -->
+<!-- ADMIN -->
 <div class="page" id="adminPage">
   <div class="admin-wrap">
     <div class="admin-topbar">
       <button class="admin-back" onclick="showPage('homePage')">← Back</button>
       <div class="admin-title">🔐 ADMIN</div>
-      <div style="width:40px"></div>
+      <div style="width:60px"></div>
     </div>
     <div class="admin-tabs">
-      <button class="admin-tab active" onclick="switchAdminTab('withdrawals',this)">💸 WD</button>
-      <button class="admin-tab" onclick="switchAdminTab('deposits',this)">💰 DP</button>
-      <button class="admin-tab" onclick="switchAdminTab('users',this)">👥 US</button>
-      <button class="admin-tab" onclick="switchAdminTab('messages',this)">💬 MSG</button>
-      <button class="admin-tab" onclick="switchAdminTab('stats',this)">📊 ST</button>
-      <button class="admin-tab" onclick="switchAdminTab('leaderboard',this)">🏆 LB</button>
-      <button class="admin-tab" onclick="switchAdminTab('cricket',this)">🏏 CR</button>
+      <button class="admin-tab active" onclick="switchAdminTab('withdrawals',this)">💸 Withdrawals</button>
+      <button class="admin-tab" onclick="switchAdminTab('deposits',this)">💰 Deposits</button>
+      <button class="admin-tab" onclick="switchAdminTab('users',this)">👥 Users</button>
+      <button class="admin-tab" onclick="switchAdminTab('messages',this)">💬 Messages</button>
+      <button class="admin-tab" onclick="switchAdminTab('stats',this)">📊 Stats</button>
+      <button class="admin-tab" onclick="switchAdminTab('leaderboard',this)">🏆 Leaderboard</button>
+      <button class="admin-tab" onclick="switchAdminTab('cricket',this)">🏏 Cricket</button>
+      <button class="admin-tab" onclick="switchAdminTab('announcements',this)">📢 Announce</button>
       <button class="admin-tab" onclick="switchAdminTab('ai',this)">🤖 AI</button>
-      <button class="admin-tab" onclick="switchAdminTab('announce',this)">📢 AN</button>
     </div>
     
     <!-- Withdrawals Tab -->
     <div class="admin-tab-content active" id="atab-withdrawals">
-      <div class="admin-section">
+      <div class="admin-section" style="margin-top:14px">
         <div class="admin-sec-title">💸 PENDING WITHDRAWALS</div>
         <div class="user-list" id="withdrawRequestsList">
-          <div style="padding:10px;text-align:center;font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.2)">Loading...</div>
+          <div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.2)">Loading...</div>
         </div>
       </div>
     </div>
     
-    <!-- Deposits Tab -->
+    <!-- Deposits Tab (No Screenshots) -->
     <div class="admin-tab-content" id="atab-deposits">
-      <div class="admin-section">
-        <div class="admin-sec-title">💰 BINANCE DEPOSITS</div>
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">💰 DEPOSIT REQUESTS</div>
         <div class="user-list" id="adminDepositList">
-          <div style="padding:10px;text-align:center;font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.2)">Loading...</div>
+          <div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.2)">Loading...</div>
         </div>
       </div>
     </div>
     
     <!-- Users Tab -->
     <div class="admin-tab-content" id="atab-users">
-      <div class="admin-section">
-        <div class="admin-sec-title">👥 USERS</div>
-        <div class="user-list" id="userList"><div style="padding:10px;text-align:center;font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.2)">Loading...</div></div>
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">👥 ALL USERS — Balance Management</div>
+        <div class="user-list" id="userList"><div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.2)">Loading...</div></div>
       </div>
     </div>
     
     <!-- Messages Tab -->
     <div class="admin-tab-content" id="atab-messages">
-      <div class="admin-section">
-        <div class="admin-sec-title">💬 SUPPORT</div>
-        <div class="msg-list" id="adminMsgList"><div style="padding:10px;text-align:center;font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.2)">No messages</div></div>
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">💬 SUPPORT MESSAGES</div>
+        <div class="msg-list" id="adminMsgList"><div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.2)">No messages yet</div></div>
       </div>
     </div>
     
     <!-- Stats Tab -->
     <div class="admin-tab-content" id="atab-stats">
-      <div class="admin-section">
-        <div class="admin-sec-title">📊 STATS</div>
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">📊 OVERVIEW</div>
         <div class="admin-stats-grid">
-          <div class="admin-stat"><div class="admin-stat-val" id="adTotalUsers">0</div><div class="admin-stat-lbl">Users</div></div>
-          <div class="admin-stat"><div class="admin-stat-val" id="adTotalBal">৳0</div><div class="admin-stat-lbl">Total Bal</div></div>
-          <div class="admin-stat"><div class="admin-stat-val" id="adTotalMsgs">0</div><div class="admin-stat-lbl">Msgs</div></div>
-          <div class="admin-stat"><div class="admin-stat-val" id="adTotalBets">0</div><div class="admin-stat-lbl">Bets</div></div>
-          <div class="admin-stat"><div class="admin-stat-val" id="adPendingWithdrawals">0</div><div class="admin-stat-lbl">Pending</div></div>
-          <div class="admin-stat"><div class="admin-stat-val" id="adTotalDeposits">৳0</div><div class="admin-stat-lbl">Deposits</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adTotalUsers">0</div><div class="admin-stat-lbl">Total Users</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adTotalBal">৳0</div><div class="admin-stat-lbl">Total Balance</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adTotalMsgs">0</div><div class="admin-stat-lbl">Messages</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adTotalBets">0</div><div class="admin-stat-lbl">Total Bets</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adPendingWithdrawals">0</div><div class="admin-stat-lbl">Pending WD</div></div>
+          <div class="admin-stat"><div class="admin-stat-val" id="adTotalDeposits">৳0</div><div class="admin-stat-lbl">Total Deposits</div></div>
         </div>
       </div>
     </div>
     
-    <!-- Leaderboard Tab - 10 Entries Management -->
+    <!-- Leaderboard Tab -->
     <div class="admin-tab-content" id="atab-leaderboard">
-      <div class="admin-section">
-        <div class="admin-sec-title">🏆 LEADERBOARD (10 ENTRIES)</div>
-        <div style="padding:6px;border-bottom:1px solid rgba(255,60,60,0.1)">
-          <button onclick="addLbEntry()" style="width:100%;padding:6px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:4px;color:#2ecc71;font-family:'Cinzel',serif;font-size:9px;cursor:pointer;letter-spacing:1px">➕ ADD FAKE ENTRY</button>
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">🏆 LEADERBOARD MANAGEMENT</div>
+        <div style="padding:12px 14px;border-bottom:1px solid rgba(255,60,60,0.1)">
+          <button onclick="addLbEntry()" style="width:100%;padding:10px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:8px;color:#2ecc71;font-family:'Cinzel',serif;font-size:11px;cursor:pointer;letter-spacing:2px">➕ ADD NEW FAKE ENTRY</button>
         </div>
-        <div id="adminLbList" style="max-height:500px;overflow-y:auto"></div>
+        <div id="adminLbList" style="max-height:600px;overflow-y:auto"></div>
       </div>
     </div>
     
     <!-- Cricket Control Tab -->
     <div class="admin-tab-content" id="atab-cricket">
-      <div class="admin-section">
-        <div class="admin-sec-title">🏏 CRICKET</div>
-        <div style="padding:8px">
-          <input type="text" id="adminTeam1" class="alb-inp-full" value="Bangladesh" placeholder="Team 1">
-          <input type="text" id="adminTeam2" class="alb-inp-full" value="India" placeholder="Team 2">
-          <input type="text" id="adminTeam1Score" class="alb-inp-full" value="165/3" placeholder="Score 1">
-          <input type="text" id="adminTeam2Score" class="alb-inp-full" value="—" placeholder="Score 2">
-          <input type="text" id="adminOvers" class="alb-inp-full" value="32.4" placeholder="Overs">
-          <input type="text" id="adminNextEvent" class="alb-inp-full" value="Next Over: 33rd" placeholder="Event">
-          <input type="number" id="adminOdds1" class="alb-inp-full" value="2.10" placeholder="Odds 1">
-          <input type="number" id="adminOdds2" class="alb-inp-full" value="1.85" placeholder="Odds 2">
-          <select id="adminForceWinner" class="alb-inp-full">
-            <option value="none">Random</option>
-            <option value="team1">Team 1 Wins</option>
-            <option value="team2">Team 2 Wins</option>
-          </select>
-          <button onclick="updateCricketMatch()" class="admin-back" style="margin-top:6px;width:100%">UPDATE</button>
-          <button onclick="forceCricketResult()" class="admin-back" style="margin-top:4px;width:100%;background:#ffa500">FORCE RESULT</button>
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">🏏 CRICKET MATCH CONTROL</div>
+        <div style="padding:16px">
+          <div class="igrp">
+            <label class="ilbl">Team 1 Name</label>
+            <input type="text" id="adminTeam1" class="alb-inp-full" value="Bangladesh">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Team 2 Name</label>
+            <input type="text" id="adminTeam2" class="alb-inp-full" value="India">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Team 1 Score</label>
+            <input type="text" id="adminTeam1Score" class="alb-inp-full" value="165/3">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Team 2 Score</label>
+            <input type="text" id="adminTeam2Score" class="alb-inp-full" value="—">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Overs</label>
+            <input type="text" id="adminOvers" class="alb-inp-full" value="32.4">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Next Event</label>
+            <input type="text" id="adminNextEvent" class="alb-inp-full" value="Next Over: 33rd over">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+            <div>
+              <label class="ilbl">Team 1 Odds</label>
+              <input type="number" id="adminOdds1" class="alb-inp-full" value="2.10" step="0.01">
+            </div>
+            <div>
+              <label class="ilbl">Team 2 Odds</label>
+              <input type="number" id="adminOdds2" class="alb-inp-full" value="1.85" step="0.01">
+            </div>
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Next Winner (Force Result)</label>
+            <select id="adminForceWinner" class="alb-inp-full">
+              <option value="none">Random (Normal)</option>
+              <option value="team1">Team 1 Wins</option>
+              <option value="team2">Team 2 Wins</option>
+            </select>
+          </div>
+          <button onclick="updateCricketMatch()" class="btn-sub" style="margin-top:12px;">🔄 UPDATE MATCH</button>
+          <button onclick="forceCricketResult()" class="btn-sub" style="margin-top:12px;background:linear-gradient(135deg,#8a4a00,#ffa500);">⚡ FORCE RESULT NOW</button>
         </div>
       </div>
     </div>
     
-    <!-- AI Tab -->
+    <!-- Announcements Tab -->
+    <div class="admin-tab-content" id="atab-announcements">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">📢 CREATE ANNOUNCEMENT</div>
+        <div style="padding:16px">
+          <div class="igrp">
+            <label class="ilbl">Announcement Title</label>
+            <input type="text" id="announceTitle" class="alb-inp-full" placeholder="e.g., Weekend Bonus!">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Announcement Message</label>
+            <textarea id="announceMessage" class="alb-inp-full" rows="4" placeholder="Write your announcement here..." style="resize:vertical;height:100px;"></textarea>
+          </div>
+          <button onclick="sendAnnouncement()" class="btn-sub" style="margin-top:12px;">📢 SEND TO ALL USERS</button>
+        </div>
+      </div>
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">📜 PREVIOUS ANNOUNCEMENTS</div>
+        <div id="prevAnnouncements" style="max-height:300px;overflow-y:auto;padding:12px;"></div>
+      </div>
+    </div>
+    
+    <!-- AI CONTROL TAB -->
     <div class="admin-tab-content" id="atab-ai">
-      <div class="admin-section">
-        <div class="admin-sec-title">🤖 AI</div>
-        <div style="padding:8px">
-          <input type="text" id="aiName" class="alb-inp-full" value="Royal AI">
-          <input type="text" id="aiWelcome" class="alb-inp-full" value="আমি Royal Bet AI!">
-          <select id="aiMode" class="alb-inp-full">
-            <option value="smart">Smart AI</option>
-            <option value="simple">Simple</option>
-          </select>
-          <button onclick="updateAISettings()" class="admin-back" style="margin-top:6px;width:100%">SAVE</button>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Announcement Tab -->
-    <div class="admin-tab-content" id="atab-announce">
-      <div class="admin-section">
-        <div class="admin-sec-title">📢 ANNOUNCEMENT</div>
-        <div style="padding:8px">
-          <input type="text" id="announceTitle" class="alb-inp-full" placeholder="Title" value="Important Update">
-          <textarea id="announceContent" class="alb-inp-full" rows="3" placeholder="Content" style="resize:none;height:60px">New games added!</textarea>
-          <button onclick="sendAnnouncement()" class="admin-back" style="margin-top:6px;width:100%;background:#2ecc71">SEND TO ALL</button>
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">🤖 AI ASSISTANT CONTROL</div>
+        <div style="padding:16px">
+          <div class="igrp">
+            <label class="ilbl">AI Name</label>
+            <input type="text" id="aiName" class="alb-inp-full" value="Royal AI">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Welcome Message</label>
+            <input type="text" id="aiWelcome" class="alb-inp-full" value="আমি Royal Bet AI! প্রশ্ন করুন।">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Auto-Response Mode</label>
+            <select id="aiMode" class="alb-inp-full">
+              <option value="smart">Smart AI (Bangla+English)</option>
+              <option value="simple">Simple Replies</option>
+            </select>
+          </div>
+          <button onclick="updateAISettings()" class="btn-sub" style="margin-top:12px;">💾 SAVE AI SETTINGS</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- NEW BINANCE DEPOSIT MODAL -->
-<div class="binance-deposit-modal" id="binanceDepositModal">
-  <div class="binance-deposit-box">
-    <div class="binance-deposit-title">💰 Binance Deposit</div>
-    <div class="binance-deposit-sub">Send USDT to Binance ID</div>
+<!-- INBOX MODAL -->
+<div class="inbox-modal" id="inboxModal">
+  <div class="inbox-box">
+    <div class="inbox-hdr">
+      <div class="inbox-hdr-title">📬 INBOX</div>
+      <button class="inbox-close" onclick="closeInbox()">✕</button>
+    </div>
+    <div class="inbox-tabs">
+      <div class="inbox-tab active" onclick="switchInboxTab('announcements',this)">📢 Announcements</div>
+      <div class="inbox-tab" onclick="switchInboxTab('messages',this)">💬 Support</div>
+    </div>
+    <div class="inbox-content" id="inboxAnnouncements"></div>
+    <div class="inbox-content" id="inboxMessages" style="display:none"></div>
+  </div>
+</div>
+
+<!-- DEPOSIT MODAL (NO SCREENSHOT) -->
+<div class="deposit-modal" id="depositModal">
+  <div class="deposit-box">
+    <div class="deposit-title">💰 Deposit via Binance</div>
+    <div class="deposit-sub">Add funds to your account instantly</div>
     
-    <div class="binance-info-card">
-      <div class="binance-info-row">
-        <span class="binance-info-label">Binance ID</span>
-        <div class="binance-info-value">
-          894307667
-          <button class="binance-copy" onclick="copyTxt('894307667',this)">Copy</button>
-        </div>
+    <div class="bnb-card">
+      <div class="bnb-logo-row">
+        <svg class="bnb-logo-svg" viewBox="0 0 126.61 126.61" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38.73 53.2 63.3 28.58 87.89 53.2 102.07 39 63.3 0.19 24.56 39" fill="#F0B90B"/>
+          <rect x="15.4" y="53.78" width="20" height="20" transform="translate(-31.1 34.4) rotate(-45)" fill="#F0B90B"/>
+          <polygon points="38.73 73.4 63.3 98.02 87.89 73.4 102.15 87.61 63.3 126.42 24.48 87.64" fill="#F0B90B"/>
+          <rect x="91.21" y="53.78" width="20" height="20" transform="translate(-14.1 92.2) rotate(-45)" fill="#F0B90B"/>
+          <polygon points="63.3 41.54 78.83 57.09 63.3 72.62 47.77 57.09" fill="#F0B90B"/>
+        </svg>
+        <div><div class="bnb-name">BINANCE</div><div class="bnb-tagline">CRYPTO EXCHANGE</div></div>
       </div>
-      <div class="binance-info-row">
-        <span class="binance-info-label">Network</span>
-        <span class="binance-info-value" style="color:#f0b90b">BEP20 (BNB Chain)</span>
+      <div class="bnb-field">
+        <div class="bnb-field-key">Binance ID (Receive)</div>
+        <div class="bnb-field-val">894307667 <button class="bnb-copy" onclick="copyTxt('894307667',this)">📋 Copy</button></div>
+      </div>
+      <div class="bnb-field">
+        <div class="bnb-field-key">Network</div>
+        <div class="bnb-field-val"><span class="bnb-net">BEP20 (BSC)</span></div>
       </div>
     </div>
     
-    <div class="binance-deposit-form">
-      <input type="text" class="binance-input" id="binanceAccountName" placeholder="Your Binance Account Name *">
-      <input type="number" class="binance-input" id="binanceAmount" placeholder="Amount (USDT) *" min="50" value="50">
+    <div class="igrp">
+      <label class="ilbl">Your Binance Account Name / ID</label>
+      <div class="iwrap">
+        <span class="ico">👤</span>
+        <input type="text" id="depositBinanceName" placeholder="Enter your Binance account name/ID"/>
+      </div>
     </div>
     
-    <div class="binance-btns">
-      <button class="binance-btn cancel" onclick="closeBinanceDepositModal()">Cancel</button>
-      <button class="binance-btn submit" onclick="submitBinanceDeposit()">Submit</button>
+    <div class="igrp">
+      <label class="ilbl">Amount (USDT)</label>
+      <div class="iwrap">
+        <span class="ico">💵</span>
+        <input type="number" id="depositAmount" placeholder="Min 50 USDT" value="50"/>
+      </div>
+    </div>
+    
+    <div class="deposit-note">
+      ⚡ আপনার Binance নাম এবং পরিমাণ দিন। অ্যাডমিন যাচাই করে ব্যালেন্স যোগ করবে। (প্রক্রিয়াকরণ সময়: ২-৫ মিনিট)
+    </div>
+    
+    <div class="deposit-btns">
+      <button class="deposit-btn cancel" onclick="closeDepositModal()">Cancel</button>
+      <button class="deposit-btn submit" onclick="submitDeposit()">📤 Submit Request</button>
     </div>
   </div>
 </div>
 
-<!-- WITHDRAW MODAL -->
-<div class="modal-ov" id="withdrawModal">
-  <div class="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-hdr"><div class="modal-title">💸 Withdraw Funds</div><button class="modal-x" onclick="closeModal('withdraw')">✕</button></div>
-    <div class="modal-body">
-      <div class="method-grid">
-        <div class="method-card" onclick="swm('bkash',this)"><div class="method-ico">📱</div><div class="method-nm">bKash</div></div>
-        <div class="method-card" onclick="swm('nagad',this)"><div class="method-ico">🟠</div><div class="method-nm">Nagad</div></div>
-        <div class="method-card" onclick="swm('binance',this)"><div class="method-ico">🔶</div><div class="method-nm">Binance</div></div>
-        <div class="method-card" onclick="swm('upay',this)"><div class="method-ico">💜</div><div class="method-nm">Upay</div></div>
-        <div class="method-card" onclick="swm('rocket',this)"><div class="method-ico">🚀</div><div class="method-nm">Rocket</div></div>
-      </div>
-      
-      <div class="sep"></div>
-      
-      <!-- bKash Form -->
-      <div class="mform" id="form-bkash" style="display:none">
-        <input type="tel" id="wdBkashNum" class="binance-input" placeholder="bKash Number">
-        <input type="number" id="wdBkashAmt" class="binance-input" placeholder="Amount ৳" min="200">
-        <button class="binance-btn submit" onclick="submitWithdraw('bKash')">Withdraw</button>
-      </div>
-      
-      <!-- Nagad Form -->
-      <div class="mform" id="form-nagad" style="display:none">
-        <input type="tel" id="wdNagadNum" class="binance-input" placeholder="Nagad Number">
-        <input type="number" id="wdNagadAmt" class="binance-input" placeholder="Amount ৳" min="200">
-        <button class="binance-btn submit" onclick="submitWithdraw('Nagad')">Withdraw</button>
-      </div>
-      
-      <!-- Binance Form -->
-      <div class="mform" id="form-binance" style="display:none">
-        <input type="text" id="wdBinanceId" class="binance-input" placeholder="Binance ID">
-        <input type="number" id="wdBinanceAmt" class="binance-input" placeholder="Amount (USDT)" min="50">
-        <button class="binance-btn submit" onclick="submitWithdraw('Binance')">Withdraw</button>
-      </div>
-      
-      <!-- Upay Form -->
-      <div class="mform" id="form-upay" style="display:none">
-        <input type="tel" id="wdUpayNum" class="binance-input" placeholder="Upay Number">
-        <input type="number" id="wdUpayAmt" class="binance-input" placeholder="Amount ৳" min="200">
-        <button class="binance-btn submit" onclick="submitWithdraw('Upay')">Withdraw</button>
-      </div>
-      
-      <!-- Rocket Form -->
-      <div class="mform" id="form-rocket" style="display:none">
-        <input type="tel" id="wdRocketNum" class="binance-input" placeholder="Rocket Number">
-        <input type="number" id="wdRocketAmt" class="binance-input" placeholder="Amount ৳" min="200">
-        <button class="binance-btn submit" onclick="submitWithdraw('Rocket')">Withdraw</button>
-      </div>
+<!-- ADMIN SUPPORT REPLY MODAL -->
+<div class="admin-support-reply" id="adminSupportReply">
+  <div class="asr-box">
+    <div class="asr-title">💬 Reply to User</div>
+    <div class="asr-msg" id="asrUserMsg"></div>
+    <textarea class="asr-input" id="asrReplyText" placeholder="Type your reply..."></textarea>
+    <div class="asr-btns">
+      <button class="asr-btn send" onclick="sendAdminReply()">📤 Send Reply</button>
+      <button class="asr-btn cancel" onclick="closeAdminReply()">Cancel</button>
     </div>
   </div>
 </div>
@@ -1185,11 +1224,11 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
   <div class="support-chat">
     <div class="sc-hdr">
       <div class="sc-ico">🎧</div>
-      <div class="sc-info"><div class="sc-name">SUPPORT TEAM</div><div class="sc-status"><div class="sc-dot"></div>Online · Admin can reply</div></div>
+      <div class="sc-info"><div class="sc-name">SUPPORT TEAM</div><div class="sc-status"><div class="sc-dot"></div>Online · Replies within minutes</div></div>
       <button class="sc-close" onclick="document.getElementById('supportModal').classList.remove('open')">✕</button>
     </div>
     <div class="sc-messages" id="scMessages">
-      <div class="sc-msg support">Welcome to Royal Bet! 👋<div class="sc-msg-time">Support · Now</div></div>
+      <div class="sc-msg support">Welcome to Royal Bet! 👋 How can we help you today?<div class="sc-msg-time">Support · Now</div></div>
     </div>
     <div class="sc-input-row">
       <input type="text" class="sc-inp" id="scInp" placeholder="Type your message..." onkeydown="if(event.key==='Enter')sendSupportMsg()"/>
@@ -1236,12 +1275,10 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
     <div class="abl-user" id="ablUserName">User</div>
     <input type="number" class="abl-input" id="ablAmount" placeholder="৳ Amount"/>
     <div class="abl-quick">
-      <div class="abl-qb" onclick="setAblAmt(200)">200</div>
-      <div class="abl-qb" onclick="setAblAmt(500)">500</div>
-      <div class="abl-qb" onclick="setAblAmt(1000)">1K</div>
-      <div class="abl-qb" onclick="setAblAmt(5000)">5K</div>
-      <div class="abl-qb" onclick="setAblAmt(10000)">10K</div>
-      <div class="abl-qb" onclick="setAblAmt(50000)">50K</div>
+      <div class="abl-qb" onclick="setAblAmt(200)">৳200</div><div class="abl-qb" onclick="setAblAmt(500)">৳500</div>
+      <div class="abl-qb" onclick="setAblAmt(1000)">৳1K</div><div class="abl-qb" onclick="setAblAmt(5000)">৳5K</div>
+      <div class="abl-qb" onclick="setAblAmt(10000)">৳10K</div><div class="abl-qb" onclick="setAblAmt(50000)">৳50K</div>
+      <div class="abl-qb" onclick="setAblAmt(100000)">৳1L</div><div class="abl-qb" onclick="setAblAmt(200000)">৳2L</div>
     </div>
     <div class="abl-btns">
       <button class="abl-cancel" onclick="closeAddBal()">Cancel</button>
@@ -1467,14 +1504,14 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
         <div class="mines-qb" onclick="document.getElementById('minesBetInp').value=10000">10K</div>
       </div>
       <div class="mines-count-row">
-        <span class="mines-count-lbl">MINES:</span>
+        <span class="mines-count-lbl">MINES COUNT:</span>
         <select class="mines-count-sel" id="minesCount">
-          <option value="1">1</option><option value="3" selected>3</option>
-          <option value="5">5</option><option value="10">10</option><option value="20">20</option>
+          <option value="1">1 Mine</option><option value="3" selected>3 Mines</option>
+          <option value="5">5 Mines</option><option value="10">10 Mines</option><option value="20">20 Mines</option>
         </select>
       </div>
       <div class="mines-act">
-        <button class="btn-mines-start" id="minesStartBtn" onclick="startMines()">💣 START</button>
+        <button class="btn-mines-start" id="minesStartBtn" onclick="startMines()">💣 START GAME</button>
         <button class="btn-mines-cashout" id="minesCashBtn" onclick="cashoutMines()">💰 CASHOUT</button>
       </div>
     </div>
@@ -1508,7 +1545,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
         </div>
       </div>
       <div class="coin-result-msg" id="coinResultMsg"></div>
-      <div style="font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;margin-bottom:8px;">Win: 1.96×</div>
+      <div style="font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;margin-bottom:8px;">Win: 1.96× your bet</div>
     </div>
     <div class="coin-ctrl">
       <div class="coin-bet-row">
@@ -1523,7 +1560,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
         <div class="coin-qb" onclick="document.getElementById('coinBetInp').value=10000">10K</div>
         <div class="coin-qb" onclick="document.getElementById('coinBetInp').value=50000">50K</div>
       </div>
-      <button class="btn-coin-flip" id="coinFlipBtn" onclick="flipCoin()">🪙 FLIP</button>
+      <button class="btn-coin-flip" id="coinFlipBtn" onclick="flipCoin()">🪙 FLIP COIN</button>
     </div>
   </div>
 </div>
@@ -1566,7 +1603,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
         <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=10000">10K</div>
         <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=50000">50K</div>
       </div>
-      <button class="btn-limbo" id="limboBtn" onclick="playLimbo()">🔮 PLAY</button>
+      <button class="btn-limbo" id="limboBtn" onclick="playLimbo()">🔮 PLAY LIMBO</button>
     </div>
   </div>
 </div>
@@ -1576,14 +1613,18 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
   <button class="bn-item active" id="bn-home" onclick="navTo('home')"><div class="bn-icon">🏠</div><div class="bn-label">Home</div></button>
   <button class="bn-item" id="bn-profile" onclick="navTo('profile')"><div class="bn-icon">👤</div><div class="bn-label">Profile</div></button>
 
+  <!-- CENTER 3-DOT ADMIN BUTTON -->
   <div class="bn-dots-wrap" id="bnDotsWrap">
     <button class="bn-dots-btn" id="bnDotsBtn" onclick="toggleBnDotMenu()">
-      <div class="bn-dots-icon"><span></span><span></span><span></span></div>
+      <div class="bn-dots-icon">
+        <span></span><span></span><span></span>
+      </div>
       <div class="bn-dots-lbl">Menu</div>
     </button>
     <div class="bn-dot-menu" id="bnDotMenu">
-      <div class="bn-dot-menu-item" onclick="closeBnDotMenu();openBinanceDepositModal()">💰 Deposit</div>
+      <div class="bn-dot-menu-item" onclick="closeBnDotMenu();openDepositModal()">💰 Deposit</div>
       <div class="bn-dot-menu-item" onclick="closeBnDotMenu();checkWithdraw()">💸 Withdraw</div>
+      <div class="bn-dot-menu-item" onclick="closeBnDotMenu();openInbox()">📬 Inbox</div>
       <div class="bn-dot-menu-item" onclick="closeBnDotMenu();logout()">⬅ Sign Out</div>
     </div>
   </div>
@@ -1639,12 +1680,13 @@ onAuthStateChanged(auth,async user=>{
     const userRef=ref(db,'users/'+user.uid);
     const snap=await get(userRef);
     if(!snap.exists()){const today=new Date().toDateString();await set(userRef,{name:user.displayName||'Player',email:user.email||'',balance:0,photoURL:user.photoURL||'',createdAt:Date.now(),totalBets:0,totalProfit:0,dailyStreak:0,lastClaimedDay:0,lastClaimDate:''});}
-    onValue(ref(db,'users/'+user.uid),snap=>{const d=snap.val()||{};window._realBal=d.balance||0;window._userProfile=d;updateBals();updateProfileUI(d);loadBetHistory();loadInboxMessages();});
+    onValue(ref(db,'users/'+user.uid),snap=>{const d=snap.val()||{};window._realBal=d.balance||0;window._userProfile=d;updateBals();updateProfileUI(d);loadBetHistory();loadUserInbox();});
     document.getElementById('piJoin').textContent=user.metadata.creationTime?new Date(user.metadata.creationTime).toLocaleDateString('en'):'—';
     showPage('homePage');document.getElementById('bottomNav').style.display='flex';navTo('home');renderRewardDays();
     
     await loadBetHistory();
-    await loadHomeLb();
+    await loadHomeLb(); // Load leaderboard on login
+    await loadUserInbox();
     
   } else {
     window._curUser=null;document.getElementById('bottomNav').style.display='none';showPage('loginPage');
@@ -1713,6 +1755,7 @@ window.submitWithdraw = async (method) => {
   } else if (method === 'Binance') {
     account = document.getElementById('wdBinanceId')?.value;
     amount = parseFloat(document.getElementById('wdBinanceAmt')?.value);
+    if (method === 'Binance') amount = amount * 120;
   } else if (method === 'Upay') {
     account = document.getElementById('wdUpayNum')?.value;
     amount = parseFloat(document.getElementById('wdUpayAmt')?.value);
@@ -1721,17 +1764,15 @@ window.submitWithdraw = async (method) => {
     amount = parseFloat(document.getElementById('wdRocketAmt')?.value);
   }
   
-  if (!account || !amount || amount < (method === 'Binance' ? 50 : 200)) {
-    toast(`⚠️ ${method === 'Binance' ? 'Min 50 USDT' : 'Min ৳200'} দিন`, true);
+  if (!account || !amount || amount < 200) {
+    toast('⚠️ সঠিক তথ্য দিন (মিনিমাম ৳200)', true);
     return;
   }
   
-  if (window._realBal < amount && method !== 'Binance') {
+  if (window._realBal < amount) {
     toast('❌ আপনার ব্যালেন্স অপ্রতুল!', true);
     return;
   }
-  
-  if (method === 'Binance') amount = amount * 120;
   
   const wdId = 'wd_' + Date.now();
   const wdData = {
@@ -1747,7 +1788,7 @@ window.submitWithdraw = async (method) => {
   await set(ref(db, 'withdrawalRequests/' + wdId), wdData);
   await set(ref(db, 'withdrawals/' + window._curUser.uid + '/' + wdId), wdData);
   
-  toast('✅ আপনার উইথড্রয়াল অনুরোধ পাঠানো হয়েছে!', false);
+  toast('✅ আপনার উইথড্রয়াল অনুরোধ পাঠানো হয়েছে! অ্যাডমিন যাচাই করবে।', false);
   closeModal('withdraw');
 };
 
@@ -1764,7 +1805,7 @@ window.acceptWithdrawal = async (wdId, userId, amount) => {
     await update(ref(db, 'users/' + userId), { balance: userBal - amount });
     await update(ref(db, 'withdrawalRequests/' + wdId), { status: 'completed' });
     await update(ref(db, 'withdrawals/' + userId + '/' + wdId), { status: 'completed' });
-    toast('✅ উইথড্রয়াল অনুমোদিত!', false);
+    toast('✅ উইথড্রয়াল অনুমোদিত! ব্যালেন্স কেটে নেওয়া হয়েছে।', false);
     loadWithdrawalRequests();
     loadHomeLb();
   }
@@ -1778,28 +1819,28 @@ window.rejectWithdrawal = async (wdId, userId) => {
   loadWithdrawalRequests();
 };
 
-// NEW BINANCE DEPOSIT SYSTEM (NO SCREENSHOT)
-window.openBinanceDepositModal = () => {
-  document.getElementById('binanceDepositModal').classList.add('open');
-  document.getElementById('binanceAccountName').value = '';
-  document.getElementById('binanceAmount').value = '50';
+// NEW DEPOSIT SYSTEM (NO SCREENSHOT)
+window.openDepositModal = () => {
+  document.getElementById('depositModal').classList.add('open');
+  document.getElementById('depositAmount').value = '50';
+  document.getElementById('depositBinanceName').value = '';
 };
 
-window.closeBinanceDepositModal = () => {
-  document.getElementById('binanceDepositModal').classList.remove('open');
+window.closeDepositModal = () => {
+  document.getElementById('depositModal').classList.remove('open');
 };
 
-window.submitBinanceDeposit = async () => {
-  const accountName = document.getElementById('binanceAccountName').value.trim();
-  const amount = parseFloat(document.getElementById('binanceAmount').value);
-  
-  if (!accountName) {
-    toast('⚠️ আপনার Binance Account Name দিন', true);
-    return;
-  }
+window.submitDeposit = async () => {
+  const amount = parseFloat(document.getElementById('depositAmount').value);
+  const binanceName = document.getElementById('depositBinanceName').value.trim();
   
   if (!amount || amount < 50) {
     toast('⚠️ Amount কমপক্ষে 50 USDT দিন', true);
+    return;
+  }
+  
+  if (!binanceName) {
+    toast('⚠️ আপনার Binance account name/ID দিন', true);
     return;
   }
   
@@ -1810,7 +1851,7 @@ window.submitBinanceDeposit = async () => {
     userId: window._curUser.uid,
     userName: window._userProfile?.name || window._curUser.displayName || 'User',
     method: 'Binance',
-    accountName: accountName,
+    binanceName: binanceName,
     amount: amount,
     status: 'pending',
     time: Date.now()
@@ -1819,11 +1860,44 @@ window.submitBinanceDeposit = async () => {
   await set(ref(db, 'depositRequests/' + depId), depData);
   
   toast('✅ আপনার ডিপোজিট অনুরোধ পাঠানো হয়েছে! অ্যাডমিন যাচাই করবে।', false);
-  closeBinanceDepositModal();
+  closeDepositModal();
 };
 
-// Admin view and approve Binance deposits
-window.approveBinanceDeposit = async (depId, userId, amount) => {
+// ADMIN DEPOSIT REQUESTS (NO SCREENSHOT)
+window.loadDepositRequests = async () => {
+  const snap = await get(ref(db, 'depositRequests'));
+  const list = document.getElementById('adminDepositList');
+  
+  if (!snap.exists()) {
+    list.innerHTML = '<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2)">No deposit requests</div>';
+    return;
+  }
+  
+  const requests = Object.entries(snap.val())
+    .filter(([_,v]) => v.status === 'pending')
+    .sort((a,b) => b[1].time - a[1].time);
+  
+  let totalDeposits = 0;
+  Object.values(snap.val()).forEach(v => { if (v.status === 'completed') totalDeposits += v.amount * 120; });
+  document.getElementById('adTotalDeposits').textContent = '৳' + totalDeposits.toLocaleString('en');
+  
+  list.innerHTML = requests.map(([id, d]) => `
+    <div class="deposit-item" style="padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.05)">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <span style="font-weight:700;color:rgba(255,255,255,0.9)">👤 ${d.userName}</span>
+        <span style="font-family:'Cinzel',serif;color:#2ecc71">$${d.amount} USDT</span>
+      </div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:4px">Binance ID: ${d.binanceName}</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:8px">${new Date(d.time).toLocaleString('en')}</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="approveDeposit('${id}','${d.userId}',${d.amount})" style="flex:1;padding:6px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:6px;color:#2ecc71;font-size:10px;cursor:pointer;">✅ Approve</button>
+        <button onclick="rejectDeposit('${id}','${d.userId}')" style="flex:1;padding:6px;background:rgba(231,76,60,0.2);border:1px solid rgba(231,76,60,0.4);border-radius:6px;color:#e74c3c;font-size:10px;cursor:pointer;">❌ Reject</button>
+      </div>
+    </div>
+  `).join('');
+};
+
+window.approveDeposit = async (depId, userId, amount) => {
   if (!confirm(`এই ডিপোজিট অনুমোদন করবেন? $${amount} USDT (~৳${amount*120})`)) return;
   
   const bdtAmount = amount * 120;
@@ -1841,186 +1915,13 @@ window.approveBinanceDeposit = async (depId, userId, amount) => {
   loadHomeLb();
 };
 
-window.rejectBinanceDeposit = async (depId) => {
+window.rejectDeposit = async (depId, userId) => {
   if (!confirm('এই ডিপোজিট বাতিল করবেন?')) return;
+  
   await update(ref(db, 'depositRequests/' + depId), { status: 'rejected' });
+  
   toast('❌ ডিপোজিট বাতিল করা হয়েছে।', true);
   loadDepositRequests();
-};
-
-// INBOX SYSTEM
-window.toggleInbox = () => {
-  document.getElementById('inboxDropdown').classList.toggle('open');
-  loadInboxMessages();
-};
-
-window.switchInboxTab = (tab, el) => {
-  document.querySelectorAll('.inbox-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('inboxAnnouncements').style.display = tab === 'announcements' ? 'block' : 'none';
-  document.getElementById('inboxMessages').style.display = tab === 'messages' ? 'block' : 'none';
-  el.classList.add('active');
-};
-
-window.loadInboxMessages = async () => {
-  if (!window._curUser) return;
-  
-  const annSnap = await get(ref(db, 'announcements'));
-  const annList = document.getElementById('inboxAnnouncements');
-  if (annSnap.exists()) {
-    const anns = Object.values(annSnap.val()).sort((a,b) => b.time - a.time).slice(0,10);
-    annList.innerHTML = anns.map(a => `
-      <div class="inbox-item" onclick="viewAnnouncement('${a.id}','${a.title}','${a.content}','${a.time}')">
-        <div class="inbox-item-title">📢 ${a.title}</div>
-        <div class="inbox-item-preview">${a.content.substring(0,30)}...</div>
-        <div class="inbox-item-time">${new Date(a.time).toLocaleDateString()}</div>
-      </div>
-    `).join('');
-  } else {
-    annList.innerHTML = '<div style="padding:10px;text-align:center;color:rgba(255,255,255,0.2)">No announcements</div>';
-  }
-  
-  const msgSnap = await get(ref(db, 'users/' + window._curUser.uid + '/inbox'));
-  const msgList = document.getElementById('inboxMessages');
-  if (msgSnap.exists()) {
-    const msgs = Object.values(msgSnap.val()).sort((a,b) => b.time - a.time);
-    msgList.innerHTML = msgs.map(m => `
-      <div class="inbox-item ${m.read ? '' : 'unread'}" onclick="markMsgRead('${m.id}')">
-        <div class="inbox-item-title">💬 ${m.from}</div>
-        <div class="inbox-item-preview">${m.text.substring(0,30)}...</div>
-        <div class="inbox-item-time">${new Date(m.time).toLocaleDateString()}</div>
-      </div>
-    `).join('');
-    
-    const unread = msgs.filter(m => !m.read).length;
-    document.getElementById('inboxBadge').style.display = unread > 0 ? 'flex' : 'none';
-    document.getElementById('inboxBadge').textContent = unread;
-  } else {
-    msgList.innerHTML = '<div style="padding:10px;text-align:center;color:rgba(255,255,255,0.2)">No messages</div>';
-    document.getElementById('inboxBadge').style.display = 'none';
-  }
-};
-
-window.viewAnnouncement = (id, title, content, time) => {
-  const modal = document.createElement('div');
-  modal.className = 'announcement-modal';
-  modal.innerHTML = `
-    <div class="announcement-box">
-      <div class="announcement-header">
-        <div class="announcement-title">📢 ${title}</div>
-        <button class="announcement-close" onclick="this.closest('.announcement-modal').remove()">✕</button>
-      </div>
-      <div class="announcement-date">${new Date(time).toLocaleString('en')}</div>
-      <div class="announcement-content">${content}</div>
-      <div class="comment-section">
-        <input type="text" class="comment-input" id="commentInput-${id}" placeholder="Write a comment...">
-        <button class="like-btn" id="likeBtn-${id}" onclick="likeAnnouncement('${id}')">❤️ <span id="likeCount-${id}">0</span></button>
-        <div class="comment-list" id="commentList-${id}"></div>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-  setTimeout(() => modal.classList.add('open'), 10);
-  
-  loadComments(id);
-};
-
-window.likeAnnouncement = async (id) => {
-  if (!window._curUser) return;
-  const likeRef = ref(db, 'announcements/' + id + '/likes/' + window._curUser.uid);
-  const snap = await get(likeRef);
-  if (snap.exists()) {
-    await remove(likeRef);
-  } else {
-    await set(likeRef, true);
-  }
-  loadLikes(id);
-};
-
-window.loadLikes = async (id) => {
-  const snap = await get(ref(db, 'announcements/' + id + '/likes'));
-  const count = snap.exists() ? Object.keys(snap.val()).length : 0;
-  document.getElementById('likeCount-' + id).textContent = count;
-};
-
-window.loadComments = async (id) => {
-  const snap = await get(ref(db, 'announcements/' + id + '/comments'));
-  const list = document.getElementById('commentList-' + id);
-  if (snap.exists()) {
-    const comments = Object.values(snap.val()).sort((a,b) => b.time - a.time);
-    list.innerHTML = comments.map(c => `
-      <div class="comment-item">
-        <div class="comment-user">${c.userName}</div>
-        <div class="comment-text">${c.text}</div>
-        <div class="comment-time">${new Date(c.time).toLocaleTimeString()}</div>
-      </div>
-    `).join('');
-  } else {
-    list.innerHTML = '';
-  }
-};
-
-window.sendAnnouncement = async () => {
-  const title = document.getElementById('announceTitle').value.trim();
-  const content = document.getElementById('announceContent').value.trim();
-  if (!title || !content) {
-    toast('⚠️ Title and content required', true);
-    return;
-  }
-  
-  const id = 'ann_' + Date.now();
-  await set(ref(db, 'announcements/' + id), {
-    id: id,
-    title: title,
-    content: content,
-    time: Date.now(),
-    likes: {},
-    comments: {}
-  });
-  
-  toast('✅ Announcement sent to all users!', false);
-  document.getElementById('announceTitle').value = '';
-  document.getElementById('announceContent').value = '';
-};
-
-// SUPPORT CHAT WITH ADMIN REPLY
-window.sendSupportMsg = async () => {
-  const inp = document.getElementById('scInp'), txt = inp.value.trim();
-  if (!txt) return;
-  
-  const user = window._curUser;
-  const userName = user ? (window._userProfile?.name || user.displayName || 'User') : 'Guest';
-  const msgs = document.getElementById('scMessages');
-  const t = new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'});
-  
-  msgs.innerHTML += `<div class="sc-msg user">${txt}<div class="sc-msg-time">You · ${t}</div></div>`;
-  msgs.scrollTop = msgs.scrollHeight;
-  inp.value = '';
-  
-  if (user) {
-    const msgId = 'msg_' + Date.now();
-    await push(ref(db, 'messages'), {
-      text: txt,
-      userName,
-      userId: user.uid,
-      time: Date.now(),
-      read: false
-    });
-    
-    await set(ref(db, 'users/' + user.uid + '/inbox/' + msgId), {
-      id: msgId,
-      text: txt,
-      from: 'You',
-      time: Date.now(),
-      read: true
-    });
-    
-    loadInboxMessages();
-  }
-  
-  setTimeout(() => {
-    msgs.innerHTML += `<div class="sc-msg support">আপনার message পেয়েছি! ⚡<div class="sc-msg-time">Support · ${new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}</div></div>`;
-    msgs.scrollTop = msgs.scrollHeight;
-  }, 1500);
 };
 
 // ADMIN FUNCTIONS
@@ -2029,7 +1930,7 @@ window.loadWithdrawalRequests = async () => {
   const list = document.getElementById('withdrawRequestsList');
   
   if (!snap.exists()) {
-    list.innerHTML = '<div style="padding:10px;text-align:center;color:rgba(255,255,255,0.2)">No pending withdrawals</div>';
+    list.innerHTML = '<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2)">No pending withdrawals</div>';
     document.getElementById('adPendingWithdrawals').textContent = '0';
     return;
   }
@@ -2041,49 +1942,16 @@ window.loadWithdrawalRequests = async () => {
   document.getElementById('adPendingWithdrawals').textContent = requests.length;
   
   list.innerHTML = requests.map(([id, r]) => `
-    <div class="wd-request-item">
-      <div class="wd-req-header">
-        <span class="wd-req-user">${r.userName}</span>
-        <span class="wd-req-amount">৳${r.amount.toLocaleString('en')}</span>
+    <div style="padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.05)">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <span style="font-weight:700;color:rgba(255,255,255,0.9)">👤 ${r.userName}</span>
+        <span style="font-family:'Cinzel',serif;color:#ff6b6b">৳${r.amount.toLocaleString('en')}</span>
       </div>
-      <div class="wd-req-method">${r.method} · ${r.account}</div>
-      <div class="wd-req-detail">${new Date(r.time).toLocaleString('en')}</div>
-      <div class="wd-req-actions">
-        <button class="wd-accept" onclick="acceptWithdrawal('${id}','${r.userId}',${r.amount})">✓ Accept</button>
-        <button class="wd-reject" onclick="rejectWithdrawal('${id}','${r.userId}')">✗ Reject</button>
-      </div>
-    </div>
-  `).join('');
-};
-
-window.loadDepositRequests = async () => {
-  const snap = await get(ref(db, 'depositRequests'));
-  const list = document.getElementById('adminDepositList');
-  
-  if (!snap.exists()) {
-    list.innerHTML = '<div style="padding:10px;text-align:center;color:rgba(255,255,255,0.2)">No deposit requests</div>';
-    return;
-  }
-  
-  const requests = Object.entries(snap.val())
-    .filter(([_,v]) => v.status === 'pending')
-    .sort((a,b) => b[1].time - a[1].time);
-  
-  let totalDeposits = 0;
-  Object.values(snap.val()).forEach(v => { if (v.status === 'completed') totalDeposits += v.amount * 120; });
-  document.getElementById('adTotalDeposits').textContent = '৳' + totalDeposits.toLocaleString('en');
-  
-  list.innerHTML = requests.map(([id, d]) => `
-    <div class="deposit-item">
-      <div style="display:flex;justify-content:space-between">
-        <span class="dep-user">${d.userName}</span>
-        <span class="dep-amount">$${d.amount} USDT</span>
-      </div>
-      <div class="dep-method">Binance ID: ${d.accountName || '—'}</div>
-      <div class="dep-time">${new Date(d.time).toLocaleString('en')}</div>
-      <div style="display:flex;gap:4px;margin-top:4px">
-        <button class="wd-accept" onclick="approveBinanceDeposit('${id}','${d.userId}',${d.amount})" style="padding:2px 6px">✓ Approve</button>
-        <button class="wd-reject" onclick="rejectBinanceDeposit('${id}')" style="padding:2px 6px">✗ Reject</button>
+      <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:4px">${r.method} · ${r.account}</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:8px">${new Date(r.time).toLocaleString('en')}</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="acceptWithdrawal('${id}','${r.userId}',${r.amount})" style="flex:1;padding:6px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:6px;color:#2ecc71;font-size:10px;cursor:pointer;">✅ Accept</button>
+        <button onclick="rejectWithdrawal('${id}','${r.userId}')" style="flex:1;padding:6px;background:rgba(231,76,60,0.2);border:1px solid rgba(231,76,60,0.4);border-radius:6px;color:#e74c3c;font-size:10px;cursor:pointer;">❌ Reject</button>
       </div>
     </div>
   `).join('');
@@ -2091,7 +1959,7 @@ window.loadDepositRequests = async () => {
 
 window.loadAdminUsers=async()=>{
   const snap=await get(ref(db,'users'));
-  if(!snap.exists()){document.getElementById('userList').innerHTML='<div style="padding:10px;text-align:center;color:rgba(255,255,255,0.2)">No users</div>';return;}
+  if(!snap.exists()){document.getElementById('userList').innerHTML='<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2);font-family:Cinzel,serif;font-size:11px">No users</div>';return;}
   const users=snap.val(),uids=Object.keys(users);
   document.getElementById('adTotalUsers').textContent=uids.length;
   let tb=0,totalBets=0;
@@ -2101,12 +1969,12 @@ window.loadAdminUsers=async()=>{
   document.getElementById('userList').innerHTML=uids.map(uid=>{
     const u=users[uid];
     return`<div class="user-row">
-      <div class="ur-avatar">${u.photoURL ? '<img src="'+u.photoURL+'" style="width:28px;height:28px;border-radius:50%">' : '👤'}</div>
-      <div class="ur-info"><div class="ur-name">${u.name||'Unknown'}</div></div>
-      <div class="ur-bal">৳${(u.balance||0).toLocaleString('en')}</div>
+      <div class="ur-avatar">${u.photoURL&&!u.photoURL.startsWith('data')?`<img src="${u.photoURL}" style="width:36px;height:36px;border-radius:50%;object-fit:cover" onerror="this.parentElement.textContent='👤'"/>`:u.photoURL&&u.photoURL.startsWith('data')?`<img src="${u.photoURL}" style="width:36px;height:36px;border-radius:50%;object-fit:cover"/>`:'👤'}</div>
+      <div class="ur-info"><div class="ur-name">${u.name||'Unknown'}</div><div class="ur-email">${u.email||uid.substring(0,12)}</div></div>
+      <div style="text-align:right;margin-right:8px"><div class="ur-bal">৳${(u.balance||0).toLocaleString('en')}</div></div>
       <div class="admin-btn-row">
-        <button class="add-bal-btn" onclick="openAddBal('${uid}','${(u.name||'User').replace(/'/g,"\\'")}',${u.balance||0},true)">+</button>
-        <button class="sub-bal-btn" onclick="openAddBal('${uid}','${(u.name||'User').replace(/'/g,"\\'")}',${u.balance||0},false)">−</button>
+        <button class="add-bal-btn" onclick="openAddBal('${uid}','${(u.name||'User').replace(/'/g,"\\'")}',${u.balance||0},true)">+ Add</button>
+        <button class="sub-bal-btn" onclick="openAddBal('${uid}','${(u.name||'User').replace(/'/g,"\\'")}',${u.balance||0},false)">− Sub</button>
       </div>
     </div>`;
   }).join('');
@@ -2114,16 +1982,268 @@ window.loadAdminUsers=async()=>{
 
 window.loadAdminMessages=async()=>{
   const snap=await get(ref(db,'messages'));
-  if(!snap.exists()){document.getElementById('adminMsgList').innerHTML='<div style="padding:10px;text-align:center;color:rgba(255,255,255,0.2)">No messages</div>';document.getElementById('adTotalMsgs').textContent=0;return;}
+  if(!snap.exists()){document.getElementById('adminMsgList').innerHTML='<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2);font-family:Cinzel,serif;font-size:11px">No messages yet</div>';document.getElementById('adTotalMsgs').textContent=0;return;}
   const msgs=snap.val(),arr=Object.values(msgs).sort((a,b)=>b.time-a.time);
   document.getElementById('adTotalMsgs').textContent=arr.length;
-  document.getElementById('adminMsgList').innerHTML=arr.map(m=>`<div class="msg-item"><div class="msg-header"><span class="msg-user">${m.userName}</span><span class="msg-time">${new Date(m.time).toLocaleString('en')}</span></div><div class="msg-text">${m.text}</div></div>`).join('');
+  document.getElementById('adminMsgList').innerHTML=arr.map(m=>`<div class="msg-item" onclick="openAdminReply('${m.userId}','${m.userName}','${m.text.replace(/'/g,"\\'")}')">
+    <div class="msg-header"><span class="msg-user">👤 ${m.userName||'User'}<span class="msg-new-badge">NEW</span></span><span class="msg-time">${new Date(m.time).toLocaleString('en')}</span></div>
+    <div class="msg-text">${m.text}</div>
+  </div>`).join('');
+};
+
+// ADMIN SUPPORT REPLY
+let currentReplyUserId = null;
+let currentReplyUserName = '';
+
+window.openAdminReply = (userId, userName, msg) => {
+  currentReplyUserId = userId;
+  currentReplyUserName = userName;
+  document.getElementById('asrUserMsg').innerHTML = `<strong>${userName}:</strong> ${msg}`;
+  document.getElementById('asrReplyText').value = '';
+  document.getElementById('adminSupportReply').classList.add('open');
+};
+
+window.closeAdminReply = () => {
+  document.getElementById('adminSupportReply').classList.remove('open');
+  currentReplyUserId = null;
+};
+
+window.sendAdminReply = async () => {
+  const reply = document.getElementById('asrReplyText').value.trim();
+  if (!reply) {
+    toast('⚠️ Reply লিখুন', true);
+    return;
+  }
+  
+  if (!currentReplyUserId) return;
+  
+  // Save reply to user's inbox
+  const replyData = {
+    text: reply,
+    from: 'admin',
+    userName: 'Support Team',
+    time: Date.now(),
+    read: false
+  };
+  
+  await push(ref(db, 'users/' + currentReplyUserId + '/inbox/messages'), replyData);
+  
+  // Also save to general messages
+  await push(ref(db, 'messages'), {
+    text: reply,
+    userName: 'Support Team (Admin)',
+    userId: 'admin',
+    time: Date.now(),
+    isAdminReply: true,
+    replyTo: currentReplyUserId
+  });
+  
+  toast(`✅ Reply sent to ${currentReplyUserName}`, false);
+  closeAdminReply();
+};
+
+// INBOX SYSTEM
+window.loadUserInbox = async () => {
+  if (!window._curUser) return;
+  
+  const announcementsSnap = await get(ref(db, 'announcements'));
+  const messagesSnap = await get(ref(db, 'users/' + window._curUser.uid + '/inbox/messages'));
+  
+  const inboxBadge = document.getElementById('inboxBadge');
+  let unreadCount = 0;
+  
+  // Load announcements
+  const announcementsDiv = document.getElementById('inboxAnnouncements');
+  if (announcementsSnap.exists()) {
+    const announcements = Object.entries(announcementsSnap.val())
+      .sort((a,b) => b[1].time - a[1].time);
+    
+    announcementsDiv.innerHTML = announcements.map(([id, a]) => `
+      <div class="announcement-item" id="announce-${id}">
+        <div class="announcement-title">📢 ${a.title}</div>
+        <div class="announcement-text">${a.message}</div>
+        <div class="announcement-footer">
+          <span>${new Date(a.time).toLocaleDateString('en')}</span>
+          <div class="announcement-actions">
+            <span class="announcement-like" onclick="toggleLike('${id}')"><span id="like-${id}">❤️ ${a.likes || 0}</span></span>
+            <span class="announcement-comment" onclick="toggleComment('${id}')">💬 ${a.comments || 0}</span>
+          </div>
+        </div>
+        <div class="comment-section" id="comments-${id}" style="display:none">
+          <div id="comment-list-${id}"></div>
+          <div class="comment-input">
+            <input type="text" class="comment-inp" id="comment-inp-${id}" placeholder="Write a comment...">
+            <button class="comment-send" onclick="addComment('${id}')">➤</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    
+    // Load likes/comments for each announcement
+    announcements.forEach(([id]) => {
+      loadLikesComments(id);
+    });
+  } else {
+    announcementsDiv.innerHTML = '<div style="text-align:center;padding:30px;color:rgba(255,255,255,0.3)">No announcements yet</div>';
+  }
+  
+  // Load messages
+  const messagesDiv = document.getElementById('inboxMessages');
+  if (messagesSnap.exists()) {
+    const messages = Object.entries(messagesSnap.val())
+      .sort((a,b) => b[1].time - a[1].time);
+    
+    messagesDiv.innerHTML = messages.map(([id, m]) => {
+      if (!m.read) unreadCount++;
+      return `
+        <div class="announcement-item" style="background:rgba(52,152,219,0.1);border-color:rgba(52,152,219,0.2)">
+          <div class="announcement-title">💬 ${m.userName || 'Support'}</div>
+          <div class="announcement-text">${m.text}</div>
+          <div class="announcement-footer">
+            <span>${new Date(m.time).toLocaleString('en')}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    // Mark messages as read
+    if (messages.length > 0) {
+      await update(ref(db, 'users/' + window._curUser.uid + '/inbox'), { lastRead: Date.now() });
+    }
+  } else {
+    messagesDiv.innerHTML = '<div style="text-align:center;padding:30px;color:rgba(255,255,255,0.3)">No messages yet</div>';
+  }
+  
+  inboxBadge.textContent = unreadCount;
+  inboxBadge.style.display = unreadCount > 0 ? 'block' : 'none';
+};
+
+// Like/Comment System
+window.toggleLike = async (announceId) => {
+  if (!window._curUser) return;
+  
+  const likeRef = ref(db, 'announcements/' + announceId + '/likes/' + window._curUser.uid);
+  const snap = await get(likeRef);
+  
+  if (snap.exists()) {
+    await remove(likeRef);
+  } else {
+    await set(likeRef, { liked: true, time: Date.now() });
+  }
+  
+  loadLikesComments(announceId);
+};
+
+window.toggleComment = (announceId) => {
+  const commentsDiv = document.getElementById('comments-' + announceId);
+  commentsDiv.style.display = commentsDiv.style.display === 'none' ? 'block' : 'none';
+  loadLikesComments(announceId);
+};
+
+window.addComment = async (announceId) => {
+  const inp = document.getElementById('comment-inp-' + announceId);
+  const comment = inp.value.trim();
+  if (!comment) return;
+  
+  await push(ref(db, 'announcements/' + announceId + '/comments'), {
+    userId: window._curUser.uid,
+    userName: window._userProfile?.name || 'User',
+    text: comment,
+    time: Date.now()
+  });
+  
+  inp.value = '';
+  loadLikesComments(announceId);
+};
+
+window.loadLikesComments = async (announceId) => {
+  const announceRef = ref(db, 'announcements/' + announceId);
+  const snap = await get(announceRef);
+  
+  if (snap.exists()) {
+    const data = snap.val();
+    const likes = data.likes ? Object.keys(data.likes).length : 0;
+    const comments = data.comments ? Object.keys(data.comments).length : 0;
+    
+    document.getElementById('like-' + announceId).textContent = `❤️ ${likes}`;
+    
+    const commentList = document.getElementById('comment-list-' + announceId);
+    if (data.comments) {
+      const commentsList = Object.entries(data.comments)
+        .sort((a,b) => b[1].time - a[1].time)
+        .map(([_, c]) => `<div class="comment-item"><span class="comment-user">${c.userName}:</span> <span class="comment-text">${c.text}</span></div>`)
+        .join('');
+      commentList.innerHTML = commentsList;
+    }
+  }
+};
+
+// Announcements System
+window.sendAnnouncement = async () => {
+  const title = document.getElementById('announceTitle').value.trim();
+  const message = document.getElementById('announceMessage').value.trim();
+  
+  if (!title || !message) {
+    toast('⚠️ Title and message required', true);
+    return;
+  }
+  
+  const announceData = {
+    title: title,
+    message: message,
+    time: Date.now(),
+    likes: {},
+    comments: {}
+  };
+  
+  await push(ref(db, 'announcements'), announceData);
+  
+  document.getElementById('announceTitle').value = '';
+  document.getElementById('announceMessage').value = '';
+  
+  toast('✅ Announcement sent to all users!', false);
+  
+  // Show previous announcements
+  const prevDiv = document.getElementById('prevAnnouncements');
+  const snap = await get(ref(db, 'announcements'));
+  if (snap.exists()) {
+    const announces = Object.entries(snap.val())
+      .sort((a,b) => b[1].time - a[1].time)
+      .slice(0, 5);
+    
+    prevDiv.innerHTML = announces.map(([id, a]) => `
+      <div style="padding:10px;border-bottom:1px solid rgba(255,255,255,0.05)">
+        <div style="font-weight:700;color:var(--gl)">${a.title}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7)">${a.message.substring(0,50)}${a.message.length>50?'...':''}</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-top:4px">${new Date(a.time).toLocaleString('en')}</div>
+      </div>
+    `).join('');
+  }
+};
+
+window.openInbox = () => {
+  document.getElementById('inboxModal').classList.add('open');
+  loadUserInbox();
+};
+
+window.closeInbox = () => {
+  document.getElementById('inboxModal').classList.remove('open');
+};
+
+window.switchInboxTab = (tab, el) => {
+  document.querySelectorAll('.inbox-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('inboxAnnouncements').style.display = tab === 'announcements' ? 'block' : 'none';
+  document.getElementById('inboxMessages').style.display = tab === 'messages' ? 'block' : 'none';
 };
 
 let _ablUid=null,_ablCurBal=0,_ablIsAdd=true;
 window.openAddBal=(uid,name,bal,isAdd)=>{
   _ablUid=uid;_ablCurBal=parseFloat(bal);_ablIsAdd=isAdd;
-  document.getElementById('ablUserName').textContent=name+' — ৳'+parseFloat(bal).toLocaleString('en');
+  const title=document.getElementById('ablTitle'),btn=document.getElementById('ablConfirmBtn');
+  if(isAdd){title.textContent='💰 ADD BALANCE';title.className='abl-title add-mode';btn.textContent='✅ ADD';btn.className='abl-confirm add';}
+  else{title.textContent='➖ SUBTRACT BALANCE';title.className='abl-title sub-mode';btn.textContent='⛔ SUBTRACT';btn.className='abl-confirm sub';}
+  document.getElementById('ablUserName').textContent=name+' — Current: ৳'+parseFloat(bal).toLocaleString('en');
   document.getElementById('ablAmount').value='';
   document.getElementById('addBalModal').classList.add('open');
 };
@@ -2150,11 +2270,22 @@ window._saveBetHistory=async(entry)=>{
   loadHomeLb();
 };
 
+window.sendSupportMsg=async()=>{
+  const inp=document.getElementById('scInp'),txt=inp.value.trim();
+  if(!txt)return;
+  const user=window._curUser,userName=user?(window._userProfile?.name||user.displayName||'User'):'Guest';
+  const msgs=document.getElementById('scMessages'),t=new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
+  msgs.innerHTML+=`<div class="sc-msg user">${txt}<div class="sc-msg-time">You · ${t}</div></div>`;
+  msgs.scrollTop=msgs.scrollHeight;inp.value='';
+  if(user)await push(ref(db,'messages'),{text:txt,userName,userId:user.uid,time:Date.now()});
+  setTimeout(()=>{msgs.innerHTML+=`<div class="sc-msg support">আপনার message পেয়েছি! ⚡ শীঘ্রই reply করব।<div class="sc-msg-time">Support · ${new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}</div></div>`;msgs.scrollTop=msgs.scrollHeight;},1500);
+};
+
 window.claimReward=async()=>{
   if(!window._curUser)return;
   const prof=window._userProfile||{},today=new Date().toDateString();
   if(prof.lastClaimDate===today){toast('⚠️ আজকের reward নেওয়া হয়েছে!',true);document.getElementById('rewardModal').classList.remove('open');return;}
-  if(window._realBal<=0){toast('❌ Deposit থাকতে হবে!',true);document.getElementById('rewardModal').classList.remove('open');setTimeout(()=>openBinanceDepositModal(),600);return;}
+  if(window._realBal<=0){toast('❌ Deposit থাকতে হবে!',true);document.getElementById('rewardModal').classList.remove('open');setTimeout(()=>openDepositModal(),600);return;}
   const dayNum=Math.min((prof.lastClaimedDay||0)+1,7);
   const rewards=[500,800,1000,1200,1500,2000,3000];
   const amt=rewards[dayNum-1];
@@ -2211,7 +2342,6 @@ window._minesDemoActive=false; window._minesDemoBal=10000;
 window._coinDemoActive=false; window._coinDemoBal=10000;
 window._limboDemoActive=false; window._limboDemoBal=10000;
 window._userProfile={};
-window._lbUpdateTimer = null;
 
 // =================== AI ASSISTANT ===================
 let aiName = 'Royal AI';
@@ -2230,32 +2360,47 @@ window.sendAIMessage = () => {
   const messages = document.getElementById('aiMessages');
   const time = new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'});
   
+  // Add user message
   messages.innerHTML += `<div class="ai-msg user">${msg}<div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:2px;">${time}</div></div>`;
   input.value = '';
   messages.scrollTop = messages.scrollHeight;
   
+  // Show thinking
   messages.innerHTML += `<div class="ai-thinking"><span></span><span></span><span></span></div>`;
   messages.scrollTop = messages.scrollHeight;
   
+  // Generate AI response
   setTimeout(() => {
+    // Remove thinking
     const thinking = document.querySelector('.ai-thinking:last-child');
     if (thinking) thinking.remove();
     
     let response = '';
     
     if (aiMode === 'smart') {
+      // Smart AI responses
       const lowerMsg = msg.toLowerCase();
       if (lowerMsg.includes('balance') || lowerMsg.includes('ব্যালেন্স')) {
         response = `আপনার বর্তমান ব্যালেন্স: ৳${window._realBal.toLocaleString('en')} (Real) / ৳${window._demoBal.toLocaleString('en')} (Demo)।`;
       } else if (lowerMsg.includes('deposit') || lowerMsg.includes('ডিপোজিট')) {
-        response = 'ডিপোজিট করতে Binance অপশন ব্যবহার করুন। Binance ID: 894307667, তারপর আপনার Account Name দিন।';
+        response = 'ডিপোজিট করতে Home পেজ থেকে Deposit বাটনে ক্লিক করুন। Binance ID: 894307667, আপনার Binance নাম দিন।';
       } else if (lowerMsg.includes('withdraw') || lowerMsg.includes('উইথড্র')) {
-        response = 'উইথড্রয়াল করতে Profile পেজে গিয়ে Withdraw অপশন ব্যবহার করুন। মিনিমাম ৳200।';
+        response = 'উইথড্রয়াল করতে Profile পেজে গিয়ে Withdraw অপশন ব্যবহার করুন। মিনিমাম ৳200, সর্বোচ্চ ৳200,000।';
+      } else if (lowerMsg.includes('game') || lowerMsg.includes('গেম')) {
+        response = 'আমাদের গেমগুলো: Aviator, Trading, Dice, Mines, Coin Flip, Limbo এবং Live Cricket! সবগুলোতেই মজা নিন।';
+      } else if (lowerMsg.includes('aviator') || lowerMsg.includes('এভিয়েটর')) {
+        response = 'Aviator গেমে বিমান উড়ে এবং মাল্টিপ্লায়ার বাড়ে। সঠিক সময় cashout করে জিতুন! সর্বোচ্চ 10,000x পর্যন্ত।';
+      } else if (lowerMsg.includes('cricket') || lowerMsg.includes('ক্রিকেট')) {
+        response = 'Live Cricket section-এ বাংলাদেশ ও ভারতের ম্যাচে বেট করুন! লাইভ আপডেট দেখুন।';
+      } else if (lowerMsg.includes('help') || lowerMsg.includes('সাহায্য')) {
+        response = 'আমি Royal Bet AI! যেকোনো প্রশ্ন করুন: ব্যালেন্স, ডিপোজিট, উইথড্রয়াল, গেমের নিয়ম ইত্যাদি।';
+      } else if (lowerMsg.includes('bonus') || lowerMsg.includes('বোনাস')) {
+        response = 'Daily Reward claim করুন! প্রতিদিন ৳500 থেকে ৳3000 পর্যন্ত বোনাস পান।';
       } else {
-        response = `"${msg}" — Royal Bet-এ স্বাগতম! আরও জানতে Support-এ যোগাযোগ করুন।`;
+        response = `"${msg}" — আপনার প্রশ্নের উত্তর দিচ্ছি: Royal Bet-এ স্বাগতম! আরও জানতে আমাদের Support-এ যোগাযোগ করুন।`;
       }
     } else {
-      response = `আপনি বলেছেন: "${msg}" — আমি Royal Bet AI।`;
+      response = `আপনি বলেছেন: "${msg}" — আমি Royal Bet AI, আপনাকে সাহায্য করতে এখানে আছি।`;
     }
     
     messages.innerHTML += `<div class="ai-msg bot">${response}<div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:2px;">${aiName} · ${new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'})}</div></div>`;
@@ -2295,6 +2440,9 @@ function initCricketMatch() {
 }
 
 function updateCricketMatchProgression() {
+  const team1 = document.getElementById('cricketTeam1').textContent;
+  const team2 = document.getElementById('cricketTeam2').textContent;
+  
   const overs = parseFloat(document.getElementById('cricketOvers').textContent.split(' ')[1]) || 32.4;
   const newOvers = (overs + 0.1).toFixed(1);
   document.getElementById('cricketOvers').textContent = `Overs: ${newOvers}`;
@@ -2308,13 +2456,22 @@ function updateCricketMatchProgression() {
     document.getElementById('cricketScore').textContent = `${newRuns}/${newWickets}`;
   }
   
-  const events = ['Next Over: ' + (parseInt(newOvers) + 1) + 'th over', 'Powerplay ongoing', 'Drinks break', 'Review in progress', 'New batsman in'];
+  const events = [
+    'Next Over: ' + (parseInt(newOvers) + 1) + 'th over',
+    'Powerplay ongoing',
+    'Drinks break',
+    'Review in progress',
+    'New batsman in',
+    '50 partnership!',
+    '100 runs up!'
+  ];
   document.getElementById('cricketNextEvent').textContent = events[Math.floor(Math.random() * events.length)];
   
   const odds1 = parseFloat(document.getElementById('cricketOdds1Value').textContent);
   const odds2 = parseFloat(document.getElementById('cricketOdds2Value').textContent);
+  const total = odds1 + odds2;
   const newOdds1 = parseFloat((odds1 + (Math.random() - 0.5) * 0.1).toFixed(2));
-  const newOdds2 = parseFloat((odds1 + odds2 - newOdds1).toFixed(2));
+  const newOdds2 = parseFloat((total - newOdds1).toFixed(2));
   document.getElementById('cricketOdds1Value').textContent = newOdds1.toFixed(2);
   document.getElementById('cricketOdds2Value').textContent = newOdds2.toFixed(2);
   
@@ -2352,7 +2509,7 @@ window.placeCricketBet = () => {
   
   if (window._realBal < amount) {
     toast('❌ ব্যালেন্স অপ্রতুল!', true);
-    setTimeout(() => openBinanceDepositModal(), 800);
+    setTimeout(() => openDepositModal(), 800);
     return;
   }
   
@@ -2398,15 +2555,24 @@ window.placeCricketBet = () => {
 };
 
 window.updateCricketMatch = () => {
-  document.getElementById('cricketTeam1').textContent = document.getElementById('adminTeam1').value;
-  document.getElementById('cricketTeam2').textContent = document.getElementById('adminTeam2').value;
-  document.getElementById('cricketTeam1Score').textContent = document.getElementById('adminTeam1Score').value;
-  document.getElementById('cricketTeam2Score').textContent = document.getElementById('adminTeam2Score').value;
-  document.getElementById('cricketScore').textContent = document.getElementById('adminTeam1Score').value;
-  document.getElementById('cricketOvers').textContent = `Overs: ${document.getElementById('adminOvers').value}`;
-  document.getElementById('cricketNextEvent').textContent = document.getElementById('adminNextEvent').value;
-  document.getElementById('cricketOdds1Value').textContent = parseFloat(document.getElementById('adminOdds1').value).toFixed(2);
-  document.getElementById('cricketOdds2Value').textContent = parseFloat(document.getElementById('adminOdds2').value).toFixed(2);
+  const team1 = document.getElementById('adminTeam1').value;
+  const team2 = document.getElementById('adminTeam2').value;
+  const team1Score = document.getElementById('adminTeam1Score').value;
+  const team2Score = document.getElementById('adminTeam2Score').value;
+  const overs = document.getElementById('adminOvers').value;
+  const nextEvent = document.getElementById('adminNextEvent').value;
+  const odds1 = document.getElementById('adminOdds1').value;
+  const odds2 = document.getElementById('adminOdds2').value;
+  
+  document.getElementById('cricketTeam1').textContent = team1;
+  document.getElementById('cricketTeam2').textContent = team2;
+  document.getElementById('cricketTeam1Score').textContent = team1Score;
+  document.getElementById('cricketTeam2Score').textContent = team2Score;
+  document.getElementById('cricketScore').textContent = team1Score;
+  document.getElementById('cricketOvers').textContent = `Overs: ${overs}`;
+  document.getElementById('cricketNextEvent').textContent = nextEvent;
+  document.getElementById('cricketOdds1Value').textContent = parseFloat(odds1).toFixed(2);
+  document.getElementById('cricketOdds2Value').textContent = parseFloat(odds2).toFixed(2);
   
   toast('✅ Cricket match updated!', false);
 };
@@ -2449,6 +2615,12 @@ window.forceCricketResult = () => {
   });
   
   toast(`🏏 Match result: ${winningTeam} wins!`, false);
+  
+  document.getElementById('cricketLiveCard').style.animation = 'pulse 0.5s ease';
+  setTimeout(() => {
+    document.getElementById('cricketLiveCard').style.animation = 'pulse 2s ease-in-out infinite';
+  }, 500);
+  
   loadHomeLb();
 };
 
@@ -2509,7 +2681,6 @@ window.toggleDotMenu=()=>document.getElementById('dotMenu').classList.toggle('op
 document.addEventListener('click',e=>{
   if(!e.target.closest('.user-info'))document.getElementById('dotMenu').classList.remove('open');
   if(!e.target.closest('.bn-dots-wrap'))closeBnDotMenu();
-  if(!e.target.closest('.inbox-icon'))document.getElementById('inboxDropdown').classList.remove('open');
 });
 
 // BOTTOM NAV DOT MENU
@@ -2562,6 +2733,16 @@ window.switchAdminTab=(tab,el)=>{
   if(tab==='messages')window.loadAdminMessages&&loadAdminMessages();
   if(tab==='users')window.loadAdminUsers&&loadAdminUsers();
   if(tab==='leaderboard')window.loadAdminLeaderboard&&loadAdminLeaderboard();
+  if(tab==='cricket'){
+    document.getElementById('adminTeam1').value = document.getElementById('cricketTeam1').textContent;
+    document.getElementById('adminTeam2').value = document.getElementById('cricketTeam2').textContent;
+    document.getElementById('adminTeam1Score').value = document.getElementById('cricketTeam1Score').textContent;
+    document.getElementById('adminTeam2Score').value = document.getElementById('cricketTeam2Score').textContent;
+    document.getElementById('adminOvers').value = document.getElementById('cricketOvers').textContent.split(' ')[1];
+    document.getElementById('adminNextEvent').value = document.getElementById('cricketNextEvent').textContent;
+    document.getElementById('adminOdds1').value = document.getElementById('cricketOdds1Value').textContent;
+    document.getElementById('adminOdds2').value = document.getElementById('cricketOdds2Value').textContent;
+  }
 };
 window.openSupport=()=>document.getElementById('supportModal').classList.add('open');
 
@@ -2571,11 +2752,12 @@ window.closeModal=t=>document.getElementById(t+'Modal').classList.remove('open')
 document.querySelectorAll('.modal-ov').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');}));
 window.swm=(m,card)=>{
   document.querySelectorAll('.method-card').forEach(c=>c.classList.remove('sel'));card.classList.add('sel');
-  document.querySelectorAll('.mform').forEach(f=>f.style.display='none');
-  document.getElementById('form-'+m).style.display='block';
+  document.querySelectorAll('.mform').forEach(f=>f.classList.remove('active'));
+  document.getElementById('noMethMsg').style.display='none';
+  document.getElementById('form-'+m).classList.add('active');
 };
-window.copyTxt=(t,btn)=>navigator.clipboard.writeText(t).then(()=>{btn.textContent='✅';setTimeout(()=>btn.textContent='Copy',2000);});
-window.checkWithdraw=()=>{if(window._realBal<=0){toast('❌ Balance নেই! Deposit করুন।',true);setTimeout(()=>openBinanceDepositModal(),600);return;}openModal('withdraw');};
+window.copyTxt=(t,btn)=>navigator.clipboard.writeText(t).then(()=>{btn.textContent='✅ Copied!';setTimeout(()=>btn.textContent='📋 Copy',2000);});
+window.checkWithdraw=()=>{if(window._realBal<=0){toast('❌ Balance নেই! Deposit করুন।',true);setTimeout(()=>openDepositModal(),600);return;}openModal('withdraw');};
 
 // TOAST
 window.toast=(msg,isErr)=>{
@@ -2598,30 +2780,26 @@ let avPhase='idle',avBetPlaced=false,avBetAmt=0,avMult=1.00,avCrashAt=1.00,avRaf
 const avPts=[];let avCtx=null;
 function avCrashPt(){
   const r=Math.random();
-  if (r < 0.15) return 10 + Math.random() * 15;
-  if (r < 0.35) return 25 + Math.random() * 75;
-  if (r < 0.55) return 100 + Math.random() * 400;
-  if (r < 0.70) return 500 + Math.random() * 1500;
-  if (r < 0.82) return 2000 + Math.random() * 3000;
-  if (r < 0.92) return 5000 + Math.random() * 3000;
-  return 8000 + Math.random() * 2000;
+  // Adjusted for 10x min, 10000x max, with distribution to avoid constant 4000-5000x
+  if (r < 0.15) return 10 + Math.random() * 15;        // 10-25x
+  if (r < 0.35) return 25 + Math.random() * 75;        // 25-100x
+  if (r < 0.55) return 100 + Math.random() * 400;      // 100-500x
+  if (r < 0.70) return 500 + Math.random() * 1500;     // 500-2000x
+  if (r < 0.82) return 2000 + Math.random() * 3000;    // 2000-5000x (less common)
+  if (r < 0.92) return 5000 + Math.random() * 3000;    // 5000-8000x (rare)
+  return 8000 + Math.random() * 2000;                   // 8000-10000x (very rare)
 }
 function avInitCanvas(){const cv=document.getElementById('avCv'),c=document.getElementById('avCanvas');cv.width=c.offsetWidth||420;cv.height=c.offsetHeight||200;avCtx=cv.getContext('2d');avCtx.clearRect(0,0,cv.width,cv.height);}
-function avStartRound(){cancelAnimationFrame(avRaf);clearInterval(avCdTimer);avPhase='countdown';avMult=1.00;avCrashAt=avCrashPt();avBetPlaced=false;avPts.length=0;document.getElementById('avCdOv').style.display='flex';document.getElementById('avMW').style.display='none';document.getElementById('avPlane').style.display='none';document.getElementById('avCrashFl').style.display='none';avInitCanvas();avSetBadge('bet');avUpdateUI();avBuildLB();let n=10;avSetCd(n);avCdTimer=setInterval(()=>{n--;if(n>0)avSetCd(n);else{clearInterval(avCdTimer);avCdTimer=null;avBeginFly();}},1000);}
+function avStartRound(){cancelAnimationFrame(avRaf);clearInterval(avCdTimer);avPhase='countdown';avMult=1.00;avCrashAt=avCrashPt();avBetPlaced=false;avPts.length=0;document.getElementById('avCdOv').style.display='flex';document.getElementById('avMW').style.display='none';document.getElementById('avPlane').style.display='none';document.getElementById('avCrashFl').style.display='none';document.getElementById('avMW').querySelector('.av-mn').className='av-mn';avInitCanvas();avSetBadge('bet');avUpdateUI();avBuildLB();let n=10;avSetCd(n);avCdTimer=setInterval(()=>{n--;if(n>0)avSetCd(n);else{clearInterval(avCdTimer);avCdTimer=null;avBeginFly();}},1000);}
 function avSetCd(n){const el=document.getElementById('avCdNum');el.textContent=n;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}
 function avBeginFly(){avPhase='flying';avRoundStart=performance.now();document.getElementById('avCdOv').style.display='none';document.getElementById('avMW').style.display='block';document.getElementById('avMN').innerHTML='1.00<span class="av-mn-x">x</span>';document.getElementById('avPL').textContent='FLYING...';document.getElementById('avPlane').style.display='block';avSetBadge('fly');avUpdateUI();avTick();}
 function avTick(){if(avPhase!=='flying')return;const t=(performance.now()-avRoundStart)/1000;avMult=parseFloat((1+t*2+t*t*0.8).toFixed(2));document.getElementById('avMN').innerHTML=avMult.toFixed(2)+'<span class="av-mn-x">x</span>';if(avBetPlaced){const pot=Math.floor(avBetAmt*avMult);document.getElementById('avCashBtn').textContent='💰 STOP — ৳'+pot.toLocaleString('en');}updateBals();const cv=document.getElementById('avCv'),prog=Math.min(t/20,1),px=4+prog*82,py=7+prog*74+prog*prog*8;document.getElementById('avPlane').style.left=px+'%';document.getElementById('avPlane').style.bottom=py+'%';avPts.push({x:px/100*cv.width,y:cv.height-py/100*cv.height});avDrawCurve(cv.width,cv.height);if(avMult>=avCrashAt){avDoCrash();return;}avRaf=requestAnimationFrame(avTick);}
 function avDrawCurve(w,h){if(!avCtx||avPts.length<2)return;avCtx.clearRect(0,0,w,h);const gr=avCtx.createLinearGradient(0,h,w*0.9,0);gr.addColorStop(0,'rgba(255,80,80,0.1)');gr.addColorStop(0.5,'rgba(255,100,100,0.7)');gr.addColorStop(1,'rgba(255,220,80,1)');avCtx.beginPath();avCtx.moveTo(avPts[0].x,avPts[0].y);for(let i=1;i<avPts.length;i++)avCtx.lineTo(avPts[i].x,avPts[i].y);avCtx.strokeStyle=gr;avCtx.lineWidth=3;avCtx.shadowColor='rgba(255,120,80,0.8)';avCtx.shadowBlur=12;avCtx.stroke();avCtx.lineTo(avPts[avPts.length-1].x,h);avCtx.lineTo(avPts[0].x,h);avCtx.closePath();const fg=avCtx.createLinearGradient(0,0,0,h);fg.addColorStop(0,'rgba(255,100,100,0.15)');fg.addColorStop(1,'rgba(255,100,100,0)');avCtx.fillStyle=fg;avCtx.shadowBlur=0;avCtx.fill();}
 function avDoCrash(){avPhase='crashed';cancelAnimationFrame(avRaf);document.getElementById('avPlane').style.display='none';document.getElementById('avMN').className='av-mn crashed';document.getElementById('avPL').textContent='💥 CRASHED!';document.getElementById('avCrashFl').style.display='flex';avSetBadge('crash');avUpdateUI();if(avBetPlaced){avBetPlaced=false;avUpdateUI();toast(`💥 ${avMult.toFixed(2)}x crash! ৳${avBetAmt.toLocaleString('en')} হারালেন`,true);if(!window._isDemo)window._saveBetHistory&&window._saveBetHistory({game:'Aviator',detail:`Crash at ${avMult.toFixed(2)}x`,bet:avBetAmt,profit:-avBetAmt,time:Date.now()});}setTimeout(()=>{document.getElementById('avCrashFl').style.display='none';avStartRound();},2800);}
-window.avPlaceBet=()=>{if(avPhase!=='countdown'){toast('⏳ Countdown এ Bet দিন!',true);return;}if(avBetPlaced){toast('✅ ইতোমধ্যে Bet!',false);return;}const v=parseInt(document.getElementById('avBetInp').value);if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}if(v>200000){toast('⚠️ Max ৳200,000',true);return;}if(getBalForGame('av')<v){toast(window._isDemo?'❌ Demo balance শেষ!':'❌ Balance কম!',true);if(!window._isDemo)setTimeout(()=>openBinanceDepositModal(),800);return;}avBetAmt=v;setBalForGame('av',getBalForGame('av')-v);avBetPlaced=true;avUpdateUI();toast(`✅ Bet: ৳${v.toLocaleString('en')}`,false);avBuildLB(true);};
+window.avPlaceBet=()=>{if(avPhase!=='countdown'){toast('⏳ Countdown এ Bet দিন!',true);return;}if(avBetPlaced){toast('✅ ইতোমধ্যে Bet!',false);return;}const v=parseInt(document.getElementById('avBetInp').value);if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}if(v>200000){toast('⚠️ Max ৳200,000',true);return;}if(getBalForGame('av')<v){toast(window._isDemo?'❌ Demo balance শেষ!':'❌ Balance কম!',true);if(!window._isDemo)setTimeout(()=>openDepositModal(),800);return;}avBetAmt=v;setBalForGame('av',getBalForGame('av')-v);avBetPlaced=true;avUpdateUI();toast(`✅ Bet: ৳${v.toLocaleString('en')}`,false);avBuildLB(true);};
 window.avCashOut=()=>{if(!avBetPlaced||avPhase!=='flying')return;const m=avMult,win=Math.floor(avBetAmt*m),profit=win-avBetAmt;setBalForGame('av',getBalForGame('av')+win);avBetPlaced=false;avUpdateUI();document.getElementById('avMN').className='av-mn cashed';document.getElementById('avPL').textContent=`✅ CASHED ${m.toFixed(2)}x`;toast(`🎉 ${m.toFixed(2)}x — +৳${profit.toLocaleString('en')}`,false);if(!window._isDemo)window._saveBetHistory&&window._saveBetHistory({game:'Aviator',detail:`Cashed out ${m.toFixed(2)}x`,bet:avBetAmt,profit,time:Date.now()});loadHomeLb();};
 window.avQb=amt=>{if(avPhase==='countdown'&&!avBetPlaced)document.getElementById('avBetInp').value=amt;};
-function avUpdateUI(){
-  const bb=document.getElementById('avBetBtn'),cb=document.getElementById('avCashBtn'),inp=document.getElementById('avBetInp');const qbs=document.querySelectorAll('.av-qb');
-  if(avPhase==='flying'){if(avBetPlaced){bb.style.display='none';cb.style.display='flex';}else{bb.style.display='flex';bb.disabled=true;bb.textContent='🔒 FLYING...';cb.style.display='none';}inp.disabled=true;qbs.forEach(b=>b.disabled=true);}
-  else if(avPhase==='countdown'){cb.style.display='none';bb.style.display='flex';if(avBetPlaced){bb.disabled=true;bb.textContent='✅ BET PLACED';}else{bb.disabled=false;bb.textContent='🎲 BET NOW';}inp.disabled=avBetPlaced;qbs.forEach(b=>b.disabled=avBetPlaced);}
-  else{bb.style.display='flex';bb.disabled=true;bb.textContent='⏳ NEXT ROUND...';cb.style.display='none';inp.disabled=true;qbs.forEach(b=>b.disabled=true);}
-}
+function avUpdateUI(){const bb=document.getElementById('avBetBtn'),cb=document.getElementById('avCashBtn'),inp=document.getElementById('avBetInp');const qbs=document.querySelectorAll('.av-qb');if(avPhase==='flying'){if(avBetPlaced){bb.style.display='none';cb.style.display='flex';}else{bb.style.display='flex';bb.disabled=true;bb.textContent='🔒 FLYING...';cb.style.display='none';}inp.disabled=true;qbs.forEach(b=>b.disabled=true);}else if(avPhase==='countdown'){cb.style.display='none';bb.style.display='flex';if(avBetPlaced){bb.disabled=true;bb.textContent='✅ BET PLACED';}else{bb.disabled=false;bb.textContent='🎲 BET NOW';}inp.disabled=avBetPlaced;qbs.forEach(b=>b.disabled=avBetPlaced);}else{bb.style.display='flex';bb.disabled=true;bb.textContent='⏳ NEXT ROUND...';cb.style.display='none';inp.disabled=true;qbs.forEach(b=>b.disabled=true);}}
 function avSetBadge(p){const b=document.getElementById('avPhBadge');b.className='ph-badge '+p;if(p==='bet')b.textContent='🟡 BETTING OPEN';else if(p==='fly')b.textContent='🟢 FLYING';else b.textContent='🔴 CRASHED';}
 const AV_NAMES=['Rahim_X','Karim99','Sumon★','NightKing','BetKing88','GoldRush','Lucky7','SpeedBet','TigerBet','AcePlayer','RoyalFly','DiamondX','StormBet','PhoenixUp','NightHawk','PlatinumK','IronFist','CobraKing','MaxBet99','UltraFly'];
 let avUsedNames=new Set();
@@ -2638,9 +2816,9 @@ function trRevealCandle(){trPhase='revealing';document.getElementById('trCdOv').
 function animateTrPrice(from,to){const steps=20,diff=(to-from)/steps;let step=0;const iv=setInterval(()=>{step++;const cur=parseFloat((from+diff*step).toFixed(3));document.getElementById('trPrice').textContent=cur.toFixed(3);const pct=((to-from)/from*100).toFixed(2);const el=document.getElementById('trChange');el.textContent=(pct>=0?'+':'')+pct+'%';el.className='tr-pair-change '+(pct>=0?'up':'dn');if(step>=steps)clearInterval(iv);},40);}
 function trShowResult(direction){const won=trBetPlaced&&trPrediction===direction;const rv=document.getElementById('trResultOv'),rb=document.getElementById('trResultBox'),rs=document.getElementById('trResultSub');if(!trBetPlaced){setTimeout(()=>trStartBettingPhase(),1500);return;}if(won){const win=trBetAmt*2;setBalForGame('tr',getBalForGame('tr')+win);rb.className='tr-result-box win';rb.textContent='🎉 WIN!';rs.textContent=`+৳${trBetAmt.toLocaleString('en')} profit`;toast(`🎉 ${direction.toUpperCase()} correct! +৳${trBetAmt.toLocaleString('en')}`,false);if(!window._trDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Trading',detail:`${direction.toUpperCase()} @${trCurPrice.toFixed(3)}`,bet:trBetAmt,profit:trBetAmt,time:Date.now()});}else{rb.className='tr-result-box lose';rb.textContent='💥 LOSE!';rs.textContent=`${direction.toUpperCase()} — ৳${trBetAmt.toLocaleString('en')} loss`;toast(`💥 ${direction.toUpperCase()} was correct! Loss`,true);if(!window._trDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Trading',detail:`${direction.toUpperCase()} wrong @${trCurPrice.toFixed(3)}`,bet:trBetAmt,profit:-trBetAmt,time:Date.now()});}rv.classList.add('show');setTimeout(()=>{rv.classList.remove('show');trBuildLB();trStartBettingPhase();},2800);}
 function trDrawChart(){const wrap=document.getElementById('trChartWrap'),cv=document.getElementById('trCv');cv.width=wrap.offsetWidth||420;cv.height=wrap.offsetHeight||200;const ctx=cv.getContext('2d');ctx.clearRect(0,0,cv.width,cv.height);if(!trCandles.length)return;const allP=trCandles.flatMap(c=>[c.h,c.l]),pMin=Math.min(...allP)-0.1,pMax=Math.max(...allP)+0.1,pRange=pMax-pMin,W=cv.width,H=cv.height,pad=14,candleW=Math.floor((W-pad*2)/trCandles.length)-3,cSpacing=(W-pad*2)/trCandles.length;function p2y(p){return pad+(1-(p-pMin)/pRange)*(H-pad*2);}ctx.strokeStyle='rgba(0,255,136,0.08)';ctx.lineWidth=1;for(let i=0;i<=4;i++){const y=pad+i*(H-pad*2)/4;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();const p=(pMax-i*(pRange/4)).toFixed(3);ctx.fillStyle='rgba(0,255,136,0.3)';ctx.font='9px monospace';ctx.fillText(p,2,y-2);}trCandles.forEach((c,i)=>{const x=pad+i*cSpacing+cSpacing/2,oY=p2y(c.o),cY=p2y(c.c),hY=p2y(c.h),lY=p2y(c.l),isUp=c.c>=c.o,color=isUp?'#00cc66':'#ff3333',glow=isUp?'rgba(0,255,100,0.3)':'rgba(255,50,50,0.3)';ctx.strokeStyle=color;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,hY);ctx.lineTo(x,lY);ctx.stroke();const bodyTop=Math.min(oY,cY),bodyH=Math.max(Math.abs(cY-oY),2);ctx.shadowColor=glow;ctx.shadowBlur=6;ctx.fillStyle=color;ctx.fillRect(x-candleW/2,bodyTop,candleW,bodyH);ctx.shadowBlur=0;});}
-window.trPredict=dir=>{if(trPhase!=='betting'){toast('⏳ Countdown এ predict করুন!',true);return;}if(trBetPlaced){toast('✅ ইতোমধ্যে bet!',false);return;}const v=parseInt(document.getElementById('trBetInp').value);if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}if(v>200000){toast('⚠️ Max ৳200,000',true);return;}if(getBalForGame('tr')<v){toast('❌ Balance কম!',true);if(!window._trDemoActive)setTimeout(()=>openBinanceDepositModal(),800);return;}trBetAmt=v;setBalForGame('tr',getBalForGame('tr')-v);trBetPlaced=true;trPrediction=dir;trUpdateUI();trBuildLB(true);toast(`✅ ${dir==='up'?'▲':'▼'} ${dir.toUpperCase()} Bet: ৳${v.toLocaleString('en')}`,false);};
+window.trPredict=dir=>{if(trPhase!=='betting'){toast('⏳ Countdown এ predict করুন!',true);return;}if(trBetPlaced){toast('✅ ইতোমধ্যে bet!',false);return;}const v=parseInt(document.getElementById('trBetInp').value);if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}if(v>200000){toast('⚠️ Max ৳200,000',true);return;}if(getBalForGame('tr')<v){toast('❌ Balance কম!',true);if(!window._trDemoActive)setTimeout(()=>openDepositModal(),800);return;}trBetAmt=v;setBalForGame('tr',getBalForGame('tr')-v);trBetPlaced=true;trPrediction=dir;trUpdateUI();trBuildLB(true);toast(`✅ ${dir==='up'?'▲':'▼'} ${dir.toUpperCase()} Bet: ৳${v.toLocaleString('en')}`,false);};
 window.trQb=amt=>{if(trPhase==='betting'&&!trBetPlaced)document.getElementById('trBetInp').value=amt;};
-function trUpdateUI(){const upBtn=document.getElementById('trUpBtn'),dnBtn=document.getElementById('trDnBtn'),inp=document.getElementById('trBetInp'),qbs=document.querySelectorAll('.tr-qb'),info=document.getElementById('trPhaseInfo');if(trPhase==='betting'&&!trBetPlaced){upBtn.disabled=false;dnBtn.disabled=false;inp.disabled=false;qbs.forEach(b=>b.disabled=false);info.textContent='Bet দিন ও predict করুন';}else if(trPhase==='betting'&&trBetPlaced){upBtn.disabled=true;dnBtn.disabled=true;inp.disabled=true;qbs.forEach(b=>b.disabled=true);info.textContent=`✅ ${trPrediction?.toUpperCase()} bet — revealing...`;}else{upBtn.disabled=true;dnBtn.disabled=true;inp.disabled=true;qbs.forEach(b=>b.disabled=true);info.textContent='⏳ Result...';}}
+function trUpdateUI(){const upBtn=document.getElementById('trUpBtn'),dnBtn=document.getElementById('trDnBtn'),inp=document.getElementById('trBetInp'),qbs=document.querySelectorAll('.tr-qb'),info=document.getElementById('trPhaseInfo');if(trPhase==='betting'&&!trBetPlaced){upBtn.disabled=false;dnBtn.disabled=false;inp.disabled=false;qbs.forEach(b=>b.disabled=false);info.textContent='Bet দিন ও next candle direction predict করুন';}else if(trPhase==='betting'&&trBetPlaced){upBtn.disabled=true;dnBtn.disabled=true;inp.disabled=true;qbs.forEach(b=>b.disabled=true);info.textContent=`✅ ${trPrediction?.toUpperCase()} bet — revealing...`;}else{upBtn.disabled=true;dnBtn.disabled=true;inp.disabled=true;qbs.forEach(b=>b.disabled=true);info.textContent='⏳ Result...';}  }
 const TR_NAMES=['FXKing_BD','PipMaster','TrendWin','CandleAce','ChartBoss','BullRun88','BearHunt','FXRoyal','PriceAct','MomentumX','ScalpKing','SwingTrade','BreakoutX','SupportLvl','ResistWin','EMAKing','RSIBoss','MACDBet','BollingerX','FibonacciK'];
 let trUsedNames=new Set();
 function trBuildLB(showUser=false){if(trUsedNames.size>TR_NAMES.length-5)trUsedNames.clear();const avail=TR_NAMES.filter(n=>!trUsedNames.has(n)),entries=[],used=new Set();while(entries.length<15&&avail.length>entries.length){const i=Math.floor(Math.random()*avail.length),n=avail[i];if(!used.has(n)){used.add(n);trUsedNames.add(n);const dir=Math.random()>0.5?'up':'down',b=Math.floor(200+Math.random()*199801),won=Math.random()>0.4;entries.push({n,dir,b,won,isUser:false});}}if(showUser&&trBetPlaced&&window._curUser){const userName=(window._userProfile?.name||window._curUser.displayName||'You').split(' ')[0];entries.unshift({n:'⭐ '+userName,dir:trPrediction||'up',b:trBetAmt,won:false,isUser:true});}document.getElementById('trLbBody').innerHTML=entries.slice(0,15).map((e,i)=>{let rc='',rl='#'+(i+1);if(i===0){rc='g';rl='🥇';}else if(i===1){rc='s';rl='🥈';}else if(i===2){rc='b';rl='🥉';}const dirEl=e.dir==='up'?'<div class="tr-lb-dir up">▲ UP</div>':'<div class="tr-lb-dir dn">▼ DOWN</div>';const winLoss=e.isUser?`<span style="color:#ffa500">LIVE</span>`:e.won?`<span style="color:#00ff88">+৳${e.b.toLocaleString('en')}</span>`:`<span style="color:#ff4444">-৳${e.b.toLocaleString('en')}</span>`;return`<div class="tr-lb-row ${e.isUser?'you':''}"><div class="tr-lb-rank ${rc}">${rl}</div><div class="tr-lb-name">${e.n}</div>${dirEl}<div class="tr-lb-amt">${winLoss}</div></div>`;}).join('');}
@@ -2663,7 +2841,7 @@ window.rollDice=async()=>{
   const v=parseInt(document.getElementById('diceBetInp').value);
   if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}
   if(v>200000){toast('⚠️ Max ৳200,000',true);return;}
-  if(getBalForGame('dice')<v){toast('❌ Balance কম!',true);if(!window._diceDemoActive)setTimeout(()=>openBinanceDepositModal(),800);return;}
+  if(getBalForGame('dice')<v){toast('❌ Balance কম!',true);if(!window._diceDemoActive)setTimeout(()=>openDepositModal(),800);return;}
   const target=parseInt(document.getElementById('diceTarget').value)||7;
   setBalForGame('dice',getBalForGame('dice')-v);
   diceRolling=true;document.getElementById('diceRollBtn').disabled=true;
@@ -2707,7 +2885,7 @@ window.startMines=()=>{
   const v=parseInt(document.getElementById('minesBetInp').value);
   if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}
   if(v>200000){toast('⚠️ Max ৳200,000',true);return;}
-  if(getBalForGame('mines')<v){toast('❌ Balance কম!',true);if(!window._minesDemoActive)setTimeout(()=>openBinanceDepositModal(),800);return;}
+  if(getBalForGame('mines')<v){toast('❌ Balance কম!',true);if(!window._minesDemoActive)setTimeout(()=>openDepositModal(),800);return;}
   mineBetAmt=v;mineRevealed=0;setBalForGame('mines',getBalForGame('mines')-v);minesActive=true;
   document.getElementById('minesCount').disabled=true;
   document.getElementById('minesBetInp').disabled=true;
@@ -2765,7 +2943,7 @@ window.flipCoin=async()=>{
   const v=parseInt(document.getElementById('coinBetInp').value);
   if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}
   if(v>200000){toast('⚠️ Max ৳200,000',true);return;}
-  if(getBalForGame('coin')<v){toast('❌ Balance কম!',true);if(!window._coinDemoActive)setTimeout(()=>openBinanceDepositModal(),800);return;}
+  if(getBalForGame('coin')<v){toast('❌ Balance কম!',true);if(!window._coinDemoActive)setTimeout(()=>openDepositModal(),800);return;}
   setBalForGame('coin',getBalForGame('coin')-v);coinFlipping=true;
   document.getElementById('coinFlipBtn').disabled=true;
   const display=document.getElementById('coinDisplay'),msg=document.getElementById('coinResultMsg');
@@ -2798,7 +2976,7 @@ window.playLimbo=async()=>{
   if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}
   if(v>200000){toast('⚠️ Max ৳200,000',true);return;}
   if(target<1.01){toast('⚠️ Min target 1.01×',true);return;}
-  if(getBalForGame('limbo')<v){toast('❌ Balance কম!',true);if(!window._limboDemoActive)setTimeout(()=>openBinanceDepositModal(),800);return;}
+  if(getBalForGame('limbo')<v){toast('❌ Balance কম!',true);if(!window._limboDemoActive)setTimeout(()=>openDepositModal(),800);return;}
   setBalForGame('limbo',getBalForGame('limbo')-v);
   limboPlaying=true;document.getElementById('limboBtn').disabled=true;
   const numEl=document.getElementById('limboNum');
@@ -2817,192 +2995,197 @@ window.playLimbo=async()=>{
 };
 updateLimboInfo();
 
-// HOME LEADERBOARD - 10 Entries (3 Real, 7 Fake)
-const FAKE_LB_NAMES = [
-  'KingRahim 🇧🇩', 'CricketMaster 🇮🇳', 'TigerWin 🇧🇩', 'RoyalSpinner 🇱🇰', 
-  'GoldHunter 🇵🇰', 'NightBowler 🇧🇩', 'AceBatter 🇮🇳', 'SuperOver 🇧🇩',
-  'BoundaryKing 🇧🇩', 'SixMachine 🇮🇳', 'YorkerKing 🇱🇰', 'PowerPlay 🇵🇰',
-  'DeathOver 🇧🇩', 'CenturyMaker 🇮🇳', 'StumpKing 🇧🇩'
-];
-
-async function loadHomeLb() {
-  if (!window._db || !window._ref || !window._get) {
-    renderFakeLb();
+// HOME LEADERBOARD - 3 REAL (TOP PROFIT) + 7 FAKE
+async function loadHomeLb(){
+  if(!window._db||!window._ref||!window._get){
+    renderHomeLbWithFake([]);
     return;
   }
   
-  try {
-    // Get real users with highest profit
-    const usersSnap = await window._get(window._ref(window._db, 'users'));
-    let realEntries = [];
-    if (usersSnap.exists()) {
+  try{
+    // Get real users by profit
+    const usersSnap = await window._get(window._ref(window._db,'users'));
+    const realEntries = [];
+    let realProfitData = [];
+    
+    if(usersSnap.exists()){
       const users = usersSnap.val();
-      realEntries = Object.entries(users)
-        .map(([uid, u]) => ({
-          id: 'user_' + uid,
+      realProfitData = Object.entries(users)
+        .filter(([_,u]) => (u.totalProfit || 0) > 0)
+        .map(([uid,u]) => ({
+          id: 'user_'+uid,
           name: u.name || 'Player',
-          country: '🇧🇩',
-          amount: (u.totalProfit || 0) + (u.balance || 0),
+          country: '🇧🇩 Bangladesh',
+          amount: u.totalProfit || 0,
           isReal: true
         }))
-        .filter(e => e.amount > 5000)
-        .sort((a, b) => b.amount - a.amount)
+        .sort((a,b) => b.amount - a.amount)
         .slice(0, 3);
     }
     
-    // Get fake entries from admin
-    const fakeSnap = await window._get(window._ref(window._db, 'fakeLeaderboard'));
+    // Get fake entries from leaderboard
+    const fakeSnap = await window._get(window._ref(window._db,'leaderboard'));
     let fakeEntries = [];
-    if (fakeSnap.exists()) {
+    
+    if(fakeSnap.exists()){
       fakeEntries = Object.entries(fakeSnap.val())
-        .map(([id, v]) => ({ id, ...v, isReal: false }))
-        .sort((a, b) => b.amount - a.amount)
+        .map(([id,v]) => ({id, ...v, isReal: false}))
+        .sort((a,b) => b.amount - a.amount)
         .slice(0, 7);
+    } else {
+      // Default fake entries
+      const DEFAULT_FAKE = [
+        {name:'DragonKing', country:'🇨🇳 China', amount:95000},
+        {name:'GoldMaster', country:'🇦🇪 UAE', amount:82000},
+        {name:'LuckyStar', country:'🇲🇾 Malaysia', amount:68000},
+        {name:'CryptoWhale', country:'🇸🇬 Singapore', amount:54000},
+        {name:'BetWinner', country:'🇵🇰 Pakistan', amount:41000},
+        {name:'RoyalFlush', country:'🇱🇰 Sri Lanka', amount:32000},
+        {name:'NightOwl', country:'🇳🇵 Nepal', amount:25000}
+      ];
+      fakeEntries = DEFAULT_FAKE.map((e,i) => ({id:'fake_'+i, ...e, isReal: false}));
     }
     
-    // Combine: 3 real + 7 fake
-    const combined = [...realEntries, ...fakeEntries].sort((a, b) => b.amount - a.amount);
-    renderHomeLb(combined.slice(0, 10));
+    // Combine and sort
+    const combined = [...realProfitData, ...fakeEntries].sort((a,b) => b.amount - a.amount);
     
-  } catch (e) {
-    renderFakeLb();
+    // Auto rotate fake entries every 24 hours
+    const lastRotate = localStorage.getItem('lbRotateTime');
+    const now = Date.now();
+    
+    if (!lastRotate || now - parseInt(lastRotate) > 24*60*60*1000) {
+      // Rotate fake entries
+      const rotatedFake = fakeEntries.map(e => ({
+        ...e,
+        name: generateRandomName(),
+        amount: Math.floor(20000 + Math.random() * 80000)
+      }));
+      
+      // Save to Firebase
+      for (const e of rotatedFake) {
+        if (e.id.startsWith('fake_')) {
+          await window._set(window._ref(window._db,'leaderboard/'+e.id), {
+            name: e.name,
+            country: e.country,
+            amount: e.amount
+          });
+        }
+      }
+      
+      localStorage.setItem('lbRotateTime', now.toString());
+    }
+    
+    renderHomeLbWithFake(combined);
+    
+  } catch(e){
+    console.error('Leaderboard error:', e);
+    renderHomeLbWithFake([]);
   }
 }
 
-function renderFakeLb() {
-  const entries = [];
-  for (let i = 0; i < 10; i++) {
-    entries.push({
-      name: FAKE_LB_NAMES[i % FAKE_LB_NAMES.length] + ' ' + (Math.floor(Math.random()*900)+100),
-      country: i % 2 === 0 ? '🇧🇩 Bangladesh' : '🇮🇳 India',
-      amount: 50000 + Math.floor(Math.random() * 450000),
-      isReal: false
-    });
-  }
-  renderHomeLb(entries);
+function generateRandomName() {
+  const prefixes = ['Crypto','Dragon','Golden','Silver','Royal','Night','Storm','Phoenix','Thunder','Shadow'];
+  const suffixes = ['King','Master','Lord','Hunter','Rider','Wolf','Eagle','Tiger','Lion','Shark'];
+  const nums = ['','','','','','','','','','','','', '88', '99', '777', '000', 'X', 'Pro'];
+  return prefixes[Math.floor(Math.random()*prefixes.length)] + 
+         suffixes[Math.floor(Math.random()*suffixes.length)] +
+         nums[Math.floor(Math.random()*nums.length)];
 }
 
-function renderHomeLb(entries) {
-  const medals = ['🥇', '🥈', '🥉'];
-  const rankClass = ['hlb-rank-1', 'hlb-rank-2', 'hlb-rank-3'];
-  const colors = ['#f0d060', '#c0c0c0', '#cd7f32'];
+function renderHomeLbWithFake(entries){
+  const medals=['🥇','🥈','🥉'];
+  const rankClass=['hlb-rank-1','hlb-rank-2','hlb-rank-3'];
+  const colors=['#f0d060','#c0c0c0','#cd7f32'];
   
-  document.getElementById('homeLbList').innerHTML = entries.map((e, i) => {
-    const isTop = i < 3;
-    const rankEl = isTop
-      ? `<div class="hlb-rank-badge ${rankClass[i]}" style="color:#000">${medals[i]}</div>`
-      : `<div class="hlb-rank-badge hlb-rank-other">#${i + 1}</div>`;
-    
-    const country = e.country || (Math.random() > 0.5 ? '🇧🇩 Bangladesh' : '🇮🇳 India');
-    const name = e.isReal ? '👑 ' + e.name : e.name;
-    
-    return `<div class="hlb-row ${e.isReal ? 'real-user' : ''}">
+  const displayEntries = entries.slice(0, 10);
+  
+  document.getElementById('homeLbList').innerHTML=displayEntries.map((e,i)=>{
+    const isTop=i<3;
+    const isReal = e.isReal ? '<span style="color:#2ecc71;font-size:8px;margin-left:4px;">⚡</span>' : '';
+    const rankEl=isTop
+      ?`<div class="hlb-rank-badge ${rankClass[i]}" style="color:#000">${medals[i]}</div>`
+      :`<div class="hlb-rank-badge hlb-rank-other">#${i+1}</div>`;
+    return`<div class="hlb-row">
       ${rankEl}
       <div class="hlb-info">
-        <div class="hlb-name" style="${isTop ? 'color:' + colors[i] : ''}">${name}</div>
-        <div class="hlb-country">${country}</div>
+        <div class="hlb-name" style="${isTop?'color:'+colors[i]:''}">${e.name} ${isReal}</div>
+        <div class="hlb-country">${e.country}</div>
       </div>
       <div style="text-align:right">
         <div class="hlb-amt">৳${Number(e.amount).toLocaleString('en')}</div>
-        ${isTop ? `<div class="hlb-crown">${i === 0 ? '👑 Champion' : i === 1 ? '⭐ Runner-up' : '🏅 3rd Place'}</div>` : ''}
+        ${isTop?`<div class="hlb-crown">${i===0?'👑 Champion':i===1?'⭐ Runner-up':'🏅 3rd Place'}</div>`:''}
       </div>
     </div>`;
   }).join('');
-  
-  // Add real-user highlight style
-  const style = document.createElement('style');
-  style.textContent = '.real-user .hlb-name { border-left: 2px solid #2ecc71; padding-left: 8px; }';
-  document.head.appendChild(style);
 }
 
-// Auto-update leaderboard every 24 hours
-function startLbUpdateTimer() {
-  if (window._lbUpdateTimer) clearInterval(window._lbUpdateTimer);
-  window._lbUpdateTimer = setInterval(() => {
-    loadHomeLb();
-    const timerEl = document.getElementById('lbUpdateTimer');
-    if (timerEl) timerEl.textContent = 'Updated';
-    setTimeout(() => { if (timerEl) timerEl.textContent = '24h'; }, 3000);
-  }, 24 * 60 * 60 * 1000);
-}
-startLbUpdateTimer();
-
-// ADMIN LEADERBOARD - Manage 7 fake entries
-window.loadAdminLeaderboard = async () => {
-  if (!window._db) return;
-  
-  const snap = await window._get(window._ref(window._db, 'fakeLeaderboard'));
-  let entries = [];
-  
-  if (snap.exists()) {
-    entries = Object.entries(snap.val()).map(([id, v]) => ({ id, ...v })).sort((a, b) => b.amount - a.amount);
+// ADMIN LEADERBOARD
+window.loadAdminLeaderboard=async()=>{
+  if(!window._db) return;
+  const snap=await window._get(window._ref(window._db,'leaderboard'));
+  let entries=[];
+  if(snap.exists()){
+    entries=Object.entries(snap.val()).map(([id,v])=>({id,...v})).sort((a,b)=>b.amount-a.amount);
   } else {
-    // Create default fake entries
-    for (let i = 0; i < 7; i++) {
-      const id = 'fake_' + i + '_' + Date.now();
-      await window._set(window._ref(window._db, 'fakeLeaderboard/' + id), {
-        name: FAKE_LB_NAMES[i % FAKE_LB_NAMES.length],
-        country: i % 2 === 0 ? '🇧🇩 Bangladesh' : '🇮🇳 India',
-        amount: 50000 + Math.floor(Math.random() * 450000)
-      });
+    const DEFAULT_FAKE = [
+      {name:'DragonKing', country:'🇨🇳 China', amount:95000},
+      {name:'GoldMaster', country:'🇦🇪 UAE', amount:82000},
+      {name:'LuckyStar', country:'🇲🇾 Malaysia', amount:68000},
+      {name:'CryptoWhale', country:'🇸🇬 Singapore', amount:54000},
+      {name:'BetWinner', country:'🇵🇰 Pakistan', amount:41000},
+      {name:'RoyalFlush', country:'🇱🇰 Sri Lanka', amount:32000},
+      {name:'NightOwl', country:'🇳🇵 Nepal', amount:25000}
+    ];
+    for(let i=0; i<DEFAULT_FAKE.length; i++){
+      const id='fake_'+i;
+      await window._set(window._ref(window._db,'leaderboard/'+id), DEFAULT_FAKE[i]);
+      entries.push({id, ...DEFAULT_FAKE[i]});
     }
-    entries = FAKE_LB_NAMES.slice(0,7).map((n,i) => ({
-      id: 'fake_' + i,
-      name: n,
-      country: i % 2 === 0 ? '🇧🇩 Bangladesh' : '🇮🇳 India',
-      amount: 50000 + Math.floor(Math.random() * 450000)
-    }));
   }
-  
   renderAdminLb(entries);
 };
 
-function renderAdminLb(entries) {
-  document.getElementById('adminLbList').innerHTML = entries.map((e, i) => `
-    <div class="alb-row">
-      <div class="alb-rank-lbl">${i + 1}. FAKE ENTRY</div>
+function renderAdminLb(entries){
+  const medals=['🥇','🥈','🥉'];
+  document.getElementById('adminLbList').innerHTML=entries.map((e,i)=>`
+    <div class="alb-row" id="alb-${e.id}">
+      <div class="alb-rank-lbl">${i<3?medals[i]:('#'+(i+1)+' PLACE')} — RANK ${i+1}</div>
       <input class="alb-inp-full" id="albn-${e.id}" value="${e.name}" placeholder="Name"/>
       <div class="alb-fields">
-        <input class="alb-inp" id="albc-${e.id}" value="${e.country}" placeholder="Country"/>
+        <input class="alb-inp" id="albc-${e.id}" value="${e.country}" placeholder="🇧🇩 Country"/>
         <input class="alb-inp" id="alba-${e.id}" value="${e.amount}" type="number" placeholder="Amount"/>
       </div>
       <div class="alb-actions">
-        <button class="alb-save" onclick="saveFakeLbEntry('${e.id}')">💾 SAVE</button>
-        <button class="alb-delete" onclick="deleteFakeLbEntry('${e.id}')">🗑</button>
+        <button class="alb-save" onclick="saveLbEntry('${e.id}')">💾 SAVE</button>
+        <button class="alb-delete" onclick="deleteLbEntry('${e.id}')">🗑</button>
       </div>
     </div>
   `).join('');
 }
 
-window.saveFakeLbEntry = async (id) => {
-  const name = document.getElementById('albn-' + id)?.value?.trim();
-  const country = document.getElementById('albc-' + id)?.value?.trim();
-  const amount = parseFloat(document.getElementById('alba-' + id)?.value) || 0;
-  
-  if (!name) { toast('⚠️ Name দিন', true); return; }
-  
-  await window._set(window._ref(window._db, 'fakeLeaderboard/' + id), { name, country, amount });
-  toast('✅ Fake entry saved!', false);
+window.saveLbEntry=async(id)=>{
+  const name=document.getElementById('albn-'+id)?.value?.trim();
+  const country=document.getElementById('albc-'+id)?.value?.trim();
+  const amount=parseFloat(document.getElementById('alba-'+id)?.value)||0;
+  if(!name){toast('⚠️ Name দিন',true);return;}
+  await window._set(window._ref(window._db,'leaderboard/'+id),{name,country,amount});
+  toast('✅ Leaderboard updated!',false);
   loadAdminLeaderboard();
   loadHomeLb();
 };
 
-window.deleteFakeLbEntry = async (id) => {
-  if (!confirm('Delete this fake entry?')) return;
-  await window._set(window._ref(window._db, 'fakeLeaderboard/' + id), null);
-  toast('🗑 Deleted', false);
+window.deleteLbEntry=async(id)=>{
+  if(!confirm('Delete this entry?'))return;
+  await window._set(window._ref(window._db,'leaderboard/'+id),null);
+  toast('🗑 Deleted',false);
   loadAdminLeaderboard();
   loadHomeLb();
 };
 
-window.addLbEntry = async () => {
-  const id = 'fake_' + Date.now();
-  await window._set(window._ref(window._db, 'fakeLeaderboard/' + id), {
-    name: 'New Player',
-    country: '🇧🇩 Bangladesh',
-    amount: 100000
-  });
-  toast('✅ New fake entry added!', false);
+window.addLbEntry=async()=>{
+  const id='fake_'+Date.now();
+  await window._set(window._ref(window._db,'leaderboard/'+id),{name:'New Player',country:'🇧🇩 Bangladesh',amount:0});
+  toast('✅ New fake entry added!',false);
   loadAdminLeaderboard();
   loadHomeLb();
 };
@@ -3012,7 +3195,11 @@ updateBals();
 avStartRound();
 initCricketMatch();
 loadHomeLb();
-loadInboxMessages();
+
+// Auto-rotate leaderboard every 24 hours
+setInterval(() => {
+  loadHomeLb();
+}, 24*60*60*1000);
 
 // =================== BET HISTORY DISPLAY FIX ===================
 document.addEventListener('DOMContentLoaded', function() {
@@ -3047,4 +3234,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
