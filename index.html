@@ -62,7 +62,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .ai-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:8px 12px;color:#fff;font-family:'Lato',sans-serif;font-size:12px;outline:none;}
 .ai-send{width:36px;height:36px;background:linear-gradient(135deg,#8a6a1f,#c9a84c);border:none;border-radius:50%;color:#0d0500;font-size:16px;cursor:pointer;margin-left:8px;display:flex;align-items:center;justify-content:center;}
 
-/* HOME LEADERBOARD */
+/* HOME LEADERBOARD - Updated Style */
 .hlb-row{display:flex;align-items:center;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);gap:10px;}
 .hlb-row:last-child{border-bottom:none;}
 .hlb-rank-badge{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;font-family:'Cinzel',serif;flex-shrink:0;}
@@ -86,6 +86,31 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .alb-save{flex:1;padding:7px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:6px;color:#2ecc71;font-family:'Cinzel',serif;font-size:9px;cursor:pointer;letter-spacing:1px;}
 .alb-delete{padding:7px 10px;background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.3);border-radius:6px;color:#e74c3c;font-family:'Cinzel',serif;font-size:9px;cursor:pointer;}
 .alb-rank-lbl{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,100,100,0.6);letter-spacing:2px;margin-bottom:2px;}
+
+/* Transaction History Styles */
+.tx-card{margin:0 16px 14px;background:linear-gradient(160deg,#0f0a02,#1a1200);border:1px solid rgba(201,168,76,0.15);border-radius:14px;overflow:hidden;}
+.tx-header{background:rgba(201,168,76,0.08);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,0.12);}
+.tx-header-left{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(201,168,76,0.7);display:flex;align-items:center;gap:8px;}
+.tx-header-left span{font-size:14px;}
+.tx-header-right{font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.4);}
+.tx-tabs{display:flex;border-bottom:1px solid rgba(201,168,76,0.1);}
+.tx-tab{flex:1;padding:10px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-align:center;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all 0.2s;}
+.tx-tab.active{color:#f0d060;border-bottom-color:#f0d060;}
+.tx-list{max-height:250px;overflow-y:auto;padding:0;}
+.tx-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.tx-item:last-child{border-bottom:none;}
+.tx-icon{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.tx-info{flex:1;}
+.tx-title{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:rgba(255,255,255,0.8);}
+.tx-detail{font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;display:flex;gap:8px;}
+.tx-amount{font-family:'Cinzel',serif;font-size:14px;font-weight:900;text-align:right;}
+.tx-amount.deposit{color:#2ecc71;}
+.tx-amount.withdraw{color:#e74c3c;}
+.tx-status{font-size:8px;letter-spacing:1px;margin-top:2px;text-align:right;}
+.tx-status.pending{color:#ffa500;}
+.tx-status.completed{color:#2ecc71;}
+.tx-status.rejected{color:#e74c3c;}
+.tx-empty{padding:30px 20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.2);}
 
 .page{position:fixed;inset:0;z-index:10;display:flex;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;overflow-y:auto;padding-bottom:68px;}
 .page.active{opacity:1;pointer-events:all;}
@@ -263,7 +288,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .cricket-live-badge{color:#ffd700;font-weight:700;display:flex;align-items:center;gap:4px;}
 .cricket-live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#00ff00;animation:blink 1s infinite;}
 
-/* LEADERBOARD SECTION */
+/* LEADERBOARD SECTION - Updated ID */
 #homeLbCard{background:linear-gradient(160deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(201,168,76,0.3);border-radius:14px;overflow:hidden}
 
 /* SUPPORT */
@@ -821,6 +846,22 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div class="reward-days" id="rewardDays"></div>
     </div>
     
+    <!-- NEW: Transaction History Card -->
+    <div class="tx-card" id="transactionHistoryCard">
+      <div class="tx-header">
+        <div class="tx-header-left"><span>📋</span> TRANSACTION HISTORY</div>
+        <div class="tx-header-right" id="txUpdateTime">Just now</div>
+      </div>
+      <div class="tx-tabs">
+        <button class="tx-tab active" id="txTabAll" onclick="switchTxTab('all')">ALL</button>
+        <button class="tx-tab" id="txTabDeposit" onclick="switchTxTab('deposit')">DEPOSITS</button>
+        <button class="tx-tab" id="txTabWithdraw" onclick="switchTxTab('withdraw')">WITHDRAWALS</button>
+      </div>
+      <div class="tx-list" id="txList">
+        <div class="tx-empty">No transactions yet</div>
+      </div>
+    </div>
+    
     <!-- NEW: LIVE CRICKET BETTING SECTION -->
     <div class="live-cricket-card" id="cricketLiveCard">
       <div class="cricket-header">
@@ -894,13 +935,13 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ff3366">∞×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
       </div>
     </div>
-    <!-- LEADERBOARD SECTION -->
+    <!-- LEADERBOARD SECTION - Admin Controlled -->
     <div class="sec-title">🏆 Top Winners</div>
     <div style="margin:0 16px 14px">
       <div id="homeLbCard" style="background:linear-gradient(160deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(201,168,76,0.3);border-radius:14px;overflow:hidden">
         <div style="background:rgba(201,168,76,0.08);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,0.12)">
           <span style="font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(201,168,76,0.7)">🏆 ALL TIME LEADERBOARD</span>
-          <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.4);letter-spacing:1px">LIVE</span>
+          <span style="font-family:'Cinzel',serif;font-size:9px;color:rgba(201,168,76,0.4);letter-spacing:1px">ADMIN MANAGED</span>
         </div>
         <div id="homeLbList"></div>
       </div>
@@ -1035,7 +1076,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       </div>
     </div>
     
-    <!-- Leaderboard Tab -->
+    <!-- Leaderboard Tab - Admin Controlled -->
     <div class="admin-tab-content" id="atab-leaderboard">
       <div class="admin-section" style="margin-top:14px">
         <div class="admin-sec-title">🏆 LEADERBOARD MANAGEMENT</div>
@@ -1784,12 +1825,13 @@ onAuthStateChanged(auth,async user=>{
     const userRef=ref(db,'users/'+user.uid);
     const snap=await get(userRef);
     if(!snap.exists()){const today=new Date().toDateString();await set(userRef,{name:user.displayName||'Player',email:user.email||'',balance:0,photoURL:user.photoURL||'',createdAt:Date.now(),totalBets:0,totalProfit:0,dailyStreak:0,lastClaimedDay:0,lastClaimDate:''});}
-    onValue(ref(db,'users/'+user.uid),snap=>{const d=snap.val()||{};window._realBal=d.balance||0;window._userProfile=d;updateBals();updateProfileUI(d);loadBetHistory();});
+    onValue(ref(db,'users/'+user.uid),snap=>{const d=snap.val()||{};window._realBal=d.balance||0;window._userProfile=d;updateBals();updateProfileUI(d);loadBetHistory();loadTransactionHistory();});
     document.getElementById('piJoin').textContent=user.metadata.creationTime?new Date(user.metadata.creationTime).toLocaleDateString('en'):'—';
     showPage('homePage');document.getElementById('bottomNav').style.display='flex';navTo('home');renderRewardDays();
     
     await loadBetHistory();
     await loadHomeLb(); // Load leaderboard on login
+    await loadTransactionHistory(); // Load transaction history on login
     
   } else {
     window._curUser=null;document.getElementById('bottomNav').style.display='none';showPage('loginPage');
@@ -1844,6 +1886,107 @@ window.loadBetHistory=async()=>{
   document.getElementById('hsTotalLoss').textContent='৳'+totalLoss.toLocaleString('en');
 };
 
+// TRANSACTION HISTORY (Deposits & Withdrawals)
+let currentTxTab = 'all';
+window.loadTransactionHistory = async () => {
+  if (!window._curUser) return;
+  
+  const depositsSnap = await get(ref(db, 'depositRequests'));
+  const withdrawalsSnap = await get(ref(db, 'withdrawalRequests'));
+  
+  let allTxs = [];
+  
+  if (depositsSnap.exists()) {
+    const deposits = Object.entries(depositsSnap.val())
+      .filter(([_, d]) => d.userId === window._curUser.uid)
+      .map(([id, d]) => ({
+        id,
+        type: 'deposit',
+        method: 'Binance',
+        amount: d.amount * 120, // Convert to BDT
+        status: d.status || 'pending',
+        time: d.time || Date.now(),
+        detail: `${d.amount} USDT ~ ৳${(d.amount * 120).toLocaleString('en')}`
+      }));
+    allTxs = [...allTxs, ...deposits];
+  }
+  
+  if (withdrawalsSnap.exists()) {
+    const withdrawals = Object.entries(withdrawalsSnap.val())
+      .filter(([_, w]) => w.userId === window._curUser.uid)
+      .map(([id, w]) => ({
+        id,
+        type: 'withdraw',
+        method: w.method || 'Unknown',
+        amount: w.amount || 0,
+        status: w.status || 'pending',
+        time: w.time || Date.now(),
+        detail: `${w.account}`
+      }));
+    allTxs = [...allTxs, ...withdrawals];
+  }
+  
+  allTxs.sort((a, b) => b.time - a.time);
+  
+  renderTransactionHistory(allTxs);
+  
+  // Update time
+  document.getElementById('txUpdateTime').textContent = new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'});
+};
+
+function renderTransactionHistory(txs) {
+  const list = document.getElementById('txList');
+  const filtered = currentTxTab === 'all' ? txs : txs.filter(t => t.type === currentTxTab);
+  
+  if (filtered.length === 0) {
+    list.innerHTML = `<div class="tx-empty">No ${currentTxTab === 'all' ? '' : currentTxTab} transactions yet</div>`;
+    return;
+  }
+  
+  const statusIcons = {
+    pending: '⏳',
+    completed: '✅',
+    rejected: '❌'
+  };
+  
+  const statusColors = {
+    pending: '#ffa500',
+    completed: '#2ecc71',
+    rejected: '#e74c3c'
+  };
+  
+  list.innerHTML = filtered.map(t => `
+    <div class="tx-item">
+      <div class="tx-icon" style="background:${t.type === 'deposit' ? 'rgba(46,204,113,0.1)' : 'rgba(231,76,60,0.1)'}">
+        ${t.type === 'deposit' ? '💰' : '💸'}
+      </div>
+      <div class="tx-info">
+        <div class="tx-title">${t.type === 'deposit' ? 'Deposit' : 'Withdrawal'} via ${t.method}</div>
+        <div class="tx-detail">
+          <span>${new Date(t.time).toLocaleDateString('en')}</span>
+          <span>${t.detail}</span>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div class="tx-amount ${t.type === 'deposit' ? 'deposit' : 'withdraw'}">
+          ${t.type === 'deposit' ? '+' : '-'}৳${t.amount.toLocaleString('en')}
+        </div>
+        <div class="tx-status ${t.status}" style="color:${statusColors[t.status] || '#ffa500'}">
+          ${statusIcons[t.status] || '⏳'} ${t.status.toUpperCase()}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+window.switchTxTab = (tab) => {
+  currentTxTab = tab;
+  document.getElementById('txTabAll').classList.toggle('active', tab === 'all');
+  document.getElementById('txTabDeposit').classList.toggle('active', tab === 'deposit');
+  document.getElementById('txTabWithdraw').classList.toggle('active', tab === 'withdraw');
+  loadTransactionHistory();
+};
+
 // WITHDRAWAL SYSTEM
 window.submitWithdraw = async (method) => {
   if (!window._curUser) return;
@@ -1893,6 +2036,9 @@ window.submitWithdraw = async (method) => {
   
   toast('✅ আপনার উইথড্রয়াল অনুরোধ পাঠানো হয়েছে! অ্যাডমিন যাচাই করবে।', false);
   closeModal('withdraw');
+  
+  // Refresh transaction history
+  setTimeout(() => loadTransactionHistory(), 500);
 };
 
 window.acceptWithdrawal = async (wdId, userId, amount) => {
@@ -1911,6 +2057,9 @@ window.acceptWithdrawal = async (wdId, userId, amount) => {
     toast('✅ উইথড্রয়াল অনুমোদিত! ব্যালেন্স কেটে নেওয়া হয়েছে।', false);
     loadWithdrawalRequests();
     loadHomeLb();
+    if (userId === window._curUser?.uid) {
+      loadTransactionHistory();
+    }
   }
 };
 
@@ -1920,6 +2069,9 @@ window.rejectWithdrawal = async (wdId, userId) => {
   await update(ref(db, 'withdrawals/' + userId + '/' + wdId), { status: 'rejected' });
   toast('❌ উইথড্রয়াল বাতিল করা হয়েছে।', true);
   loadWithdrawalRequests();
+  if (userId === window._curUser?.uid) {
+    loadTransactionHistory();
+  }
 };
 
 // DEPOSIT SCREENSHOT SYSTEM
@@ -1988,6 +2140,9 @@ window.submitDepositWithSS = async () => {
     toast('✅ আপনার স্ক্রিনশট যাচাই করা হচ্ছে, ২–৫ মিনিটের মধ্যে ব্যালেন্স যোগ হবে।', false);
     closeDepositSSModal();
     
+    // Refresh transaction history
+    setTimeout(() => loadTransactionHistory(), 500);
+    
     setTimeout(() => {
       toast('⏳ আপনার স্ক্রিনশট আসল নাকি নকল যাচাই করা হচ্ছে। ২–৫ মিনিটের মধ্যে আপনার ব্যালেন্স যোগ করা হবে।', false);
     }, 1000);
@@ -2034,6 +2189,10 @@ window.approveDepositSS = async () => {
   closeAdminSSView();
   loadDepositRequests();
   loadHomeLb();
+  
+  if (userId === window._curUser?.uid) {
+    loadTransactionHistory();
+  }
 };
 
 window.rejectDepositSS = async () => {
@@ -2045,6 +2204,10 @@ window.rejectDepositSS = async () => {
   toast('❌ ডিপোজিট বাতিল করা হয়েছে।', true);
   closeAdminSSView();
   loadDepositRequests();
+  
+  if (window._currentSSUserId === window._curUser?.uid) {
+    loadTransactionHistory();
+  }
 };
 
 // ADMIN FUNCTIONS
@@ -2300,6 +2463,8 @@ window.sendAIMessage = () => {
         response = 'আমি Royal Bet AI! যেকোনো প্রশ্ন করুন: ব্যালেন্স, ডিপোজিট, উইথড্রয়াল, গেমের নিয়ম ইত্যাদি।';
       } else if (lowerMsg.includes('bonus') || lowerMsg.includes('বোনাস')) {
         response = 'Daily Reward claim করুন! প্রতিদিন ৳500 থেকে ৳3000 পর্যন্ত বোনাস পান।';
+      } else if (lowerMsg.includes('history') || lowerMsg.includes('হিস্ট্রি')) {
+        response = 'আপনার বেট হিস্ট্রি এবং ট্রানজেকশন হিস্ট্রি দেখতে Profile অথবা Home পেজের Transaction History সেকশন দেখুন।';
       } else {
         response = `"${msg}" — আপনার প্রশ্নের উত্তর দিচ্ছি: Royal Bet-এ স্বাগতম! আরও জানতে আমাদের Support-এ যোগাযোগ করুন।`;
       }
@@ -2577,7 +2742,7 @@ window.navTo=tab=>{
   document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
   const el=document.getElementById('bn-'+tab);
   if(el)el.classList.add('active');
-  if(tab==='home'){showPage('homePage');loadHomeLb();}
+  if(tab==='home'){showPage('homePage');loadHomeLb();loadTransactionHistory();}
   else if(tab==='profile')showPage('profilePage');
   else if(tab==='history'){showPage('historyPage');window.loadBetHistory&&loadBetHistory();}
 };
@@ -2899,7 +3064,7 @@ window.playLimbo=async()=>{
 };
 updateLimboInfo();
 
-// HOME LEADERBOARD - SYNCED WITH ADMIN
+// HOME LEADERBOARD - SYNCED WITH ADMIN (ONLY FROM ADMIN PANEL)
 const DEFAULT_LB = [
   {id:'lb1', name:'RahimBetKing', country:'🇧🇩 Bangladesh', amount:485000},
   {id:'lb2', name:'Sumon_Royal', country:'🇧🇩 Bangladesh', amount:362000},
@@ -2931,28 +3096,7 @@ async function loadHomeLb(){
     }
   } catch(e){renderHomeLb(DEFAULT_LB);}
   
-  // Also load real users with high balance
-  try{
-    const usersSnap = await window._get(window._ref(window._db,'users'));
-    if(usersSnap.exists()){
-      const users = usersSnap.val();
-      const realEntries = Object.entries(users)
-        .filter(([_,u]) => u.balance > 5000)
-        .map(([uid,u]) => ({
-          id: 'user_'+uid,
-          name: u.name || 'Player',
-          country: '🇧🇩 Bangladesh',
-          amount: u.balance || 0
-        }))
-        .sort((a,b) => b.amount - a.amount)
-        .slice(0,5);
-      
-      if(realEntries.length > 0){
-        const combined = [...realEntries, ...DEFAULT_LB.slice(0,3)].sort((a,b) => b.amount - a.amount);
-        renderHomeLb(combined.slice(0,8));
-      }
-    }
-  } catch(e){}
+  // REMOVED: Auto-loading real users with high balance - now only admin controlled
 }
 
 function renderHomeLb(entries){
@@ -3044,6 +3188,7 @@ updateBals();
 avStartRound();
 initCricketMatch();
 loadHomeLb();
+loadTransactionHistory(); // Load transaction history on page load
 
 // =================== BET HISTORY DISPLAY FIX ===================
 document.addEventListener('DOMContentLoaded', function() {
