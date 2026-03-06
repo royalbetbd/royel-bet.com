@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Royal Bet ✈</title>
+<title>Royal Bet ✈ | Premium Casino</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@300;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -37,6 +37,30 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 @keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
 @keyframes winPop{0%{transform:scale(0.5);opacity:0}60%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
 @keyframes dotMenuSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes aiThinking{0%,100%{opacity:0.3}50%{opacity:1}}
+@keyframes quantum{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.2)}100%{transform:rotate(360deg) scale(1)}}
+
+/* AI ASSISTANT */
+.ai-assistant{position:fixed;bottom:80px;right:16px;z-index:999;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#8a6a1f,#c9a84c);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 20px rgba(201,168,76,0.5);animation:quantum 3s infinite;transition:all 0.3s;}
+.ai-assistant:hover{transform:scale(1.1);}
+.ai-icon{font-size:28px;color:#0d0500;}
+.ai-chat{position:fixed;bottom:150px;right:16px;width:300px;background:linear-gradient(160deg,#1c0e02,#0a0500);border:2px solid rgba(201,168,76,0.3);border-radius:16px;overflow:hidden;display:none;z-index:1000;box-shadow:0 10px 40px rgba(0,0,0,0.8);}
+.ai-chat.open{display:block;}
+.ai-header{background:linear-gradient(135deg,#8a6a1f,#c9a84c);padding:12px 16px;display:flex;align-items:center;gap:8px;}
+.ai-avatar{width:32px;height:32px;border-radius:50%;background:#0d0500;display:flex;align-items:center;justify-content:center;font-size:18px;color:#f0d060;}
+.ai-title{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:#0d0500;flex:1;}
+.ai-close{background:none;border:none;color:#0d0500;font-size:18px;cursor:pointer;}
+.ai-messages{height:250px;overflow-y:auto;padding:12px;background:rgba(0,0,0,0.3);}
+.ai-msg{max-width:85%;padding:8px 12px;border-radius:12px;margin-bottom:8px;font-size:12px;line-height:1.5;animation:fadeUp 0.3s;}
+.ai-msg.bot{background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.2);color:rgba(255,255,255,0.9);border-radius:4px 12px 12px 12px;align-self:flex-start;}
+.ai-msg.user{background:rgba(52,152,219,0.15);border:1px solid rgba(52,152,219,0.2);color:rgba(255,255,255,0.9);border-radius:12px 4px 12px 12px;align-self:flex-end;margin-left:auto;}
+.ai-thinking{display:flex;gap:4px;padding:8px 12px;background:rgba(201,168,76,0.1);border-radius:12px;width:fit-content;margin-bottom:8px;}
+.ai-thinking span{width:6px;height:6px;border-radius:50%;background:#f0d060;animation:aiThinking 1.4s infinite;}
+.ai-thinking span:nth-child(2){animation-delay:0.2s;}
+.ai-thinking span:nth-child(3){animation-delay:0.4s;}
+.ai-input-row{display:flex;padding:8px;border-top:1px solid rgba(201,168,76,0.1);background:rgba(0,0,0,0.5);}
+.ai-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:8px 12px;color:#fff;font-family:'Lato',sans-serif;font-size:12px;outline:none;}
+.ai-send{width:36px;height:36px;background:linear-gradient(135deg,#8a6a1f,#c9a84c);border:none;border-radius:50%;color:#0d0500;font-size:16px;cursor:pointer;margin-left:8px;display:flex;align-items:center;justify-content:center;}
 
 /* HOME LEADERBOARD */
 .hlb-row{display:flex;align-items:center;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);gap:10px;}
@@ -66,26 +90,19 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .page{position:fixed;inset:0;z-index:10;display:flex;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;overflow-y:auto;padding-bottom:68px;}
 .page.active{opacity:1;pointer-events:all;}
 
-/* LOGIN PAGE - CENTERED */
-#loginPage{align-items:center;padding-bottom:0;}
-
-/* LOGIN TABS */
-.login-tabs{display:flex;margin-bottom:20px;border-bottom:1px solid rgba(201,168,76,0.2);}
-.login-tab{flex:1;padding:12px;background:none;border:none;color:rgba(201,168,76,0.5);font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;cursor:pointer;transition:all 0.2s;}
-.login-tab.active{color:var(--gl);border-bottom:2px solid var(--gl);}
-.login-form{display:none;}
-.login-form.active{display:block;}
-
-/* LOGIN */
-.login-card{width:92%;max-width:400px;background:linear-gradient(160deg,#1c0e02,#120900,#0a0500);border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #8a6a1f,0 0 0 3px #c9a84c,0 0 0 4px #8a6a1f,0 30px 80px rgba(0,0,0,0.8);animation:cardIn 0.7s cubic-bezier(.16,1,.3,1) both;}
-.card-hdr{background:linear-gradient(135deg,#8a6a1f,#c9a84c,#f0d060,#c9a84c,#8a6a1f);padding:22px 30px 18px;text-align:center;position:relative;overflow:hidden;}
-.card-hdr::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:sheen 4s ease-in-out infinite;}
-.hdr-suits{display:flex;justify-content:center;gap:10px;font-size:1.1rem;margin-bottom:6px;color:rgba(12,6,0,0.6);}
-.logo-title{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:#0d0500;letter-spacing:4px;}
-.logo-sub{font-size:10px;letter-spacing:4px;color:rgba(12,6,0,0.55);text-transform:uppercase;margin-top:2px;font-weight:700;}
-.login-body{padding:28px 32px 24px;}
-.chips-row{display:flex;justify-content:center;gap:8px;margin-bottom:20px;}
-.chip{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;border:2px dashed;font-family:'Cinzel',serif;}
+/* LOGIN PAGE - MODERN UI */
+#loginPage{align-items:center;padding-bottom:0;background:radial-gradient(circle at 30% 30%, #1a5c30, #061509);}
+.login-card{width:92%;max-width:420px;background:rgba(6,21,9,0.8);backdrop-filter:blur(10px);border-radius:24px;overflow:hidden;box-shadow:0 0 0 2px #8a6a1f,0 0 0 4px #c9a84c,0 0 50px rgba(201,168,76,0.3);animation:cardIn 0.7s cubic-bezier(.16,1,.3,1) both;}
+.card-hdr{background:linear-gradient(135deg,#8a6a1f,#c9a84c,#f0d060,#c9a84c,#8a6a1f);padding:28px 30px 22px;text-align:center;position:relative;overflow:hidden;}
+.card-hdr::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:sheen 4s ease-in-out infinite;}
+.hdr-suits{display:flex;justify-content:center;gap:12px;font-size:1.3rem;margin-bottom:8px;color:rgba(12,6,0,0.6);}
+.logo-title{font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:#0d0500;letter-spacing:5px;text-shadow:2px 2px 4px rgba(0,0,0,0.2);}
+.logo-sub{font-size:11px;letter-spacing:5px;color:rgba(12,6,0,0.55);text-transform:uppercase;margin-top:3px;font-weight:700;}
+.login-body{padding:30px 24px;}
+.welcome-text{font-family:'Cinzel',serif;font-size:14px;color:rgba(255,255,255,0.7);text-align:center;margin-bottom:20px;letter-spacing:2px;}
+.chips-row{display:flex;justify-content:center;gap:12px;margin-bottom:25px;}
+.chip{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid;font-family:'Cinzel',serif;transition:all 0.3s;}
+.chip:hover{transform:scale(1.1);}
 .c-r{background:rgba(192,57,43,0.15);border-color:rgba(192,57,43,0.4);color:rgba(192,57,43,0.7);}
 .c-b{background:rgba(52,152,219,0.12);border-color:rgba(52,152,219,0.3);color:rgba(52,152,219,0.6);}
 .c-g{background:rgba(39,174,96,0.12);border-color:rgba(39,174,96,0.3);color:rgba(39,174,96,0.6);}
@@ -93,16 +110,10 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .c-k{background:rgba(0,0,0,0.3);border-color:rgba(201,168,76,0.25);color:rgba(201,168,76,0.5);}
 .st-msg{display:none;font-size:12px;padding:10px 14px;border-radius:6px;margin-bottom:16px;font-weight:700;text-align:center;}
 .st-msg.err{display:block;background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.4);color:#e74c3c;}
-.btn-goog{width:100%;padding:14px 16px;background:linear-gradient(135deg,#1e1008,#2a1a08);border:1px solid #8a6a1f;border-radius:8px;color:var(--gl);font-family:'Lato',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.25s;margin-bottom:10px;}
-.btn-goog:hover{border-color:var(--gl);transform:translateY(-1px);}
+.btn-goog{width:100%;padding:14px 16px;background:linear-gradient(135deg,#1e1008,#2a1a08);border:1px solid #8a6a1f;border-radius:12px;color:var(--gl);font-family:'Lato',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.25s;}
+.btn-goog:hover{border-color:var(--gl);transform:translateY(-2px);box-shadow:0 5px 20px rgba(201,168,76,0.2);}
 .btn-goog svg{width:20px;height:20px;flex-shrink:0;}
-.login-input{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:12px 16px;color:var(--cream);font-family:'Lato',sans-serif;font-size:14px;outline:none;margin-bottom:10px;}
-.login-input:focus{border-color:rgba(201,168,76,0.6);}
-.btn-login{width:100%;padding:12px;background:linear-gradient(135deg,#8a6a1f,#c9a84c);border:none;border-radius:8px;color:#0d0500;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;margin-bottom:10px;}
-.btn-otp{width:100%;padding:12px;background:linear-gradient(135deg,#0a3d20,#155c30);border:none;border-radius:8px;color:#2ecc71;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;margin-bottom:10px;}
-.login-link{text-align:center;margin-top:10px;}
-.login-link a{color:var(--gl);font-size:11px;text-decoration:none;font-family:'Cinzel',serif;}
-.login-foot{border-top:1px solid rgba(201,168,76,0.1);padding:14px 32px;text-align:center;display:flex;justify-content:center;gap:6px;align-items:center;}
+.login-foot{border-top:1px solid rgba(201,168,76,0.1);padding:14px 24px;text-align:center;display:flex;justify-content:center;gap:8px;align-items:center;}
 .login-foot span{font-size:11px;letter-spacing:1px;color:rgba(201,168,76,0.25);font-family:'Cinzel',serif;}
 .login-foot span.hl{color:rgba(201,168,76,0.5);}
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.2);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;}
@@ -353,16 +364,6 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .msg-text{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5;}
 .msg-new-badge{background:rgba(255,100,100,0.2);border:1px solid rgba(255,100,100,0.4);border-radius:10px;padding:2px 8px;font-family:'Cinzel',serif;font-size:8px;color:#ff6b6b;margin-left:8px;}
 
-/* ADMIN GAME CONTROL */
-.game-control-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px;}
-.game-control-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,60,60,0.15);border-radius:10px;padding:14px;}
-.game-control-title{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:#ff6b6b;margin-bottom:10px;display:flex;align-items:center;gap:5px;}
-.game-control-field{margin-bottom:10px;}
-.game-control-field label{display:block;font-size:9px;color:rgba(255,255,255,0.4);margin-bottom:3px;font-family:'Cinzel',serif;}
-.game-control-field input{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(255,60,60,0.3);border-radius:5px;padding:6px 8px;color:#fff;font-size:11px;outline:none;}
-.game-control-field select{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(255,60,60,0.3);border-radius:5px;padding:6px 8px;color:#fff;font-size:11px;outline:none;}
-.game-control-btn{width:100%;padding:8px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:5px;color:#2ecc71;font-size:10px;cursor:pointer;font-family:'Cinzel',serif;margin-top:5px;}
-
 /* DEPOSIT SCREENSHOT MODAL */
 .deposit-ss-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
 .deposit-ss-modal.open{opacity:1;pointer-events:all;}
@@ -472,7 +473,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .bnb-copy{background:rgba(240,185,11,0.15);border:1px solid rgba(240,185,11,0.3);border-radius:5px;padding:3px 8px;color:#f0b90b;font-size:9px;cursor:pointer;font-family:'Cinzel',serif;}
 .bnb-net{background:rgba(240,185,11,0.12);border:1px solid rgba(240,185,11,0.25);border-radius:12px;padding:2px 8px;font-size:9px;color:rgba(240,185,11,0.8);font-family:'Cinzel',serif;margin-right:4px;}
 
-/* SUPPORT CHAT - FIXED */
+/* SUPPORT CHAT */
 .support-modal{position:fixed;inset:0;z-index:150;background:rgba(0,0,0,0.9);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
 .support-modal.open{opacity:1;pointer-events:all;}
 .support-chat{width:100%;max-width:480px;height:85vh;background:linear-gradient(160deg,#020820,#010510);border-radius:16px 16px 0 0;border:1px solid rgba(52,152,219,0.3);border-bottom:none;transform:translateY(100%);transition:transform 0.4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;}
@@ -493,12 +494,12 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .sc-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(52,152,219,0.2);border-radius:24px;padding:10px 16px;color:#fff;font-family:'Lato',sans-serif;font-size:13px;outline:none;}
 .sc-send{width:42px;height:42px;background:linear-gradient(135deg,#1a5c9b,#3498db);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
-/* AVIATOR PAGE - ADJUSTED */
+/* AVIATOR PAGE */
 #aviatorPage{align-items:flex-start;padding:0;}
 .av-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:linear-gradient(180deg,#0d0018,#0a0014);padding-bottom:68px;}
 .av-topbar{background:linear-gradient(135deg,#1a0030,#2d0050,#1a0030);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,100,100,0.2);flex-shrink:0;}
 .av-back{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:7px 12px;color:#fff;font-size:12px;cursor:pointer;font-family:'Cinzel',serif;}
-.av-tb-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#fff;text-shadow:0 0 15px rgba(255,80,80,0.7);}
+.av-tb-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:3px;text-shadow:0 0 15px rgba(255,80,80,0.7);}
 .av-bal-pill{background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:5px 12px;font-family:'Cinzel',serif;font-size:12px;color:var(--gl);font-weight:700;}
 .demo-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:7px 16px;background:rgba(0,0,0,0.3);border-bottom:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;}
 .demo-badge{background:rgba(255,165,0,0.15);border:1px solid rgba(255,165,0,0.4);border-radius:20px;padding:3px 12px;font-family:'Cinzel',serif;font-size:10px;color:#ffa500;font-weight:700;}
@@ -562,7 +563,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .tr-lb-dir.up{color:#2ecc71;font-size:14px;}
 .tr-lb-dir.dn{color:#e74c3c;font-size:14px;}
 
-/* TRADING PAGE - ADJUSTED */
+/* TRADING PAGE */
 #tradingPage{align-items:flex-start;padding:0;}
 .tr-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:#050f08;padding-bottom:68px;}
 .tr-topbar{background:linear-gradient(135deg,#001a0f,#003520);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,255,136,0.15);flex-shrink:0;}
@@ -604,7 +605,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .tr-qb:disabled{opacity:0.25;cursor:not-allowed;}
 .tr-phase-info{text-align:center;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.3);padding-bottom:4px;}
 
-/* DICE PAGE - ADJUSTED */
+/* DICE PAGE */
 #dicePage{align-items:flex-start;padding:0;}
 .dice-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:#0d0020;padding-bottom:68px;}
 .dice-topbar{background:linear-gradient(135deg,#1a0040,#2d0060);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(150,50,255,0.2);flex-shrink:0;}
@@ -639,7 +640,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .btn-roll:hover:not(:disabled){transform:translateY(-2px);}
 .btn-roll:disabled{opacity:0.4;cursor:not-allowed;}
 
-/* MINES PAGE - ADJUSTED */
+/* MINES PAGE */
 #minesPage{align-items:flex-start;padding:0;}
 .mines-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:#100800;padding-bottom:68px;}
 .mines-topbar{background:linear-gradient(135deg,#200800,#3a1500);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,120,0,0.2);flex-shrink:0;}
@@ -674,7 +675,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .btn-mines-cashout{flex:1;padding:12px;background:linear-gradient(135deg,#0e5c2b,#27ae60);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:11px;font-weight:700;cursor:pointer;display:none;animation:cglow 0.9s infinite alternate;}
 .btn-mines-start:disabled,.btn-mines-cashout:disabled{opacity:0.4;cursor:not-allowed;}
 
-/* COIN FLIP PAGE - ADJUSTED */
+/* COIN FLIP PAGE */
 #coinPage{align-items:flex-start;padding:0;}
 .coin-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:#00080f;padding-bottom:68px;}
 .coin-topbar{background:linear-gradient(135deg,#000f20,#002040);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(52,152,219,0.2);flex-shrink:0;}
@@ -705,7 +706,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .btn-coin-flip:hover:not(:disabled){transform:translateY(-2px);}
 .btn-coin-flip:disabled{opacity:0.4;cursor:not-allowed;}
 
-/* LIMBO PAGE - ADJUSTED */
+/* LIMBO PAGE */
 #limboPage{align-items:flex-start;padding:0;}
 .limbo-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:#0d0005;padding-bottom:68px;}
 .limbo-topbar{background:linear-gradient(135deg,#200010,#350020);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,50,100,0.2);flex-shrink:0;}
@@ -734,14 +735,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .btn-limbo{width:100%;padding:12px;background:linear-gradient(135deg,#5c001a,#ff3366);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.3s;}
 .btn-limbo:hover:not(:disabled){transform:translateY(-2px);}
 .btn-limbo:disabled{opacity:0.4;cursor:not-allowed;}
-
-/* AI FEATURE */
-.ai-panel{background:linear-gradient(135deg,#001a33,#002b4a);border:1px solid #3498db;border-radius:12px;padding:12px;margin:12px 16px;}
-.ai-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
-.ai-icon{font-size:24px;}
-.ai-title{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:#3498db;}
-.ai-content{font-size:11px;color:rgba(255,255,255,0.8);line-height:1.5;}
-.ai-badge{background:#3498db;color:#fff;padding:2px 8px;border-radius:12px;font-size:8px;margin-left:auto;}
 
 /* REWARD MODAL */
 .reward-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
@@ -781,47 +774,15 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div class="logo-sub">Play Smart · Win Big</div>
     </div>
     <div class="login-body">
+      <div class="welcome-text">Welcome Back, Champion</div>
       <div class="chips-row">
         <div class="chip c-r">5</div><div class="chip c-b">10</div><div class="chip c-g">25</div><div class="chip c-w">50</div><div class="chip c-k">100</div>
       </div>
-      
-      <!-- Login Tabs -->
-      <div class="login-tabs">
-        <button class="login-tab active" onclick="switchLoginTab('google')">Google</button>
-        <button class="login-tab" onclick="switchLoginTab('email')">Email</button>
-        <button class="login-tab" onclick="switchLoginTab('phone')">Phone</button>
-      </div>
-      
-      <!-- Google Login Form -->
-      <div class="login-form active" id="login-google">
-        <div class="st-msg" id="loginSt"></div>
-        <button class="btn-goog" onclick="loginWithGoogle()" id="gBtn">
-          <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          Sign In with Google
-        </button>
-      </div>
-      
-      <!-- Email/Password Login Form -->
-      <div class="login-form" id="login-email">
-        <input type="email" id="emailInput" class="login-input" placeholder="Email" value="test@example.com">
-        <input type="password" id="passwordInput" class="login-input" placeholder="Password" value="password123">
-        <button class="btn-login" onclick="loginWithEmail()">Login</button>
-        <button class="btn-login" onclick="signupWithEmail()">Sign Up</button>
-        <div class="login-link">
-          <a href="#" onclick="resetPassword()">Forgot Password?</a>
-        </div>
-      </div>
-      
-      <!-- Phone/OTP Login Form -->
-      <div class="login-form" id="login-phone">
-        <div id="recaptcha-container"></div>
-        <input type="tel" id="phoneInput" class="login-input" placeholder="+880 1XXXXXXXXX" value="+8801712345678">
-        <div style="display:flex;gap:10px;margin-bottom:10px;">
-          <input type="text" id="otpInput" class="login-input" placeholder="OTP Code" style="flex:2;">
-          <button class="btn-otp" id="sendOtpBtn" onclick="sendOTP()" style="flex:1;">Send</button>
-        </div>
-        <button class="btn-login" onclick="verifyOTP()">Verify & Login</button>
-      </div>
+      <div class="st-msg" id="loginSt"></div>
+      <button class="btn-goog" onclick="loginWithGoogle()" id="gBtn">
+        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Sign In with Google
+      </button>
     </div>
     <div class="login-foot"><span>♠</span><span class="hl">18+ · Play Responsibly</span><span>♠</span></div>
   </div>
@@ -860,7 +821,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div class="reward-days" id="rewardDays"></div>
     </div>
     
-    <!-- LIVE CRICKET BETTING SECTION -->
+    <!-- NEW: LIVE CRICKET BETTING SECTION -->
     <div class="live-cricket-card" id="cricketLiveCard">
       <div class="cricket-header">
         <div class="cricket-title"><span>🏏</span> LIVE CRICKET</div>
@@ -903,18 +864,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
           <span id="cricketNextEvent">Next Over: 33rd over</span>
           <span id="cricketBetsCount">123 bets</span>
         </div>
-      </div>
-    </div>
-    
-    <!-- AI FEATURE -->
-    <div class="ai-panel" id="aiPanel">
-      <div class="ai-header">
-        <span class="ai-icon">🤖</span>
-        <span class="ai-title">AI PREDICTION</span>
-        <span class="ai-badge">BETA</span>
-      </div>
-      <div class="ai-content" id="aiContent">
-        Analyzing games... please wait.
       </div>
     </div>
     
@@ -1031,8 +980,8 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <button class="admin-tab" onclick="switchAdminTab('messages',this)">💬 Messages</button>
       <button class="admin-tab" onclick="switchAdminTab('stats',this)">📊 Stats</button>
       <button class="admin-tab" onclick="switchAdminTab('leaderboard',this)">🏆 Leaderboard</button>
-      <button class="admin-tab" onclick="switchAdminTab('games',this)">🎮 Games</button>
       <button class="admin-tab" onclick="switchAdminTab('cricket',this)">🏏 Cricket</button>
+      <button class="admin-tab" onclick="switchAdminTab('ai',this)">🤖 AI</button>
     </div>
     
     <!-- Withdrawals Tab -->
@@ -1097,120 +1046,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       </div>
     </div>
     
-    <!-- Games Control Tab -->
-    <div class="admin-tab-content" id="atab-games">
-      <div class="admin-section" style="margin-top:14px">
-        <div class="admin-sec-title">🎮 GAME CONTROL</div>
-        <div class="game-control-grid">
-          <!-- Aviator Control -->
-          <div class="game-control-card">
-            <div class="game-control-title">✈ AVIATOR</div>
-            <div class="game-control-field">
-              <label>Min Multiplier</label>
-              <input type="number" id="avMinMult" value="1.10" step="0.01" min="1.01">
-            </div>
-            <div class="game-control-field">
-              <label>Max Multiplier</label>
-              <input type="number" id="avMaxMult" value="10000" step="100" min="10">
-            </div>
-            <div class="game-control-field">
-              <label>Crash Frequency</label>
-              <select id="avFrequency">
-                <option value="normal">Normal (Balanced)</option>
-                <option value="low">Low (High Multipliers)</option>
-                <option value="high">High (Low Multipliers)</option>
-              </select>
-            </div>
-            <button class="game-control-btn" onclick="updateGameControl('aviator')">Apply</button>
-          </div>
-          
-          <!-- Trading Control -->
-          <div class="game-control-card">
-            <div class="game-control-title">📈 TRADING</div>
-            <div class="game-control-field">
-              <label>Win Rate (%)</label>
-              <input type="number" id="trWinRate" value="50" min="10" max="90">
-            </div>
-            <div class="game-control-field">
-              <label>Volatility</label>
-              <select id="trVolatility">
-                <option value="low">Low (±0.2)</option>
-                <option value="normal" selected>Normal (±0.5)</option>
-                <option value="high">High (±1.0)</option>
-              </select>
-            </div>
-            <button class="game-control-btn" onclick="updateGameControl('trading')">Apply</button>
-          </div>
-          
-          <!-- Dice Control -->
-          <div class="game-control-card">
-            <div class="game-control-title">🎲 DICE</div>
-            <div class="game-control-field">
-              <label>Win Chance Modifier</label>
-              <select id="diceChance">
-                <option value="fair">Fair (50%)</option>
-                <option value="low" selected>Low (45%)</option>
-                <option value="verylow">Very Low (40%)</option>
-              </select>
-            </div>
-            <div class="game-control-field">
-              <label>Max Multiplier</label>
-              <input type="number" id="diceMaxMult" value="99" min="10" max="990">
-            </div>
-            <button class="game-control-btn" onclick="updateGameControl('dice')">Apply</button>
-          </div>
-          
-          <!-- Mines Control -->
-          <div class="game-control-card">
-            <div class="game-control-title">💣 MINES</div>
-            <div class="game-control-field">
-              <label>First Click Safe</label>
-              <select id="minesSafe">
-                <option value="true" selected>Yes</option>
-                <option value="false">No</option>
-              </select>
-            </div>
-            <div class="game-control-field">
-              <label>Max Multiplier Cap</label>
-              <input type="number" id="minesMaxMult" value="1000" min="100" max="10000">
-            </div>
-            <button class="game-control-btn" onclick="updateGameControl('mines')">Apply</button>
-          </div>
-          
-          <!-- Coin Flip Control -->
-          <div class="game-control-card">
-            <div class="game-control-title">🪙 COIN FLIP</div>
-            <div class="game-control-field">
-              <label>Win Rate (%)</label>
-              <input type="number" id="coinWinRate" value="49" min="10" max="60">
-            </div>
-            <div class="game-control-field">
-              <label>Multiplier</label>
-              <input type="number" id="coinMult" value="1.96" step="0.01" min="1.5" max="1.99">
-            </div>
-            <button class="game-control-btn" onclick="updateGameControl('coin')">Apply</button>
-          </div>
-          
-          <!-- Limbo Control -->
-          <div class="game-control-card">
-            <div class="game-control-title">🔮 LIMBO</div>
-            <div class="game-control-field">
-              <label>Max Multiplier</label>
-              <input type="number" id="limboMaxMult" value="1000000" min="1000">
-            </div>
-            <div class="game-control-field">
-              <label>Randomness</label>
-              <select id="limboRandom">
-                <option value="normal" selected>Normal</option>
-                <option value="high">High (More Random)</option>
-              </select>
-            </div>
-            <button class="game-control-btn" onclick="updateGameControl('limbo')">Apply</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
     <!-- Cricket Control Tab -->
     <div class="admin-tab-content" id="atab-cricket">
       <div class="admin-section" style="margin-top:14px">
@@ -1260,6 +1095,31 @@ input::placeholder{color:rgba(253,246,227,0.18);}
           </div>
           <button onclick="updateCricketMatch()" class="btn-sub" style="margin-top:12px;">🔄 UPDATE MATCH</button>
           <button onclick="forceCricketResult()" class="btn-sub" style="margin-top:12px;background:linear-gradient(135deg,#8a4a00,#ffa500);">⚡ FORCE RESULT NOW</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- AI CONTROL TAB -->
+    <div class="admin-tab-content" id="atab-ai">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">🤖 AI ASSISTANT CONTROL</div>
+        <div style="padding:16px">
+          <div class="igrp">
+            <label class="ilbl">AI Name</label>
+            <input type="text" id="aiName" class="alb-inp-full" value="Royal AI">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Welcome Message</label>
+            <input type="text" id="aiWelcome" class="alb-inp-full" value="আমি Royal Bet AI! প্রশ্ন করুন।">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Auto-Response Mode</label>
+            <select id="aiMode" class="alb-inp-full">
+              <option value="smart">Smart AI (Bangla+English)</option>
+              <option value="simple">Simple Replies</option>
+            </select>
+          </div>
+          <button onclick="updateAISettings()" class="btn-sub" style="margin-top:12px;">💾 SAVE AI SETTINGS</button>
         </div>
       </div>
     </div>
@@ -1337,7 +1197,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
-<!-- WITHDRAW MODAL -->
+<!-- WITHDRAW MODAL - PROFESSIONAL UI -->
 <div class="modal-ov" id="withdrawModal">
   <div class="modal">
     <div class="modal-handle"></div>
@@ -1412,7 +1272,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
           </div>
           <div class="igrp">
             <label class="ilbl">Amount (USDT)</label>
-            <div class="iwrap"><span class="ico">💵</span><input type="number" id="wdBinanceAmt" placeholder="Min 2 USDT"/></div>
+            <div class="iwrap"><span class="ico">💵</span><input type="number" id="wdBinanceAmt" placeholder="Min 50 USDT"/></div>
           </div>
         </div>
         <div class="notice warn" style="margin-bottom:16px">⏱️ Your withdrawal is being processed. It will be verified by admin.</div>
@@ -1482,6 +1342,25 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
+<!-- AI ASSISTANT -->
+<div class="ai-assistant" id="aiAssistant" onclick="toggleAIChat()">
+  <div class="ai-icon">🤖</div>
+</div>
+<div class="ai-chat" id="aiChat">
+  <div class="ai-header">
+    <div class="ai-avatar">🤖</div>
+    <div class="ai-title" id="aiTitle">Royal AI</div>
+    <button class="ai-close" onclick="toggleAIChat()">✕</button>
+  </div>
+  <div class="ai-messages" id="aiMessages">
+    <div class="ai-msg bot">আমি Royal Bet AI! প্রশ্ন করুন।</div>
+  </div>
+  <div class="ai-input-row">
+    <input type="text" class="ai-input" id="aiInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendAIMessage()"/>
+    <button class="ai-send" onclick="sendAIMessage()">➤</button>
+  </div>
+</div>
+
 <!-- REWARD MODAL -->
 <div class="reward-modal" id="rewardModal">
   <div class="reward-claim-box">
@@ -1518,7 +1397,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   <div class="admin-pw-box">
     <div style="font-size:32px;margin-bottom:10px">🔐</div>
     <div class="apw-title">ADMIN ACCESS</div>
-    <div class="apw-sub">Double-click anywhere to open</div>
+    <div class="apw-sub">4x Click anywhere to open</div>
     <input type="password" class="apw-input" id="apwInput" placeholder="• • • • • •" maxlength="10" onkeydown="if(event.key==='Enter')checkAdminPw()"/>
     <div class="apw-error" id="apwError">❌ Wrong Password!</div>
     <div class="apw-btns">
@@ -1625,7 +1504,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
     <div class="tr-ctrl">
       <div class="tr-bet-row">
         <span class="tr-bet-lbl">BET ৳</span>
-        <input type="number" class="tr-inp" id="trBetInp" value="200" min="200"/>
+        <input type="number" class="tr-inp" id="trBetInp" value="200" min="200" max="200000"/>
       </div>
       <div class="tr-qbs">
         <button class="tr-qb" onclick="trQb(200)">200</button>
@@ -1634,7 +1513,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <button class="tr-qb" onclick="trQb(5000)">5K</button>
         <button class="tr-qb" onclick="trQb(10000)">10K</button>
         <button class="tr-qb" onclick="trQb(50000)">50K</button>
-        <button class="tr-qb" onclick="trQb(100000)">1L</button>
       </div>
       <div class="tr-phase-info" id="trPhaseInfo">Bet দিন ও predict করুন</div>
     </div>
@@ -1681,7 +1559,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
     <div class="dice-ctrl">
       <div class="dice-bet-row">
         <span class="dice-lbl">BET ৳</span>
-        <input type="number" class="dice-inp" id="diceBetInp" value="200" min="100"/>
+        <input type="number" class="dice-inp" id="diceBetInp" value="200" min="200" max="200000"/>
       </div>
       <div class="dice-qbs">
         <div class="dice-qb" onclick="document.getElementById('diceBetInp').value=200">200</div>
@@ -1690,7 +1568,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="dice-qb" onclick="document.getElementById('diceBetInp').value=5000">5K</div>
         <div class="dice-qb" onclick="document.getElementById('diceBetInp').value=10000">10K</div>
         <div class="dice-qb" onclick="document.getElementById('diceBetInp').value=50000">50K</div>
-        <div class="dice-qb" onclick="document.getElementById('diceBetInp').value=100000">1L</div>
       </div>
       <button class="btn-roll" id="diceRollBtn" onclick="rollDice()">🎲 ROLL DICE</button>
     </div>
@@ -1722,7 +1599,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
     <div class="mines-ctrl">
       <div class="mines-bet-row">
         <span class="mines-bet-lbl">BET ৳</span>
-        <input type="number" class="mines-inp" id="minesBetInp" value="200" min="100"/>
+        <input type="number" class="mines-inp" id="minesBetInp" value="200" min="200" max="200000"/>
       </div>
       <div class="mines-qbs">
         <div class="mines-qb" onclick="document.getElementById('minesBetInp').value=200">200</div>
@@ -1778,7 +1655,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
     <div class="coin-ctrl">
       <div class="coin-bet-row">
         <span class="coin-bet-lbl">BET ৳</span>
-        <input type="number" class="coin-inp" id="coinBetInp" value="200" min="100"/>
+        <input type="number" class="coin-inp" id="coinBetInp" value="200" min="200" max="200000"/>
       </div>
       <div class="coin-qbs">
         <div class="coin-qb" onclick="document.getElementById('coinBetInp').value=200">200</div>
@@ -1787,7 +1664,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="coin-qb" onclick="document.getElementById('coinBetInp').value=5000">5K</div>
         <div class="coin-qb" onclick="document.getElementById('coinBetInp').value=10000">10K</div>
         <div class="coin-qb" onclick="document.getElementById('coinBetInp').value=50000">50K</div>
-        <div class="coin-qb" onclick="document.getElementById('coinBetInp').value=100000">1L</div>
       </div>
       <button class="btn-coin-flip" id="coinFlipBtn" onclick="flipCoin()">🪙 FLIP COIN</button>
     </div>
@@ -1822,7 +1698,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
     <div class="limbo-ctrl">
       <div class="limbo-bet-row">
         <span class="limbo-bet-lbl">BET ৳</span>
-        <input type="number" class="limbo-inp" id="limboBetInp" value="200" min="100"/>
+        <input type="number" class="limbo-inp" id="limboBetInp" value="200" min="200" max="200000"/>
       </div>
       <div class="limbo-qbs">
         <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=200">200</div>
@@ -1831,7 +1707,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=5000">5K</div>
         <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=10000">10K</div>
         <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=50000">50K</div>
-        <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=100000">1L</div>
       </div>
       <button class="btn-limbo" id="limboBtn" onclick="playLimbo()">🔮 PLAY LIMBO</button>
     </div>
@@ -1863,458 +1738,117 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 
 <div class="toast" id="toast"></div>
 
-<!-- FIREBASE MODULE -->
+<!-- FIREBASE -->
 <script type="module">
-import { 
-  initializeApp 
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { 
-  getAuth, 
-  GoogleAuthProvider, 
-  signInWithPopup, 
-  signOut, 
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  RecaptchaVerifier,
-  signInWithPhoneNumber
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { 
-  getDatabase, 
-  ref, 
-  set, 
-  get, 
-  onValue, 
-  update, 
-  push, 
-  remove,
-  query,
-  orderByChild,
-  limitToLast,
-  equalTo
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import{getDatabase,ref,set,get,onValue,update,push,remove}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB_8Bw60xdifJmE7dqhW7a-79qiC1NMqZg",
-  authDomain: "game-v-app.firebaseapp.com",
-  projectId: "game-v-app",
-  storageBucket: "game-v-app.firebasestorage.app",
-  messagingSenderId: "791868402912",
-  appId: "1:791868402912:web:f5f456496656a6589a7485",
-  databaseURL: "https://game-v-app-default-rtdb.firebaseio.com"
-};
+const app=initializeApp({apiKey:"AIzaSyB_8Bw60xdifJmE7dqhW7a-79qiC1NMqZg",authDomain:"game-v-app.firebaseapp.com",projectId:"game-v-app",storageBucket:"game-v-app.firebasestorage.app",messagingSenderId:"791868402912",appId:"1:791868402912:web:f5f456496656a6589a7485",databaseURL:"https://game-v-app-default-rtdb.firebaseio.com"});
+const auth=getAuth(app),db=getDatabase(app);
+window._db=db;window._ref=ref;window._set=set;window._get=get;window._update=update;window._push=push;window._remove=remove;window._onValue=onValue;
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getDatabase(app);
-
-window._db = db;
-window._ref = ref;
-window._set = set;
-window._get = get;
-window._update = update;
-window._push = push;
-window._remove = remove;
-window._onValue = onValue;
-
-// Login tab switching
-window.switchLoginTab = (tab) => {
-  document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.login-form').forEach(f => f.classList.remove('active'));
-  
-  if (tab === 'google') {
-    document.querySelectorAll('.login-tab')[0].classList.add('active');
-    document.getElementById('login-google').classList.add('active');
-  } else if (tab === 'email') {
-    document.querySelectorAll('.login-tab')[1].classList.add('active');
-    document.getElementById('login-email').classList.add('active');
-  } else if (tab === 'phone') {
-    document.querySelectorAll('.login-tab')[2].classList.add('active');
-    document.getElementById('login-phone').classList.add('active');
-    
-    // Initialize recaptcha if not already done
-    if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        size: 'invisible'
-      });
-    }
-  }
-};
-
-// Email/Password Login
-window.loginWithEmail = async () => {
-  const email = document.getElementById('emailInput').value;
-  const password = document.getElementById('passwordInput').value;
-  
-  if (!email || !password) {
-    toast('⚠️ Email এবং Password দিন!', true);
-    return;
-  }
-  
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    toast('❌ ' + error.message, true);
-  }
-};
-
-// Email/Password Signup
-window.signupWithEmail = async () => {
-  const email = document.getElementById('emailInput').value;
-  const password = document.getElementById('passwordInput').value;
-  
-  if (!email || !password) {
-    toast('⚠️ Email এবং Password দিন!', true);
-    return;
-  }
-  
-  if (password.length < 6) {
-    toast('⚠️ Password কমপক্ষে 6 অক্ষরের হতে হবে!', true);
-    return;
-  }
-  
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    
-    // Create user profile
-    await set(ref(db, 'users/' + user.uid), {
-      name: user.email.split('@')[0],
-      email: user.email,
-      balance: 0,
-      createdAt: Date.now(),
-      totalBets: 0,
-      totalProfit: 0,
-      dailyStreak: 0,
-      lastClaimedDay: 0,
-      lastClaimDate: ''
-    });
-    
-    toast('✅ Account created successfully!', false);
-  } catch (error) {
-    toast('❌ ' + error.message, true);
-  }
-};
-
-// Reset Password
-window.resetPassword = async () => {
-  const email = document.getElementById('emailInput').value;
-  
-  if (!email) {
-    toast('⚠️ আপনার Email দিন!', true);
-    return;
-  }
-  
-  try {
-    await sendPasswordResetEmail(auth, email);
-    toast('✅ Password reset email sent! Check your inbox.', false);
-  } catch (error) {
-    toast('❌ ' + error.message, true);
-  }
-};
-
-// Phone OTP - Send
-window.sendOTP = async () => {
-  const phoneNumber = document.getElementById('phoneInput').value;
-  
-  if (!phoneNumber) {
-    toast('⚠️ Phone number দিন!', true);
-    return;
-  }
-  
-  const btn = document.getElementById('sendOtpBtn');
-  btn.disabled = true;
-  btn.textContent = 'Sending...';
-  
-  try {
-    const appVerifier = window.recaptchaVerifier;
-    const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
-    window.confirmationResult = confirmationResult;
-    toast('✅ OTP sent to your phone!', false);
-    btn.textContent = 'Resend';
-  } catch (error) {
-    toast('❌ ' + error.message, true);
-    btn.disabled = false;
-    btn.textContent = 'Send';
-  }
-};
-
-// Verify OTP
-window.verifyOTP = async () => {
-  const otp = document.getElementById('otpInput').value;
-  
-  if (!otp) {
-    toast('⚠️ OTP দিন!', true);
-    return;
-  }
-  
-  if (!window.confirmationResult) {
-    toast('⚠️ প্রথমে OTP পাঠান!', true);
-    return;
-  }
-  
-  try {
-    const result = await window.confirmationResult.confirm(otp);
-    const user = result.user;
-    
-    // Check if user exists in database
-    const userRef = ref(db, 'users/' + user.uid);
-    const snap = await get(userRef);
-    
-    if (!snap.exists()) {
-      await set(userRef, {
-        name: 'Player',
-        phone: user.phoneNumber,
-        balance: 0,
-        createdAt: Date.now(),
-        totalBets: 0,
-        totalProfit: 0,
-        dailyStreak: 0,
-        lastClaimedDay: 0,
-        lastClaimDate: ''
-      });
-    }
-    
-    toast('✅ Login successful!', false);
-  } catch (error) {
-    toast('❌ ' + error.message, true);
-  }
-};
-
-// Google Login
-window.loginWithGoogle = async () => {
-  const btn = document.getElementById('gBtn');
-  const st = document.getElementById('loginSt');
-  
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Signing in...';
-  
-  try {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-  } catch (e) {
-    st.textContent = '❌ ' + e.message;
-    st.className = 'st-msg err';
-    btn.disabled = false;
-    btn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Sign In with Google`;
-  }
-};
-
+// 4x click for admin
 let clickCount = 0;
 let clickTimer = null;
-
 document.addEventListener('click', function(e) {
   if (!window._curUser) return;
-  
   clickCount++;
-  
   clearTimeout(clickTimer);
   clickTimer = setTimeout(() => {
+    if (clickCount >= 4) {
+      document.getElementById('apwInput').value = '';
+      document.getElementById('apwError').style.display = 'none';
+      document.getElementById('adminPwModal').classList.add('open');
+      setTimeout(() => document.getElementById('apwInput').focus(), 200);
+    }
     clickCount = 0;
-  }, 3000);
-  
-  if (clickCount === 4) {
-    clickCount = 0;
-    document.getElementById('apwInput').value = '';
-    document.getElementById('apwError').style.display = 'none';
-    document.getElementById('adminPwModal').classList.add('open');
-    setTimeout(() => document.getElementById('apwInput').focus(), 200);
-  }
+  }, 300);
 });
 
-// Admin check password
-window.checkAdminPw = () => {
-  if (document.getElementById('apwInput').value === '308580') {
-    document.getElementById('adminPwModal').classList.remove('open');
-    showPage('adminPage');
+onAuthStateChanged(auth,async user=>{
+  if(user){
+    window._curUser=user;
+    const nm=user.displayName?user.displayName.split(' ')[0]:'Player';
+    document.getElementById('uName').textContent=nm;
+    const w=document.getElementById('uAvWrap');
+    if(user.photoURL){w.innerHTML=`<img src="${user.photoURL}" class="u-avatar" onerror="this.parentElement.innerHTML='👤'"/>`;document.getElementById('profAvatar').innerHTML=`<img src="${user.photoURL}" style="width:88px;height:88px;border-radius:50%;object-fit:cover"/>`;}
+    document.getElementById('profName').textContent=nm;
     
-    // Load all admin data
-    if (window.loadWithdrawalRequests) loadWithdrawalRequests();
-    if (window.loadDepositRequests) loadDepositRequests();
-    if (window.loadAdminUsers) loadAdminUsers();
-    if (window.loadAdminMessages) loadAdminMessages();
-    if (window.loadAdminLeaderboard) loadAdminLeaderboard();
-    
-    // Load cricket data
-    document.getElementById('adminTeam1').value = document.getElementById('cricketTeam1').textContent;
-    document.getElementById('adminTeam2').value = document.getElementById('cricketTeam2').textContent;
-    document.getElementById('adminTeam1Score').value = document.getElementById('cricketTeam1Score').textContent;
-    document.getElementById('adminTeam2Score').value = document.getElementById('cricketTeam2Score').textContent;
-    document.getElementById('adminOvers').value = document.getElementById('cricketOvers').textContent.split(' ')[1];
-    document.getElementById('adminNextEvent').value = document.getElementById('cricketNextEvent').textContent;
-    document.getElementById('adminOdds1').value = document.getElementById('cricketOdds1Value').textContent;
-    document.getElementById('adminOdds2').value = document.getElementById('cricketOdds2Value').textContent;
-    
-    toast('🔐 Admin Panel Opened', false);
-  } else {
-    document.getElementById('apwError').style.display = 'block';
-    document.getElementById('apwInput').value = '';
-  }
-};
-
-// Auth state observer
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    window._curUser = user;
-    
-    const nm = user.displayName ? user.displayName.split(' ')[0] : 'Player';
-    document.getElementById('uName').textContent = nm;
-    
-    const w = document.getElementById('uAvWrap');
-    if (user.photoURL) {
-      w.innerHTML = `<img src="${user.photoURL}" class="u-avatar" onerror="this.parentElement.innerHTML='👤'"/>`;
-      document.getElementById('profAvatar').innerHTML = `<img src="${user.photoURL}" style="width:88px;height:88px;border-radius:50%;object-fit:cover"/>`;
-    }
-    
-    document.getElementById('profName').textContent = nm;
-    
-    // Hide email
     const email = user.email || '';
     const hiddenEmail = email.length > 3 ? email.substring(0,3) + '****' + email.substring(email.indexOf('@')) : email;
-    document.getElementById('profEmail').textContent = hiddenEmail;
+    document.getElementById('profEmail').textContent=hiddenEmail;
     
-    document.getElementById('profNameInp').value = nm;
-    document.getElementById('piUID').textContent = user.uid.substring(0,16) + '...';
-    
-    const userRef = ref(db, 'users/' + user.uid);
-    const snap = await get(userRef);
-    
-    if (!snap.exists()) {
-      const today = new Date().toDateString();
-      await set(userRef, {
-        name: user.displayName || 'Player',
-        email: user.email || '',
-        balance: 0,
-        photoURL: user.photoURL || '',
-        createdAt: Date.now(),
-        totalBets: 0,
-        totalProfit: 0,
-        dailyStreak: 0,
-        lastClaimedDay: 0,
-        lastClaimDate: ''
-      });
-    }
-    
-    onValue(ref(db, 'users/' + user.uid), (snap) => {
-      const d = snap.val() || {};
-      window._realBal = d.balance || 0;
-      window._userProfile = d;
-      updateBals();
-      updateProfileUI(d);
-      loadBetHistory();
-    });
-    
-    document.getElementById('piJoin').textContent = user.metadata.creationTime ? new Date(user.metadata.creationTime).toLocaleDateString('en') : '—';
-    showPage('homePage');
-    document.getElementById('bottomNav').style.display = 'flex';
-    navTo('home');
-    renderRewardDays();
+    document.getElementById('profNameInp').value=nm;
+    document.getElementById('piUID').textContent=user.uid.substring(0,16)+'...';
+    const userRef=ref(db,'users/'+user.uid);
+    const snap=await get(userRef);
+    if(!snap.exists()){const today=new Date().toDateString();await set(userRef,{name:user.displayName||'Player',email:user.email||'',balance:0,photoURL:user.photoURL||'',createdAt:Date.now(),totalBets:0,totalProfit:0,dailyStreak:0,lastClaimedDay:0,lastClaimDate:''});}
+    onValue(ref(db,'users/'+user.uid),snap=>{const d=snap.val()||{};window._realBal=d.balance||0;window._userProfile=d;updateBals();updateProfileUI(d);loadBetHistory();});
+    document.getElementById('piJoin').textContent=user.metadata.creationTime?new Date(user.metadata.creationTime).toLocaleDateString('en'):'—';
+    showPage('homePage');document.getElementById('bottomNav').style.display='flex';navTo('home');renderRewardDays();
     
     await loadBetHistory();
-    
-    // Start AI prediction
-    startAIPrediction();
+    await loadHomeLb(); // Load leaderboard on login
     
   } else {
-    window._curUser = null;
-    document.getElementById('bottomNav').style.display = 'none';
-    showPage('loginPage');
+    window._curUser=null;document.getElementById('bottomNav').style.display='none';showPage('loginPage');
   }
 });
 
-window.logout = async () => {
-  await signOut(auth);
+window.loginWithGoogle=async()=>{
+  const btn=document.getElementById('gBtn'),st=document.getElementById('loginSt');
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Signing in...';
+  try{await signInWithPopup(auth,new GoogleAuthProvider());}
+  catch(e){st.textContent='❌ '+e.message;st.className='st-msg err';btn.disabled=false;btn.innerHTML=`<svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Sign In with Google`;}
+};
+window.logout=async()=>{await signOut(auth);};
+
+window.saveProfileName=async()=>{
+  const nm=document.getElementById('profNameInp').value.trim();
+  if(!nm){toast('❌ Name দিন',true);return;}
+  if(!window._curUser)return;
+  await update(ref(db,'users/'+window._curUser.uid),{name:nm});
+  document.getElementById('profName').textContent=nm;document.getElementById('uName').textContent=nm;
+  toast('✅ Name updated!',false);
 };
 
-window.saveProfileName = async () => {
-  const nm = document.getElementById('profNameInp').value.trim();
-  if (!nm) {
-    toast('❌ Name দিন', true);
-    return;
-  }
-  if (!window._curUser) return;
-  
-  await update(ref(db, 'users/' + window._curUser.uid), { name: nm });
-  document.getElementById('profName').textContent = nm;
-  document.getElementById('uName').textContent = nm;
-  toast('✅ Name updated!', false);
+window.uploadAvatar=(inp)=>{
+  const file=inp.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const data=e.target.result;
+    document.getElementById('profAvatar').innerHTML=`<img src="${data}" style="width:88px;height:88px;border-radius:50%;object-fit:cover"/>`;
+    document.getElementById('uAvWrap').innerHTML=`<img src="${data}" class="u-avatar"/>`;
+    if(window._curUser)update(ref(db,'users/'+window._curUser.uid),{photoURL:data});
+    toast('✅ Photo updated!',false);
+  };reader.readAsDataURL(file);
 };
 
-window.uploadAvatar = (inp) => {
-  const file = inp.files[0];
-  if (!file) return;
-  
-  const reader = new FileReader();
-  reader.onload = e => {
-    const data = e.target.result;
-    document.getElementById('profAvatar').innerHTML = `<img src="${data}" style="width:88px;height:88px;border-radius:50%;object-fit:cover"/>`;
-    document.getElementById('uAvWrap').innerHTML = `<img src="${data}" class="u-avatar"/>`;
-    
-    if (window._curUser) {
-      update(ref(db, 'users/' + window._curUser.uid), { photoURL: data });
-    }
-    
-    toast('✅ Photo updated!', false);
-  };
-  reader.readAsDataURL(file);
-};
-
-// ========== BET HISTORY ==========
-window.loadBetHistory = async () => {
-  if (!window._curUser) return;
-  
-  const snap = await get(ref(db, 'users/' + window._curUser.uid + '/bets'));
-  const histList = document.getElementById('histList');
-  
-  if (!snap.exists()) {
-    histList.innerHTML = '<div class="hist-empty">No bets yet — go play!</div>';
-    return;
-  }
-  
-  const bets = Object.values(snap.val()).sort((a, b) => b.time - a.time);
-  
-  let totalProfit = 0, totalLoss = 0;
-  document.getElementById('hsTotalBets').textContent = bets.length;
-  
-  const gameIcons = {
-    Aviator: '✈️',
-    Trading: '📈',
-    Dice: '🎲',
-    Mines: '💣',
-    'Coin Flip': '🪙',
-    Limbo: '🔮',
-    Cricket: '🏏'
-  };
-  
-  histList.innerHTML = bets.map(b => {
-    const isProfit = b.profit >= 0;
-    if (isProfit) totalProfit += b.profit;
-    else totalLoss += Math.abs(b.profit);
-    
-    return `<div class="hist-item">
-      <div class="hi-game" style="background:rgba(0,0,0,0.4)">${gameIcons[b.game] || '🎮'}</div>
-      <div class="hi-info">
-        <div class="hi-name">${b.game}</div>
-        <div class="hi-detail">${b.detail} · ${new Date(b.time).toLocaleString('en')}</div>
-      </div>
-      <div class="hi-result">
-        <div class="hi-amt ${isProfit ? 'profit' : 'loss'}">${isProfit ? '+' : '-'}৳${Math.abs(b.profit).toLocaleString('en')}</div>
-        <div class="hi-status">${isProfit ? 'WIN' : 'LOSS'} · ৳${b.bet.toLocaleString('en')}</div>
-      </div>
-    </div>`;
+// BET HISTORY
+window.loadBetHistory=async()=>{
+  if(!window._curUser)return;
+  const snap=await get(ref(db,'users/'+window._curUser.uid+'/bets'));
+  const histList=document.getElementById('histList');
+  if(!snap.exists()){histList.innerHTML='<div class="hist-empty">No bets yet — go play!</div>';return;}
+  const bets=Object.values(snap.val()).sort((a,b)=>b.time - a.time);
+  let totalProfit=0,totalLoss=0;
+  document.getElementById('hsTotalBets').textContent=bets.length;
+  const gameIcons={Aviator:'✈️',Trading:'📈',Dice:'🎲',Mines:'💣','Coin Flip':'🪙',Limbo:'🔮',Cricket:'🏏'};
+  histList.innerHTML=bets.map(b=>{
+    const isProfit=b.profit>=0;
+    if(isProfit)totalProfit+=b.profit;else totalLoss+=Math.abs(b.profit);
+    return`<div class="hist-item"><div class="hi-game" style="background:rgba(0,0,0,0.4)">${gameIcons[b.game]||'🎮'}</div><div class="hi-info"><div class="hi-name">${b.game}</div><div class="hi-detail">${b.detail} · ${new Date(b.time).toLocaleString('en')}</div></div><div class="hi-result"><div class="hi-amt ${isProfit?'profit':'loss'}">${isProfit?'+':'-'}৳${Math.abs(b.profit).toLocaleString('en')}</div><div class="hi-status">${isProfit?'WIN':'LOSS'} · ৳${b.bet.toLocaleString('en')}</div></div></div>`;
   }).join('');
-  
-  document.getElementById('hsTotalProfit').textContent = '৳' + totalProfit.toLocaleString('en');
-  document.getElementById('hsTotalLoss').textContent = '৳' + totalLoss.toLocaleString('en');
+  document.getElementById('hsTotalProfit').textContent='৳'+totalProfit.toLocaleString('en');
+  document.getElementById('hsTotalLoss').textContent='৳'+totalLoss.toLocaleString('en');
 };
 
-// ========== WITHDRAWAL SYSTEM ==========
+// WITHDRAWAL SYSTEM
 window.submitWithdraw = async (method) => {
   if (!window._curUser) return;
   
   let account, amount;
-  
   if (method === 'bKash') {
     account = document.getElementById('wdBkashNum')?.value;
     amount = parseFloat(document.getElementById('wdBkashAmt')?.value);
@@ -2324,7 +1858,7 @@ window.submitWithdraw = async (method) => {
   } else if (method === 'Binance') {
     account = document.getElementById('wdBinanceId')?.value;
     amount = parseFloat(document.getElementById('wdBinanceAmt')?.value);
-    if (method === 'Binance') amount = amount * 120; // USDT to BDT
+    if (method === 'Binance') amount = amount * 120;
   } else if (method === 'Upay') {
     account = document.getElementById('wdUpayNum')?.value;
     amount = parseFloat(document.getElementById('wdUpayAmt')?.value);
@@ -2343,7 +1877,6 @@ window.submitWithdraw = async (method) => {
     return;
   }
   
-  // Create withdrawal request
   const wdId = 'wd_' + Date.now();
   const wdData = {
     userId: window._curUser.uid,
@@ -2377,6 +1910,7 @@ window.acceptWithdrawal = async (wdId, userId, amount) => {
     await update(ref(db, 'withdrawals/' + userId + '/' + wdId), { status: 'completed' });
     toast('✅ উইথড্রয়াল অনুমোদিত! ব্যালেন্স কেটে নেওয়া হয়েছে।', false);
     loadWithdrawalRequests();
+    loadHomeLb();
   }
 };
 
@@ -2388,7 +1922,7 @@ window.rejectWithdrawal = async (wdId, userId) => {
   loadWithdrawalRequests();
 };
 
-// ========== DEPOSIT SCREENSHOT SYSTEM ==========
+// DEPOSIT SCREENSHOT SYSTEM
 window.openDepositSSModal = () => {
   document.getElementById('depositSSModal').classList.add('open');
   document.getElementById('ssFileInput').value = '';
@@ -2499,6 +2033,7 @@ window.approveDepositSS = async () => {
   toast(`✅ ডিপোজিট অনুমোদিত! ৳${bdtAmount.toLocaleString('en')} যোগ করা হয়েছে।`, false);
   closeAdminSSView();
   loadDepositRequests();
+  loadHomeLb();
 };
 
 window.rejectDepositSS = async () => {
@@ -2512,7 +2047,7 @@ window.rejectDepositSS = async () => {
   loadDepositRequests();
 };
 
-// ========== ADMIN FUNCTIONS ==========
+// ADMIN FUNCTIONS
 window.loadWithdrawalRequests = async () => {
   const snap = await get(ref(db, 'withdrawalRequests'));
   const list = document.getElementById('withdrawRequestsList');
@@ -2530,16 +2065,16 @@ window.loadWithdrawalRequests = async () => {
   document.getElementById('adPendingWithdrawals').textContent = requests.length;
   
   list.innerHTML = requests.map(([id, r]) => `
-    <div style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05)">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-        <span style="font-family:'Cinzel',serif;color:#ff6b6b">👤 ${r.userName}</span>
-        <span style="font-family:'Cinzel',serif;color:#f0d060">৳${r.amount.toLocaleString('en')}</span>
+    <div class="wd-request-item">
+      <div class="wd-req-header">
+        <span class="wd-req-user">👤 ${r.userName}</span>
+        <span class="wd-req-amount">৳${r.amount.toLocaleString('en')}</span>
       </div>
-      <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px">${r.method} · ${r.account}</div>
-      <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:8px">${new Date(r.time).toLocaleString('en')}</div>
-      <div style="display:flex;gap:8px">
-        <button style="flex:1;padding:8px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:6px;color:#2ecc71;font-size:9px;cursor:pointer" onclick="acceptWithdrawal('${id}','${r.userId}',${r.amount})">✅ Accept</button>
-        <button style="flex:1;padding:8px;background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.3);border-radius:6px;color:#e74c3c;font-size:9px;cursor:pointer" onclick="rejectWithdrawal('${id}','${r.userId}')">❌ Reject</button>
+      <div class="wd-req-method">${r.method} · ${r.account}</div>
+      <div class="wd-req-detail">${new Date(r.time).toLocaleString('en')}</div>
+      <div class="wd-req-actions">
+        <button class="wd-accept" onclick="acceptWithdrawal('${id}','${r.userId}',${r.amount})">✅ Accept</button>
+        <button class="wd-reject" onclick="rejectWithdrawal('${id}','${r.userId}')">❌ Reject</button>
       </div>
     </div>
   `).join('');
@@ -2563,394 +2098,232 @@ window.loadDepositRequests = async () => {
   document.getElementById('adTotalDeposits').textContent = '৳' + totalDeposits.toLocaleString('en');
   
   list.innerHTML = requests.map(([id, d]) => `
-    <div style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer" onclick="viewDepositSS('${id}','${d.userId}','${d.userName}',${d.amount},'${d.screenshot}')">
+    <div class="deposit-item" style="cursor:pointer" onclick="viewDepositSS('${id}','${d.userId}','${d.userName}',${d.amount},'${d.screenshot}')">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-        <span style="font-family:'Cinzel',serif;color:#ff6b6b">👤 ${d.userName}</span>
-        <span style="font-family:'Cinzel',serif;color:#2ecc71">$${d.amount} USDT</span>
+        <span class="dep-user">👤 ${d.userName}</span>
+        <span class="dep-amount">$${d.amount} USDT (~৳${(d.amount*120).toLocaleString('en')})</span>
       </div>
-      <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px">Binance · Screenshot attached</div>
-      <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:4px">${new Date(d.time).toLocaleString('en')}</div>
+      <div class="dep-method">Binance · Screenshot attached</div>
+      <div class="dep-time">${new Date(d.time).toLocaleString('en')}</div>
       <div style="margin-top:8px;color:#ffa500;font-size:10px;">📸 Click to view screenshot</div>
     </div>
   `).join('');
 };
 
-window.loadAdminUsers = async () => {
-  const snap = await get(ref(db, 'users'));
-  if (!snap.exists()) {
-    document.getElementById('userList').innerHTML = '<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2);font-family:Cinzel,serif;font-size:11px">No users</div>';
-    return;
-  }
-  
-  const users = snap.val();
-  const uids = Object.keys(users);
-  
-  document.getElementById('adTotalUsers').textContent = uids.length;
-  
-  let tb = 0, totalBets = 0;
-  uids.forEach(uid => {
-    tb += (users[uid].balance || 0);
-    totalBets += (users[uid].totalBets || 0);
-  });
-  
-  document.getElementById('adTotalBal').textContent = '৳' + tb.toLocaleString('en');
-  document.getElementById('adTotalBets').textContent = totalBets;
-  
-  document.getElementById('userList').innerHTML = uids.map(uid => {
-    const u = users[uid];
-    return `<div class="user-row">
-      <div class="ur-avatar">${u.photoURL && !u.photoURL.startsWith('data') ? `<img src="${u.photoURL}" style="width:36px;height:36px;border-radius:50%;object-fit:cover" onerror="this.parentElement.textContent='👤'"/>` : u.photoURL && u.photoURL.startsWith('data') ? `<img src="${u.photoURL}" style="width:36px;height:36px;border-radius:50%;object-fit:cover"/>` : '👤'}</div>
-      <div class="ur-info"><div class="ur-name">${u.name || 'Unknown'}</div><div class="ur-email">${u.email || uid.substring(0,12)}</div></div>
-      <div style="text-align:right;margin-right:8px"><div class="ur-bal">৳${(u.balance || 0).toLocaleString('en')}</div></div>
+window.loadAdminUsers=async()=>{
+  const snap=await get(ref(db,'users'));
+  if(!snap.exists()){document.getElementById('userList').innerHTML='<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2);font-family:Cinzel,serif;font-size:11px">No users</div>';return;}
+  const users=snap.val(),uids=Object.keys(users);
+  document.getElementById('adTotalUsers').textContent=uids.length;
+  let tb=0,totalBets=0;
+  uids.forEach(uid=>{tb+=(users[uid].balance||0);totalBets+=(users[uid].totalBets||0);});
+  document.getElementById('adTotalBal').textContent='৳'+tb.toLocaleString('en');
+  document.getElementById('adTotalBets').textContent=totalBets;
+  document.getElementById('userList').innerHTML=uids.map(uid=>{
+    const u=users[uid];
+    return`<div class="user-row">
+      <div class="ur-avatar">${u.photoURL&&!u.photoURL.startsWith('data')?`<img src="${u.photoURL}" style="width:36px;height:36px;border-radius:50%;object-fit:cover" onerror="this.parentElement.textContent='👤'"/>`:u.photoURL&&u.photoURL.startsWith('data')?`<img src="${u.photoURL}" style="width:36px;height:36px;border-radius:50%;object-fit:cover"/>`:'👤'}</div>
+      <div class="ur-info"><div class="ur-name">${u.name||'Unknown'}</div><div class="ur-email">${u.email||uid.substring(0,12)}</div></div>
+      <div style="text-align:right;margin-right:8px"><div class="ur-bal">৳${(u.balance||0).toLocaleString('en')}</div></div>
       <div class="admin-btn-row">
-        <button class="add-bal-btn" onclick="openAddBal('${uid}','${(u.name || 'User').replace(/'/g,"\\'")}',${u.balance || 0},true)">+ Add</button>
-        <button class="sub-bal-btn" onclick="openAddBal('${uid}','${(u.name || 'User').replace(/'/g,"\\'")}',${u.balance || 0},false)">− Sub</button>
+        <button class="add-bal-btn" onclick="openAddBal('${uid}','${(u.name||'User').replace(/'/g,"\\'")}',${u.balance||0},true)">+ Add</button>
+        <button class="sub-bal-btn" onclick="openAddBal('${uid}','${(u.name||'User').replace(/'/g,"\\'")}',${u.balance||0},false)">− Sub</button>
       </div>
     </div>`;
   }).join('');
 };
 
-window.loadAdminMessages = async () => {
-  const snap = await get(ref(db, 'messages'));
-  if (!snap.exists()) {
-    document.getElementById('adminMsgList').innerHTML = '<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2);font-family:Cinzel,serif;font-size:11px">No messages yet</div>';
-    document.getElementById('adTotalMsgs').textContent = 0;
-    return;
-  }
-  
-  const msgs = snap.val();
-  const arr = Object.values(msgs).sort((a,b) => b.time - a.time);
-  
-  document.getElementById('adTotalMsgs').textContent = arr.length;
-  document.getElementById('adminMsgList').innerHTML = arr.map(m => `
-    <div class="msg-item">
-      <div class="msg-header">
-        <span class="msg-user">👤 ${m.userName || 'User'}<span class="msg-new-badge">NEW</span></span>
-        <span class="msg-time">${new Date(m.time).toLocaleString('en')}</span>
-      </div>
-      <div class="msg-text">${m.text}</div>
-    </div>
-  `).join('');
+window.loadAdminMessages=async()=>{
+  const snap=await get(ref(db,'messages'));
+  if(!snap.exists()){document.getElementById('adminMsgList').innerHTML='<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2);font-family:Cinzel,serif;font-size:11px">No messages yet</div>';document.getElementById('adTotalMsgs').textContent=0;return;}
+  const msgs=snap.val(),arr=Object.values(msgs).sort((a,b)=>b.time-a.time);
+  document.getElementById('adTotalMsgs').textContent=arr.length;
+  document.getElementById('adminMsgList').innerHTML=arr.map(m=>`<div class="msg-item"><div class="msg-header"><span class="msg-user">👤 ${m.userName||'User'}<span class="msg-new-badge">NEW</span></span><span class="msg-time">${new Date(m.time).toLocaleString('en')}</span></div><div class="msg-text">${m.text}</div></div>`).join('');
 };
 
-let _ablUid = null, _ablCurBal = 0, _ablIsAdd = true;
-window.openAddBal = (uid, name, bal, isAdd) => {
-  _ablUid = uid;
-  _ablCurBal = parseFloat(bal);
-  _ablIsAdd = isAdd;
-  
-  const title = document.getElementById('ablTitle');
-  const btn = document.getElementById('ablConfirmBtn');
-  
-  if (isAdd) {
-    title.textContent = '💰 ADD BALANCE';
-    title.className = 'abl-title add-mode';
-    btn.textContent = '✅ ADD';
-    btn.className = 'abl-confirm add';
-  } else {
-    title.textContent = '➖ SUBTRACT BALANCE';
-    title.className = 'abl-title sub-mode';
-    btn.textContent = '⛔ SUBTRACT';
-    btn.className = 'abl-confirm sub';
-  }
-  
-  document.getElementById('ablUserName').textContent = name + ' — Current: ৳' + parseFloat(bal).toLocaleString('en');
-  document.getElementById('ablAmount').value = '';
+let _ablUid=null,_ablCurBal=0,_ablIsAdd=true;
+window.openAddBal=(uid,name,bal,isAdd)=>{
+  _ablUid=uid;_ablCurBal=parseFloat(bal);_ablIsAdd=isAdd;
+  const title=document.getElementById('ablTitle'),btn=document.getElementById('ablConfirmBtn');
+  if(isAdd){title.textContent='💰 ADD BALANCE';title.className='abl-title add-mode';btn.textContent='✅ ADD';btn.className='abl-confirm add';}
+  else{title.textContent='➖ SUBTRACT BALANCE';title.className='abl-title sub-mode';btn.textContent='⛔ SUBTRACT';btn.className='abl-confirm sub';}
+  document.getElementById('ablUserName').textContent=name+' — Current: ৳'+parseFloat(bal).toLocaleString('en');
+  document.getElementById('ablAmount').value='';
   document.getElementById('addBalModal').classList.add('open');
 };
-
-window.closeAddBal = () => document.getElementById('addBalModal').classList.remove('open');
-window.setAblAmt = v => document.getElementById('ablAmount').value = v;
-
-window.confirmAddBal = async () => {
-  const amt = parseFloat(document.getElementById('ablAmount').value);
-  if (!amt || amt <= 0) {
-    toast('⚠️ Valid amount দিন', true);
-    return;
-  }
-  if (!_ablUid) return;
-  
-  let newBal = _ablIsAdd ? _ablCurBal + amt : Math.max(0, _ablCurBal - amt);
-  await update(ref(db, 'users/' + _ablUid), { balance: newBal });
-  toast(`✅ Balance ${_ablIsAdd ? 'added' : 'subtracted'}: ৳${amt.toLocaleString('en')}`, false);
-  closeAddBal();
-  loadAdminUsers();
+window.closeAddBal=()=>document.getElementById('addBalModal').classList.remove('open');
+window.setAblAmt=v=>document.getElementById('ablAmount').value=v;
+window.confirmAddBal=async()=>{
+  const amt=parseFloat(document.getElementById('ablAmount').value);
+  if(!amt||amt<=0){toast('⚠️ Valid amount দিন',true);return;}
+  if(!_ablUid)return;
+  let newBal=_ablIsAdd?_ablCurBal+amt:Math.max(0,_ablCurBal-amt);
+  await update(ref(db,'users/'+_ablUid),{balance:newBal});
+  toast(`✅ Balance ${_ablIsAdd?'added':'subtracted'}: ৳${amt.toLocaleString('en')}`,false);
+  closeAddBal();loadAdminUsers();loadHomeLb();
 };
 
-window._writeBalance = async (newBal) => {
-  if (!window._curUser) return;
-  await update(ref(db, 'users/' + window._curUser.uid), { balance: newBal });
-};
-
-window._saveBetHistory = async (entry) => {
-  if (!window._curUser) return;
-  
-  const uid = window._curUser.uid;
-  await push(ref(db, 'users/' + uid + '/bets'), entry);
-  
-  const prof = window._userProfile || {};
-  await update(ref(db, 'users/' + uid), {
-    totalBets: (prof.totalBets || 0) + 1,
-    totalProfit: (prof.totalProfit || 0) + (entry.profit || 0)
-  });
-  
+window._writeBalance=async(newBal)=>{if(!window._curUser)return;await update(ref(db,'users/'+window._curUser.uid),{balance:newBal});loadHomeLb();};
+window._saveBetHistory=async(entry)=>{
+  if(!window._curUser)return;
+  const uid=window._curUser.uid;
+  await push(ref(db,'users/'+uid+'/bets'),entry);
+  const prof=window._userProfile||{};
+  await update(ref(db,'users/'+uid),{totalBets:(prof.totalBets||0)+1,totalProfit:(prof.totalProfit||0)+(entry.profit||0)});
   loadBetHistory();
+  loadHomeLb();
 };
 
-window.sendSupportMsg = async () => {
-  const inp = document.getElementById('scInp');
-  const txt = inp.value.trim();
-  if (!txt) return;
-  
-  const user = window._curUser;
-  const userName = user ? (window._userProfile?.name || user.displayName || 'User') : 'Guest';
-  
-  const msgs = document.getElementById('scMessages');
-  const t = new Date().toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' });
-  
-  msgs.innerHTML += `<div class="sc-msg user">${txt}<div class="sc-msg-time">You · ${t}</div></div>`;
-  msgs.scrollTop = msgs.scrollHeight;
-  inp.value = '';
-  
-  if (user) await push(ref(db, 'messages'), { text: txt, userName, userId: user.uid, time: Date.now() });
-  
-  setTimeout(() => {
-    msgs.innerHTML += `<div class="sc-msg support">আপনার message পেয়েছি! ⚡ শীঘ্রই reply করব।<div class="sc-msg-time">Support · ${new Date().toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' })}</div></div>`;
-    msgs.scrollTop = msgs.scrollHeight;
-  }, 1500);
+window.sendSupportMsg=async()=>{
+  const inp=document.getElementById('scInp'),txt=inp.value.trim();
+  if(!txt)return;
+  const user=window._curUser,userName=user?(window._userProfile?.name||user.displayName||'User'):'Guest';
+  const msgs=document.getElementById('scMessages'),t=new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
+  msgs.innerHTML+=`<div class="sc-msg user">${txt}<div class="sc-msg-time">You · ${t}</div></div>`;
+  msgs.scrollTop=msgs.scrollHeight;inp.value='';
+  if(user)await push(ref(db,'messages'),{text:txt,userName,userId:user.uid,time:Date.now()});
+  setTimeout(()=>{msgs.innerHTML+=`<div class="sc-msg support">আপনার message পেয়েছি! ⚡ শীঘ্রই reply করব।<div class="sc-msg-time">Support · ${new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}</div></div>`;msgs.scrollTop=msgs.scrollHeight;},1500);
 };
 
-window.claimReward = async () => {
-  if (!window._curUser) return;
-  
-  const prof = window._userProfile || {};
-  const today = new Date().toDateString();
-  
-  if (prof.lastClaimDate === today) {
-    toast('⚠️ আজকের reward নেওয়া হয়েছে!', true);
-    document.getElementById('rewardModal').classList.remove('open');
-    return;
-  }
-  
-  if (window._realBal <= 0) {
-    toast('❌ Deposit থাকতে হবে!', true);
-    document.getElementById('rewardModal').classList.remove('open');
-    setTimeout(() => openDepositSSModal(), 600);
-    return;
-  }
-  
-  const dayNum = Math.min((prof.lastClaimedDay || 0) + 1, 7);
-  const rewards = [500, 800, 1000, 1200, 1500, 2000, 3000];
-  const amt = rewards[dayNum - 1];
-  
-  await update(ref(db, 'users/' + window._curUser.uid), {
-    balance: window._realBal + amt,
-    lastClaimedDay: dayNum >= 7 ? 0 : dayNum,
-    lastClaimDate: today,
-    dailyStreak: dayNum
-  });
+window.claimReward=async()=>{
+  if(!window._curUser)return;
+  const prof=window._userProfile||{},today=new Date().toDateString();
+  if(prof.lastClaimDate===today){toast('⚠️ আজকের reward নেওয়া হয়েছে!',true);document.getElementById('rewardModal').classList.remove('open');return;}
+  if(window._realBal<=0){toast('❌ Deposit থাকতে হবে!',true);document.getElementById('rewardModal').classList.remove('open');setTimeout(()=>openDepositSSModal(),600);return;}
+  const dayNum=Math.min((prof.lastClaimedDay||0)+1,7);
+  const rewards=[500,800,1000,1200,1500,2000,3000];
+  const amt=rewards[dayNum-1];
+  await update(ref(db,'users/'+window._curUser.uid),{balance:window._realBal+amt,lastClaimedDay:dayNum>=7?0:dayNum,lastClaimDate:today,dailyStreak:dayNum});
   
   document.getElementById('rewardModal').classList.remove('open');
-  toast(`🎁 Day ${dayNum} Reward: ৳${amt.toLocaleString('en')} পেলেন! 🎉`, false);
+  toast(`🎁 Day ${dayNum} Reward: ৳${amt.toLocaleString('en')} পেলেন! 🎉`,false);
   renderRewardDays();
+  loadHomeLb();
 };
 
-window.renderRewardDays = () => {
-  const prof = window._userProfile || {};
-  const today = new Date().toDateString();
-  const claimedDay = prof.lastClaimedDay || 0;
-  const claimedToday = prof.lastClaimDate === today;
-  
-  const rewards = [500, 800, 1000, 1200, 1500, 2000, 3000];
-  const icons = ['🎁', '🎀', '💎', '🌟', '👑', '🔥', '🏆'];
-  
-  document.getElementById('rewardStreak').textContent = `Day ${claimedDay || 1}`;
-  
-  document.getElementById('rewardDays').innerHTML = rewards.map((r, i) => {
-    const dayN = i + 1;
-    const isClaimed = dayN <= claimedDay && !(dayN === claimedDay && !claimedToday);
-    const isToday = dayN === (claimedToday ? claimedDay : claimedDay + 1);
-    const isLocked = dayN > (claimedToday ? claimedDay : claimedDay + 1);
-    
-    return `<div class="reward-day ${isClaimed ? 'claimed' : ''} ${isToday ? 'today' : ''} ${isLocked ? 'locked' : ''}" onclick="${isLocked ? '' : isToday ? `openRewardClaim(${dayN},${r})` : 'void(0)'}">
-      ${isClaimed ? '<div class="rd-claimed">✅</div>' : ''}
-      <div class="rd-day">DAY ${dayN}</div>
-      <div class="rd-ico">${icons[i]}</div>
-      <div class="rd-amt">৳${r >= 1000 ? Math.floor(r / 1000) + 'K' : r}</div>
+window.renderRewardDays=()=>{
+  const prof=window._userProfile||{},today=new Date().toDateString();
+  const claimedDay=prof.lastClaimedDay||0,claimedToday=prof.lastClaimDate===today;
+  const rewards=[500,800,1000,1200,1500,2000,3000];
+  const icons=['🎁','🎀','💎','🌟','👑','🔥','🏆'];
+  document.getElementById('rewardStreak').textContent=`Day ${claimedDay||1}`;
+  document.getElementById('rewardDays').innerHTML=rewards.map((r,i)=>{
+    const dayN=i+1,isClaimed=dayN<=claimedDay&&!(dayN===claimedDay&&!claimedToday);
+    const isToday=dayN===(claimedToday?claimedDay:claimedDay+1),isLocked=dayN>(claimedToday?claimedDay:claimedDay+1);
+    return`<div class="reward-day ${isClaimed?'claimed':''} ${isToday?'today':''} ${isLocked?'locked':''}" onclick="${isLocked?'':isToday?`openRewardClaim(${dayN},${r})`:'void(0)'}">
+      ${isClaimed?'<div class="rd-claimed">✅</div>':''}
+      <div class="rd-day">DAY ${dayN}</div><div class="rd-ico">${icons[i]}</div><div class="rd-amt">৳${r>=1000?Math.floor(r/1000)+'K':r}</div>
     </div>`;
   }).join('');
 };
 
-window.openRewardClaim = (day, amt) => {
-  const icons = ['🎁', '🎀', '💎', '🌟', '👑', '🔥', '🏆'];
-  document.getElementById('rcEmoji').textContent = icons[day - 1];
-  document.getElementById('rcDay').textContent = `DAY ${day}`;
-  document.getElementById('rcTitle').textContent = `৳${amt.toLocaleString('en')} Reward!`;
+window.openRewardClaim=(day,amt)=>{
+  const icons=['🎁','🎀','💎','🌟','👑','🔥','🏆'];
+  document.getElementById('rcEmoji').textContent=icons[day-1];
+  document.getElementById('rcDay').textContent=`DAY ${day}`;
+  document.getElementById('rcTitle').textContent=`৳${amt.toLocaleString('en')} Reward!`;
   document.getElementById('rewardModal').classList.add('open');
 };
 
-function updateProfileUI(d) {
-  document.getElementById('profBalNum').textContent = (d.balance || 0).toLocaleString('en', { minimumFractionDigits: 2 });
-  document.getElementById('piBalance').textContent = '৳' + (d.balance || 0).toLocaleString('en');
-  document.getElementById('piTotalBets').textContent = d.totalBets || 0;
-  document.getElementById('piProfit').textContent = '৳' + (d.totalProfit || 0).toLocaleString('en');
-  document.getElementById('piStreak').textContent = (d.dailyStreak || 0) + ' Days 🔥';
-  
-  if (d.name) {
-    document.getElementById('profName').textContent = d.name;
-    document.getElementById('profNameInp').value = d.name;
-    document.getElementById('uName').textContent = d.name.split(' ')[0];
-  }
-  
-  if (d.photoURL && d.photoURL.startsWith('data')) {
-    document.getElementById('profAvatar').innerHTML = `<img src="${d.photoURL}" style="width:88px;height:88px;border-radius:50%;object-fit:cover"/>`;
-    document.getElementById('uAvWrap').innerHTML = `<img src="${d.photoURL}" class="u-avatar"/>`;
-  }
-  
+function updateProfileUI(d){
+  document.getElementById('profBalNum').textContent=(d.balance||0).toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('piBalance').textContent='৳'+(d.balance||0).toLocaleString('en');
+  document.getElementById('piTotalBets').textContent=d.totalBets||0;
+  document.getElementById('piProfit').textContent='৳'+(d.totalProfit||0).toLocaleString('en');
+  document.getElementById('piStreak').textContent=(d.dailyStreak||0)+' Days 🔥';
+  if(d.name){document.getElementById('profName').textContent=d.name;document.getElementById('profNameInp').value=d.name;document.getElementById('uName').textContent=d.name.split(' ')[0];}
+  if(d.photoURL&&d.photoURL.startsWith('data')){document.getElementById('profAvatar').innerHTML=`<img src="${d.photoURL}" style="width:88px;height:88px;border-radius:50%;object-fit:cover"/>`;document.getElementById('uAvWrap').innerHTML=`<img src="${d.photoURL}" class="u-avatar"/>`;}
   renderRewardDays();
 }
+</script>
 
-// ========== GAME CONTROL SETTINGS ==========
-window.gameSettings = {
-  aviator: {
-    minMult: 1.10,
-    maxMult: 10000,
-    frequency: 'normal'
-  },
-  trading: {
-    winRate: 50,
-    volatility: 'normal'
-  },
-  dice: {
-    chance: 'low',
-    maxMult: 99
-  },
-  mines: {
-    firstSafe: true,
-    maxMult: 1000
-  },
-  coin: {
-    winRate: 49,
-    mult: 1.96
-  },
-  limbo: {
-    maxMult: 1000000,
-    randomness: 'normal'
-  }
+<script>
+// =================== GLOBAL STATE ===================
+window._realBal=0; window._demoBal=10000; window._isDemo=false;
+window._trDemoActive=false; window._trDemoBal=10000;
+window._diceDemoActive=false; window._diceDemoBal=10000;
+window._minesDemoActive=false; window._minesDemoBal=10000;
+window._coinDemoActive=false; window._coinDemoBal=10000;
+window._limboDemoActive=false; window._limboDemoBal=10000;
+window._userProfile={};
+
+// =================== AI ASSISTANT ===================
+let aiName = 'Royal AI';
+let aiWelcome = 'আমি Royal Bet AI! প্রশ্ন করুন।';
+let aiMode = 'smart';
+
+window.toggleAIChat = () => {
+  document.getElementById('aiChat').classList.toggle('open');
 };
 
-window.updateGameControl = (game) => {
-  if (game === 'aviator') {
-    gameSettings.aviator.minMult = parseFloat(document.getElementById('avMinMult').value) || 1.10;
-    gameSettings.aviator.maxMult = parseFloat(document.getElementById('avMaxMult').value) || 10000;
-    gameSettings.aviator.frequency = document.getElementById('avFrequency').value;
-    toast('✅ Aviator settings updated!', false);
-  } else if (game === 'trading') {
-    gameSettings.trading.winRate = parseFloat(document.getElementById('trWinRate').value) || 50;
-    gameSettings.trading.volatility = document.getElementById('trVolatility').value;
-    toast('✅ Trading settings updated!', false);
-  } else if (game === 'dice') {
-    gameSettings.dice.chance = document.getElementById('diceChance').value;
-    gameSettings.dice.maxMult = parseFloat(document.getElementById('diceMaxMult').value) || 99;
-    toast('✅ Dice settings updated!', false);
-  } else if (game === 'mines') {
-    gameSettings.mines.firstSafe = document.getElementById('minesSafe').value === 'true';
-    gameSettings.mines.maxMult = parseFloat(document.getElementById('minesMaxMult').value) || 1000;
-    toast('✅ Mines settings updated!', false);
-  } else if (game === 'coin') {
-    gameSettings.coin.winRate = parseFloat(document.getElementById('coinWinRate').value) || 49;
-    gameSettings.coin.mult = parseFloat(document.getElementById('coinMult').value) || 1.96;
-    toast('✅ Coin Flip settings updated!', false);
-  } else if (game === 'limbo') {
-    gameSettings.limbo.maxMult = parseFloat(document.getElementById('limboMaxMult').value) || 1000000;
-    gameSettings.limbo.randomness = document.getElementById('limboRandom').value;
-    toast('✅ Limbo settings updated!', false);
-  }
+window.sendAIMessage = () => {
+  const input = document.getElementById('aiInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  
+  const messages = document.getElementById('aiMessages');
+  const time = new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'});
+  
+  // Add user message
+  messages.innerHTML += `<div class="ai-msg user">${msg}<div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:2px;">${time}</div></div>`;
+  input.value = '';
+  messages.scrollTop = messages.scrollHeight;
+  
+  // Show thinking
+  messages.innerHTML += `<div class="ai-thinking"><span></span><span></span><span></span></div>`;
+  messages.scrollTop = messages.scrollHeight;
+  
+  // Generate AI response
+  setTimeout(() => {
+    // Remove thinking
+    const thinking = document.querySelector('.ai-thinking:last-child');
+    if (thinking) thinking.remove();
+    
+    let response = '';
+    
+    if (aiMode === 'smart') {
+      // Smart AI responses
+      const lowerMsg = msg.toLowerCase();
+      if (lowerMsg.includes('balance') || lowerMsg.includes('ব্যালেন্স')) {
+        response = `আপনার বর্তমান ব্যালেন্স: ৳${window._realBal.toLocaleString('en')} (Real) / ৳${window._demoBal.toLocaleString('en')} (Demo)।`;
+      } else if (lowerMsg.includes('deposit') || lowerMsg.includes('ডিপোজিট')) {
+        response = 'ডিপোজিট করতে Home পেজ থেকে Deposit বাটনে ক্লিক করুন। Binance ID: 894307667, তারপর screenshot আপলোড করুন।';
+      } else if (lowerMsg.includes('withdraw') || lowerMsg.includes('উইথড্র')) {
+        response = 'উইথড্রয়াল করতে Profile পেজে গিয়ে Withdraw অপশন ব্যবহার করুন। মিনিমাম ৳200, সর্বোচ্চ ৳200,000।';
+      } else if (lowerMsg.includes('game') || lowerMsg.includes('গেম')) {
+        response = 'আমাদের গেমগুলো: Aviator, Trading, Dice, Mines, Coin Flip, Limbo এবং Live Cricket! সবগুলোতেই মজা নিন।';
+      } else if (lowerMsg.includes('aviator') || lowerMsg.includes('এভিয়েটর')) {
+        response = 'Aviator গেমে বিমান উড়ে এবং মাল্টিপ্লায়ার বাড়ে। সঠিক সময় cashout করে জিতুন! সর্বোচ্চ 10,000x পর্যন্ত।';
+      } else if (lowerMsg.includes('cricket') || lowerMsg.includes('ক্রিকেট')) {
+        response = 'Live Cricket section-এ বাংলাদেশ ও ভারতের ম্যাচে বেট করুন! লাইভ আপডেট দেখুন।';
+      } else if (lowerMsg.includes('help') || lowerMsg.includes('সাহায্য')) {
+        response = 'আমি Royal Bet AI! যেকোনো প্রশ্ন করুন: ব্যালেন্স, ডিপোজিট, উইথড্রয়াল, গেমের নিয়ম ইত্যাদি।';
+      } else if (lowerMsg.includes('bonus') || lowerMsg.includes('বোনাস')) {
+        response = 'Daily Reward claim করুন! প্রতিদিন ৳500 থেকে ৳3000 পর্যন্ত বোনাস পান।';
+      } else {
+        response = `"${msg}" — আপনার প্রশ্নের উত্তর দিচ্ছি: Royal Bet-এ স্বাগতম! আরও জানতে আমাদের Support-এ যোগাযোগ করুন।`;
+      }
+    } else {
+      response = `আপনি বলেছেন: "${msg}" — আমি Royal Bet AI, আপনাকে সাহায্য করতে এখানে আছি।`;
+    }
+    
+    messages.innerHTML += `<div class="ai-msg bot">${response}<div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:2px;">${aiName} · ${new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'})}</div></div>`;
+    messages.scrollTop = messages.scrollHeight;
+  }, 1000);
 };
 
-// Aviator crash point generator with settings
-function avCrashPt() {
-  const settings = gameSettings.aviator;
-  const r = Math.random();
+window.updateAISettings = () => {
+  aiName = document.getElementById('aiName').value || 'Royal AI';
+  aiWelcome = document.getElementById('aiWelcome').value || 'আমি Royal Bet AI! প্রশ্ন করুন।';
+  aiMode = document.getElementById('aiMode').value;
   
-  // Adjust based on frequency setting
-  if (settings.frequency === 'low') {
-    // Higher chance of big multipliers
-    if (r < 0.05) return settings.maxMult * (0.8 + Math.random() * 0.2);
-    if (r < 0.15) return settings.maxMult * (0.5 + Math.random() * 0.3);
-    if (r < 0.30) return settings.maxMult * (0.2 + Math.random() * 0.3);
-    if (r < 0.50) return settings.maxMult * (0.1 + Math.random() * 0.1);
-    return 1.1 + Math.random() * 10;
-  } else if (settings.frequency === 'high') {
-    // Lower chance of big multipliers
-    if (r < 0.01) return settings.maxMult * (0.5 + Math.random() * 0.5);
-    if (r < 0.05) return settings.maxMult * (0.2 + Math.random() * 0.3);
-    if (r < 0.20) return settings.maxMult * (0.1 + Math.random() * 0.1);
-    return 1.1 + Math.random() * 5;
-  } else {
-    // Normal - balanced
-    if (r < 0.08) return 10 + Math.random() * 15;
-    if (r < 0.22) return 25 + Math.random() * 75;
-    if (r < 0.40) return 100 + Math.random() * 400;
-    if (r < 0.58) return 500 + Math.random() * 1500;
-    if (r < 0.72) return 2000 + Math.random() * 8000;
-    if (r < 0.84) return 10000 + Math.random() * 10000;
-    if (r < 0.93) return 20000 + Math.random() * 30000;
-    return 50000 + Math.random() * 50000;
-  }
-}
-
-// AI Prediction System
-let aiInterval = null;
-
-function startAIPrediction() {
-  if (aiInterval) clearInterval(aiInterval);
+  document.getElementById('aiTitle').textContent = aiName;
+  document.getElementById('aiMessages').innerHTML = `<div class="ai-msg bot">${aiWelcome}</div>`;
   
-  aiInterval = setInterval(() => {
-    const predictions = [];
-    
-    // Aviator prediction
-    if (Math.random() > 0.3) {
-      const avMult = 1.1 + Math.random() * 20;
-      predictions.push(`✈️ Aviator: Next crash around ${avMult.toFixed(2)}×`);
-    }
-    
-    // Trading prediction
-    if (Math.random() > 0.4) {
-      const dir = Math.random() > 0.5 ? 'UP' : 'DOWN';
-      predictions.push(`📈 Trading: Next candle likely ${dir}`);
-    }
-    
-    // Dice prediction
-    if (Math.random() > 0.5) {
-      const sum = 2 + Math.floor(Math.random() * 11);
-      predictions.push(`🎲 Dice: Next roll could be ${sum}`);
-    }
-    
-    // Mines prediction
-    if (Math.random() > 0.6) {
-      const safe = 3 + Math.floor(Math.random() * 5);
-      predictions.push(`💣 Mines: Try revealing ${safe} cells`);
-    }
-    
-    // Random prediction
-    const randomPredictions = [
-      "🤖 Big win coming soon!",
-      "🤖 Small bets recommended now",
-      "🤖 High volatility detected",
-      "🤖 Lucky time for cricket betting",
-      "🤖 Multiple wins predicted"
-    ];
-    
-    if (predictions.length === 0 || Math.random() > 0.7) {
-      predictions.push(randomPredictions[Math.floor(Math.random() * randomPredictions.length)]);
-    }
-    
-    document.getElementById('aiContent').innerHTML = predictions.join('<br>');
-  }, 8000);
-}
+  toast('✅ AI settings updated!', false);
+};
 
-// ========== CRICKET BETTING ==========
+// =================== CRICKET BETTING ===================
 let cricketSelectedTeam = null;
 let cricketForcedWinner = 'none';
 let cricketMatchUpdateInterval = null;
@@ -2980,11 +2353,11 @@ function updateCricketMatchProgression() {
   
   const team1Score = document.getElementById('cricketTeam1Score').textContent;
   const [runs, wickets] = team1Score.split('/').map(n => parseInt(n) || 0);
-  
   if (wickets < 10) {
     const newRuns = runs + Math.floor(Math.random() * 8) + 1;
     const newWickets = wickets + (Math.random() > 0.7 ? 1 : 0);
     document.getElementById('cricketTeam1Score').textContent = `${newRuns}/${newWickets}`;
+    document.getElementById('cricketScore').textContent = `${newRuns}/${newWickets}`;
   }
   
   const events = [
@@ -3062,7 +2435,8 @@ window.placeCricketBet = () => {
     time: Date.now(),
     team: cricketSelectedTeam,
     odds: odds,
-    status: 'pending'
+    status: 'pending',
+    userId: window._curUser.uid
   };
   
   cricketBets.push(bet);
@@ -3098,6 +2472,7 @@ window.updateCricketMatch = () => {
   document.getElementById('cricketTeam2').textContent = team2;
   document.getElementById('cricketTeam1Score').textContent = team1Score;
   document.getElementById('cricketTeam2Score').textContent = team2Score;
+  document.getElementById('cricketScore').textContent = team1Score;
   document.getElementById('cricketOvers').textContent = `Overs: ${overs}`;
   document.getElementById('cricketNextEvent').textContent = nextEvent;
   document.getElementById('cricketOdds1Value').textContent = parseFloat(odds1).toFixed(2);
@@ -3149,124 +2524,481 @@ window.forceCricketResult = () => {
   setTimeout(() => {
     document.getElementById('cricketLiveCard').style.animation = 'pulse 2s ease-in-out infinite';
   }, 500);
+  
+  loadHomeLb();
 };
 
-// ========== LEADERBOARD ==========
+function getBalForGame(game){
+  if(game==='av') return window._isDemo?window._demoBal:window._realBal;
+  if(game==='tr') return window._trDemoActive?window._trDemoBal:window._realBal;
+  if(game==='dice') return window._diceDemoActive?window._diceDemoBal:window._realBal;
+  if(game==='mines') return window._minesDemoActive?window._minesDemoBal:window._realBal;
+  if(game==='coin') return window._coinDemoActive?window._coinDemoBal:window._realBal;
+  if(game==='limbo') return window._limboDemoActive?window._limboDemoBal:window._realBal;
+  return window._realBal;
+}
+function setBalForGame(game,v){
+  v=Math.max(0,v);
+  const isDemo={av:window._isDemo,tr:window._trDemoActive,dice:window._diceDemoActive,mines:window._minesDemoActive,coin:window._coinDemoActive,limbo:window._limboDemoActive}[game];
+  if(isDemo){
+    if(game==='av')window._demoBal=v;
+    else if(game==='tr')window._trDemoBal=v;
+    else if(game==='dice')window._diceDemoBal=v;
+    else if(game==='mines')window._minesDemoBal=v;
+    else if(game==='coin')window._coinDemoBal=v;
+    else if(game==='limbo')window._limboDemoBal=v;
+    updateBals();
+  } else {
+    window._realBal=v;updateBals();window._writeBalance(v);
+  }
+}
+
+function updateBals(){
+  const rb=window._realBal;
+  document.getElementById('homeBal').innerHTML=`<span>৳</span>${rb.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+  document.getElementById('avBalNum').textContent=getBalForGame('av').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('trBalNum').textContent=getBalForGame('tr').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('diceBalNum').textContent=getBalForGame('dice').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('minesBalNum').textContent=getBalForGame('mines').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('coinBalNum').textContent=getBalForGame('coin').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('limboBalNum').textContent=getBalForGame('limbo').toLocaleString('en',{minimumFractionDigits:2});
+  if(window._isDemo) document.getElementById('demoBalNumAv').textContent=window._demoBal.toLocaleString('en');
+  if(window._trDemoActive) document.getElementById('trDemoBalNum').textContent=window._trDemoBal.toLocaleString('en');
+}
+
+// PAGES
+window.showPage=id=>{
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('dotMenu').classList.remove('open');
+  closeBnDotMenu();
+};
+window.navTo=tab=>{
+  document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
+  const el=document.getElementById('bn-'+tab);
+  if(el)el.classList.add('active');
+  if(tab==='home'){showPage('homePage');loadHomeLb();}
+  else if(tab==='profile')showPage('profilePage');
+  else if(tab==='history'){showPage('historyPage');window.loadBetHistory&&loadBetHistory();}
+};
+window.toggleDotMenu=()=>document.getElementById('dotMenu').classList.toggle('open');
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.user-info'))document.getElementById('dotMenu').classList.remove('open');
+  if(!e.target.closest('.bn-dots-wrap'))closeBnDotMenu();
+});
+
+// BOTTOM NAV DOT MENU
+window.toggleBnDotMenu=()=>{
+  const menu=document.getElementById('bnDotMenu');
+  const btn=document.getElementById('bnDotsBtn');
+  const isOpen=menu.classList.contains('open');
+  if(isOpen){menu.classList.remove('open');btn.classList.remove('menu-open');}
+  else{menu.classList.add('open');btn.classList.add('menu-open');}
+};
+window.closeBnDotMenu=()=>{
+  document.getElementById('bnDotMenu').classList.remove('open');
+  document.getElementById('bnDotsBtn').classList.remove('menu-open');
+};
+
+window.checkAdminPw=()=>{
+  if(document.getElementById('apwInput').value==='308580'){
+    document.getElementById('adminPwModal').classList.remove('open');
+    showPage('adminPage');
+    window.loadWithdrawalRequests && loadWithdrawalRequests();
+    window.loadDepositRequests && loadDepositRequests();
+    window.loadAdminUsers&&loadAdminUsers();
+    window.loadAdminMessages&&loadAdminMessages();
+    window.loadAdminLeaderboard&&loadAdminLeaderboard();
+    
+    document.getElementById('adminTeam1').value = document.getElementById('cricketTeam1').textContent;
+    document.getElementById('adminTeam2').value = document.getElementById('cricketTeam2').textContent;
+    document.getElementById('adminTeam1Score').value = document.getElementById('cricketTeam1Score').textContent;
+    document.getElementById('adminTeam2Score').value = document.getElementById('cricketTeam2Score').textContent;
+    document.getElementById('adminOvers').value = document.getElementById('cricketOvers').textContent.split(' ')[1];
+    document.getElementById('adminNextEvent').value = document.getElementById('cricketNextEvent').textContent;
+    document.getElementById('adminOdds1').value = document.getElementById('cricketOdds1Value').textContent;
+    document.getElementById('adminOdds2').value = document.getElementById('cricketOdds2Value').textContent;
+    
+    document.getElementById('aiName').value = aiName;
+    document.getElementById('aiWelcome').value = aiWelcome;
+    document.getElementById('aiMode').value = aiMode;
+  } else {
+    document.getElementById('apwError').style.display='block';
+    document.getElementById('apwInput').value='';
+  }
+};
+
+window.switchAdminTab=(tab,el)=>{
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab-content').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');document.getElementById('atab-'+tab).classList.add('active');
+  if(tab==='withdrawals') window.loadWithdrawalRequests && loadWithdrawalRequests();
+  if(tab==='deposits') window.loadDepositRequests && loadDepositRequests();
+  if(tab==='messages')window.loadAdminMessages&&loadAdminMessages();
+  if(tab==='users')window.loadAdminUsers&&loadAdminUsers();
+  if(tab==='leaderboard')window.loadAdminLeaderboard&&loadAdminLeaderboard();
+  if(tab==='cricket'){
+    document.getElementById('adminTeam1').value = document.getElementById('cricketTeam1').textContent;
+    document.getElementById('adminTeam2').value = document.getElementById('cricketTeam2').textContent;
+    document.getElementById('adminTeam1Score').value = document.getElementById('cricketTeam1Score').textContent;
+    document.getElementById('adminTeam2Score').value = document.getElementById('cricketTeam2Score').textContent;
+    document.getElementById('adminOvers').value = document.getElementById('cricketOvers').textContent.split(' ')[1];
+    document.getElementById('adminNextEvent').value = document.getElementById('cricketNextEvent').textContent;
+    document.getElementById('adminOdds1').value = document.getElementById('cricketOdds1Value').textContent;
+    document.getElementById('adminOdds2').value = document.getElementById('cricketOdds2Value').textContent;
+  }
+};
+window.openSupport=()=>document.getElementById('supportModal').classList.add('open');
+
+// MODALS
+window.openModal=t=>document.getElementById(t+'Modal').classList.add('open');
+window.closeModal=t=>document.getElementById(t+'Modal').classList.remove('open');
+document.querySelectorAll('.modal-ov').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');}));
+window.swm=(m,card)=>{
+  document.querySelectorAll('.method-card').forEach(c=>c.classList.remove('sel'));card.classList.add('sel');
+  document.querySelectorAll('.mform').forEach(f=>f.classList.remove('active'));
+  document.getElementById('noMethMsg').style.display='none';
+  document.getElementById('form-'+m).classList.add('active');
+};
+window.copyTxt=(t,btn)=>navigator.clipboard.writeText(t).then(()=>{btn.textContent='✅ Copied!';setTimeout(()=>btn.textContent='📋 Copy',2000);});
+window.checkWithdraw=()=>{if(window._realBal<=0){toast('❌ Balance নেই! Deposit করুন।',true);setTimeout(()=>openDepositSSModal(),600);return;}openModal('withdraw');};
+
+// TOAST
+window.toast=(msg,isErr)=>{
+  const t=document.getElementById('toast');
+  t.innerHTML=msg;t.style.background=isErr?'linear-gradient(135deg,#5c0a0a,#c0392b)':'linear-gradient(135deg,#0a3d1a,#27ae60)';
+  t.style.borderColor=isErr?'rgba(231,76,60,0.5)':'rgba(39,174,96,0.5)';
+  t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3500);
+};
+
+// DEMO TOGGLES
+window.toggleDemo=()=>{window._isDemo=document.getElementById('demoTog').checked;document.getElementById('demoBadgeAv').style.display=window._isDemo?'inline-block':'none';document.getElementById('demoBalAv').style.display=window._isDemo?'flex':'none';if(window._isDemo&&window._demoBal<=0)window._demoBal=10000;updateBals();};
+window.toggleTrDemo=()=>{window._trDemoActive=document.getElementById('trDemoTog').checked;document.getElementById('trDemoBadge').style.display=window._trDemoActive?'inline-block':'none';document.getElementById('trDemoBalWrap').style.display=window._trDemoActive?'flex':'none';if(window._trDemoActive&&window._trDemoBal<=0)window._trDemoBal=10000;updateBals();};
+window.toggleDiceDemo=()=>{window._diceDemoActive=document.getElementById('diceDemoTog').checked;document.getElementById('diceDemoBadge').style.display=window._diceDemoActive?'inline-block':'none';if(window._diceDemoActive&&window._diceDemoBal<=0)window._diceDemoBal=10000;updateBals();};
+window.toggleMinesDemo=()=>{window._minesDemoActive=document.getElementById('minesDemoTog').checked;document.getElementById('minesDemoBadge').style.display=window._minesDemoActive?'inline-block':'none';if(window._minesDemoActive&&window._minesDemoBal<=0)window._minesDemoBal=10000;updateBals();};
+window.toggleCoinDemo=()=>{window._coinDemoActive=document.getElementById('coinDemoTog').checked;document.getElementById('coinDemoBadge').style.display=window._coinDemoActive?'inline-block':'none';if(window._coinDemoActive&&window._coinDemoBal<=0)window._coinDemoBal=10000;updateBals();};
+window.toggleLimboDemo=()=>{window._limboDemoActive=document.getElementById('limboDemoTog').checked;document.getElementById('limboDemoBadge').style.display=window._limboDemoActive?'inline-block':'none';if(window._limboDemoActive&&window._limboDemoBal<=0)window._limboDemoBal=10000;updateBals();};
+
+// AVIATOR
+let avPhase='idle',avBetPlaced=false,avBetAmt=0,avMult=1.00,avCrashAt=1.00,avRaf=null,avRoundStart=0,avCdTimer=null;
+const avPts=[];let avCtx=null;
+function avCrashPt(){
+  const r=Math.random();
+  // Adjusted for 10x min, 10000x max, with distribution to avoid constant 4000-5000x
+  if (r < 0.15) return 10 + Math.random() * 15;        // 10-25x
+  if (r < 0.35) return 25 + Math.random() * 75;        // 25-100x
+  if (r < 0.55) return 100 + Math.random() * 400;      // 100-500x
+  if (r < 0.70) return 500 + Math.random() * 1500;     // 500-2000x
+  if (r < 0.82) return 2000 + Math.random() * 3000;    // 2000-5000x (less common)
+  if (r < 0.92) return 5000 + Math.random() * 3000;    // 5000-8000x (rare)
+  return 8000 + Math.random() * 2000;                   // 8000-10000x (very rare)
+}
+function avInitCanvas(){const cv=document.getElementById('avCv'),c=document.getElementById('avCanvas');cv.width=c.offsetWidth||420;cv.height=c.offsetHeight||200;avCtx=cv.getContext('2d');avCtx.clearRect(0,0,cv.width,cv.height);}
+function avStartRound(){cancelAnimationFrame(avRaf);clearInterval(avCdTimer);avPhase='countdown';avMult=1.00;avCrashAt=avCrashPt();avBetPlaced=false;avPts.length=0;document.getElementById('avCdOv').style.display='flex';document.getElementById('avMW').style.display='none';document.getElementById('avPlane').style.display='none';document.getElementById('avCrashFl').style.display='none';document.getElementById('avMW').querySelector('.av-mn').className='av-mn';avInitCanvas();avSetBadge('bet');avUpdateUI();avBuildLB();let n=10;avSetCd(n);avCdTimer=setInterval(()=>{n--;if(n>0)avSetCd(n);else{clearInterval(avCdTimer);avCdTimer=null;avBeginFly();}},1000);}
+function avSetCd(n){const el=document.getElementById('avCdNum');el.textContent=n;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}
+function avBeginFly(){avPhase='flying';avRoundStart=performance.now();document.getElementById('avCdOv').style.display='none';document.getElementById('avMW').style.display='block';document.getElementById('avMN').innerHTML='1.00<span class="av-mn-x">x</span>';document.getElementById('avPL').textContent='FLYING...';document.getElementById('avPlane').style.display='block';avSetBadge('fly');avUpdateUI();avTick();}
+function avTick(){if(avPhase!=='flying')return;const t=(performance.now()-avRoundStart)/1000;avMult=parseFloat((1+t*2+t*t*0.8).toFixed(2));document.getElementById('avMN').innerHTML=avMult.toFixed(2)+'<span class="av-mn-x">x</span>';if(avBetPlaced){const pot=Math.floor(avBetAmt*avMult);document.getElementById('avCashBtn').textContent='💰 STOP — ৳'+pot.toLocaleString('en');}updateBals();const cv=document.getElementById('avCv'),prog=Math.min(t/20,1),px=4+prog*82,py=7+prog*74+prog*prog*8;document.getElementById('avPlane').style.left=px+'%';document.getElementById('avPlane').style.bottom=py+'%';avPts.push({x:px/100*cv.width,y:cv.height-py/100*cv.height});avDrawCurve(cv.width,cv.height);if(avMult>=avCrashAt){avDoCrash();return;}avRaf=requestAnimationFrame(avTick);}
+function avDrawCurve(w,h){if(!avCtx||avPts.length<2)return;avCtx.clearRect(0,0,w,h);const gr=avCtx.createLinearGradient(0,h,w*0.9,0);gr.addColorStop(0,'rgba(255,80,80,0.1)');gr.addColorStop(0.5,'rgba(255,100,100,0.7)');gr.addColorStop(1,'rgba(255,220,80,1)');avCtx.beginPath();avCtx.moveTo(avPts[0].x,avPts[0].y);for(let i=1;i<avPts.length;i++)avCtx.lineTo(avPts[i].x,avPts[i].y);avCtx.strokeStyle=gr;avCtx.lineWidth=3;avCtx.shadowColor='rgba(255,120,80,0.8)';avCtx.shadowBlur=12;avCtx.stroke();avCtx.lineTo(avPts[avPts.length-1].x,h);avCtx.lineTo(avPts[0].x,h);avCtx.closePath();const fg=avCtx.createLinearGradient(0,0,0,h);fg.addColorStop(0,'rgba(255,100,100,0.15)');fg.addColorStop(1,'rgba(255,100,100,0)');avCtx.fillStyle=fg;avCtx.shadowBlur=0;avCtx.fill();}
+function avDoCrash(){avPhase='crashed';cancelAnimationFrame(avRaf);document.getElementById('avPlane').style.display='none';document.getElementById('avMN').className='av-mn crashed';document.getElementById('avPL').textContent='💥 CRASHED!';document.getElementById('avCrashFl').style.display='flex';avSetBadge('crash');avUpdateUI();if(avBetPlaced){avBetPlaced=false;avUpdateUI();toast(`💥 ${avMult.toFixed(2)}x crash! ৳${avBetAmt.toLocaleString('en')} হারালেন`,true);if(!window._isDemo)window._saveBetHistory&&window._saveBetHistory({game:'Aviator',detail:`Crash at ${avMult.toFixed(2)}x`,bet:avBetAmt,profit:-avBetAmt,time:Date.now()});}setTimeout(()=>{document.getElementById('avCrashFl').style.display='none';avStartRound();},2800);}
+window.avPlaceBet=()=>{if(avPhase!=='countdown'){toast('⏳ Countdown এ Bet দিন!',true);return;}if(avBetPlaced){toast('✅ ইতোমধ্যে Bet!',false);return;}const v=parseInt(document.getElementById('avBetInp').value);if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}if(v>200000){toast('⚠️ Max ৳200,000',true);return;}if(getBalForGame('av')<v){toast(window._isDemo?'❌ Demo balance শেষ!':'❌ Balance কম!',true);if(!window._isDemo)setTimeout(()=>openDepositSSModal(),800);return;}avBetAmt=v;setBalForGame('av',getBalForGame('av')-v);avBetPlaced=true;avUpdateUI();toast(`✅ Bet: ৳${v.toLocaleString('en')}`,false);avBuildLB(true);};
+window.avCashOut=()=>{if(!avBetPlaced||avPhase!=='flying')return;const m=avMult,win=Math.floor(avBetAmt*m),profit=win-avBetAmt;setBalForGame('av',getBalForGame('av')+win);avBetPlaced=false;avUpdateUI();document.getElementById('avMN').className='av-mn cashed';document.getElementById('avPL').textContent=`✅ CASHED ${m.toFixed(2)}x`;toast(`🎉 ${m.toFixed(2)}x — +৳${profit.toLocaleString('en')}`,false);if(!window._isDemo)window._saveBetHistory&&window._saveBetHistory({game:'Aviator',detail:`Cashed out ${m.toFixed(2)}x`,bet:avBetAmt,profit,time:Date.now()});loadHomeLb();};
+window.avQb=amt=>{if(avPhase==='countdown'&&!avBetPlaced)document.getElementById('avBetInp').value=amt;};
+function avUpdateUI(){const bb=document.getElementById('avBetBtn'),cb=document.getElementById('avCashBtn'),inp=document.getElementById('avBetInp');const qbs=document.querySelectorAll('.av-qb');if(avPhase==='flying'){if(avBetPlaced){bb.style.display='none';cb.style.display='flex';}else{bb.style.display='flex';bb.disabled=true;bb.textContent='🔒 FLYING...';cb.style.display='none';}inp.disabled=true;qbs.forEach(b=>b.disabled=true);}else if(avPhase==='countdown'){cb.style.display='none';bb.style.display='flex';if(avBetPlaced){bb.disabled=true;bb.textContent='✅ BET PLACED';}else{bb.disabled=false;bb.textContent='🎲 BET NOW';}inp.disabled=avBetPlaced;qbs.forEach(b=>b.disabled=avBetPlaced);}else{bb.style.display='flex';bb.disabled=true;bb.textContent='⏳ NEXT ROUND...';cb.style.display='none';inp.disabled=true;qbs.forEach(b=>b.disabled=true);}}
+function avSetBadge(p){const b=document.getElementById('avPhBadge');b.className='ph-badge '+p;if(p==='bet')b.textContent='🟡 BETTING OPEN';else if(p==='fly')b.textContent='🟢 FLYING';else b.textContent='🔴 CRASHED';}
+const AV_NAMES=['Rahim_X','Karim99','Sumon★','NightKing','BetKing88','GoldRush','Lucky7','SpeedBet','TigerBet','AcePlayer','RoyalFly','DiamondX','StormBet','PhoenixUp','NightHawk','PlatinumK','IronFist','CobraKing','MaxBet99','UltraFly'];
+let avUsedNames=new Set();
+function avBuildLB(showUser=false){if(avUsedNames.size>AV_NAMES.length-5)avUsedNames.clear();const avail=AV_NAMES.filter(n=>!avUsedNames.has(n)),entries=[],used=new Set();while(entries.length<15&&avail.length>entries.length){const i=Math.floor(Math.random()*avail.length),n=avail[i];if(!used.has(n)){used.add(n);avUsedNames.add(n);const m=parseFloat((10+Math.random()*990).toFixed(2)),b=Math.floor(200+Math.random()*199801);entries.push({n,m,b,isUser:false});}}if(showUser&&avBetPlaced&&window._curUser){const userName=(window._userProfile?.name||window._curUser.displayName||'You').split(' ')[0];entries.unshift({n:'⭐ '+userName,m:avMult||1.00,b:avBetAmt,isUser:true});}entries.sort((a,b)=>b.m-a.m);document.getElementById('avLbBody').innerHTML=entries.map((e,i)=>{let rc='',rl='#'+(i+1);if(i===0){rc='g';rl='🥇';}else if(i===1){rc='s';rl='🥈';}else if(i===2){rc='b';rl='🥉';}return`<div class="lb-row ${e.isUser?'you':''}"><div class="lb-rank ${rc}">${rl}</div><div class="lb-name">${e.n}</div><div class="lb-mult">${e.m.toFixed(2)}x</div><div class="lb-bet">৳${e.b.toLocaleString('en')}</div></div>`;}).join('');}
+setInterval(()=>{if(document.getElementById('aviatorPage').classList.contains('active')&&avPhase==='flying')avBuildLB(avBetPlaced);},9000);
+
+// TRADING
+let trPhase='betting',trBetPlaced=false,trBetAmt=0,trPrediction=null,trCurPrice=149.82,trCdTimer=null;
+const trCandles=[];
+function trInit(){if(trCdTimer)return;if(trCandles.length===0){let p=149.82;for(let i=0;i<12;i++){const o=p,move=(Math.random()-0.48)*0.4,c=parseFloat((o+move).toFixed(3)),h=parseFloat((Math.max(o,c)+Math.random()*0.15).toFixed(3)),l=parseFloat((Math.min(o,c)-Math.random()*0.15).toFixed(3));trCandles.push({o,h,l,c});p=c;}trCurPrice=p;}trDrawChart();trStartBettingPhase();}
+function trStartBettingPhase(){clearInterval(trCdTimer);trPhase='betting';trBetPlaced=false;trPrediction=null;document.getElementById('trCdOv').style.display='flex';document.getElementById('trResultOv').classList.remove('show');trUpdateUI();let n=10;trSetCd(n);trCdTimer=setInterval(()=>{n--;if(n>0)trSetCd(n);else{clearInterval(trCdTimer);trCdTimer=null;trRevealCandle();}},1000);}
+function trSetCd(n){const el=document.getElementById('trCdNum');el.textContent=n;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}
+function trRevealCandle(){trPhase='revealing';document.getElementById('trCdOv').style.display='none';trUpdateUI();const last=trCandles[trCandles.length-1],o=last.c,move=(Math.random()-0.5)*0.5,c=parseFloat((o+move).toFixed(3)),h=parseFloat((Math.max(o,c)+Math.random()*0.18).toFixed(3)),l=parseFloat((Math.min(o,c)-Math.random()*0.18).toFixed(3)),newCandle={o,h,l,c},direction=c>=o?'up':'down';animateTrPrice(last.c,c);setTimeout(()=>{if(trCandles.length>=14)trCandles.shift();trCandles.push(newCandle);trCurPrice=c;trDrawChart();trShowResult(direction);},800);}
+function animateTrPrice(from,to){const steps=20,diff=(to-from)/steps;let step=0;const iv=setInterval(()=>{step++;const cur=parseFloat((from+diff*step).toFixed(3));document.getElementById('trPrice').textContent=cur.toFixed(3);const pct=((to-from)/from*100).toFixed(2);const el=document.getElementById('trChange');el.textContent=(pct>=0?'+':'')+pct+'%';el.className='tr-pair-change '+(pct>=0?'up':'dn');if(step>=steps)clearInterval(iv);},40);}
+function trShowResult(direction){const won=trBetPlaced&&trPrediction===direction;const rv=document.getElementById('trResultOv'),rb=document.getElementById('trResultBox'),rs=document.getElementById('trResultSub');if(!trBetPlaced){setTimeout(()=>trStartBettingPhase(),1500);return;}if(won){const win=trBetAmt*2;setBalForGame('tr',getBalForGame('tr')+win);rb.className='tr-result-box win';rb.textContent='🎉 WIN!';rs.textContent=`+৳${trBetAmt.toLocaleString('en')} profit`;toast(`🎉 ${direction.toUpperCase()} correct! +৳${trBetAmt.toLocaleString('en')}`,false);if(!window._trDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Trading',detail:`${direction.toUpperCase()} @${trCurPrice.toFixed(3)}`,bet:trBetAmt,profit:trBetAmt,time:Date.now()});}else{rb.className='tr-result-box lose';rb.textContent='💥 LOSE!';rs.textContent=`${direction.toUpperCase()} — ৳${trBetAmt.toLocaleString('en')} loss`;toast(`💥 ${direction.toUpperCase()} was correct! Loss`,true);if(!window._trDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Trading',detail:`${direction.toUpperCase()} wrong @${trCurPrice.toFixed(3)}`,bet:trBetAmt,profit:-trBetAmt,time:Date.now()});}rv.classList.add('show');setTimeout(()=>{rv.classList.remove('show');trBuildLB();trStartBettingPhase();},2800);}
+function trDrawChart(){const wrap=document.getElementById('trChartWrap'),cv=document.getElementById('trCv');cv.width=wrap.offsetWidth||420;cv.height=wrap.offsetHeight||200;const ctx=cv.getContext('2d');ctx.clearRect(0,0,cv.width,cv.height);if(!trCandles.length)return;const allP=trCandles.flatMap(c=>[c.h,c.l]),pMin=Math.min(...allP)-0.1,pMax=Math.max(...allP)+0.1,pRange=pMax-pMin,W=cv.width,H=cv.height,pad=14,candleW=Math.floor((W-pad*2)/trCandles.length)-3,cSpacing=(W-pad*2)/trCandles.length;function p2y(p){return pad+(1-(p-pMin)/pRange)*(H-pad*2);}ctx.strokeStyle='rgba(0,255,136,0.08)';ctx.lineWidth=1;for(let i=0;i<=4;i++){const y=pad+i*(H-pad*2)/4;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();const p=(pMax-i*(pRange/4)).toFixed(3);ctx.fillStyle='rgba(0,255,136,0.3)';ctx.font='9px monospace';ctx.fillText(p,2,y-2);}trCandles.forEach((c,i)=>{const x=pad+i*cSpacing+cSpacing/2,oY=p2y(c.o),cY=p2y(c.c),hY=p2y(c.h),lY=p2y(c.l),isUp=c.c>=c.o,color=isUp?'#00cc66':'#ff3333',glow=isUp?'rgba(0,255,100,0.3)':'rgba(255,50,50,0.3)';ctx.strokeStyle=color;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,hY);ctx.lineTo(x,lY);ctx.stroke();const bodyTop=Math.min(oY,cY),bodyH=Math.max(Math.abs(cY-oY),2);ctx.shadowColor=glow;ctx.shadowBlur=6;ctx.fillStyle=color;ctx.fillRect(x-candleW/2,bodyTop,candleW,bodyH);ctx.shadowBlur=0;});}
+window.trPredict=dir=>{if(trPhase!=='betting'){toast('⏳ Countdown এ predict করুন!',true);return;}if(trBetPlaced){toast('✅ ইতোমধ্যে bet!',false);return;}const v=parseInt(document.getElementById('trBetInp').value);if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}if(v>200000){toast('⚠️ Max ৳200,000',true);return;}if(getBalForGame('tr')<v){toast('❌ Balance কম!',true);if(!window._trDemoActive)setTimeout(()=>openDepositSSModal(),800);return;}trBetAmt=v;setBalForGame('tr',getBalForGame('tr')-v);trBetPlaced=true;trPrediction=dir;trUpdateUI();trBuildLB(true);toast(`✅ ${dir==='up'?'▲':'▼'} ${dir.toUpperCase()} Bet: ৳${v.toLocaleString('en')}`,false);};
+window.trQb=amt=>{if(trPhase==='betting'&&!trBetPlaced)document.getElementById('trBetInp').value=amt;};
+function trUpdateUI(){const upBtn=document.getElementById('trUpBtn'),dnBtn=document.getElementById('trDnBtn'),inp=document.getElementById('trBetInp'),qbs=document.querySelectorAll('.tr-qb'),info=document.getElementById('trPhaseInfo');if(trPhase==='betting'&&!trBetPlaced){upBtn.disabled=false;dnBtn.disabled=false;inp.disabled=false;qbs.forEach(b=>b.disabled=false);info.textContent='Bet দিন ও next candle direction predict করুন';}else if(trPhase==='betting'&&trBetPlaced){upBtn.disabled=true;dnBtn.disabled=true;inp.disabled=true;qbs.forEach(b=>b.disabled=true);info.textContent=`✅ ${trPrediction?.toUpperCase()} bet — revealing...`;}else{upBtn.disabled=true;dnBtn.disabled=true;inp.disabled=true;qbs.forEach(b=>b.disabled=true);info.textContent='⏳ Result...';}  }
+const TR_NAMES=['FXKing_BD','PipMaster','TrendWin','CandleAce','ChartBoss','BullRun88','BearHunt','FXRoyal','PriceAct','MomentumX','ScalpKing','SwingTrade','BreakoutX','SupportLvl','ResistWin','EMAKing','RSIBoss','MACDBet','BollingerX','FibonacciK'];
+let trUsedNames=new Set();
+function trBuildLB(showUser=false){if(trUsedNames.size>TR_NAMES.length-5)trUsedNames.clear();const avail=TR_NAMES.filter(n=>!trUsedNames.has(n)),entries=[],used=new Set();while(entries.length<15&&avail.length>entries.length){const i=Math.floor(Math.random()*avail.length),n=avail[i];if(!used.has(n)){used.add(n);trUsedNames.add(n);const dir=Math.random()>0.5?'up':'down',b=Math.floor(200+Math.random()*199801),won=Math.random()>0.4;entries.push({n,dir,b,won,isUser:false});}}if(showUser&&trBetPlaced&&window._curUser){const userName=(window._userProfile?.name||window._curUser.displayName||'You').split(' ')[0];entries.unshift({n:'⭐ '+userName,dir:trPrediction||'up',b:trBetAmt,won:false,isUser:true});}document.getElementById('trLbBody').innerHTML=entries.slice(0,15).map((e,i)=>{let rc='',rl='#'+(i+1);if(i===0){rc='g';rl='🥇';}else if(i===1){rc='s';rl='🥈';}else if(i===2){rc='b';rl='🥉';}const dirEl=e.dir==='up'?'<div class="tr-lb-dir up">▲ UP</div>':'<div class="tr-lb-dir dn">▼ DOWN</div>';const winLoss=e.isUser?`<span style="color:#ffa500">LIVE</span>`:e.won?`<span style="color:#00ff88">+৳${e.b.toLocaleString('en')}</span>`:`<span style="color:#ff4444">-৳${e.b.toLocaleString('en')}</span>`;return`<div class="tr-lb-row ${e.isUser?'you':''}"><div class="tr-lb-rank ${rc}">${rl}</div><div class="tr-lb-name">${e.n}</div>${dirEl}<div class="tr-lb-amt">${winLoss}</div></div>`;}).join('');}
+trBuildLB();
+setInterval(()=>{if(document.getElementById('tradingPage').classList.contains('active'))trBuildLB(trBetPlaced);},8000);
+
+// DICE GAME
+let diceMode='over',diceRolling=false;
+window.setDiceMode=mode=>{diceMode=mode;document.getElementById('diceOverBtn').className='dou-btn'+(mode==='over'?' active':'');document.getElementById('diceUnderBtn').className='dou-btn'+(mode==='under'?' active':'');updateDiceInfo();};
+window.updateDiceInfo=()=>{
+  const target=parseInt(document.getElementById('diceTarget').value)||7;
+  let outcomes=0;
+  if(diceMode==='over'){for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)if(a+b>target)outcomes++;}
+  else{for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)if(a+b<target)outcomes++;}
+  const chance=(outcomes/36*100).toFixed(1),mult=(36/outcomes*0.97).toFixed(2);
+  document.getElementById('diceChance').textContent=`Chance: ${chance}% · Multiplier: ${mult}×`;
+};
+window.rollDice=async()=>{
+  if(diceRolling)return;
+  const v=parseInt(document.getElementById('diceBetInp').value);
+  if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}
+  if(v>200000){toast('⚠️ Max ৳200,000',true);return;}
+  if(getBalForGame('dice')<v){toast('❌ Balance কম!',true);if(!window._diceDemoActive)setTimeout(()=>openDepositSSModal(),800);return;}
+  const target=parseInt(document.getElementById('diceTarget').value)||7;
+  setBalForGame('dice',getBalForGame('dice')-v);
+  diceRolling=true;document.getElementById('diceRollBtn').disabled=true;
+  const d1El=document.getElementById('dice1'),d2El=document.getElementById('dice2');
+  d1El.classList.add('rolling');d2El.classList.add('rolling');
+  const faces=['⚀','⚁','⚂','⚃','⚄','⚅'];
+  let t=0;const iv=setInterval(()=>{d1El.textContent=faces[Math.floor(Math.random()*6)];d2El.textContent=faces[Math.floor(Math.random()*6)];t++;if(t>12)clearInterval(iv);},80);
+  await new Promise(r=>setTimeout(r,1000));
+  d1El.classList.remove('rolling');d2El.classList.remove('rolling');
+  const r1=Math.floor(Math.random()*6)+1,r2=Math.floor(Math.random()*6)+1,sum=r1+r2;
+  d1El.textContent=faces[r1-1];d2El.textContent=faces[r2-1];
+  document.getElementById('diceResultNum').textContent=sum;
+  const won=(diceMode==='over'&&sum>target)||(diceMode==='under'&&sum<target);
+  let outcomes=0;
+  if(diceMode==='over'){for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)if(a+b>target)outcomes++;}
+  else{for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)if(a+b<target)outcomes++;}
+  const mult=parseFloat((36/outcomes*0.97).toFixed(2));
+  const msg=document.getElementById('diceResultMsg');
+  if(won){const win=Math.floor(v*mult);setBalForGame('dice',getBalForGame('dice')+win);msg.textContent=`🎉 WIN! ${sum} ${diceMode} ${target} — +৳${(win-v).toLocaleString('en')}`;msg.className='dice-result-msg show win';toast(`🎉 Dice WIN! +৳${(win-v).toLocaleString('en')}`,false);if(!window._diceDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Dice',detail:`${diceMode} ${target}, rolled ${sum}`,bet:v,profit:win-v,time:Date.now()});}
+  else{msg.textContent=`💥 LOSE! ${sum} — ৳${v.toLocaleString('en')} lost`;msg.className='dice-result-msg show lose';toast(`💥 Dice LOSE! -৳${v.toLocaleString('en')}`,true);if(!window._diceDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Dice',detail:`${diceMode} ${target}, rolled ${sum}`,bet:v,profit:-v,time:Date.now()});}
+  diceRolling=false;document.getElementById('diceRollBtn').disabled=false;
+  setTimeout(()=>msg.classList.remove('show'),3000);
+  loadHomeLb();
+};
+updateDiceInfo();
+
+// MINES GAME
+let minesActive=false,mineBetAmt=0,mineGrid=[],mineRevealed=0,minesCount=3;
+function buildMinesGrid(){
+  const grid=document.getElementById('minesGrid');grid.innerHTML='';mineGrid=[];
+  const totalCells=25,minePositions=new Set();
+  minesCount=parseInt(document.getElementById('minesCount').value)||3;
+  while(minePositions.size<minesCount)minePositions.add(Math.floor(Math.random()*totalCells));
+  for(let i=0;i<totalCells;i++){
+    const isMine=minePositions.has(i);mineGrid.push({isMine,revealed:false});
+    const cell=document.createElement('div');cell.className='mine-cell'+(minesActive?'':' disabled');cell.dataset.idx=i;
+    cell.textContent=minesActive?'❓':'⬛';cell.onclick=()=>clickMineCell(i);grid.appendChild(cell);
+  }
+}
+window.startMines=()=>{
+  const v=parseInt(document.getElementById('minesBetInp').value);
+  if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}
+  if(v>200000){toast('⚠️ Max ৳200,000',true);return;}
+  if(getBalForGame('mines')<v){toast('❌ Balance কম!',true);if(!window._minesDemoActive)setTimeout(()=>openDepositSSModal(),800);return;}
+  mineBetAmt=v;mineRevealed=0;setBalForGame('mines',getBalForGame('mines')-v);minesActive=true;
+  document.getElementById('minesCount').disabled=true;
+  document.getElementById('minesBetInp').disabled=true;
+  document.getElementById('minesStartBtn').style.display='none';
+  document.getElementById('minesCashBtn').style.display='flex';
+  document.getElementById('minesMultiplier').textContent='1.00×';
+  document.getElementById('minesProfit').textContent='৳'+mineBetAmt.toLocaleString('en');
+  document.getElementById('minesRevealed').textContent='0';
+  buildMinesGrid();updateBals();
+};
+function calcMinesMult(revealed,mines){const safe=25-mines;let mult=1;for(let i=0;i<revealed;i++)mult*=(safe-i)/(25-mines-i)*(25/(safe-i));return Math.max(1,mult*0.97);}
+window.clickMineCell=idx=>{
+  if(!minesActive||mineGrid[idx].revealed)return;
+  mineGrid[idx].revealed=true;mineRevealed++;
+  const cells=document.getElementById('minesGrid').children;
+  const cell=cells[idx];
+  if(mineGrid[idx].isMine){
+    cell.textContent='💣';cell.className='mine-cell revealed bomb';
+    mineGrid.forEach((m,i)=>{if(m.isMine&&!m.revealed){cells[i].textContent='💣';cells[i].className='mine-cell revealed bomb';}});
+    minesActive=false;document.getElementById('minesStartBtn').style.display='flex';document.getElementById('minesCashBtn').style.display='none';
+    document.getElementById('minesCount').disabled=false;document.getElementById('minesBetInp').disabled=false;
+    toast(`💥 Mine hit! ৳${mineBetAmt.toLocaleString('en')} হারালেন`,true);
+    if(!window._minesDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Mines',detail:`Hit bomb at ${mineRevealed} reveals`,bet:mineBetAmt,profit:-mineBetAmt,time:Date.now()});
+    buildMinesGrid();
+    loadHomeLb();
+    return;
+  }
+  cell.textContent='💎';cell.className='mine-cell revealed gem';
+  const mult=calcMinesMult(mineRevealed,minesCount);
+  const potWin=Math.floor(mineBetAmt*mult);
+  document.getElementById('minesMultiplier').textContent=mult.toFixed(2)+'×';
+  document.getElementById('minesProfit').textContent='৳'+potWin.toLocaleString('en');
+  document.getElementById('minesRevealed').textContent=mineRevealed;
+  if(mineRevealed===25-minesCount){cashoutMines();}
+};
+window.cashoutMines=()=>{
+  if(!minesActive)return;
+  const mult=calcMinesMult(mineRevealed,minesCount);
+  const win=Math.floor(mineBetAmt*mult);setBalForGame('mines',getBalForGame('mines')+win);
+  minesActive=false;document.getElementById('minesStartBtn').style.display='flex';document.getElementById('minesCashBtn').style.display='none';
+  document.getElementById('minesCount').disabled=false;document.getElementById('minesBetInp').disabled=false;
+  toast(`🎉 Mines cashout! ${mult.toFixed(2)}× — +৳${(win-mineBetAmt).toLocaleString('en')}`,false);
+  if(!window._minesDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Mines',detail:`Cashed out ${mineRevealed} gems @${mult.toFixed(2)}×`,bet:mineBetAmt,profit:win-mineBetAmt,time:Date.now()});
+  buildMinesGrid();
+  loadHomeLb();
+};
+buildMinesGrid();
+
+// COIN FLIP
+let coinSel='heads',coinFlipping=false;
+window.selectCoin=side=>{coinSel=side;document.getElementById('coinHeads').className='coin-side heads'+(side==='heads'?' sel':'');document.getElementById('coinTails').className='coin-side tails'+(side==='tails'?' sel':'');};
+selectCoin('heads');
+window.flipCoin=async()=>{
+  if(coinFlipping)return;
+  const v=parseInt(document.getElementById('coinBetInp').value);
+  if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}
+  if(v>200000){toast('⚠️ Max ৳200,000',true);return;}
+  if(getBalForGame('coin')<v){toast('❌ Balance কম!',true);if(!window._coinDemoActive)setTimeout(()=>openDepositSSModal(),800);return;}
+  setBalForGame('coin',getBalForGame('coin')-v);coinFlipping=true;
+  document.getElementById('coinFlipBtn').disabled=true;
+  const display=document.getElementById('coinDisplay'),msg=document.getElementById('coinResultMsg');
+  msg.textContent='';display.className='coin-display flipping';
+  let t=0;const iv=setInterval(()=>{display.textContent=Math.random()>0.5?'👑':'🌊';t++;if(t>10)clearInterval(iv);},120);
+  await new Promise(r=>setTimeout(r,1600));
+  display.className='coin-display';
+  const result=Math.random()>0.5?'heads':'tails';
+  display.textContent=result==='heads'?'👑':'🌊';
+  const won=result===coinSel;
+  if(won){const win=Math.floor(v*1.96);setBalForGame('coin',getBalForGame('coin')+win);msg.textContent=`🎉 ${result.toUpperCase()}! WIN! +৳${(win-v).toLocaleString('en')}`;msg.className='coin-result-msg win';toast(`🪙 Coin Flip WIN! +৳${(win-v).toLocaleString('en')}`,false);if(!window._coinDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Coin Flip',detail:`Picked ${coinSel}, got ${result}`,bet:v,profit:win-v,time:Date.now()});}
+  else{msg.textContent=`💥 ${result.toUpperCase()}! LOSE! -৳${v.toLocaleString('en')}`;msg.className='coin-result-msg lose';toast(`🪙 Coin Flip LOSE! -৳${v.toLocaleString('en')}`,true);if(!window._coinDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Coin Flip',detail:`Picked ${coinSel}, got ${result}`,bet:v,profit:-v,time:Date.now()});}
+  coinFlipping=false;document.getElementById('coinFlipBtn').disabled=false;
+  setTimeout(()=>msg.textContent='',3000);
+  loadHomeLb();
+};
+
+// LIMBO GAME
+let limboPlaying=false;
+window.updateLimboInfo=()=>{
+  const target=parseFloat(document.getElementById('limboTarget').value)||2;
+  const chance=(1/target*100).toFixed(2);
+  const payout=(target*0.99).toFixed(2);
+  document.getElementById('limboChance').textContent=`Win Chance: ${chance}% · Payout: ${payout}×`;
+};
+window.playLimbo=async()=>{
+  if(limboPlaying)return;
+  const v=parseInt(document.getElementById('limboBetInp').value);
+  const target=parseFloat(document.getElementById('limboTarget').value)||2;
+  if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}
+  if(v>200000){toast('⚠️ Max ৳200,000',true);return;}
+  if(target<1.01){toast('⚠️ Min target 1.01×',true);return;}
+  if(getBalForGame('limbo')<v){toast('❌ Balance কম!',true);if(!window._limboDemoActive)setTimeout(()=>openDepositSSModal(),800);return;}
+  setBalForGame('limbo',getBalForGame('limbo')-v);
+  limboPlaying=true;document.getElementById('limboBtn').disabled=true;
+  const numEl=document.getElementById('limboNum');
+  numEl.className='limbo-mult-num';
+  let cur=1.00;const iv=setInterval(()=>{cur=parseFloat((cur+Math.random()*0.3).toFixed(2));numEl.textContent=cur.toFixed(2);},50);
+  await new Promise(r=>setTimeout(r,1200));
+  clearInterval(iv);
+  const rand=Math.random();
+  const finalMult=rand<1/target?parseFloat((1+Math.random()*(target-1)*0.99).toFixed(2)):parseFloat((target+Math.random()*(target*5)).toFixed(2));
+  numEl.textContent=finalMult.toFixed(2);
+  const won=finalMult>=target;
+  if(won){const payout=parseFloat((target*0.99).toFixed(2));const win=Math.floor(v*payout);setBalForGame('limbo',getBalForGame('limbo')+win);numEl.className='limbo-mult-num win';toast(`🔮 Limbo WIN! ${finalMult.toFixed(2)}× ≥ ${target}× — +৳${(win-v).toLocaleString('en')}`,false);if(!window._limboDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Limbo',detail:`Target ${target}×, got ${finalMult.toFixed(2)}×`,bet:v,profit:win-v,time:Date.now()});}
+  else{numEl.className='limbo-mult-num lose';toast(`🔮 Limbo LOSE! ${finalMult.toFixed(2)}× < ${target}× — -৳${v.toLocaleString('en')}`,true);if(!window._limboDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Limbo',detail:`Target ${target}×, got ${finalMult.toFixed(2)}×`,bet:v,profit:-v,time:Date.now()});}
+  limboPlaying=false;document.getElementById('limboBtn').disabled=false;
+  loadHomeLb();
+};
+updateLimboInfo();
+
+// HOME LEADERBOARD - SYNCED WITH ADMIN
 const DEFAULT_LB = [
-  { id: 'lb1', name: 'RahimBetKing', country: '🇧🇩 Bangladesh', amount: 485000 },
-  { id: 'lb2', name: 'Sumon_Royal', country: '🇧🇩 Bangladesh', amount: 362000 },
-  { id: 'lb3', name: 'NightHawk99', country: '🇮🇳 India', amount: 298000 },
-  { id: 'lb4', name: 'GoldRush_X', country: '🇵🇰 Pakistan', amount: 241000 },
-  { id: 'lb5', name: 'TigerBet88', country: '🇧🇩 Bangladesh', amount: 187000 },
-  { id: 'lb6', name: 'AcePlayer_BD', country: '🇧🇩 Bangladesh', amount: 154000 },
-  { id: 'lb7', name: 'LuckyKing7', country: '🇱🇰 Sri Lanka', amount: 132000 },
-  { id: 'lb8', name: 'SpeedBet_Pro', country: '🇧🇩 Bangladesh', amount: 118000 },
+  {id:'lb1', name:'RahimBetKing', country:'🇧🇩 Bangladesh', amount:485000},
+  {id:'lb2', name:'Sumon_Royal', country:'🇧🇩 Bangladesh', amount:362000},
+  {id:'lb3', name:'NightHawk99', country:'🇮🇳 India', amount:298000},
+  {id:'lb4', name:'GoldRush_X', country:'🇵🇰 Pakistan', amount:241000},
+  {id:'lb5', name:'TigerBet88', country:'🇧🇩 Bangladesh', amount:187000},
+  {id:'lb6', name:'AcePlayer_BD', country:'🇧🇩 Bangladesh', amount:154000},
+  {id:'lb7', name:'LuckyKing7', country:'🇱🇰 Sri Lanka', amount:132000},
+  {id:'lb8', name:'SpeedBet_Pro', country:'🇧🇩 Bangladesh', amount:118000},
 ];
 
-async function loadHomeLb() {
-  if (!window._db || !window._ref || !window._get) {
+async function loadHomeLb(){
+  if(!window._db||!window._ref||!window._get){
     renderHomeLb(DEFAULT_LB);
     return;
   }
-  
-  try {
-    const snap = await window._get(window._ref(window._db, 'leaderboard'));
-    if (snap.exists()) {
-      const data = snap.val();
-      const arr = Object.entries(data).map(([id, v]) => ({ id, ...v })).sort((a, b) => b.amount - a.amount);
-      renderHomeLb(arr.length ? arr : DEFAULT_LB);
+  try{
+    const snap=await window._get(window._ref(window._db,'leaderboard'));
+    if(snap.exists()){
+      const data=snap.val();
+      const arr=Object.entries(data).map(([id,v])=>({id,...v})).sort((a,b)=>b.amount-a.amount);
+      renderHomeLb(arr.length?arr:DEFAULT_LB);
     } else {
-      // Initialize with default data
-      for (const e of DEFAULT_LB) {
-        await window._set(window._ref(window._db, 'leaderboard/' + e.id), {
-          name: e.name,
-          country: e.country,
-          amount: e.amount
-        });
+      // Initialize with default if empty
+      for(const e of DEFAULT_LB){
+        await window._set(window._ref(window._db,'leaderboard/'+e.id),{name:e.name,country:e.country,amount:e.amount});
       }
       renderHomeLb(DEFAULT_LB);
     }
-  } catch (e) {
-    renderHomeLb(DEFAULT_LB);
-  }
+  } catch(e){renderHomeLb(DEFAULT_LB);}
   
-  try {
-    const usersSnap = await window._get(window._ref(window._db, 'users'));
-    if (usersSnap.exists()) {
+  // Also load real users with high balance
+  try{
+    const usersSnap = await window._get(window._ref(window._db,'users'));
+    if(usersSnap.exists()){
       const users = usersSnap.val();
       const realEntries = Object.entries(users)
-        .filter(([_, u]) => u.balance > 5000)
-        .map(([uid, u]) => ({
-          id: 'user_' + uid,
+        .filter(([_,u]) => u.balance > 5000)
+        .map(([uid,u]) => ({
+          id: 'user_'+uid,
           name: u.name || 'Player',
           country: '🇧🇩 Bangladesh',
           amount: u.balance || 0
         }))
-        .sort((a, b) => b.amount - a.amount)
-        .slice(0, 5);
+        .sort((a,b) => b.amount - a.amount)
+        .slice(0,5);
       
-      if (realEntries.length > 0) {
-        const combined = [...realEntries, ...DEFAULT_LB.slice(0, 3)].sort((a, b) => b.amount - a.amount);
-        renderHomeLb(combined.slice(0, 8));
+      if(realEntries.length > 0){
+        const combined = [...realEntries, ...DEFAULT_LB.slice(0,3)].sort((a,b) => b.amount - a.amount);
+        renderHomeLb(combined.slice(0,8));
       }
     }
-  } catch (e) {}
+  } catch(e){}
 }
 
-function renderHomeLb(entries) {
-  const medals = ['🥇', '🥈', '🥉'];
-  const rankClass = ['hlb-rank-1', 'hlb-rank-2', 'hlb-rank-3'];
-  const colors = ['#f0d060', '#c0c0c0', '#cd7f32'];
-  
-  document.getElementById('homeLbList').innerHTML = entries.map((e, i) => {
-    const isTop = i < 3;
-    const rankEl = isTop
-      ? `<div class="hlb-rank-badge ${rankClass[i]}" style="color:#000">${medals[i]}</div>`
-      : `<div class="hlb-rank-badge hlb-rank-other">#${i + 1}</div>`;
-    
-    return `<div class="hlb-row">
+function renderHomeLb(entries){
+  const medals=['🥇','🥈','🥉'];
+  const rankClass=['hlb-rank-1','hlb-rank-2','hlb-rank-3'];
+  const colors=['#f0d060','#c0c0c0','#cd7f32'];
+  document.getElementById('homeLbList').innerHTML=entries.map((e,i)=>{
+    const isTop=i<3;
+    const rankEl=isTop
+      ?`<div class="hlb-rank-badge ${rankClass[i]}" style="color:#000">${medals[i]}</div>`
+      :`<div class="hlb-rank-badge hlb-rank-other">#${i+1}</div>`;
+    return`<div class="hlb-row">
       ${rankEl}
       <div class="hlb-info">
-        <div class="hlb-name" style="${isTop ? 'color:' + colors[i] : ''}">${e.name}</div>
+        <div class="hlb-name" style="${isTop?'color:'+colors[i]:''}">${e.name}</div>
         <div class="hlb-country">${e.country}</div>
       </div>
       <div style="text-align:right">
         <div class="hlb-amt">৳${Number(e.amount).toLocaleString('en')}</div>
-        ${isTop ? `<div class="hlb-crown">${i === 0 ? '👑 Champion' : i === 1 ? '⭐ Runner-up' : '🏅 3rd Place'}</div>` : ''}
+        ${isTop?`<div class="hlb-crown">${i===0?'👑 Champion':i===1?'⭐ Runner-up':'🏅 3rd Place'}</div>`:''}
       </div>
     </div>`;
   }).join('');
 }
 
-// Admin Leaderboard
-window.loadAdminLeaderboard = async () => {
-  if (!window._db) return;
-  
-  const snap = await window._get(window._ref(window._db, 'leaderboard'));
-  let entries = [];
-  
-  if (snap.exists()) {
-    entries = Object.entries(snap.val()).map(([id, v]) => ({ id, ...v })).sort((a, b) => b.amount - a.amount);
+// ADMIN LEADERBOARD
+window.loadAdminLeaderboard=async()=>{
+  if(!window._db) return;
+  const snap=await window._get(window._ref(window._db,'leaderboard'));
+  let entries=[];
+  if(snap.exists()){
+    entries=Object.entries(snap.val()).map(([id,v])=>({id,...v})).sort((a,b)=>b.amount-a.amount);
   } else {
-    for (const e of DEFAULT_LB) {
-      await window._set(window._ref(window._db, 'leaderboard/' + e.id), {
-        name: e.name,
-        country: e.country,
-        amount: e.amount
-      });
+    for(const e of DEFAULT_LB){
+      await window._set(window._ref(window._db,'leaderboard/'+e.id),{name:e.name,country:e.country,amount:e.amount});
     }
-    entries = DEFAULT_LB;
+    entries=DEFAULT_LB;
   }
-  
   renderAdminLb(entries);
 };
 
-function renderAdminLb(entries) {
-  const medals = ['🥇', '🥈', '🥉'];
-  
-  document.getElementById('adminLbList').innerHTML = entries.map((e, i) => `
+function renderAdminLb(entries){
+  const medals=['🥇','🥈','🥉'];
+  document.getElementById('adminLbList').innerHTML=entries.map((e,i)=>`
     <div class="alb-row" id="alb-${e.id}">
-      <div class="alb-rank-lbl">${i < 3 ? medals[i] : ('#' + (i + 1) + ' PLACE')} — RANK ${i + 1}</div>
+      <div class="alb-rank-lbl">${i<3?medals[i]:('#'+(i+1)+' PLACE')} — RANK ${i+1}</div>
       <input class="alb-inp-full" id="albn-${e.id}" value="${e.name}" placeholder="Name"/>
       <div class="alb-fields">
         <input class="alb-inp" id="albc-${e.id}" value="${e.country}" placeholder="🇧🇩 Country"/>
@@ -3280,1561 +3012,69 @@ function renderAdminLb(entries) {
   `).join('');
 }
 
-window.saveLbEntry = async (id) => {
-  const name = document.getElementById('albn-' + id)?.value?.trim();
-  const country = document.getElementById('albc-' + id)?.value?.trim();
-  const amount = parseFloat(document.getElementById('alba-' + id)?.value) || 0;
-  
-  if (!name) {
-    toast('⚠️ Name দিন', true);
-    return;
-  }
-  
-  await window._set(window._ref(window._db, 'leaderboard/' + id), { name, country, amount });
-  toast('✅ Leaderboard updated!', false);
+window.saveLbEntry=async(id)=>{
+  const name=document.getElementById('albn-'+id)?.value?.trim();
+  const country=document.getElementById('albc-'+id)?.value?.trim();
+  const amount=parseFloat(document.getElementById('alba-'+id)?.value)||0;
+  if(!name){toast('⚠️ Name দিন',true);return;}
+  await window._set(window._ref(window._db,'leaderboard/'+id),{name,country,amount});
+  toast('✅ Leaderboard updated!',false);
   loadAdminLeaderboard();
   loadHomeLb();
 };
 
-window.deleteLbEntry = async (id) => {
-  if (!confirm('Delete this entry?')) return;
-  await window._set(window._ref(window._db, 'leaderboard/' + id), null);
-  toast('🗑 Deleted', false);
+window.deleteLbEntry=async(id)=>{
+  if(!confirm('Delete this entry?'))return;
+  await window._set(window._ref(window._db,'leaderboard/'+id),null);
+  toast('🗑 Deleted',false);
   loadAdminLeaderboard();
   loadHomeLb();
 };
 
-window.addLbEntry = async () => {
-  const id = 'lb_' + Date.now();
-  await window._set(window._ref(window._db, 'leaderboard/' + id), {
-    name: 'New Player',
-    country: '🇧🇩 Bangladesh',
-    amount: 0
-  });
-  toast('✅ New entry added!', false);
+window.addLbEntry=async()=>{
+  const id='lb_'+Date.now();
+  await window._set(window._ref(window._db,'leaderboard/'+id),{name:'New Player',country:'🇧🇩 Bangladesh',amount:0});
+  toast('✅ New entry added!',false);
   loadAdminLeaderboard();
+  loadHomeLb();
 };
-
-// ========== GLOBAL STATE ==========
-window._realBal = 0;
-window._demoBal = 10000;
-window._isDemo = false;
-window._trDemoActive = false;
-window._trDemoBal = 10000;
-window._diceDemoActive = false;
-window._diceDemoBal = 10000;
-window._minesDemoActive = false;
-window._minesDemoBal = 10000;
-window._coinDemoActive = false;
-window._coinDemoBal = 10000;
-window._limboDemoActive = false;
-window._limboDemoBal = 10000;
-window._userProfile = {};
-
-function getBalForGame(game) {
-  if (game === 'av') return window._isDemo ? window._demoBal : window._realBal;
-  if (game === 'tr') return window._trDemoActive ? window._trDemoBal : window._realBal;
-  if (game === 'dice') return window._diceDemoActive ? window._diceDemoBal : window._realBal;
-  if (game === 'mines') return window._minesDemoActive ? window._minesDemoBal : window._realBal;
-  if (game === 'coin') return window._coinDemoActive ? window._coinDemoBal : window._realBal;
-  if (game === 'limbo') return window._limboDemoActive ? window._limboDemoBal : window._realBal;
-  return window._realBal;
-}
-
-function setBalForGame(game, v) {
-  v = Math.max(0, v);
-  const isDemo = {
-    av: window._isDemo,
-    tr: window._trDemoActive,
-    dice: window._diceDemoActive,
-    mines: window._minesDemoActive,
-    coin: window._coinDemoActive,
-    limbo: window._limboDemoActive
-  }[game];
-  
-  if (isDemo) {
-    if (game === 'av') window._demoBal = v;
-    else if (game === 'tr') window._trDemoBal = v;
-    else if (game === 'dice') window._diceDemoBal = v;
-    else if (game === 'mines') window._minesDemoBal = v;
-    else if (game === 'coin') window._coinDemoBal = v;
-    else if (game === 'limbo') window._limboDemoBal = v;
-    updateBals();
-  } else {
-    window._realBal = v;
-    updateBals();
-    window._writeBalance(v);
-  }
-}
-
-function updateBals() {
-  const rb = window._realBal;
-  document.getElementById('homeBal').innerHTML = `<span>৳</span>${rb.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-  document.getElementById('avBalNum').textContent = getBalForGame('av').toLocaleString('en', { minimumFractionDigits: 2 });
-  document.getElementById('trBalNum').textContent = getBalForGame('tr').toLocaleString('en', { minimumFractionDigits: 2 });
-  document.getElementById('diceBalNum').textContent = getBalForGame('dice').toLocaleString('en', { minimumFractionDigits: 2 });
-  document.getElementById('minesBalNum').textContent = getBalForGame('mines').toLocaleString('en', { minimumFractionDigits: 2 });
-  document.getElementById('coinBalNum').textContent = getBalForGame('coin').toLocaleString('en', { minimumFractionDigits: 2 });
-  document.getElementById('limboBalNum').textContent = getBalForGame('limbo').toLocaleString('en', { minimumFractionDigits: 2 });
-  
-  if (window._isDemo) document.getElementById('demoBalNumAv').textContent = window._demoBal.toLocaleString('en');
-  if (window._trDemoActive) document.getElementById('trDemoBalNum').textContent = window._trDemoBal.toLocaleString('en');
-}
-
-// ========== PAGES ==========
-window.showPage = (id) => {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.getElementById('dotMenu').classList.remove('open');
-  closeBnDotMenu();
-};
-
-window.navTo = (tab) => {
-  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
-  const el = document.getElementById('bn-' + tab);
-  if (el) el.classList.add('active');
-  
-  if (tab === 'home') {
-    showPage('homePage');
-    loadHomeLb();
-  } else if (tab === 'profile') {
-    showPage('profilePage');
-  } else if (tab === 'history') {
-    showPage('historyPage');
-    window.loadBetHistory && loadBetHistory();
-  }
-};
-
-window.toggleDotMenu = () => document.getElementById('dotMenu').classList.toggle('open');
-
-document.addEventListener('click', e => {
-  if (!e.target.closest('.user-info')) document.getElementById('dotMenu').classList.remove('open');
-  if (!e.target.closest('.bn-dots-wrap')) closeBnDotMenu();
-});
-
-window.toggleBnDotMenu = () => {
-  const menu = document.getElementById('bnDotMenu');
-  const btn = document.getElementById('bnDotsBtn');
-  const isOpen = menu.classList.contains('open');
-  
-  if (isOpen) {
-    menu.classList.remove('open');
-    btn.classList.remove('menu-open');
-  } else {
-    menu.classList.add('open');
-    btn.classList.add('menu-open');
-  }
-};
-
-window.closeBnDotMenu = () => {
-  document.getElementById('bnDotMenu').classList.remove('open');
-  document.getElementById('bnDotsBtn').classList.remove('menu-open');
-};
-
-window.switchAdminTab = (tab, el) => {
-  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
-  
-  el.classList.add('active');
-  document.getElementById('atab-' + tab).classList.add('active');
-  
-  if (tab === 'withdrawals') window.loadWithdrawalRequests && loadWithdrawalRequests();
-  if (tab === 'deposits') window.loadDepositRequests && loadDepositRequests();
-  if (tab === 'messages') window.loadAdminMessages && loadAdminMessages();
-  if (tab === 'users') window.loadAdminUsers && loadAdminUsers();
-  if (tab === 'leaderboard') window.loadAdminLeaderboard && loadAdminLeaderboard();
-  if (tab === 'cricket') {
-    document.getElementById('adminTeam1').value = document.getElementById('cricketTeam1').textContent;
-    document.getElementById('adminTeam2').value = document.getElementById('cricketTeam2').textContent;
-    document.getElementById('adminTeam1Score').value = document.getElementById('cricketTeam1Score').textContent;
-    document.getElementById('adminTeam2Score').value = document.getElementById('cricketTeam2Score').textContent;
-    document.getElementById('adminOvers').value = document.getElementById('cricketOvers').textContent.split(' ')[1];
-    document.getElementById('adminNextEvent').value = document.getElementById('cricketNextEvent').textContent;
-    document.getElementById('adminOdds1').value = document.getElementById('cricketOdds1Value').textContent;
-    document.getElementById('adminOdds2').value = document.getElementById('cricketOdds2Value').textContent;
-  }
-};
-
-window.openSupport = () => document.getElementById('supportModal').classList.add('open');
-
-// ========== MODALS ==========
-window.openModal = t => document.getElementById(t + 'Modal').classList.add('open');
-window.closeModal = t => document.getElementById(t + 'Modal').classList.remove('open');
-
-document.querySelectorAll('.modal-ov').forEach(el => {
-  el.addEventListener('click', e => {
-    if (e.target === el) el.classList.remove('open');
-  });
-});
-
-window.swm = (m, card) => {
-  document.querySelectorAll('.method-card').forEach(c => c.classList.remove('sel'));
-  card.classList.add('sel');
-  document.querySelectorAll('.mform').forEach(f => f.classList.remove('active'));
-  document.getElementById('noMethMsg').style.display = 'none';
-  document.getElementById('form-' + m).classList.add('active');
-};
-
-window.copyTxt = (t, btn) => {
-  navigator.clipboard.writeText(t).then(() => {
-    btn.textContent = '✅ Copied!';
-    setTimeout(() => btn.textContent = '📋 Copy', 2000);
-  });
-};
-
-window.checkWithdraw = () => {
-  if (window._realBal <= 0) {
-    toast('❌ Balance নেই! Deposit করুন।', true);
-    setTimeout(() => openDepositSSModal(), 600);
-    return;
-  }
-  openModal('withdraw');
-};
-
-// TOAST
-window.toast = (msg, isErr) => {
-  const t = document.getElementById('toast');
-  t.innerHTML = msg;
-  t.style.background = isErr ? 'linear-gradient(135deg,#5c0a0a,#c0392b)' : 'linear-gradient(135deg,#0a3d1a,#27ae60)';
-  t.style.borderColor = isErr ? 'rgba(231,76,60,0.5)' : 'rgba(39,174,96,0.5)';
-  t.classList.add('show');
-  clearTimeout(t._t);
-  t._t = setTimeout(() => t.classList.remove('show'), 3500);
-};
-
-// DEMO TOGGLES
-window.toggleDemo = () => {
-  window._isDemo = document.getElementById('demoTog').checked;
-  document.getElementById('demoBadgeAv').style.display = window._isDemo ? 'inline-block' : 'none';
-  document.getElementById('demoBalAv').style.display = window._isDemo ? 'flex' : 'none';
-  if (window._isDemo && window._demoBal <= 0) window._demoBal = 10000;
-  updateBals();
-};
-
-window.toggleTrDemo = () => {
-  window._trDemoActive = document.getElementById('trDemoTog').checked;
-  document.getElementById('trDemoBadge').style.display = window._trDemoActive ? 'inline-block' : 'none';
-  document.getElementById('trDemoBalWrap').style.display = window._trDemoActive ? 'flex' : 'none';
-  if (window._trDemoActive && window._trDemoBal <= 0) window._trDemoBal = 10000;
-  updateBals();
-};
-
-window.toggleDiceDemo = () => {
-  window._diceDemoActive = document.getElementById('diceDemoTog').checked;
-  document.getElementById('diceDemoBadge').style.display = window._diceDemoActive ? 'inline-block' : 'none';
-  if (window._diceDemoActive && window._diceDemoBal <= 0) window._diceDemoBal = 10000;
-  updateBals();
-};
-
-window.toggleMinesDemo = () => {
-  window._minesDemoActive = document.getElementById('minesDemoTog').checked;
-  document.getElementById('minesDemoBadge').style.display = window._minesDemoActive ? 'inline-block' : 'none';
-  if (window._minesDemoActive && window._minesDemoBal <= 0) window._minesDemoBal = 10000;
-  updateBals();
-};
-
-window.toggleCoinDemo = () => {
-  window._coinDemoActive = document.getElementById('coinDemoTog').checked;
-  document.getElementById('coinDemoBadge').style.display = window._coinDemoActive ? 'inline-block' : 'none';
-  if (window._coinDemoActive && window._coinDemoBal <= 0) window._coinDemoBal = 10000;
-  updateBals();
-};
-
-window.toggleLimboDemo = () => {
-  window._limboDemoActive = document.getElementById('limboDemoTog').checked;
-  document.getElementById('limboDemoBadge').style.display = window._limboDemoActive ? 'inline-block' : 'none';
-  if (window._limboDemoActive && window._limboDemoBal <= 0) window._limboDemoBal = 10000;
-  updateBals();
-};
-
-// ========== AVIATOR ==========
-let avPhase = 'idle';
-let avBetPlaced = false;
-let avBetAmt = 0;
-let avMult = 1.00;
-let avCrashAt = 1.00;
-let avRaf = null;
-let avRoundStart = 0;
-let avCdTimer = null;
-const avPts = [];
-let avCtx = null;
-
-function avInitCanvas() {
-  const cv = document.getElementById('avCv');
-  const c = document.getElementById('avCanvas');
-  cv.width = c.offsetWidth || 420;
-  cv.height = c.offsetHeight || 200;
-  avCtx = cv.getContext('2d');
-  avCtx.clearRect(0, 0, cv.width, cv.height);
-}
-
-function avStartRound() {
-  cancelAnimationFrame(avRaf);
-  clearInterval(avCdTimer);
-  
-  avPhase = 'countdown';
-  avMult = 1.00;
-  avCrashAt = avCrashPt();
-  avBetPlaced = false;
-  avPts.length = 0;
-  
-  document.getElementById('avCdOv').style.display = 'flex';
-  document.getElementById('avMW').style.display = 'none';
-  document.getElementById('avPlane').style.display = 'none';
-  document.getElementById('avCrashFl').style.display = 'none';
-  document.getElementById('avMW').querySelector('.av-mn').className = 'av-mn';
-  
-  avInitCanvas();
-  avSetBadge('bet');
-  avUpdateUI();
-  avBuildLB();
-  
-  let n = 10;
-  avSetCd(n);
-  
-  avCdTimer = setInterval(() => {
-    n--;
-    if (n > 0) {
-      avSetCd(n);
-    } else {
-      clearInterval(avCdTimer);
-      avCdTimer = null;
-      avBeginFly();
-    }
-  }, 1000);
-}
-
-function avSetCd(n) {
-  const el = document.getElementById('avCdNum');
-  el.textContent = n;
-  el.classList.remove('pop');
-  void el.offsetWidth;
-  el.classList.add('pop');
-}
-
-function avBeginFly() {
-  avPhase = 'flying';
-  avRoundStart = performance.now();
-  
-  document.getElementById('avCdOv').style.display = 'none';
-  document.getElementById('avMW').style.display = 'block';
-  document.getElementById('avMN').innerHTML = '1.00<span class="av-mn-x">x</span>';
-  document.getElementById('avPL').textContent = 'FLYING...';
-  document.getElementById('avPlane').style.display = 'block';
-  
-  avSetBadge('fly');
-  avUpdateUI();
-  avTick();
-}
-
-function avTick() {
-  if (avPhase !== 'flying') return;
-  
-  const t = (performance.now() - avRoundStart) / 1000;
-  avMult = parseFloat((1 + t * 2 + t * t * 0.8).toFixed(2));
-  
-  document.getElementById('avMN').innerHTML = avMult.toFixed(2) + '<span class="av-mn-x">x</span>';
-  
-  if (avBetPlaced) {
-    const pot = Math.floor(avBetAmt * avMult);
-    document.getElementById('avCashBtn').textContent = '💰 STOP — ৳' + pot.toLocaleString('en');
-  }
-  
-  updateBals();
-  
-  const cv = document.getElementById('avCv');
-  const prog = Math.min(t / 20, 1);
-  const px = 4 + prog * 82;
-  const py = 7 + prog * 74 + prog * prog * 8;
-  
-  document.getElementById('avPlane').style.left = px + '%';
-  document.getElementById('avPlane').style.bottom = py + '%';
-  
-  avPts.push({
-    x: px / 100 * cv.width,
-    y: cv.height - py / 100 * cv.height
-  });
-  
-  avDrawCurve(cv.width, cv.height);
-  
-  if (avMult >= avCrashAt) {
-    avDoCrash();
-    return;
-  }
-  
-  avRaf = requestAnimationFrame(avTick);
-}
-
-function avDrawCurve(w, h) {
-  if (!avCtx || avPts.length < 2) return;
-  
-  avCtx.clearRect(0, 0, w, h);
-  
-  const gr = avCtx.createLinearGradient(0, h, w * 0.9, 0);
-  gr.addColorStop(0, 'rgba(255,80,80,0.1)');
-  gr.addColorStop(0.5, 'rgba(255,100,100,0.7)');
-  gr.addColorStop(1, 'rgba(255,220,80,1)');
-  
-  avCtx.beginPath();
-  avCtx.moveTo(avPts[0].x, avPts[0].y);
-  
-  for (let i = 1; i < avPts.length; i++) {
-    avCtx.lineTo(avPts[i].x, avPts[i].y);
-  }
-  
-  avCtx.strokeStyle = gr;
-  avCtx.lineWidth = 3;
-  avCtx.shadowColor = 'rgba(255,120,80,0.8)';
-  avCtx.shadowBlur = 12;
-  avCtx.stroke();
-  
-  avCtx.lineTo(avPts[avPts.length - 1].x, h);
-  avCtx.lineTo(avPts[0].x, h);
-  avCtx.closePath();
-  
-  const fg = avCtx.createLinearGradient(0, 0, 0, h);
-  fg.addColorStop(0, 'rgba(255,100,100,0.15)');
-  fg.addColorStop(1, 'rgba(255,100,100,0)');
-  
-  avCtx.fillStyle = fg;
-  avCtx.shadowBlur = 0;
-  avCtx.fill();
-}
-
-function avDoCrash() {
-  avPhase = 'crashed';
-  cancelAnimationFrame(avRaf);
-  
-  document.getElementById('avPlane').style.display = 'none';
-  document.getElementById('avMN').className = 'av-mn crashed';
-  document.getElementById('avPL').textContent = '💥 CRASHED!';
-  document.getElementById('avCrashFl').style.display = 'flex';
-  
-  avSetBadge('crash');
-  avUpdateUI();
-  
-  if (avBetPlaced) {
-    avBetPlaced = false;
-    avUpdateUI();
-    toast(`💥 ${avMult.toFixed(2)}x crash! ৳${avBetAmt.toLocaleString('en')} হারালেন`, true);
-    
-    if (!window._isDemo) {
-      window._saveBetHistory && window._saveBetHistory({
-        game: 'Aviator',
-        detail: `Crash at ${avMult.toFixed(2)}x`,
-        bet: avBetAmt,
-        profit: -avBetAmt,
-        time: Date.now()
-      });
-    }
-  }
-  
-  setTimeout(() => {
-    document.getElementById('avCrashFl').style.display = 'none';
-    avStartRound();
-  }, 2800);
-}
-
-window.avPlaceBet = () => {
-  if (avPhase !== 'countdown') {
-    toast('⏳ Countdown এ Bet দিন!', true);
-    return;
-  }
-  
-  if (avBetPlaced) {
-    toast('✅ ইতোমধ্যে Bet!', false);
-    return;
-  }
-  
-  const v = parseInt(document.getElementById('avBetInp').value);
-  if (isNaN(v) || v < 200) {
-    toast('⚠️ Min ৳200', true);
-    return;
-  }
-  
-  if (getBalForGame('av') < v) {
-    toast(window._isDemo ? '❌ Demo balance শেষ!' : '❌ Balance কম!', true);
-    if (!window._isDemo) setTimeout(() => openDepositSSModal(), 800);
-    return;
-  }
-  
-  avBetAmt = v;
-  setBalForGame('av', getBalForGame('av') - v);
-  avBetPlaced = true;
-  avUpdateUI();
-  toast(`✅ Bet: ৳${v.toLocaleString('en')}`, false);
-  avBuildLB(true);
-};
-
-window.avCashOut = () => {
-  if (!avBetPlaced || avPhase !== 'flying') return;
-  
-  const m = avMult;
-  const win = Math.floor(avBetAmt * m);
-  const profit = win - avBetAmt;
-  
-  setBalForGame('av', getBalForGame('av') + win);
-  avBetPlaced = false;
-  avUpdateUI();
-  
-  document.getElementById('avMN').className = 'av-mn cashed';
-  document.getElementById('avPL').textContent = `✅ CASHED ${m.toFixed(2)}x`;
-  
-  toast(`🎉 ${m.toFixed(2)}x — +৳${profit.toLocaleString('en')}`, false);
-  
-  if (!window._isDemo) {
-    window._saveBetHistory && window._saveBetHistory({
-      game: 'Aviator',
-      detail: `Cashed out ${m.toFixed(2)}x`,
-      bet: avBetAmt,
-      profit,
-      time: Date.now()
-    });
-  }
-};
-
-window.avQb = amt => {
-  if (avPhase === 'countdown' && !avBetPlaced) {
-    document.getElementById('avBetInp').value = amt;
-  }
-};
-
-function avUpdateUI() {
-  const bb = document.getElementById('avBetBtn');
-  const cb = document.getElementById('avCashBtn');
-  const inp = document.getElementById('avBetInp');
-  const qbs = document.querySelectorAll('.av-qb');
-  
-  if (avPhase === 'flying') {
-    if (avBetPlaced) {
-      bb.style.display = 'none';
-      cb.style.display = 'flex';
-    } else {
-      bb.style.display = 'flex';
-      bb.disabled = true;
-      bb.textContent = '🔒 FLYING...';
-      cb.style.display = 'none';
-    }
-    inp.disabled = true;
-    qbs.forEach(b => b.disabled = true);
-  } else if (avPhase === 'countdown') {
-    cb.style.display = 'none';
-    bb.style.display = 'flex';
-    
-    if (avBetPlaced) {
-      bb.disabled = true;
-      bb.textContent = '✅ BET PLACED';
-    } else {
-      bb.disabled = false;
-      bb.textContent = '🎲 BET NOW';
-    }
-    
-    inp.disabled = avBetPlaced;
-    qbs.forEach(b => b.disabled = avBetPlaced);
-  } else {
-    bb.style.display = 'flex';
-    bb.disabled = true;
-    bb.textContent = '⏳ NEXT ROUND...';
-    cb.style.display = 'none';
-    inp.disabled = true;
-    qbs.forEach(b => b.disabled = true);
-  }
-}
-
-function avSetBadge(p) {
-  const b = document.getElementById('avPhBadge');
-  b.className = 'ph-badge ' + p;
-  
-  if (p === 'bet') b.textContent = '🟡 BETTING OPEN';
-  else if (p === 'fly') b.textContent = '🟢 FLYING';
-  else b.textContent = '🔴 CRASHED';
-}
-
-const AV_NAMES = ['Rahim_X', 'Karim99', 'Sumon★', 'NightKing', 'BetKing88', 'GoldRush', 'Lucky7', 'SpeedBet', 'TigerBet', 'AcePlayer', 'RoyalFly', 'DiamondX', 'StormBet', 'PhoenixUp', 'NightHawk', 'PlatinumK', 'IronFist', 'CobraKing', 'MaxBet99', 'UltraFly'];
-let avUsedNames = new Set();
-
-function avBuildLB(showUser = false) {
-  if (avUsedNames.size > AV_NAMES.length - 5) avUsedNames.clear();
-  
-  const avail = AV_NAMES.filter(n => !avUsedNames.has(n));
-  const entries = [];
-  const used = new Set();
-  
-  while (entries.length < 15 && avail.length > entries.length) {
-    const i = Math.floor(Math.random() * avail.length);
-    const n = avail[i];
-    
-    if (!used.has(n)) {
-      used.add(n);
-      avUsedNames.add(n);
-      const m = parseFloat((10 + Math.random() * 990).toFixed(2));
-      const b = Math.floor(200 + Math.random() * 199801);
-      entries.push({ n, m, b, isUser: false });
-    }
-  }
-  
-  if (showUser && avBetPlaced && window._curUser) {
-    const userName = (window._userProfile?.name || window._curUser.displayName || 'You').split(' ')[0];
-    entries.unshift({
-      n: '⭐ ' + userName,
-      m: avMult || 1.00,
-      b: avBetAmt,
-      isUser: true
-    });
-  }
-  
-  entries.sort((a, b) => b.m - a.m);
-  
-  document.getElementById('avLbBody').innerHTML = entries.map((e, i) => {
-    let rc = '', rl = '#' + (i + 1);
-    if (i === 0) { rc = 'g'; rl = '🥇'; }
-    else if (i === 1) { rc = 's'; rl = '🥈'; }
-    else if (i === 2) { rc = 'b'; rl = '🥉'; }
-    
-    return `<div class="lb-row ${e.isUser ? 'you' : ''}">
-      <div class="lb-rank ${rc}">${rl}</div>
-      <div class="lb-name">${e.n}</div>
-      <div class="lb-mult">${e.m.toFixed(2)}x</div>
-      <div class="lb-bet">৳${e.b.toLocaleString('en')}</div>
-    </div>`;
-  }).join('');
-}
-
-setInterval(() => {
-  if (document.getElementById('aviatorPage').classList.contains('active') && avPhase === 'flying') {
-    avBuildLB(avBetPlaced);
-  }
-}, 9000);
-
-// ========== TRADING ==========
-let trPhase = 'betting';
-let trBetPlaced = false;
-let trBetAmt = 0;
-let trPrediction = null;
-let trCurPrice = 149.82;
-let trCdTimer = null;
-const trCandles = [];
-
-function trInit() {
-  if (trCdTimer) return;
-  
-  if (trCandles.length === 0) {
-    let p = 149.82;
-    for (let i = 0; i < 12; i++) {
-      const o = p;
-      const move = (Math.random() - 0.48) * 0.4;
-      const c = parseFloat((o + move).toFixed(3));
-      const h = parseFloat((Math.max(o, c) + Math.random() * 0.15).toFixed(3));
-      const l = parseFloat((Math.min(o, c) - Math.random() * 0.15).toFixed(3));
-      trCandles.push({ o, h, l, c });
-      p = c;
-    }
-    trCurPrice = p;
-  }
-  
-  trDrawChart();
-  trStartBettingPhase();
-}
-
-function trStartBettingPhase() {
-  clearInterval(trCdTimer);
-  
-  trPhase = 'betting';
-  trBetPlaced = false;
-  trPrediction = null;
-  
-  document.getElementById('trCdOv').style.display = 'flex';
-  document.getElementById('trResultOv').classList.remove('show');
-  
-  trUpdateUI();
-  
-  let n = 10;
-  trSetCd(n);
-  
-  trCdTimer = setInterval(() => {
-    n--;
-    if (n > 0) {
-      trSetCd(n);
-    } else {
-      clearInterval(trCdTimer);
-      trCdTimer = null;
-      trRevealCandle();
-    }
-  }, 1000);
-}
-
-function trSetCd(n) {
-  const el = document.getElementById('trCdNum');
-  el.textContent = n;
-  el.classList.remove('pop');
-  void el.offsetWidth;
-  el.classList.add('pop');
-}
-
-function trRevealCandle() {
-  trPhase = 'revealing';
-  document.getElementById('trCdOv').style.display = 'none';
-  trUpdateUI();
-  
-  const last = trCandles[trCandles.length - 1];
-  const o = last.c;
-  
-  // Use trading settings
-  const volatility = gameSettings.trading.volatility;
-  let volatilityFactor = 0.5;
-  
-  if (volatility === 'low') volatilityFactor = 0.2;
-  else if (volatility === 'high') volatilityFactor = 1.0;
-  else volatilityFactor = 0.5;
-  
-  const move = (Math.random() - 0.5) * volatilityFactor;
-  const c = parseFloat((o + move).toFixed(3));
-  const h = parseFloat((Math.max(o, c) + Math.random() * 0.18).toFixed(3));
-  const l = parseFloat((Math.min(o, c) - Math.random() * 0.18).toFixed(3));
-  const newCandle = { o, h, l, c };
-  const direction = c >= o ? 'up' : 'down';
-  
-  animateTrPrice(last.c, c);
-  
-  setTimeout(() => {
-    if (trCandles.length >= 14) trCandles.shift();
-    trCandles.push(newCandle);
-    trCurPrice = c;
-    trDrawChart();
-    trShowResult(direction);
-  }, 800);
-}
-
-function animateTrPrice(from, to) {
-  const steps = 20;
-  const diff = (to - from) / steps;
-  let step = 0;
-  
-  const iv = setInterval(() => {
-    step++;
-    const cur = parseFloat((from + diff * step).toFixed(3));
-    document.getElementById('trPrice').textContent = cur.toFixed(3);
-    
-    const pct = ((to - from) / from * 100).toFixed(2);
-    const el = document.getElementById('trChange');
-    el.textContent = (pct >= 0 ? '+' : '') + pct + '%';
-    el.className = 'tr-pair-change ' + (pct >= 0 ? 'up' : 'dn');
-    
-    if (step >= steps) clearInterval(iv);
-  }, 40);
-}
-
-function trShowResult(direction) {
-  // Use win rate setting
-  const winRate = gameSettings.trading.winRate / 100;
-  let won = trBetPlaced && trPrediction === direction;
-  
-  // Adjust based on win rate
-  if (trBetPlaced) {
-    if (Math.random() < winRate) {
-      won = true;
-    } else {
-      won = Math.random() > 0.5;
-    }
-  }
-  
-  const rv = document.getElementById('trResultOv');
-  const rb = document.getElementById('trResultBox');
-  const rs = document.getElementById('trResultSub');
-  
-  if (!trBetPlaced) {
-    setTimeout(() => trStartBettingPhase(), 1500);
-    return;
-  }
-  
-  if (won) {
-    const win = trBetAmt * 2;
-    setBalForGame('tr', getBalForGame('tr') + win);
-    rb.className = 'tr-result-box win';
-    rb.textContent = '🎉 WIN!';
-    rs.textContent = `+৳${trBetAmt.toLocaleString('en')} profit`;
-    toast(`🎉 ${direction.toUpperCase()} correct! +৳${trBetAmt.toLocaleString('en')}`, false);
-    
-    if (!window._trDemoActive) {
-      window._saveBetHistory && window._saveBetHistory({
-        game: 'Trading',
-        detail: `${direction.toUpperCase()} @${trCurPrice.toFixed(3)}`,
-        bet: trBetAmt,
-        profit: trBetAmt,
-        time: Date.now()
-      });
-    }
-  } else {
-    rb.className = 'tr-result-box lose';
-    rb.textContent = '💥 LOSE!';
-    rs.textContent = `${direction.toUpperCase()} — ৳${trBetAmt.toLocaleString('en')} loss`;
-    toast(`💥 ${direction.toUpperCase()} was correct! Loss`, true);
-    
-    if (!window._trDemoActive) {
-      window._saveBetHistory && window._saveBetHistory({
-        game: 'Trading',
-        detail: `${direction.toUpperCase()} wrong @${trCurPrice.toFixed(3)}`,
-        bet: trBetAmt,
-        profit: -trBetAmt,
-        time: Date.now()
-      });
-    }
-  }
-  
-  rv.classList.add('show');
-  
-  setTimeout(() => {
-    rv.classList.remove('show');
-    trBuildLB();
-    trStartBettingPhase();
-  }, 2800);
-}
-
-function trDrawChart() {
-  const wrap = document.getElementById('trChartWrap');
-  const cv = document.getElementById('trCv');
-  
-  cv.width = wrap.offsetWidth || 420;
-  cv.height = wrap.offsetHeight || 200;
-  
-  const ctx = cv.getContext('2d');
-  ctx.clearRect(0, 0, cv.width, cv.height);
-  
-  if (!trCandles.length) return;
-  
-  const allP = trCandles.flatMap(c => [c.h, c.l]);
-  const pMin = Math.min(...allP) - 0.1;
-  const pMax = Math.max(...allP) + 0.1;
-  const pRange = pMax - pMin;
-  const W = cv.width;
-  const H = cv.height;
-  const pad = 14;
-  const candleW = Math.floor((W - pad * 2) / trCandles.length) - 3;
-  const cSpacing = (W - pad * 2) / trCandles.length;
-  
-  function p2y(p) {
-    return pad + (1 - (p - pMin) / pRange) * (H - pad * 2);
-  }
-  
-  ctx.strokeStyle = 'rgba(0,255,136,0.08)';
-  ctx.lineWidth = 1;
-  
-  for (let i = 0; i <= 4; i++) {
-    const y = pad + i * (H - pad * 2) / 4;
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(W, y);
-    ctx.stroke();
-    
-    const p = (pMax - i * (pRange / 4)).toFixed(3);
-    ctx.fillStyle = 'rgba(0,255,136,0.3)';
-    ctx.font = '9px monospace';
-    ctx.fillText(p, 2, y - 2);
-  }
-  
-  trCandles.forEach((c, i) => {
-    const x = pad + i * cSpacing + cSpacing / 2;
-    const oY = p2y(c.o);
-    const cY = p2y(c.c);
-    const hY = p2y(c.h);
-    const lY = p2y(c.l);
-    const isUp = c.c >= c.o;
-    const color = isUp ? '#00cc66' : '#ff3333';
-    const glow = isUp ? 'rgba(0,255,100,0.3)' : 'rgba(255,50,50,0.3)';
-    
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(x, hY);
-    ctx.lineTo(x, lY);
-    ctx.stroke();
-    
-    const bodyTop = Math.min(oY, cY);
-    const bodyH = Math.max(Math.abs(cY - oY), 2);
-    
-    ctx.shadowColor = glow;
-    ctx.shadowBlur = 6;
-    ctx.fillStyle = color;
-    ctx.fillRect(x - candleW / 2, bodyTop, candleW, bodyH);
-    ctx.shadowBlur = 0;
-  });
-}
-
-window.trPredict = dir => {
-  if (trPhase !== 'betting') {
-    toast('⏳ Countdown এ predict করুন!', true);
-    return;
-  }
-  
-  if (trBetPlaced) {
-    toast('✅ ইতোমধ্যে bet!', false);
-    return;
-  }
-  
-  const v = parseInt(document.getElementById('trBetInp').value);
-  if (isNaN(v) || v < 200) {
-    toast('⚠️ Min ৳200', true);
-    return;
-  }
-  
-  if (getBalForGame('tr') < v) {
-    toast('❌ Balance কম!', true);
-    if (!window._trDemoActive) setTimeout(() => openDepositSSModal(), 800);
-    return;
-  }
-  
-  trBetAmt = v;
-  setBalForGame('tr', getBalForGame('tr') - v);
-  trBetPlaced = true;
-  trPrediction = dir;
-  trUpdateUI();
-  trBuildLB(true);
-  
-  toast(`✅ ${dir === 'up' ? '▲' : '▼'} ${dir.toUpperCase()} Bet: ৳${v.toLocaleString('en')}`, false);
-};
-
-window.trQb = amt => {
-  if (trPhase === 'betting' && !trBetPlaced) {
-    document.getElementById('trBetInp').value = amt;
-  }
-};
-
-function trUpdateUI() {
-  const upBtn = document.getElementById('trUpBtn');
-  const dnBtn = document.getElementById('trDnBtn');
-  const inp = document.getElementById('trBetInp');
-  const qbs = document.querySelectorAll('.tr-qb');
-  const info = document.getElementById('trPhaseInfo');
-  
-  if (trPhase === 'betting' && !trBetPlaced) {
-    upBtn.disabled = false;
-    dnBtn.disabled = false;
-    inp.disabled = false;
-    qbs.forEach(b => b.disabled = false);
-    info.textContent = 'Bet দিন ও next candle direction predict করুন';
-  } else if (trPhase === 'betting' && trBetPlaced) {
-    upBtn.disabled = true;
-    dnBtn.disabled = true;
-    inp.disabled = true;
-    qbs.forEach(b => b.disabled = true);
-    info.textContent = `✅ ${trPrediction?.toUpperCase()} bet — revealing...`;
-  } else {
-    upBtn.disabled = true;
-    dnBtn.disabled = true;
-    inp.disabled = true;
-    qbs.forEach(b => b.disabled = true);
-    info.textContent = '⏳ Result...';
-  }
-}
-
-const TR_NAMES = ['FXKing_BD', 'PipMaster', 'TrendWin', 'CandleAce', 'ChartBoss', 'BullRun88', 'BearHunt', 'FXRoyal', 'PriceAct', 'MomentumX', 'ScalpKing', 'SwingTrade', 'BreakoutX', 'SupportLvl', 'ResistWin', 'EMAKing', 'RSIBoss', 'MACDBet', 'BollingerX', 'FibonacciK'];
-let trUsedNames = new Set();
-
-function trBuildLB(showUser = false) {
-  if (trUsedNames.size > TR_NAMES.length - 5) trUsedNames.clear();
-  
-  const avail = TR_NAMES.filter(n => !trUsedNames.has(n));
-  const entries = [];
-  const used = new Set();
-  
-  while (entries.length < 15 && avail.length > entries.length) {
-    const i = Math.floor(Math.random() * avail.length);
-    const n = avail[i];
-    
-    if (!used.has(n)) {
-      used.add(n);
-      trUsedNames.add(n);
-      const dir = Math.random() > 0.5 ? 'up' : 'down';
-      const b = Math.floor(200 + Math.random() * 199801);
-      const won = Math.random() > 0.4;
-      entries.push({ n, dir, b, won, isUser: false });
-    }
-  }
-  
-  if (showUser && trBetPlaced && window._curUser) {
-    const userName = (window._userProfile?.name || window._curUser.displayName || 'You').split(' ')[0];
-    entries.unshift({
-      n: '⭐ ' + userName,
-      dir: trPrediction || 'up',
-      b: trBetAmt,
-      won: false,
-      isUser: true
-    });
-  }
-  
-  document.getElementById('trLbBody').innerHTML = entries.slice(0, 15).map((e, i) => {
-    let rc = '', rl = '#' + (i + 1);
-    if (i === 0) { rc = 'g'; rl = '🥇'; }
-    else if (i === 1) { rc = 's'; rl = '🥈'; }
-    else if (i === 2) { rc = 'b'; rl = '🥉'; }
-    
-    const dirEl = e.dir === 'up' ? '<div class="tr-lb-dir up">▲ UP</div>' : '<div class="tr-lb-dir dn">▼ DOWN</div>';
-    const winLoss = e.isUser ? `<span style="color:#ffa500">LIVE</span>` : e.won ? `<span style="color:#00ff88">+৳${e.b.toLocaleString('en')}</span>` : `<span style="color:#ff4444">-৳${e.b.toLocaleString('en')}</span>`;
-    
-    return `<div class="tr-lb-row ${e.isUser ? 'you' : ''}">
-      <div class="tr-lb-rank ${rc}">${rl}</div>
-      <div class="tr-lb-name">${e.n}</div>
-      ${dirEl}
-      <div class="tr-lb-amt">${winLoss}</div>
-    </div>`;
-  }).join('');
-}
-
-trBuildLB();
-
-setInterval(() => {
-  if (document.getElementById('tradingPage').classList.contains('active')) {
-    trBuildLB(trBetPlaced);
-  }
-}, 8000);
-
-// ========== DICE GAME ==========
-let diceMode = 'over';
-let diceRolling = false;
-
-window.setDiceMode = mode => {
-  diceMode = mode;
-  document.getElementById('diceOverBtn').className = 'dou-btn' + (mode === 'over' ? ' active' : '');
-  document.getElementById('diceUnderBtn').className = 'dou-btn' + (mode === 'under' ? ' active' : '');
-  updateDiceInfo();
-};
-
-window.updateDiceInfo = () => {
-  const target = parseInt(document.getElementById('diceTarget').value) || 7;
-  let outcomes = 0;
-  
-  if (diceMode === 'over') {
-    for (let a = 1; a <= 6; a++) {
-      for (let b = 1; b <= 6; b++) {
-        if (a + b > target) outcomes++;
-      }
-    }
-  } else {
-    for (let a = 1; a <= 6; a++) {
-      for (let b = 1; b <= 6; b++) {
-        if (a + b < target) outcomes++;
-      }
-    }
-  }
-  
-  // Apply dice settings
-  const chanceModifier = gameSettings.dice.chance;
-  let modifiedOutcomes = outcomes;
-  
-  if (chanceModifier === 'low') {
-    modifiedOutcomes = Math.floor(outcomes * 0.9);
-  } else if (chanceModifier === 'verylow') {
-    modifiedOutcomes = Math.floor(outcomes * 0.8);
-  }
-  
-  modifiedOutcomes = Math.max(1, modifiedOutcomes);
-  
-  const chance = (modifiedOutcomes / 36 * 100).toFixed(1);
-  let mult = (36 / modifiedOutcomes * 0.97).toFixed(2);
-  
-  // Cap max multiplier
-  mult = Math.min(mult, gameSettings.dice.maxMult);
-  
-  document.getElementById('diceChance').textContent = `Chance: ${chance}% · Multiplier: ${mult}×`;
-};
-
-window.rollDice = async () => {
-  if (diceRolling) return;
-  
-  const v = parseInt(document.getElementById('diceBetInp').value);
-  if (isNaN(v) || v < 200) {
-    toast('⚠️ Min ৳200', true);
-    return;
-  }
-  
-  if (getBalForGame('dice') < v) {
-    toast('❌ Balance কম!', true);
-    if (!window._diceDemoActive) setTimeout(() => openDepositSSModal(), 800);
-    return;
-  }
-  
-  const target = parseInt(document.getElementById('diceTarget').value) || 7;
-  setBalForGame('dice', getBalForGame('dice') - v);
-  
-  diceRolling = true;
-  document.getElementById('diceRollBtn').disabled = true;
-  
-  const d1El = document.getElementById('dice1');
-  const d2El = document.getElementById('dice2');
-  
-  d1El.classList.add('rolling');
-  d2El.classList.add('rolling');
-  
-  const faces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
-  let t = 0;
-  
-  const iv = setInterval(() => {
-    d1El.textContent = faces[Math.floor(Math.random() * 6)];
-    d2El.textContent = faces[Math.floor(Math.random() * 6)];
-    t++;
-    if (t > 12) clearInterval(iv);
-  }, 80);
-  
-  await new Promise(r => setTimeout(r, 1000));
-  
-  d1El.classList.remove('rolling');
-  d2El.classList.remove('rolling');
-  
-  const r1 = Math.floor(Math.random() * 6) + 1;
-  const r2 = Math.floor(Math.random() * 6) + 1;
-  const sum = r1 + r2;
-  
-  d1El.textContent = faces[r1 - 1];
-  d2El.textContent = faces[r2 - 1];
-  document.getElementById('diceResultNum').textContent = sum;
-  
-  // Apply dice settings
-  const chanceModifier = gameSettings.dice.chance;
-  let won = (diceMode === 'over' && sum > target) || (diceMode === 'under' && sum < target);
-  
-  // Adjust based on chance setting
-  if (chanceModifier === 'low' && won) {
-    if (Math.random() > 0.9) won = false;
-  } else if (chanceModifier === 'verylow' && won) {
-    if (Math.random() > 0.8) won = false;
-  }
-  
-  let outcomes = 0;
-  if (diceMode === 'over') {
-    for (let a = 1; a <= 6; a++) {
-      for (let b = 1; b <= 6; b++) {
-        if (a + b > target) outcomes++;
-      }
-    }
-  } else {
-    for (let a = 1; a <= 6; a++) {
-      for (let b = 1; b <= 6; b++) {
-        if (a + b < target) outcomes++;
-      }
-    }
-  }
-  
-  outcomes = Math.max(1, outcomes);
-  let mult = parseFloat((36 / outcomes * 0.97).toFixed(2));
-  mult = Math.min(mult, gameSettings.dice.maxMult);
-  
-  const msg = document.getElementById('diceResultMsg');
-  
-  if (won) {
-    const win = Math.floor(v * mult);
-    setBalForGame('dice', getBalForGame('dice') + win);
-    msg.textContent = `🎉 WIN! ${sum} ${diceMode} ${target} — +৳${(win - v).toLocaleString('en')}`;
-    msg.className = 'dice-result-msg show win';
-    toast(`🎉 Dice WIN! +৳${(win - v).toLocaleString('en')}`, false);
-    
-    if (!window._diceDemoActive) {
-      window._saveBetHistory && window._saveBetHistory({
-        game: 'Dice',
-        detail: `${diceMode} ${target}, rolled ${sum}`,
-        bet: v,
-        profit: win - v,
-        time: Date.now()
-      });
-    }
-  } else {
-    msg.textContent = `💥 LOSE! ${sum} — ৳${v.toLocaleString('en')} lost`;
-    msg.className = 'dice-result-msg show lose';
-    toast(`💥 Dice LOSE! -৳${v.toLocaleString('en')}`, true);
-    
-    if (!window._diceDemoActive) {
-      window._saveBetHistory && window._saveBetHistory({
-        game: 'Dice',
-        detail: `${diceMode} ${target}, rolled ${sum}`,
-        bet: v,
-        profit: -v,
-        time: Date.now()
-      });
-    }
-  }
-  
-  diceRolling = false;
-  document.getElementById('diceRollBtn').disabled = false;
-  setTimeout(() => msg.classList.remove('show'), 3000);
-};
-
-updateDiceInfo();
-
-// ========== MINES GAME ==========
-let minesActive = false;
-let mineBetAmt = 0;
-let mineGrid = [];
-let mineRevealed = 0;
-let minesCount = 3;
-
-function buildMinesGrid() {
-  const grid = document.getElementById('minesGrid');
-  grid.innerHTML = '';
-  mineGrid = [];
-  
-  const totalCells = 25;
-  const minePositions = new Set();
-  minesCount = parseInt(document.getElementById('minesCount').value) || 3;
-  
-  while (minePositions.size < minesCount) {
-    minePositions.add(Math.floor(Math.random() * totalCells));
-  }
-  
-  for (let i = 0; i < totalCells; i++) {
-    const isMine = minePositions.has(i);
-    mineGrid.push({ isMine, revealed: false });
-    
-    const cell = document.createElement('div');
-    cell.className = 'mine-cell' + (minesActive ? '' : ' disabled');
-    cell.dataset.idx = i;
-    cell.textContent = minesActive ? '❓' : '⬛';
-    cell.onclick = () => clickMineCell(i);
-    grid.appendChild(cell);
-  }
-}
-
-window.startMines = () => {
-  const v = parseInt(document.getElementById('minesBetInp').value);
-  if (isNaN(v) || v < 200) {
-    toast('⚠️ Min ৳200', true);
-    return;
-  }
-  
-  if (getBalForGame('mines') < v) {
-    toast('❌ Balance কম!', true);
-    if (!window._minesDemoActive) setTimeout(() => openDepositSSModal(), 800);
-    return;
-  }
-  
-  mineBetAmt = v;
-  mineRevealed = 0;
-  setBalForGame('mines', getBalForGame('mines') - v);
-  minesActive = true;
-  
-  document.getElementById('minesCount').disabled = true;
-  document.getElementById('minesBetInp').disabled = true;
-  document.getElementById('minesStartBtn').style.display = 'none';
-  document.getElementById('minesCashBtn').style.display = 'flex';
-  document.getElementById('minesMultiplier').textContent = '1.00×';
-  document.getElementById('minesProfit').textContent = '৳' + mineBetAmt.toLocaleString('en');
-  document.getElementById('minesRevealed').textContent = '0';
-  
-  buildMinesGrid();
-  updateBals();
-};
-
-function calcMinesMult(revealed, mines) {
-  const safe = 25 - mines;
-  let mult = 1;
-  
-  for (let i = 0; i < revealed; i++) {
-    mult *= (safe - i) / (25 - mines - i) * (25 / (safe - i));
-  }
-  
-  // Cap max multiplier
-  return Math.min(Math.max(1, mult * 0.97), gameSettings.mines.maxMult);
-}
-
-window.clickMineCell = idx => {
-  if (!minesActive || mineGrid[idx].revealed) return;
-  
-  mineGrid[idx].revealed = true;
-  mineRevealed++;
-  
-  const cells = document.getElementById('minesGrid').children;
-  const cell = cells[idx];
-  
-  if (mineGrid[idx].isMine) {
-    cell.textContent = '💣';
-    cell.className = 'mine-cell revealed bomb';
-    
-    mineGrid.forEach((m, i) => {
-      if (m.isMine && !m.revealed) {
-        cells[i].textContent = '💣';
-        cells[i].className = 'mine-cell revealed bomb';
-      }
-    });
-    
-    minesActive = false;
-    document.getElementById('minesStartBtn').style.display = 'flex';
-    document.getElementById('minesCashBtn').style.display = 'none';
-    document.getElementById('minesCount').disabled = false;
-    document.getElementById('minesBetInp').disabled = false;
-    
-    toast(`💥 Mine hit! ৳${mineBetAmt.toLocaleString('en')} হারালেন`, true);
-    
-    if (!window._minesDemoActive) {
-      window._saveBetHistory && window._saveBetHistory({
-        game: 'Mines',
-        detail: `Hit bomb at ${mineRevealed} reveals`,
-        bet: mineBetAmt,
-        profit: -mineBetAmt,
-        time: Date.now()
-      });
-    }
-    
-    buildMinesGrid();
-    return;
-  }
-  
-  cell.textContent = '💎';
-  cell.className = 'mine-cell revealed gem';
-  
-  const mult = calcMinesMult(mineRevealed, minesCount);
-  const potWin = Math.floor(mineBetAmt * mult);
-  
-  document.getElementById('minesMultiplier').textContent = mult.toFixed(2) + '×';
-  document.getElementById('minesProfit').textContent = '৳' + potWin.toLocaleString('en');
-  document.getElementById('minesRevealed').textContent = mineRevealed;
-  
-  if (mineRevealed === 25 - minesCount) {
-    cashoutMines();
-  }
-};
-
-window.cashoutMines = () => {
-  if (!minesActive) return;
-  
-  const mult = calcMinesMult(mineRevealed, minesCount);
-  const win = Math.floor(mineBetAmt * mult);
-  
-  setBalForGame('mines', getBalForGame('mines') + win);
-  minesActive = false;
-  
-  document.getElementById('minesStartBtn').style.display = 'flex';
-  document.getElementById('minesCashBtn').style.display = 'none';
-  document.getElementById('minesCount').disabled = false;
-  document.getElementById('minesBetInp').disabled = false;
-  
-  toast(`🎉 Mines cashout! ${mult.toFixed(2)}× — +৳${(win - mineBetAmt).toLocaleString('en')}`, false);
-  
-  if (!window._minesDemoActive) {
-    window._saveBetHistory && window._saveBetHistory({
-      game: 'Mines',
-      detail: `Cashed out ${mineRevealed} gems @${mult.toFixed(2)}×`,
-      bet: mineBetAmt,
-      profit: win - mineBetAmt,
-      time: Date.now()
-    });
-  }
-  
-  buildMinesGrid();
-};
-
-buildMinesGrid();
-
-// ========== COIN FLIP ==========
-let coinSel = 'heads';
-let coinFlipping = false;
-
-window.selectCoin = side => {
-  coinSel = side;
-  document.getElementById('coinHeads').className = 'coin-side heads' + (side === 'heads' ? ' sel' : '');
-  document.getElementById('coinTails').className = 'coin-side tails' + (side === 'tails' ? ' sel' : '');
-};
-
-selectCoin('heads');
-
-window.flipCoin = async () => {
-  if (coinFlipping) return;
-  
-  const v = parseInt(document.getElementById('coinBetInp').value);
-  if (isNaN(v) || v < 200) {
-    toast('⚠️ Min ৳200', true);
-    return;
-  }
-  
-  if (getBalForGame('coin') < v) {
-    toast('❌ Balance কম!', true);
-    if (!window._coinDemoActive) setTimeout(() => openDepositSSModal(), 800);
-    return;
-  }
-  
-  setBalForGame('coin', getBalForGame('coin') - v);
-  coinFlipping = true;
-  document.getElementById('coinFlipBtn').disabled = true;
-  
-  const display = document.getElementById('coinDisplay');
-  const msg = document.getElementById('coinResultMsg');
-  
-  msg.textContent = '';
-  display.className = 'coin-display flipping';
-  
-  let t = 0;
-  const iv = setInterval(() => {
-    display.textContent = Math.random() > 0.5 ? '👑' : '🌊';
-    t++;
-    if (t > 10) clearInterval(iv);
-  }, 120);
-  
-  await new Promise(r => setTimeout(r, 1600));
-  
-  display.className = 'coin-display';
-  
-  // Apply coin settings
-  const winRate = gameSettings.coin.winRate / 100;
-  let result = Math.random() > 0.5 ? 'heads' : 'tails';
-  
-  if (Math.random() < winRate) {
-    result = coinSel;
-  }
-  
-  display.textContent = result === 'heads' ? '👑' : '🌊';
-  
-  const won = result === coinSel;
-  const mult = gameSettings.coin.mult;
-  
-  if (won) {
-    const win = Math.floor(v * mult);
-    setBalForGame('coin', getBalForGame('coin') + win);
-    msg.textContent = `🎉 ${result.toUpperCase()}! WIN! +৳${(win - v).toLocaleString('en')}`;
-    msg.className = 'coin-result-msg win';
-    toast(`🪙 Coin Flip WIN! +৳${(win - v).toLocaleString('en')}`, false);
-    
-    if (!window._coinDemoActive) {
-      window._saveBetHistory && window._saveBetHistory({
-        game: 'Coin Flip',
-        detail: `Picked ${coinSel}, got ${result}`,
-        bet: v,
-        profit: win - v,
-        time: Date.now()
-      });
-    }
-  } else {
-    msg.textContent = `💥 ${result.toUpperCase()}! LOSE! -৳${v.toLocaleString('en')}`;
-    msg.className = 'coin-result-msg lose';
-    toast(`🪙 Coin Flip LOSE! -৳${v.toLocaleString('en')}`, true);
-    
-    if (!window._coinDemoActive) {
-      window._saveBetHistory && window._saveBetHistory({
-        game: 'Coin Flip',
-        detail: `Picked ${coinSel}, got ${result}`,
-        bet: v,
-        profit: -v,
-        time: Date.now()
-      });
-    }
-  }
-  
-  coinFlipping = false;
-  document.getElementById('coinFlipBtn').disabled = false;
-  setTimeout(() => msg.textContent = '', 3000);
-};
-
-// ========== LIMBO GAME ==========
-let limboPlaying = false;
-
-window.updateLimboInfo = () => {
-  const target = parseFloat(document.getElementById('limboTarget').value) || 2;
-  const chance = (1 / target * 100).toFixed(2);
-  let payout = (target * 0.99).toFixed(2);
-  
-  // Cap max multiplier
-  payout = Math.min(payout, gameSettings.limbo.maxMult);
-  
-  document.getElementById('limboChance').textContent = `Win Chance: ${chance}% · Payout: ${payout}×`;
-};
-
-window.playLimbo = async () => {
-  if (limboPlaying) return;
-  
-  const v = parseInt(document.getElementById('limboBetInp').value);
-  const target = parseFloat(document.getElementById('limboTarget').value) || 2;
-  
-  if (isNaN(v) || v < 200) {
-    toast('⚠️ Min ৳200', true);
-    return;
-  }
-  
-  if (target < 1.01) {
-    toast('⚠️ Min target 1.01×', true);
-    return;
-  }
-  
-  if (getBalForGame('limbo') < v) {
-    toast('❌ Balance কম!', true);
-    if (!window._limboDemoActive) setTimeout(() => openDepositSSModal(), 800);
-    return;
-  }
-  
-  setBalForGame('limbo', getBalForGame('limbo') - v);
-  limboPlaying = true;
-  document.getElementById('limboBtn').disabled = true;
-  
-  const numEl = document.getElementById('limboNum');
-  numEl.className = 'limbo-mult-num';
-  
-  let cur = 1.00;
-  const iv = setInterval(() => {
-    cur = parseFloat((cur + Math.random() * 0.3).toFixed(2));
-    numEl.textContent = cur.toFixed(2);
-  }, 50);
-  
-  await new Promise(r => setTimeout(r, 1200));
-  clearInterval(iv);
-  
-  // Apply limbo settings
-  const randomness = gameSettings.limbo.randomness;
-  let rand = Math.random();
-  
-  if (randomness === 'high') {
-    rand = Math.pow(rand, 0.7);
-  }
-  
-  let finalMult = rand < 1 / target
-    ? parseFloat((1 + Math.random() * (target - 1) * 0.99).toFixed(2))
-    : parseFloat((target + Math.random() * (target * 5)).toFixed(2));
-  
-  // Cap max multiplier
-  finalMult = Math.min(finalMult, gameSettings.limbo.maxMult);
-  
-  numEl.textContent = finalMult.toFixed(2);
-  
-  const won = finalMult >= target;
-  
-  if (won) {
-    let payout = parseFloat((target * 0.99).toFixed(2));
-    payout = Math.min(payout, gameSettings.limbo.maxMult);
-    const win = Math.floor(v * payout);
-    
-    setBalForGame('limbo', getBalForGame('limbo') + win);
-    numEl.className = 'limbo-mult-num win';
-    toast(`🔮 Limbo WIN! ${finalMult.toFixed(2)}× ≥ ${target}× — +৳${(win - v).toLocaleString('en')}`, false);
-    
-    if (!window._limboDemoActive) {
-      window._saveBetHistory && window._saveBetHistory({
-        game: 'Limbo',
-        detail: `Target ${target}×, got ${finalMult.toFixed(2)}×`,
-        bet: v,
-        profit: win - v,
-        time: Date.now()
-      });
-    }
-  } else {
-    numEl.className = 'limbo-mult-num lose';
-    toast(`🔮 Limbo LOSE! ${finalMult.toFixed(2)}× < ${target}× — -৳${v.toLocaleString('en')}`, true);
-    
-    if (!window._limboDemoActive) {
-      window._saveBetHistory && window._saveBetHistory({
-        game: 'Limbo',
-        detail: `Target ${target}×, got ${finalMult.toFixed(2)}×`,
-        bet: v,
-        profit: -v,
-        time: Date.now()
-      });
-    }
-  }
-  
-  limboPlaying = false;
-  document.getElementById('limboBtn').disabled = false;
-};
-
-updateLimboInfo();
 
 // INIT
 updateBals();
 avStartRound();
 initCricketMatch();
 loadHomeLb();
+
+// =================== BET HISTORY DISPLAY FIX ===================
+document.addEventListener('DOMContentLoaded', function() {
+  const histWrap = document.querySelector('#historyPage .hist-wrap');
+  if (histWrap && !document.querySelector('.hist-summary')) {
+    const summary = document.createElement('div');
+    summary.className = 'hist-summary';
+    summary.innerHTML = `
+      <div class="hs-card"><div class="hs-val gold" id="hsTotalBets">0</div><div class="hs-lbl">Total Bets</div></div>
+      <div class="hs-card"><div class="hs-val green" id="hsTotalProfit">৳0</div><div class="hs-lbl">Total Profit</div></div>
+      <div class="hs-card"><div class="hs-val red" id="hsTotalLoss">৳0</div><div class="hs-lbl">Total Loss</div></div>
+    `;
+    const topbar = histWrap.querySelector('.hist-topbar');
+    if (topbar) {
+      topbar.insertAdjacentElement('afterend', summary);
+    }
+  }
+  
+  if (histWrap && !document.querySelector('.hist-list')) {
+    const list = document.createElement('div');
+    list.className = 'hist-list';
+    list.id = 'histList';
+    list.innerHTML = '<div class="hist-empty">No bets yet — go play!</div>';
+    const summary = document.querySelector('.hist-summary');
+    if (summary) {
+      summary.insertAdjacentElement('afterend', list);
+    } else {
+      histWrap.appendChild(list);
+    }
+  }
+});
 </script>
 </body>
 </html>
