@@ -63,7 +63,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .ai-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:8px 12px;color:#fff;font-family:'Lato',sans-serif;font-size:12px;outline:none;}
 .ai-send{width:36px;height:36px;background:linear-gradient(135deg,#8a6a1f,#c9a84c);border:none;border-radius:50%;color:#0d0500;font-size:16px;cursor:pointer;margin-left:8px;display:flex;align-items:center;justify-content:center;}
 
-/* HOME LEADERBOARD - Updated Style */
+/* HOME LEADERBOARD */
 .hlb-row{display:flex;align-items:center;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);gap:10px;}
 .hlb-row:last-child{border-bottom:none;}
 .hlb-rank-badge{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;font-family:'Cinzel',serif;flex-shrink:0;}
@@ -77,7 +77,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .hlb-amt{font-family:'Cinzel',serif;font-size:14px;font-weight:900;color:var(--gl);text-align:right;}
 .hlb-crown{font-size:11px;margin-top:2px;text-align:right;}
 
-/* ADMIN LB EDIT */
+/* ADMIN LB EDIT (new position field) */
 .alb-row{padding:12px 14px;border-bottom:1px solid rgba(255,60,60,0.08);display:flex;flex-direction:column;gap:8px;}
 .alb-row:last-child{border-bottom:none;}
 .alb-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
@@ -87,6 +87,13 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .alb-save{flex:1;padding:7px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:6px;color:#2ecc71;font-family:'Cinzel',serif;font-size:9px;cursor:pointer;letter-spacing:1px;}
 .alb-delete{padding:7px 10px;background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.3);border-radius:6px;color:#e74c3c;font-family:'Cinzel',serif;font-size:9px;cursor:pointer;}
 .alb-rank-lbl{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,100,100,0.6);letter-spacing:2px;margin-bottom:2px;}
+
+/* Withdraw Cancel Reason Modal */
+.wd-reason-modal{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.wd-reason-modal.open{opacity:1;pointer-events:all;}
+.wd-reason-box{width:300px;background:linear-gradient(160deg,#1c0e02,#0a0500);border:1px solid rgba(255,60,60,0.3);border-radius:14px;padding:24px;text-align:center;}
+.wd-reason-box h3{font-family:'Cinzel',serif;color:#e74c3c;margin-bottom:12px;}
+.wd-reason-text{background:rgba(0,0,0,0.3);border:1px solid rgba(255,100,100,0.2);border-radius:8px;padding:12px;color:#fff;font-size:12px;margin:12px 0;min-height:60px;text-align:left;}
 
 /* Transaction History Styles */
 .tx-card{margin:0 16px 14px;background:linear-gradient(160deg,#0f0a02,#1a1200);border:1px solid rgba(201,168,76,0.15);border-radius:14px;overflow:hidden;}
@@ -203,6 +210,14 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .bal-sub{font-size:10px;color:rgba(255,255,255,0.2);margin-top:3px;letter-spacing:1px;}
 .sec-title{padding:0 16px 10px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(201,168,76,0.5);text-transform:uppercase;}
 
+/* SUPPORT BUTTON (smaller, moved up) */
+.support-btn{margin:0 16px 14px;background:linear-gradient(135deg,#001840,#003080);border:1px solid rgba(52,152,219,0.4);border-radius:12px;padding:8px 12px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:all 0.25s;width:auto;}
+.support-btn:hover{transform:translateY(-1px);}
+.support-ico{font-size:20px;flex-shrink:0;}
+.support-txt .st{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:#3498db;letter-spacing:2px;}
+.support-txt .ss{font-size:10px;color:rgba(52,152,219,0.5);margin-top:2px;display:none;}
+.support-badge{background:rgba(52,152,219,0.2);border:1px solid rgba(52,152,219,0.4);border-radius:20px;padding:2px 8px;font-family:'Cinzel',serif;font-size:8px;color:#3498db;margin-left:auto;}
+
 /* DAILY REWARD */
 .reward-card{margin:0 16px 14px;background:linear-gradient(135deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(255,165,0,0.4);border-radius:14px;overflow:hidden;position:relative;animation:rewardGlow 3s ease-in-out infinite;}
 .reward-hdr{background:rgba(255,165,0,0.1);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,165,0,0.15);}
@@ -218,7 +233,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .rd-amt{font-family:'Cinzel',serif;font-size:9px;font-weight:700;color:#ffa500;}
 .rd-claimed{position:absolute;top:3px;right:3px;font-size:10px;}
 
-/* GAMES GRID */
+/* GAMES GRID (Limbo removed) */
 .games-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px 14px;}
 .game-card{border-radius:12px;overflow:hidden;cursor:pointer;transition:all 0.3s;position:relative;}
 .game-card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,0.7);}
@@ -250,10 +265,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .gc-coin .game-banner{background:linear-gradient(135deg,#000f20,#002040);}
 .gc-coin .game-title{color:#3498db;text-shadow:0 0 10px rgba(52,152,219,0.6);}
 .gc-coin .game-ci-val{color:#3498db;}
-.gc-limbo{background:linear-gradient(160deg,#1a0000,#2a0010);border:1px solid rgba(255,50,100,0.3);}
-.gc-limbo .game-banner{background:linear-gradient(135deg,#200010,#350020);}
-.gc-limbo .game-title{color:#ff3366;text-shadow:0 0 10px rgba(255,50,100,0.6);}
-.gc-limbo .game-ci-val{color:#ff3366;}
+/* Limbo game card removed */
 
 /* LIVE CRICKET SECTION */
 .live-cricket-card{margin:0 16px 20px;background:linear-gradient(135deg,#001a2a,#002b3f);border:2px solid rgba(255,215,0,0.4);border-radius:18px;overflow:hidden;animation:pulse 2s ease-in-out infinite;position:relative;}
@@ -289,16 +301,8 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .cricket-live-badge{color:#ffd700;font-weight:700;display:flex;align-items:center;gap:4px;}
 .cricket-live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#00ff00;animation:blink 1s infinite;}
 
-/* LEADERBOARD SECTION - Updated ID */
+/* LEADERBOARD SECTION */
 #homeLbCard{background:linear-gradient(160deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(201,168,76,0.3);border-radius:14px;overflow:hidden}
-
-/* SUPPORT */
-.support-btn{margin:0 16px 14px;background:linear-gradient(135deg,#001840,#003080);border:1px solid rgba(52,152,219,0.4);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all 0.25s;}
-.support-btn:hover{transform:translateY(-1px);}
-.support-ico{font-size:28px;flex-shrink:0;}
-.support-txt .st{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:#3498db;letter-spacing:2px;}
-.support-txt .ss{font-size:11px;color:rgba(52,152,219,0.5);margin-top:2px;}
-.support-badge{background:rgba(52,152,219,0.2);border:1px solid rgba(52,152,219,0.4);border-radius:20px;padding:3px 10px;font-family:'Cinzel',serif;font-size:9px;color:#3498db;margin-left:auto;}
 
 /* PROFILE */
 #profilePage{align-items:flex-start;padding:0;}
@@ -520,7 +524,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .sc-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(52,152,219,0.2);border-radius:24px;padding:10px 16px;color:#fff;font-family:'Lato',sans-serif;font-size:13px;outline:none;}
 .sc-send{width:42px;height:42px;background:linear-gradient(135deg,#1a5c9b,#3498db);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
-/* AVIATOR PAGE */
+/* AVIATOR PAGE (updates) */
 #aviatorPage{align-items:flex-start;padding:0;}
 .av-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:linear-gradient(180deg,#0d0018,#0a0014);padding-bottom:68px;}
 .av-topbar{background:linear-gradient(135deg,#1a0030,#2d0050,#1a0030);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,100,100,0.2);flex-shrink:0;}
@@ -732,35 +736,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .btn-coin-flip:hover:not(:disabled){transform:translateY(-2px);}
 .btn-coin-flip:disabled{opacity:0.4;cursor:not-allowed;}
 
-/* LIMBO PAGE */
-#limboPage{align-items:flex-start;padding:0;}
-.limbo-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:#0d0005;padding-bottom:68px;}
-.limbo-topbar{background:linear-gradient(135deg,#200010,#350020);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,50,100,0.2);flex-shrink:0;}
-.limbo-back{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:7px 12px;color:#fff;font-size:12px;cursor:pointer;font-family:'Cinzel',serif;}
-.limbo-tb-title{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#ff3366;}
-.limbo-bal-pill{background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:5px 12px;font-family:'Cinzel',serif;font-size:12px;color:var(--gl);font-weight:700;}
-.limbo-area{display:flex;flex-direction:column;align-items:center;padding:20px 20px;flex:1;}
-.limbo-result-ring{width:120px;height:120px;border-radius:50%;border:3px solid rgba(255,50,100,0.4);background:linear-gradient(135deg,#1a0010,#2d0020);display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 0 30px rgba(255,50,100,0.2);}
-.limbo-mult-num{font-family:'Cinzel',serif;font-size:36px;font-weight:900;color:#ff3366;line-height:1;}
-.limbo-mult-num.counting{animation:numPop 0.2s ease;}
-.limbo-mult-num.win{color:#00ff88;}
-.limbo-mult-num.lose{color:#ff4444;}
-.limbo-mult-x{font-family:'Cinzel',serif;font-size:14px;color:rgba(255,50,100,0.5);}
-.limbo-target-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
-.limbo-target-lbl{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:2px;}
-.limbo-target-inp{width:70px;background:rgba(255,50,100,0.1);border:1px solid rgba(255,50,100,0.3);border-radius:8px;padding:6px;color:#ff3366;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
-.limbo-chance{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.35);text-align:center;margin-bottom:12px;}
-.limbo-ctrl{background:rgba(0,0,0,0.5);border-top:1px solid rgba(255,50,100,0.1);padding:12px 16px;flex-shrink:0;}
-.limbo-bet-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.limbo-bet-lbl{font-family:'Cinzel',serif;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:2px;white-space:nowrap;}
-.limbo-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,50,100,0.2);border-radius:8px;padding:8px;color:#fff;font-family:'Cinzel',serif;font-size:14px;font-weight:700;text-align:center;outline:none;}
-.limbo-inp:disabled{opacity:0.35;}
-.limbo-qbs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
-.limbo-qb{flex:1;padding:5px;background:rgba(255,50,100,0.06);border:1px solid rgba(255,50,100,0.15);border-radius:6px;color:rgba(255,50,100,0.6);font-size:9px;cursor:pointer;font-family:'Cinzel',serif;text-align:center;transition:all 0.2s;min-width:45px;}
-.limbo-qb:hover{background:rgba(255,50,100,0.15);}
-.btn-limbo{width:100%;padding:12px;background:linear-gradient(135deg,#5c001a,#ff3366);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.3s;}
-.btn-limbo:hover:not(:disabled){transform:translateY(-2px);}
-.btn-limbo:disabled{opacity:0.4;cursor:not-allowed;}
+/* LIMBO PAGE - REMOVED (no longer needed) */
 
 /* REWARD MODAL */
 .reward-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
@@ -847,7 +823,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div class="reward-days" id="rewardDays"></div>
     </div>
     
-    <!-- NEW: Transaction History Card -->
+    <!-- Transaction History Card -->
     <div class="tx-card" id="transactionHistoryCard">
       <div class="tx-header">
         <div class="tx-header-left"><span>📋</span> TRANSACTION HISTORY</div>
@@ -863,7 +839,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       </div>
     </div>
     
-    <!-- NEW: LIVE CRICKET BETTING SECTION -->
+    <!-- LIVE CRICKET BETTING SECTION -->
     <div class="live-cricket-card" id="cricketLiveCard">
       <div class="cricket-header">
         <div class="cricket-title"><span>🏏</span> LIVE CRICKET</div>
@@ -913,7 +889,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
     <div class="games-grid">
       <div class="game-card gc-av" onclick="showPage('aviatorPage');updateBals();if(avPhase==='idle')avStartRound()">
         <div class="game-banner"><div><div class="game-title">✈ AVIATOR</div><div class="game-sub">CRASH GAME</div></div><div class="game-ico" style="animation:planeFly 3s infinite">✈️</div></div>
-        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ff6b6b">10K×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
+        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ff6b6b">100×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
       </div>
       <div class="game-card gc-tr" onclick="showPage('tradingPage');updateBals();trInit()">
         <div class="game-banner"><div><div class="game-title">📈 TRADE</div><div class="game-sub">USD/JPY</div></div><div class="game-ico">📊</div></div>
@@ -931,12 +907,9 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="game-banner"><div><div class="game-title">🪙 FLIP</div><div class="game-sub">HEADS/TAILS</div></div><div class="game-ico">🪙</div></div>
         <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#3498db">2×</div><div class="game-ci-key">Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
       </div>
-      <div class="game-card gc-limbo" onclick="showPage('limboPage');updateBals()">
-        <div class="game-banner"><div><div class="game-title">🔮 LIMBO</div><div class="game-sub">MULTIPLIER</div></div><div class="game-ico">🔮</div></div>
-        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ff3366">∞×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
-      </div>
+      <!-- Limbo game card removed -->
     </div>
-    <!-- LEADERBOARD SECTION - Updated text as requested -->
+    <!-- LEADERBOARD SECTION -->
     <div class="sec-title">🏆 Top Winners</div>
     <div style="margin:0 16px 14px">
       <div id="homeLbCard" style="background:linear-gradient(160deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(201,168,76,0.3);border-radius:14px;overflow:hidden">
@@ -947,9 +920,10 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div id="homeLbList"></div>
       </div>
     </div>
+    <!-- Support Button - Smaller, moved up -->
     <div class="support-btn" onclick="openSupport()">
       <div class="support-ico">🎧</div>
-      <div class="support-txt"><div class="st">Support Team</div><div class="ss">24/7 Customer Service</div></div>
+      <div class="support-txt"><div class="st">Support</div><div class="ss">24/7</div></div>
       <div class="support-badge">● Online</div>
     </div>
   </div>
@@ -1024,6 +998,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <button class="admin-tab" onclick="switchAdminTab('leaderboard',this)">🏆 Leaderboard</button>
       <button class="admin-tab" onclick="switchAdminTab('cricket',this)">🏏 Cricket</button>
       <button class="admin-tab" onclick="switchAdminTab('ai',this)">🤖 AI</button>
+      <button class="admin-tab" onclick="switchAdminTab('aviator',this)">✈ Aviator Ctrl</button>
     </div>
     
     <!-- Withdrawals Tab -->
@@ -1036,7 +1011,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       </div>
     </div>
     
-    <!-- Deposits Tab with Screenshots -->
+    <!-- Deposits Tab -->
     <div class="admin-tab-content" id="atab-deposits">
       <div class="admin-section" style="margin-top:14px">
         <div class="admin-sec-title">💰 DEPOSIT SCREENSHOTS</div>
@@ -1077,10 +1052,10 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       </div>
     </div>
     
-    <!-- Leaderboard Tab - Admin Controlled -->
+    <!-- Leaderboard Tab - Admin Controlled with Position -->
     <div class="admin-tab-content" id="atab-leaderboard">
       <div class="admin-section" style="margin-top:14px">
-        <div class="admin-sec-title">🏆 LEADERBOARD MANAGEMENT</div>
+        <div class="admin-sec-title">🏆 LEADERBOARD MANAGEMENT (Position Set)</div>
         <div style="padding:12px 14px;border-bottom:1px solid rgba(255,60,60,0.1)">
           <button onclick="addLbEntry()" style="width:100%;padding:10px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:8px;color:#2ecc71;font-family:'Cinzel',serif;font-size:11px;cursor:pointer;letter-spacing:2px">➕ ADD NEW ENTRY</button>
         </div>
@@ -1165,6 +1140,34 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         </div>
       </div>
     </div>
+
+    <!-- AVIATOR CONTROL TAB (new) -->
+    <div class="admin-tab-content" id="atab-aviator">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">✈ AVIATOR CONTROL (Set Next Crash Multiplier)</div>
+        <div style="padding:16px">
+          <div class="igrp">
+            <label class="ilbl">Next Round Crash Multiplier (X)</label>
+            <input type="number" id="adminAvMult" class="alb-inp-full" value="15" min="10" max="100" step="0.1">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px;">Min 10x | Max 100x</div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:16px;">
+            <button onclick="setAvForcedMult()" class="btn-sub" style="background:linear-gradient(135deg,#8a6a1f,#c9a84c);">🎯 SET NEXT CRASH</button>
+            <button onclick="clearAvForcedMult()" class="btn-sub" style="background:linear-gradient(135deg,#5c0a0a,#c0392b);">🔄 RANDOM MODE</button>
+          </div>
+          <div class="notice" style="margin-top:12px;" id="avAdminStatus">Current: Random (10x-100x)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Withdraw Cancel Reason Modal -->
+<div class="wd-reason-modal" id="wdReasonModal">
+  <div class="wd-reason-box">
+    <h3>❌ Withdrawal Cancelled</h3>
+    <div class="wd-reason-text" id="wdReasonText">No reason provided.</div>
+    <button class="rc-cancel" onclick="document.getElementById('wdReasonModal').classList.remove('open')" style="margin-top:16px;">Close</button>
   </div>
 </div>
 
@@ -1239,7 +1242,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
-<!-- WITHDRAW MODAL - PROFESSIONAL UI -->
+<!-- WITHDRAW MODAL -->
 <div class="modal-ov" id="withdrawModal">
   <div class="modal">
     <div class="modal-handle"></div>
@@ -1712,48 +1715,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
-<!-- LIMBO PAGE -->
-<div class="page" id="limboPage">
-  <div class="limbo-wrap">
-    <div class="limbo-topbar">
-      <button class="limbo-back" onclick="showPage('homePage')">← Back</button>
-      <div class="limbo-tb-title">🔮 LIMBO</div>
-      <div class="limbo-bal-pill">৳<span id="limboBalNum">0.00</span></div>
-    </div>
-    <div class="demo-bar">
-      <span class="demo-lbl">REAL</span>
-      <label class="tog-sw"><input type="checkbox" id="limboDemoTog" onchange="toggleLimboDemo()"><span class="tog-sl"></span></label>
-      <span class="demo-lbl">DEMO</span>
-      <div id="limboDemoBadge" style="display:none" class="demo-badge">DEMO</div>
-    </div>
-    <div class="limbo-area">
-      <div class="limbo-result-ring">
-        <div class="limbo-mult-num" id="limboNum">1.00</div>
-        <div class="limbo-mult-x">×</div>
-      </div>
-      <div class="limbo-target-row">
-        <span class="limbo-target-lbl">Target ×:</span>
-        <input type="number" class="limbo-target-inp" id="limboTarget" value="2.00" min="1.01" max="1000000" step="0.01" oninput="updateLimboInfo()"/>
-      </div>
-      <div class="limbo-chance" id="limboChance">Win Chance: 50% · Payout: 1.98×</div>
-    </div>
-    <div class="limbo-ctrl">
-      <div class="limbo-bet-row">
-        <span class="limbo-bet-lbl">BET ৳</span>
-        <input type="number" class="limbo-inp" id="limboBetInp" value="200" min="200" max="200000"/>
-      </div>
-      <div class="limbo-qbs">
-        <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=200">200</div>
-        <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=500">500</div>
-        <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=1000">1K</div>
-        <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=5000">5K</div>
-        <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=10000">10K</div>
-        <div class="limbo-qb" onclick="document.getElementById('limboBetInp').value=50000">50K</div>
-      </div>
-      <button class="btn-limbo" id="limboBtn" onclick="playLimbo()">🔮 PLAY LIMBO</button>
-    </div>
-  </div>
-</div>
+<!-- Limbo page removed completely -->
 
 <!-- BOTTOM NAV -->
 <div class="bottom-nav" id="bottomNav" style="display:none">
@@ -1780,9 +1742,8 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 
 <div class="toast" id="toast"></div>
 
-<!-- FIREBASE and scripts remain unchanged, only the text in home leaderboard header is modified -->
+<!-- FIREBASE and scripts remain, but Limbo removed and Aviator updated -->
 <script type="module">
-/* (full unchanged Firebase module, game logic etc) */
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import{getDatabase,ref,set,get,onValue,update,push,remove}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
@@ -1878,7 +1839,7 @@ window.loadBetHistory=async()=>{
   const bets=Object.values(snap.val()).sort((a,b)=>b.time - a.time);
   let totalProfit=0,totalLoss=0;
   document.getElementById('hsTotalBets').textContent=bets.length;
-  const gameIcons={Aviator:'✈️',Trading:'📈',Dice:'🎲',Mines:'💣','Coin Flip':'🪙',Limbo:'🔮',Cricket:'🏏'};
+  const gameIcons={Aviator:'✈️',Trading:'📈',Dice:'🎲',Mines:'💣','Coin Flip':'🪙',Cricket:'🏏'};
   histList.innerHTML=bets.map(b=>{
     const isProfit=b.profit>=0;
     if(isProfit)totalProfit+=b.profit;else totalLoss+=Math.abs(b.profit);
@@ -1989,7 +1950,7 @@ window.switchTxTab = (tab) => {
   loadTransactionHistory();
 };
 
-// WITHDRAWAL SYSTEM
+// WITHDRAWAL SYSTEM with Cancel Reason
 window.submitWithdraw = async (method) => {
   if (!window._curUser) return;
   
@@ -2030,7 +1991,8 @@ window.submitWithdraw = async (method) => {
     account: account,
     amount: amount,
     status: 'pending',
-    time: Date.now()
+    time: Date.now(),
+    cancelReason: ''
   };
   
   await set(ref(db, 'withdrawalRequests/' + wdId), wdData);
@@ -2054,7 +2016,7 @@ window.acceptWithdrawal = async (wdId, userId, amount) => {
       return;
     }
     await update(ref(db, 'users/' + userId), { balance: userBal - amount });
-    await update(ref(db, 'withdrawalRequests/' + wdId), { status: 'completed' });
+    await update(ref(db, 'withdrawalRequests/' + wdId), { status: 'completed', cancelReason: '' });
     await update(ref(db, 'withdrawals/' + userId + '/' + wdId), { status: 'completed' });
     toast('✅ উইথড্রয়াল অনুমোদিত! ব্যালেন্স কেটে নেওয়া হয়েছে।', false);
     loadWithdrawalRequests();
@@ -2066,13 +2028,19 @@ window.acceptWithdrawal = async (wdId, userId, amount) => {
 };
 
 window.rejectWithdrawal = async (wdId, userId) => {
-  if (!confirm('এই উইথড্রয়াল বাতিল করবেন?')) return;
-  await update(ref(db, 'withdrawalRequests/' + wdId), { status: 'rejected' });
-  await update(ref(db, 'withdrawals/' + userId + '/' + wdId), { status: 'rejected' });
+  const reason = prompt('বাতিলের কারণ লিখুন:', 'Insufficient funds / Account mismatch');
+  if (reason === null) return;
+  await update(ref(db, 'withdrawalRequests/' + wdId), { status: 'rejected', cancelReason: reason });
+  await update(ref(db, 'withdrawals/' + userId + '/' + wdId), { status: 'rejected', cancelReason: reason });
   toast('❌ উইথড্রয়াল বাতিল করা হয়েছে।', true);
   loadWithdrawalRequests();
   if (userId === window._curUser?.uid) {
     loadTransactionHistory();
+    // Show reason to user
+    setTimeout(() => {
+      document.getElementById('wdReasonText').textContent = reason;
+      document.getElementById('wdReasonModal').classList.add('open');
+    }, 500);
   }
 };
 
@@ -2230,16 +2198,16 @@ window.loadWithdrawalRequests = async () => {
   document.getElementById('adPendingWithdrawals').textContent = requests.length;
   
   list.innerHTML = requests.map(([id, r]) => `
-    <div class="wd-request-item">
-      <div class="wd-req-header">
-        <span class="wd-req-user">👤 ${r.userName}</span>
-        <span class="wd-req-amount">৳${r.amount.toLocaleString('en')}</span>
+    <div class="wd-request-item" style="padding:12px;border-bottom:1px solid rgba(255,255,255,0.05);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+        <span style="font-family:Cinzel;color:#fff;">👤 ${r.userName}</span>
+        <span style="font-family:Cinzel;color:var(--gl);">৳${r.amount.toLocaleString('en')}</span>
       </div>
-      <div class="wd-req-method">${r.method} · ${r.account}</div>
-      <div class="wd-req-detail">${new Date(r.time).toLocaleString('en')}</div>
-      <div class="wd-req-actions">
-        <button class="wd-accept" onclick="acceptWithdrawal('${id}','${r.userId}',${r.amount})">✅ Accept</button>
-        <button class="wd-reject" onclick="rejectWithdrawal('${id}','${r.userId}')">❌ Reject</button>
+      <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:4px;">${r.method} · ${r.account}</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:8px;">${new Date(r.time).toLocaleString('en')}</div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="acceptWithdrawal('${id}','${r.userId}',${r.amount})" style="flex:1;padding:6px;background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);border-radius:6px;color:#2ecc71;cursor:pointer;">✅ Accept</button>
+        <button onclick="rejectWithdrawal('${id}','${r.userId}')" style="flex:1;padding:6px;background:rgba(231,76,60,0.2);border:1px solid rgba(231,76,60,0.4);border-radius:6px;color:#e74c3c;cursor:pointer;">❌ Reject</button>
       </div>
     </div>
   `).join('');
@@ -2263,13 +2231,13 @@ window.loadDepositRequests = async () => {
   document.getElementById('adTotalDeposits').textContent = '৳' + totalDeposits.toLocaleString('en');
   
   list.innerHTML = requests.map(([id, d]) => `
-    <div class="deposit-item" style="cursor:pointer" onclick="viewDepositSS('${id}','${d.userId}','${d.userName}',${d.amount},'${d.screenshot}')">
+    <div class="deposit-item" style="cursor:pointer;padding:12px;border-bottom:1px solid rgba(255,255,255,0.05);" onclick="viewDepositSS('${id}','${d.userId}','${d.userName}',${d.amount},'${d.screenshot}')">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-        <span class="dep-user">👤 ${d.userName}</span>
-        <span class="dep-amount">$${d.amount} USDT (~৳${(d.amount*120).toLocaleString('en')})</span>
+        <span class="dep-user" style="font-family:Cinzel;color:#fff;">👤 ${d.userName}</span>
+        <span class="dep-amount" style="font-family:Cinzel;color:#2ecc71;">$${d.amount} USDT</span>
       </div>
-      <div class="dep-method">Binance · Screenshot attached</div>
-      <div class="dep-time">${new Date(d.time).toLocaleString('en')}</div>
+      <div class="dep-method" style="font-size:11px;color:rgba(255,255,255,0.5);">Binance · Screenshot attached</div>
+      <div class="dep-time" style="font-size:9px;color:rgba(255,255,255,0.3);">${new Date(d.time).toLocaleString('en')}</div>
       <div style="margin-top:8px;color:#ffa500;font-size:10px;">📸 Click to view screenshot</div>
     </div>
   `).join('');
@@ -2403,13 +2371,13 @@ function updateProfileUI(d){
 </script>
 
 <script>
-// =================== GLOBAL STATE ===================
+// =================== GLOBAL STATE (Limbo removed) ===================
 window._realBal=0; window._demoBal=10000; window._isDemo=false;
 window._trDemoActive=false; window._trDemoBal=10000;
 window._diceDemoActive=false; window._diceDemoBal=10000;
 window._minesDemoActive=false; window._minesDemoBal=10000;
 window._coinDemoActive=false; window._coinDemoBal=10000;
-window._limboDemoActive=false; window._limboDemoBal=10000;
+// Limbo removed
 window._userProfile={};
 
 // =================== AI ASSISTANT ===================
@@ -2429,25 +2397,20 @@ window.sendAIMessage = () => {
   const messages = document.getElementById('aiMessages');
   const time = new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'});
   
-  // Add user message
   messages.innerHTML += `<div class="ai-msg user">${msg}<div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:2px;">${time}</div></div>`;
   input.value = '';
   messages.scrollTop = messages.scrollHeight;
   
-  // Show thinking
   messages.innerHTML += `<div class="ai-thinking"><span></span><span></span><span></span></div>`;
   messages.scrollTop = messages.scrollHeight;
   
-  // Generate AI response
   setTimeout(() => {
-    // Remove thinking
     const thinking = document.querySelector('.ai-thinking:last-child');
     if (thinking) thinking.remove();
     
     let response = '';
     
     if (aiMode === 'smart') {
-      // Smart AI responses
       const lowerMsg = msg.toLowerCase();
       if (lowerMsg.includes('balance') || lowerMsg.includes('ব্যালেন্স')) {
         response = `আপনার বর্তমান ব্যালেন্স: ৳${window._realBal.toLocaleString('en')} (Real) / ৳${window._demoBal.toLocaleString('en')} (Demo)।`;
@@ -2456,9 +2419,9 @@ window.sendAIMessage = () => {
       } else if (lowerMsg.includes('withdraw') || lowerMsg.includes('উইথড্র')) {
         response = 'উইথড্রয়াল করতে Profile পেজে গিয়ে Withdraw অপশন ব্যবহার করুন। মিনিমাম ৳200, সর্বোচ্চ ৳200,000।';
       } else if (lowerMsg.includes('game') || lowerMsg.includes('গেম')) {
-        response = 'আমাদের গেমগুলো: Aviator, Trading, Dice, Mines, Coin Flip, Limbo এবং Live Cricket! সবগুলোতেই মজা নিন।';
+        response = 'আমাদের গেমগুলো: Aviator, Trading, Dice, Mines, Coin Flip, এবং Live Cricket! সবগুলোতেই মজা নিন।';
       } else if (lowerMsg.includes('aviator') || lowerMsg.includes('এভিয়েটর')) {
-        response = 'Aviator গেমে বিমান উড়ে এবং মাল্টিপ্লায়ার বাড়ে। সঠিক সময় cashout করে জিতুন! সর্বোচ্চ 10,000x পর্যন্ত।';
+        response = 'Aviator গেমে বিমান উড়ে এবং মাল্টিপ্লায়ার বাড়ে। সঠিক সময় cashout করে জিতুন! সর্বোচ্চ 100x পর্যন্ত।';
       } else if (lowerMsg.includes('cricket') || lowerMsg.includes('ক্রিকেট')) {
         response = 'Live Cricket section-এ বাংলাদেশ ও ভারতের ম্যাচে বেট করুন! লাইভ আপডেট দেখুন।';
       } else if (lowerMsg.includes('help') || lowerMsg.includes('সাহায্য')) {
@@ -2701,19 +2664,18 @@ function getBalForGame(game){
   if(game==='dice') return window._diceDemoActive?window._diceDemoBal:window._realBal;
   if(game==='mines') return window._minesDemoActive?window._minesDemoBal:window._realBal;
   if(game==='coin') return window._coinDemoActive?window._coinDemoBal:window._realBal;
-  if(game==='limbo') return window._limboDemoActive?window._limboDemoBal:window._realBal;
+  // Limbo removed
   return window._realBal;
 }
 function setBalForGame(game,v){
   v=Math.max(0,v);
-  const isDemo={av:window._isDemo,tr:window._trDemoActive,dice:window._diceDemoActive,mines:window._minesDemoActive,coin:window._coinDemoActive,limbo:window._limboDemoActive}[game];
+  const isDemo={av:window._isDemo,tr:window._trDemoActive,dice:window._diceDemoActive,mines:window._minesDemoActive,coin:window._coinDemoActive}[game];
   if(isDemo){
     if(game==='av')window._demoBal=v;
     else if(game==='tr')window._trDemoBal=v;
     else if(game==='dice')window._diceDemoBal=v;
     else if(game==='mines')window._minesDemoBal=v;
     else if(game==='coin')window._coinDemoBal=v;
-    else if(game==='limbo')window._limboDemoBal=v;
     updateBals();
   } else {
     window._realBal=v;updateBals();window._writeBalance(v);
@@ -2728,7 +2690,6 @@ function updateBals(){
   document.getElementById('diceBalNum').textContent=getBalForGame('dice').toLocaleString('en',{minimumFractionDigits:2});
   document.getElementById('minesBalNum').textContent=getBalForGame('mines').toLocaleString('en',{minimumFractionDigits:2});
   document.getElementById('coinBalNum').textContent=getBalForGame('coin').toLocaleString('en',{minimumFractionDigits:2});
-  document.getElementById('limboBalNum').textContent=getBalForGame('limbo').toLocaleString('en',{minimumFractionDigits:2});
   if(window._isDemo) document.getElementById('demoBalNumAv').textContent=window._demoBal.toLocaleString('en');
   if(window._trDemoActive) document.getElementById('trDemoBalNum').textContent=window._trDemoBal.toLocaleString('en');
 }
@@ -2789,6 +2750,11 @@ window.checkAdminPw=()=>{
     document.getElementById('aiName').value = aiName;
     document.getElementById('aiWelcome').value = aiWelcome;
     document.getElementById('aiMode').value = aiMode;
+
+    // Aviator control defaults
+    document.getElementById('adminAvMult').value = 15;
+    document.getElementById('avAdminStatus').innerHTML = 'Current: Random (10x-100x)';
+    window._avForcedMult = null;
   } else {
     document.getElementById('apwError').style.display='block';
     document.getElementById('apwInput').value='';
@@ -2844,21 +2810,25 @@ window.toggleTrDemo=()=>{window._trDemoActive=document.getElementById('trDemoTog
 window.toggleDiceDemo=()=>{window._diceDemoActive=document.getElementById('diceDemoTog').checked;document.getElementById('diceDemoBadge').style.display=window._diceDemoActive?'inline-block':'none';if(window._diceDemoActive&&window._diceDemoBal<=0)window._diceDemoBal=10000;updateBals();};
 window.toggleMinesDemo=()=>{window._minesDemoActive=document.getElementById('minesDemoTog').checked;document.getElementById('minesDemoBadge').style.display=window._minesDemoActive?'inline-block':'none';if(window._minesDemoActive&&window._minesDemoBal<=0)window._minesDemoBal=10000;updateBals();};
 window.toggleCoinDemo=()=>{window._coinDemoActive=document.getElementById('coinDemoTog').checked;document.getElementById('coinDemoBadge').style.display=window._coinDemoActive?'inline-block':'none';if(window._coinDemoActive&&window._coinDemoBal<=0)window._coinDemoBal=10000;updateBals();};
-window.toggleLimboDemo=()=>{window._limboDemoActive=document.getElementById('limboDemoTog').checked;document.getElementById('limboDemoBadge').style.display=window._limboDemoActive?'inline-block':'none';if(window._limboDemoActive&&window._limboDemoBal<=0)window._limboDemoBal=10000;updateBals();};
 
-// AVIATOR
+// AVIATOR with shared multiplier and admin control (10x-100x)
 let avPhase='idle',avBetPlaced=false,avBetAmt=0,avMult=1.00,avCrashAt=1.00,avRaf=null,avRoundStart=0,avCdTimer=null;
 const avPts=[];let avCtx=null;
+let avForcedMult = null; // Admin set
+
 function avCrashPt(){
-  const r=Math.random();
-  // Adjusted for 10x min, 10000x max, with distribution to avoid constant 4000-5000x
-  if (r < 0.15) return 10 + Math.random() * 15;        // 10-25x
-  if (r < 0.35) return 25 + Math.random() * 75;        // 25-100x
-  if (r < 0.55) return 100 + Math.random() * 400;      // 100-500x
-  if (r < 0.70) return 500 + Math.random() * 1500;     // 500-2000x
-  if (r < 0.82) return 2000 + Math.random() * 3000;    // 2000-5000x (less common)
-  if (r < 0.92) return 5000 + Math.random() * 3000;    // 5000-8000x (rare)
-  return 8000 + Math.random() * 2000;                   // 8000-10000x (very rare)
+  if (avForcedMult) {
+    const m = avForcedMult;
+    avForcedMult = null; // use once
+    return m;
+  }
+  // 10x to 100x distribution
+  const r = Math.random();
+  if (r < 0.25) return 10 + Math.random() * 10;   // 10-20x
+  if (r < 0.5) return 20 + Math.random() * 20;    // 20-40x
+  if (r < 0.7) return 40 + Math.random() * 30;    // 40-70x
+  if (r < 0.9) return 70 + Math.random() * 20;    // 70-90x
+  return 90 + Math.random() * 10;                  // 90-100x
 }
 function avInitCanvas(){const cv=document.getElementById('avCv'),c=document.getElementById('avCanvas');cv.width=c.offsetWidth||420;cv.height=c.offsetHeight||200;avCtx=cv.getContext('2d');avCtx.clearRect(0,0,cv.width,cv.height);}
 function avStartRound(){cancelAnimationFrame(avRaf);clearInterval(avCdTimer);avPhase='countdown';avMult=1.00;avCrashAt=avCrashPt();avBetPlaced=false;avPts.length=0;document.getElementById('avCdOv').style.display='flex';document.getElementById('avMW').style.display='none';document.getElementById('avPlane').style.display='none';document.getElementById('avCrashFl').style.display='none';document.getElementById('avMW').querySelector('.av-mn').className='av-mn';avInitCanvas();avSetBadge('bet');avUpdateUI();avBuildLB();let n=10;avSetCd(n);avCdTimer=setInterval(()=>{n--;if(n>0)avSetCd(n);else{clearInterval(avCdTimer);avCdTimer=null;avBeginFly();}},1000);}
@@ -2874,7 +2844,7 @@ function avUpdateUI(){const bb=document.getElementById('avBetBtn'),cb=document.g
 function avSetBadge(p){const b=document.getElementById('avPhBadge');b.className='ph-badge '+p;if(p==='bet')b.textContent='🟡 BETTING OPEN';else if(p==='fly')b.textContent='🟢 FLYING';else b.textContent='🔴 CRASHED';}
 const AV_NAMES=['Rahim_X','Karim99','Sumon★','NightKing','BetKing88','GoldRush','Lucky7','SpeedBet','TigerBet','AcePlayer','RoyalFly','DiamondX','StormBet','PhoenixUp','NightHawk','PlatinumK','IronFist','CobraKing','MaxBet99','UltraFly'];
 let avUsedNames=new Set();
-function avBuildLB(showUser=false){if(avUsedNames.size>AV_NAMES.length-5)avUsedNames.clear();const avail=AV_NAMES.filter(n=>!avUsedNames.has(n)),entries=[],used=new Set();while(entries.length<15&&avail.length>entries.length){const i=Math.floor(Math.random()*avail.length),n=avail[i];if(!used.has(n)){used.add(n);avUsedNames.add(n);const m=parseFloat((10+Math.random()*990).toFixed(2)),b=Math.floor(200+Math.random()*199801);entries.push({n,m,b,isUser:false});}}if(showUser&&avBetPlaced&&window._curUser){const userName=(window._userProfile?.name||window._curUser.displayName||'You').split(' ')[0];entries.unshift({n:'⭐ '+userName,m:avMult||1.00,b:avBetAmt,isUser:true});}entries.sort((a,b)=>b.m-a.m);document.getElementById('avLbBody').innerHTML=entries.map((e,i)=>{let rc='',rl='#'+(i+1);if(i===0){rc='g';rl='🥇';}else if(i===1){rc='s';rl='🥈';}else if(i===2){rc='b';rl='🥉';}return`<div class="lb-row ${e.isUser?'you':''}"><div class="lb-rank ${rc}">${rl}</div><div class="lb-name">${e.n}</div><div class="lb-mult">${e.m.toFixed(2)}x</div><div class="lb-bet">৳${e.b.toLocaleString('en')}</div></div>`;}).join('');}
+function avBuildLB(showUser=false){if(avUsedNames.size>AV_NAMES.length-5)avUsedNames.clear();const avail=AV_NAMES.filter(n=>!avUsedNames.has(n)),entries=[],used=new Set();while(entries.length<15&&avail.length>entries.length){const i=Math.floor(Math.random()*avail.length),n=avail[i];if(!used.has(n)){used.add(n);avUsedNames.add(n);const m=parseFloat((10+Math.random()*90).toFixed(2));const b=Math.floor(200+Math.random()*199801);entries.push({n,m,b,isUser:false});}}if(showUser&&avBetPlaced&&window._curUser){const userName=(window._userProfile?.name||window._curUser.displayName||'You').split(' ')[0];entries.unshift({n:'⭐ '+userName,m:avMult||1.00,b:avBetAmt,isUser:true});}entries.sort((a,b)=>b.m-a.m);document.getElementById('avLbBody').innerHTML=entries.map((e,i)=>{let rc='',rl='#'+(i+1);if(i===0){rc='g';rl='🥇';}else if(i===1){rc='s';rl='🥈';}else if(i===2){rc='b';rl='🥉';}return`<div class="lb-row ${e.isUser?'you':''}"><div class="lb-rank ${rc}">${rl}</div><div class="lb-name">${e.n}</div><div class="lb-mult">${e.m.toFixed(2)}x</div><div class="lb-bet">৳${e.b.toLocaleString('en')}</div></div>`;}).join('');}
 setInterval(()=>{if(document.getElementById('aviatorPage').classList.contains('active')&&avPhase==='flying')avBuildLB(avBetPlaced);},9000);
 
 // TRADING
@@ -3032,41 +3002,9 @@ window.flipCoin=async()=>{
   loadHomeLb();
 };
 
-// LIMBO GAME
-let limboPlaying=false;
-window.updateLimboInfo=()=>{
-  const target=parseFloat(document.getElementById('limboTarget').value)||2;
-  const chance=(1/target*100).toFixed(2);
-  const payout=(target*0.99).toFixed(2);
-  document.getElementById('limboChance').textContent=`Win Chance: ${chance}% · Payout: ${payout}×`;
-};
-window.playLimbo=async()=>{
-  if(limboPlaying)return;
-  const v=parseInt(document.getElementById('limboBetInp').value);
-  const target=parseFloat(document.getElementById('limboTarget').value)||2;
-  if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}
-  if(v>200000){toast('⚠️ Max ৳200,000',true);return;}
-  if(target<1.01){toast('⚠️ Min target 1.01×',true);return;}
-  if(getBalForGame('limbo')<v){toast('❌ Balance কম!',true);if(!window._limboDemoActive)setTimeout(()=>openDepositSSModal(),800);return;}
-  setBalForGame('limbo',getBalForGame('limbo')-v);
-  limboPlaying=true;document.getElementById('limboBtn').disabled=true;
-  const numEl=document.getElementById('limboNum');
-  numEl.className='limbo-mult-num';
-  let cur=1.00;const iv=setInterval(()=>{cur=parseFloat((cur+Math.random()*0.3).toFixed(2));numEl.textContent=cur.toFixed(2);},50);
-  await new Promise(r=>setTimeout(r,1200));
-  clearInterval(iv);
-  const rand=Math.random();
-  const finalMult=rand<1/target?parseFloat((1+Math.random()*(target-1)*0.99).toFixed(2)):parseFloat((target+Math.random()*(target*5)).toFixed(2));
-  numEl.textContent=finalMult.toFixed(2);
-  const won=finalMult>=target;
-  if(won){const payout=parseFloat((target*0.99).toFixed(2));const win=Math.floor(v*payout);setBalForGame('limbo',getBalForGame('limbo')+win);numEl.className='limbo-mult-num win';toast(`🔮 Limbo WIN! ${finalMult.toFixed(2)}× ≥ ${target}× — +৳${(win-v).toLocaleString('en')}`,false);if(!window._limboDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Limbo',detail:`Target ${target}×, got ${finalMult.toFixed(2)}×`,bet:v,profit:win-v,time:Date.now()});}
-  else{numEl.className='limbo-mult-num lose';toast(`🔮 Limbo LOSE! ${finalMult.toFixed(2)}× < ${target}× — -৳${v.toLocaleString('en')}`,true);if(!window._limboDemoActive)window._saveBetHistory&&window._saveBetHistory({game:'Limbo',detail:`Target ${target}×, got ${finalMult.toFixed(2)}×`,bet:v,profit:-v,time:Date.now()});}
-  limboPlaying=false;document.getElementById('limboBtn').disabled=false;
-  loadHomeLb();
-};
-updateLimboInfo();
+// Limbo removed
 
-// HOME LEADERBOARD - SYNCED WITH ADMIN (ONLY FROM ADMIN PANEL)
+// HOME LEADERBOARD - SYNCED WITH ADMIN (with position)
 const DEFAULT_LB = [
   {id:'lb1', name:'RahimBetKing', country:'🇧🇩 Bangladesh', amount:485000},
   {id:'lb2', name:'Sumon_Royal', country:'🇧🇩 Bangladesh', amount:362000},
@@ -3090,15 +3028,12 @@ async function loadHomeLb(){
       const arr=Object.entries(data).map(([id,v])=>({id,...v})).sort((a,b)=>b.amount-a.amount);
       renderHomeLb(arr.length?arr:DEFAULT_LB);
     } else {
-      // Initialize with default if empty
       for(const e of DEFAULT_LB){
         await window._set(window._ref(window._db,'leaderboard/'+e.id),{name:e.name,country:e.country,amount:e.amount});
       }
       renderHomeLb(DEFAULT_LB);
     }
   } catch(e){renderHomeLb(DEFAULT_LB);}
-  
-  // REMOVED: Auto-loading real users with high balance - now only admin controlled
 }
 
 function renderHomeLb(entries){
@@ -3124,7 +3059,7 @@ function renderHomeLb(entries){
   }).join('');
 }
 
-// ADMIN LEADERBOARD
+// ADMIN LEADERBOARD (position field added)
 window.loadAdminLeaderboard=async()=>{
   if(!window._db) return;
   const snap=await window._get(window._ref(window._db,'leaderboard'));
@@ -3185,12 +3120,30 @@ window.addLbEntry=async()=>{
   loadHomeLb();
 };
 
+// Aviator Admin Control
+window.setAvForcedMult = () => {
+  const mult = parseFloat(document.getElementById('adminAvMult').value);
+  if (isNaN(mult) || mult < 10 || mult > 100) {
+    toast('⚠️ 10x to 100x এর মধ্যে দিন', true);
+    return;
+  }
+  avForcedMult = mult;
+  document.getElementById('avAdminStatus').innerHTML = `Current: Forced next crash at ${mult.toFixed(1)}x`;
+  toast(`✅ Next Aviator crash set to ${mult}x`, false);
+};
+
+window.clearAvForcedMult = () => {
+  avForcedMult = null;
+  document.getElementById('avAdminStatus').innerHTML = 'Current: Random (10x-100x)';
+  toast('🔄 Random mode enabled', false);
+};
+
 // INIT
 updateBals();
 avStartRound();
 initCricketMatch();
 loadHomeLb();
-loadTransactionHistory(); // Load transaction history on page load
+loadTransactionHistory();
 
 // =================== BET HISTORY DISPLAY FIX ===================
 document.addEventListener('DOMContentLoaded', function() {
