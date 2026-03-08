@@ -210,13 +210,67 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .bal-sub{font-size:10px;color:rgba(255,255,255,0.2);margin-top:3px;letter-spacing:1px;}
 .sec-title{padding:0 16px 10px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(201,168,76,0.5);text-transform:uppercase;}
 
-/* SUPPORT BUTTON (smaller, moved up) */
-.support-btn{margin:0 16px 14px;background:linear-gradient(135deg,#001840,#003080);border:1px solid rgba(52,152,219,0.4);border-radius:12px;padding:8px 12px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:all 0.25s;width:auto;}
-.support-btn:hover{transform:translateY(-1px);}
-.support-ico{font-size:20px;flex-shrink:0;}
-.support-txt .st{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:#3498db;letter-spacing:2px;}
-.support-txt .ss{font-size:10px;color:rgba(52,152,219,0.5);margin-top:2px;display:none;}
-.support-badge{background:rgba(52,152,219,0.2);border:1px solid rgba(52,152,219,0.4);border-radius:20px;padding:2px 8px;font-family:'Cinzel',serif;font-size:8px;color:#3498db;margin-left:auto;}
+/* FRIENDLY SUPPORT BUTTON AT TOP */
+.friendly-support{
+  margin:0 16px 16px;
+  background:linear-gradient(135deg,#1a4d8c,#2a6db0);
+  border:2px solid rgba(255,215,0,0.4);
+  border-radius:40px;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  cursor:pointer;
+  transition:all 0.3s;
+  box-shadow:0 4px 15px rgba(0,100,255,0.3);
+}
+.friendly-support:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(0,150,255,0.5);
+  border-color:#ffd700;
+}
+.fs-left{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+.fs-emoji{
+  font-size:32px;
+  animation:pulse 2s infinite;
+}
+.fs-text{
+  display:flex;
+  flex-direction:column;
+}
+.fs-title{
+  font-family:'Cinzel',serif;
+  font-size:16px;
+  font-weight:900;
+  color:#fff;
+  letter-spacing:2px;
+}
+.fs-message{
+  font-size:13px;
+  color:rgba(255,255,255,0.8);
+  margin-top:3px;
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+.fs-badge{
+  background:rgba(255,215,0,0.2);
+  border:1px solid rgba(255,215,0,0.5);
+  border-radius:20px;
+  padding:4px 12px;
+  font-family:'Cinzel',serif;
+  font-size:11px;
+  color:#ffd700;
+}
+.fs-right{
+  font-size:24px;
+  color:#fff;
+  opacity:0.8;
+}
 
 /* DAILY REWARD */
 .reward-card{margin:0 16px 14px;background:linear-gradient(135deg,#0d0800,#1a1200,#0d0800);border:1px solid rgba(255,165,0,0.4);border-radius:14px;overflow:hidden;position:relative;animation:rewardGlow 3s ease-in-out infinite;}
@@ -806,6 +860,22 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         </div>
       </div>
     </div>
+    
+    <!-- FRIENDLY SUPPORT BUTTON AT TOP (MOVED HERE) -->
+    <div class="friendly-support" onclick="openSupport()">
+      <div class="fs-left">
+        <div class="fs-emoji">🎧</div>
+        <div class="fs-text">
+          <div class="fs-title">HELP & SUPPORT</div>
+          <div class="fs-message">
+            <span>আপনার প্রশ্ন জিজ্ঞাসা করুন</span>
+            <span class="fs-badge">● 24/7 Online</span>
+          </div>
+        </div>
+      </div>
+      <div class="fs-right">💬</div>
+    </div>
+    
     <div class="action-row">
       <button class="action-btn btn-dep" onclick="openDepositSSModal()"><span class="action-btn-icon">💰</span>Deposit</button>
       <button class="action-btn btn-wdw" onclick="checkWithdraw()"><span class="action-btn-icon">💸</span>Withdraw</button>
@@ -920,8 +990,8 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div id="homeLbList"></div>
       </div>
     </div>
-    <!-- Support Button - Smaller, moved up -->
-    <div class="support-btn" onclick="openSupport()">
+    <!-- Support Button - Smaller, moved up - KEPT FOR BACKWARD COMPATIBILITY (but hidden) -->
+    <div class="support-btn" onclick="openSupport()" style="display:none;">
       <div class="support-ico">🎧</div>
       <div class="support-txt"><div class="st">Support</div><div class="ss">24/7</div></div>
       <div class="support-badge">● Online</div>
@@ -3178,4 +3248,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-* শুধুমাত্র final working code দাও
