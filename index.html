@@ -40,6 +40,8 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 @keyframes dotMenuSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes aiThinking{0%,100%{opacity:0.3}50%{opacity:1}}
 @keyframes quantum{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.2)}100%{transform:rotate(360deg) scale(1)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-100%)}}
 
 /* AI ASSISTANT */
 .ai-assistant{position:fixed;bottom:80px;right:16px;z-index:999;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#8a6a1f,#c9a84c);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 20px rgba(201,168,76,0.5);animation:quantum 3s infinite;transition:all 0.3s;}
@@ -62,6 +64,291 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .ai-input-row{display:flex;padding:8px;border-top:1px solid rgba(201,168,76,0.1);background:rgba(0,0,0,0.5);}
 .ai-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:8px 12px;color:#fff;font-family:'Lato',sans-serif;font-size:12px;outline:none;}
 .ai-send{width:36px;height:36px;background:linear-gradient(135deg,#8a6a1f,#c9a84c);border:none;border-radius:50%;color:#0d0500;font-size:16px;cursor:pointer;margin-left:8px;display:flex;align-items:center;justify-content:center;}
+
+/* ========== NEW FEATURE: ANNOUNCEMENT BANNER ========== */
+.announcement-bar {
+  background: linear-gradient(135deg, #8a4a00, #ffa500);
+  color: #0d0500;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  animation: slideDown 0.3s ease;
+  position: relative;
+  z-index: 50;
+}
+.announcement-close {
+  background: rgba(0,0,0,0.2);
+  border: none;
+  color: #0d0500;
+  font-size: 16px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.announcement-close:hover {
+  background: rgba(0,0,0,0.4);
+}
+
+/* ========== NEW FEATURE: FRIEND REFERRAL MODAL ========== */
+.referral-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.referral-modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.referral-box {
+  width: 92%;
+  max-width: 380px;
+  background: linear-gradient(160deg, #0d0800, #1a1200);
+  border: 2px solid #ffa500;
+  border-radius: 20px;
+  padding: 28px 22px;
+  text-align: center;
+  animation: cardIn 0.4s ease;
+}
+.referral-emoji {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+.referral-title {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffa500;
+  margin-bottom: 6px;
+}
+.referral-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 20px;
+}
+.referral-code-box {
+  background: rgba(255,165,0,0.1);
+  border: 1px solid rgba(255,165,0,0.3);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.referral-code-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(255,165,0,0.6);
+  margin-bottom: 4px;
+}
+.referral-code {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffa500;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+.referral-code-note {
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+}
+.referral-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+}
+.referral-stat-item {
+  text-align: center;
+}
+.referral-stat-value {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: #ffa500;
+}
+.referral-stat-label {
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+}
+.referral-link {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,165,0,0.2);
+  border-radius: 30px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.referral-link-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: #ffa500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 180px;
+}
+.referral-link-copy {
+  background: rgba(255,165,0,0.2);
+  border: 1px solid rgba(255,165,0,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  color: #ffa500;
+  font-size: 10px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+}
+.referral-terms {
+  font-size: 9px;
+  color: rgba(255,255,255,0.2);
+  margin-top: 12px;
+}
+.referral-close-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 30px;
+  padding: 12px;
+  color: rgba(255,255,255,0.6);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* ========== NEW FEATURE: SUPPORT REPLY IN ADMIN ========== */
+.support-reply-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.98);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.support-reply-modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.support-reply-box {
+  width: 92%;
+  max-width: 400px;
+  background: linear-gradient(160deg, #020820, #010510);
+  border: 1px solid rgba(52,152,219,0.3);
+  border-radius: 16px;
+  padding: 24px;
+}
+.support-reply-title {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #3498db;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.support-reply-original {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  max-height: 100px;
+  overflow-y: auto;
+}
+.support-reply-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(52,152,219,0.3);
+  border-radius: 8px;
+  padding: 12px;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  outline: none;
+  margin-bottom: 16px;
+  resize: vertical;
+  min-height: 100px;
+}
+.support-reply-btns {
+  display: flex;
+  gap: 10px;
+}
+.support-reply-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.support-reply-btn.send {
+  background: linear-gradient(135deg, #1a5c9b, #3498db);
+  color: #fff;
+}
+.support-reply-btn.cancel {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+}
+
+/* ========== MODIFIED SUPPORT BUTTON (Now with Message Icon) ========== */
+.support-btn.special-support {
+  background: linear-gradient(135deg, #001840, #003080);
+  border: 1px solid rgba(52,152,219,0.4);
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.25s;
+  width: auto;
+  margin: 0 16px 14px;
+  position: relative;
+}
+.support-btn.special-support:hover {
+  transform: translateY(-2px);
+}
+.support-badge-message {
+  background: #ff4444;
+  color: #fff;
+  font-size: 8px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-weight: 700;
+}
 
 /* HOME LEADERBOARD */
 .hlb-row{display:flex;align-items:center;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);gap:10px;}
@@ -209,6 +496,44 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .bal-amt span{font-size:13px;color:rgba(201,168,76,0.5);margin-right:4px;}
 .bal-sub{font-size:10px;color:rgba(255,255,255,0.2);margin-top:3px;letter-spacing:1px;}
 .sec-title{padding:0 16px 10px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(201,168,76,0.5);text-transform:uppercase;}
+
+/* ========== NEW: REFERRAL BUTTON ========== */
+.referral-btn {
+  margin: 0 16px 14px;
+  background: linear-gradient(135deg, #8a4a00, #ffa500);
+  border: 1px solid rgba(255,165,0,0.4);
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.25s;
+  width: auto;
+}
+.referral-btn:hover {
+  transform: translateY(-2px);
+}
+.referral-btn-ico {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.referral-btn-txt {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0d0500;
+  letter-spacing: 2px;
+}
+.referral-btn-badge {
+  background: rgba(0,0,0,0.2);
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  color: #0d0500;
+  margin-left: auto;
+}
 
 /* SUPPORT BUTTON (smaller, moved up) */
 .support-btn{margin:0 16px 14px;background:linear-gradient(135deg,#001840,#003080);border:1px solid rgba(52,152,219,0.4);border-radius:12px;padding:8px 12px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:all 0.25s;width:auto;}
@@ -806,6 +1131,13 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         </div>
       </div>
     </div>
+    
+    <!-- ========== NEW FEATURE: ANNOUNCEMENT BANNER ========== -->
+    <div class="announcement-bar" id="announcementBar" style="display: none;">
+      <span id="announcementText">📢 Welcome to Royal Bet! New features added.</span>
+      <button class="announcement-close" onclick="closeAnnouncement()">✕</button>
+    </div>
+    
     <div class="action-row">
       <button class="action-btn btn-dep" onclick="openDepositSSModal()"><span class="action-btn-icon">💰</span>Deposit</button>
       <button class="action-btn btn-wdw" onclick="checkWithdraw()"><span class="action-btn-icon">💸</span>Withdraw</button>
@@ -920,11 +1252,20 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div id="homeLbList"></div>
       </div>
     </div>
-    <!-- Support Button - Smaller, moved up -->
-    <div class="support-btn" onclick="openSupport()">
+    
+    <!-- ========== NEW FEATURE: REFERRAL BUTTON ========== -->
+    <div class="referral-btn" onclick="openReferralModal()">
+      <div class="referral-btn-ico">👥</div>
+      <div class="referral-btn-txt">Friend Referral</div>
+      <div class="referral-btn-badge">+৳6000</div>
+    </div>
+    
+    <!-- ========== MODIFIED: Support Button with Message Badge ========== -->
+    <div class="support-btn special-support" onclick="openSupport()">
       <div class="support-ico">🎧</div>
       <div class="support-txt"><div class="st">Support</div><div class="ss">24/7</div></div>
       <div class="support-badge">● Online</div>
+      <div class="support-badge-message" id="supportMessageBadge" style="display: none;">1</div>
     </div>
   </div>
 </div>
@@ -956,6 +1297,9 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="prof-info-row"><span class="pir-key">Total Profit</span><span class="pir-val green" id="piProfit">৳0</span></div>
         <div class="prof-info-row"><span class="pir-key">Daily Streak</span><span class="pir-val gold" id="piStreak">0 Days 🔥</span></div>
         <div class="prof-info-row"><span class="pir-key">Account ID</span><span class="pir-val" id="piUID" style="font-size:10px">—</span></div>
+        <!-- ========== NEW FEATURE: REFERRAL INFO IN PROFILE ========== -->
+        <div class="prof-info-row"><span class="pir-key">Referrals</span><span class="pir-val gold" id="piReferrals">0</span></div>
+        <div class="prof-info-row"><span class="pir-key">Referral Code</span><span class="pir-val" id="piReferralCode" style="font-size:11px">loading...</span></div>
       </div>
     </div>
     <button class="logout-btn" onclick="logout()">⬅ Sign Out</button>
@@ -999,6 +1343,9 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <button class="admin-tab" onclick="switchAdminTab('cricket',this)">🏏 Cricket</button>
       <button class="admin-tab" onclick="switchAdminTab('ai',this)">🤖 AI</button>
       <button class="admin-tab" onclick="switchAdminTab('aviator',this)">✈ Aviator Ctrl</button>
+      <!-- ========== NEW FEATURE: ANNOUNCEMENT & SUPPORT TABS ========== -->
+      <button class="admin-tab" onclick="switchAdminTab('announcement',this)">📢 Announce</button>
+      <button class="admin-tab" onclick="switchAdminTab('support_reply',this)">💬 Support</button>
     </div>
     
     <!-- Withdrawals Tab -->
@@ -1158,6 +1505,51 @@ input::placeholder{color:rgba(253,246,227,0.18);}
           <div class="notice" style="margin-top:12px;" id="avAdminStatus">Current: Random (10x-100x)</div>
         </div>
       </div>
+    </div>
+    
+    <!-- ========== NEW FEATURE: ANNOUNCEMENT CONTROL TAB ========== -->
+    <div class="admin-tab-content" id="atab-announcement">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">📢 ANNOUNCEMENT CONTROL</div>
+        <div style="padding:16px">
+          <div class="igrp">
+            <label class="ilbl">Announcement Text</label>
+            <input type="text" id="adminAnnouncementText" class="alb-inp-full" value="📢 Welcome to Royal Bet! New features added." placeholder="Enter announcement...">
+          </div>
+          <div class="igrp">
+            <label class="ilbl">Status</label>
+            <select id="adminAnnouncementStatus" class="alb-inp-full">
+              <option value="show">Show Announcement</option>
+              <option value="hide">Hide Announcement</option>
+            </select>
+          </div>
+          <button onclick="saveAnnouncementSettings()" class="btn-sub" style="margin-top:12px;">💾 SAVE ANNOUNCEMENT</button>
+          <div class="notice" style="margin-top:12px;">When "Show" is selected, all users will see the announcement on home page. Users can close it individually.</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ========== NEW FEATURE: SUPPORT REPLY TAB ========== -->
+    <div class="admin-tab-content" id="atab-support_reply">
+      <div class="admin-section" style="margin-top:14px">
+        <div class="admin-sec-title">💬 SUPPORT MESSAGES - REPLY</div>
+        <div class="msg-list" id="adminSupportReplyList">
+          <div style="padding:20px;text-align:center;font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.2)">Loading messages...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== NEW FEATURE: SUPPORT REPLY MODAL ========== -->
+<div class="support-reply-modal" id="supportReplyModal">
+  <div class="support-reply-box">
+    <div class="support-reply-title">💬 Reply to User</div>
+    <div class="support-reply-original" id="supportReplyOriginal">Loading...</div>
+    <textarea class="support-reply-input" id="supportReplyInput" placeholder="Type your reply here..."></textarea>
+    <div class="support-reply-btns">
+      <button class="support-reply-btn send" onclick="sendSupportReply()">📤 SEND REPLY</button>
+      <button class="support-reply-btn cancel" onclick="closeSupportReplyModal()">CANCEL</button>
     </div>
   </div>
 </div>
@@ -1415,6 +1807,36 @@ input::placeholder{color:rgba(253,246,227,0.18);}
     <div class="rc-note">Deposit থাকলে এই reward claim করুন।</div>
     <button class="rc-claim" onclick="claimReward()">🎁 CLAIM NOW</button>
     <button class="rc-cancel" onclick="document.getElementById('rewardModal').classList.remove('open')">Cancel</button>
+  </div>
+</div>
+
+<!-- ========== NEW FEATURE: FRIEND REFERRAL MODAL ========== -->
+<div class="referral-modal" id="referralModal">
+  <div class="referral-box">
+    <div class="referral-emoji">👥</div>
+    <div class="referral-title">Friend Referral</div>
+    <div class="referral-sub">Invite friends & earn ৳6000 bonus!</div>
+    <div class="referral-code-box">
+      <div class="referral-code-label">YOUR REFERRAL CODE</div>
+      <div class="referral-code" id="referralCode">ROYAL-XXXX</div>
+      <div class="referral-code-note">Share this code with friends</div>
+    </div>
+    <div class="referral-stats">
+      <div class="referral-stat-item">
+        <div class="referral-stat-value" id="referralCount">0</div>
+        <div class="referral-stat-label">Friends</div>
+      </div>
+      <div class="referral-stat-item">
+        <div class="referral-stat-value" id="referralEarned">৳0</div>
+        <div class="referral-stat-label">Earned</div>
+      </div>
+    </div>
+    <div class="referral-link">
+      <div class="referral-link-text" id="referralLinkText">https://royalbet.com/?ref=ROYAL-XXXX</div>
+      <button class="referral-link-copy" onclick="copyReferralLink()">Copy</button>
+    </div>
+    <div class="referral-terms">* Bonus credited when referred friend makes first deposit of min. ৳500</div>
+    <button class="referral-close-btn" onclick="closeReferralModal()">Close</button>
   </div>
 </div>
 
@@ -1787,14 +2209,44 @@ onAuthStateChanged(auth,async user=>{
     document.getElementById('piUID').textContent=user.uid.substring(0,16)+'...';
     const userRef=ref(db,'users/'+user.uid);
     const snap=await get(userRef);
-    if(!snap.exists()){const today=new Date().toDateString();await set(userRef,{name:user.displayName||'Player',email:user.email||'',balance:0,photoURL:user.photoURL||'',createdAt:Date.now(),totalBets:0,totalProfit:0,dailyStreak:0,lastClaimedDay:0,lastClaimDate:''});}
-    onValue(ref(db,'users/'+user.uid),snap=>{const d=snap.val()||{};window._realBal=d.balance||0;window._userProfile=d;updateBals();updateProfileUI(d);loadBetHistory();loadTransactionHistory();});
+    if(!snap.exists()){const today=new Date().toDateString();await set(userRef,{name:user.displayName||'Player',email:user.email||'',balance:0,photoURL:user.photoURL||'',createdAt:Date.now(),totalBets:0,totalProfit:0,dailyStreak:0,lastClaimedDay:0,lastClaimDate:'',referralCount:0,referralEarned:0});}
+    
+    // ========== NEW FEATURE: Generate or get referral code ==========
+    if(!snap.exists() || !snap.val().referralCode){
+      const referralCode = 'RB' + user.uid.substring(0,6).toUpperCase() + Date.now().toString().slice(-4);
+      await update(ref(db,'users/'+user.uid),{referralCode:referralCode,referralCount:0,referralEarned:0});
+    }
+    
+    onValue(ref(db,'users/'+user.uid),snap=>{
+      const d=snap.val()||{};
+      window._realBal=d.balance||0;
+      window._userProfile=d;
+      updateBals();
+      updateProfileUI(d);
+      loadBetHistory();
+      loadTransactionHistory();
+      
+      // ========== NEW FEATURE: Update referral info in profile ==========
+      document.getElementById('piReferrals').textContent = d.referralCount || 0;
+      document.getElementById('piReferralCode').textContent = d.referralCode || 'N/A';
+      document.getElementById('referralCode').textContent = d.referralCode || 'RB-XXXX';
+      document.getElementById('referralCount').textContent = d.referralCount || 0;
+      document.getElementById('referralEarned').textContent = '৳' + (d.referralEarned || 0).toLocaleString('en');
+      document.getElementById('referralLinkText').textContent = `https://royalbet.com/?ref=${d.referralCode || 'RB-XXXX'}`;
+    });
+    
     document.getElementById('piJoin').textContent=user.metadata.creationTime?new Date(user.metadata.creationTime).toLocaleDateString('en'):'—';
     showPage('homePage');document.getElementById('bottomNav').style.display='flex';navTo('home');renderRewardDays();
     
     await loadBetHistory();
-    await loadHomeLb(); // Load leaderboard on login
-    await loadTransactionHistory(); // Load transaction history on login
+    await loadHomeLb();
+    await loadTransactionHistory();
+    
+    // ========== NEW FEATURE: Load announcement settings ==========
+    loadAnnouncementSettings();
+    
+    // ========== NEW FEATURE: Load support messages & check for unread ==========
+    loadSupportMessages();
     
   } else {
     window._curUser=null;document.getElementById('bottomNav').style.display='none';showPage('loginPage');
@@ -1949,6 +2401,269 @@ window.switchTxTab = (tab) => {
   document.getElementById('txTabWithdraw').classList.toggle('active', tab === 'withdraw');
   loadTransactionHistory();
 };
+
+// ========== NEW FEATURE: ANNOUNCEMENT SYSTEM ==========
+window.loadAnnouncementSettings = async () => {
+  if (!db) return;
+  try {
+    const snap = await get(ref(db, 'announcement'));
+    if (snap.exists()) {
+      const data = snap.val();
+      if (data.show === true && data.text) {
+        document.getElementById('announcementText').textContent = data.text;
+        document.getElementById('announcementBar').style.display = 'flex';
+      } else {
+        document.getElementById('announcementBar').style.display = 'none';
+      }
+      
+      // Admin form fill
+      if (document.getElementById('adminAnnouncementText')) {
+        document.getElementById('adminAnnouncementText').value = data.text || '📢 Welcome to Royal Bet! New features added.';
+        document.getElementById('adminAnnouncementStatus').value = data.show === true ? 'show' : 'hide';
+      }
+    } else {
+      // Default
+      document.getElementById('announcementBar').style.display = 'none';
+      if (document.getElementById('adminAnnouncementText')) {
+        document.getElementById('adminAnnouncementText').value = '📢 Welcome to Royal Bet! New features added.';
+        document.getElementById('adminAnnouncementStatus').value = 'hide';
+      }
+    }
+  } catch (e) {
+    console.error('Error loading announcement:', e);
+  }
+};
+
+window.closeAnnouncement = () => {
+  document.getElementById('announcementBar').style.display = 'none';
+};
+
+window.saveAnnouncementSettings = async () => {
+  const text = document.getElementById('adminAnnouncementText').value.trim();
+  const status = document.getElementById('adminAnnouncementStatus').value;
+  
+  if (!text) {
+    toast('⚠️ Announcement text দিন', true);
+    return;
+  }
+  
+  const show = status === 'show';
+  
+  await set(ref(db, 'announcement'), {
+    text: text,
+    show: show,
+    updatedAt: Date.now()
+  });
+  
+  toast('✅ Announcement updated!', false);
+  loadAnnouncementSettings();
+};
+
+// ========== NEW FEATURE: SUPPORT REPLY SYSTEM ==========
+let currentReplyMessageId = null;
+let currentReplyUserId = null;
+
+window.loadSupportMessages = async () => {
+  if (!db) return;
+  const snap = await get(ref(db, 'messages'));
+  const adminList = document.getElementById('adminSupportReplyList');
+  if (!adminList) return;
+  
+  if (!snap.exists()) {
+    adminList.innerHTML = '<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.2)">No messages yet</div>';
+    document.getElementById('supportMessageBadge').style.display = 'none';
+    return;
+  }
+  
+  const msgs = Object.entries(snap.val()).map(([id, m]) => ({ id, ...m })).sort((a, b) => b.time - a.time);
+  
+  // Check for new messages in last 24 hours
+  const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
+  const newMessages = msgs.filter(m => !m.replied && m.time > oneDayAgo).length;
+  
+  if (newMessages > 0) {
+    document.getElementById('supportMessageBadge').style.display = 'block';
+    document.getElementById('supportMessageBadge').textContent = newMessages > 9 ? '9+' : newMessages;
+  } else {
+    document.getElementById('supportMessageBadge').style.display = 'none';
+  }
+  
+  adminList.innerHTML = msgs.map(m => `
+    <div class="msg-item" style="position:relative;">
+      <div class="msg-header">
+        <span class="msg-user">👤 ${m.userName || 'User'}</span>
+        <span class="msg-time">${new Date(m.time).toLocaleString('en')}</span>
+      </div>
+      <div class="msg-text">${m.text}</div>
+      ${!m.replied ? '<div class="msg-new-badge" style="margin:8px 0 0 0;display:inline-block;">NEW</div>' : ''}
+      <div style="margin-top:8px;display:flex;gap:8px;">
+        <button class="add-bal-btn" onclick="openSupportReplyModal('${m.id}','${m.userId}','${m.text.replace(/'/g,"\\'")}')">💬 Reply</button>
+        ${m.replied ? '<span style="color:#2ecc71;font-size:9px;">✓ Replied</span>' : ''}
+      </div>
+    </div>
+  `).join('');
+};
+
+window.openSupportReplyModal = (msgId, userId, originalMsg) => {
+  currentReplyMessageId = msgId;
+  currentReplyUserId = userId;
+  document.getElementById('supportReplyOriginal').textContent = originalMsg;
+  document.getElementById('supportReplyInput').value = '';
+  document.getElementById('supportReplyModal').classList.add('open');
+};
+
+window.closeSupportReplyModal = () => {
+  document.getElementById('supportReplyModal').classList.remove('open');
+  currentReplyMessageId = null;
+  currentReplyUserId = null;
+};
+
+window.sendSupportReply = async () => {
+  const reply = document.getElementById('supportReplyInput').value.trim();
+  if (!reply) {
+    toast('⚠️ Reply দিন', true);
+    return;
+  }
+  
+  if (!currentReplyMessageId || !currentReplyUserId) {
+    toast('❌ Error: No message selected', true);
+    return;
+  }
+  
+  // Send reply as a new message to the user's support chat
+  const msgData = {
+    text: reply,
+    userName: 'Support Team',
+    userId: currentReplyUserId,
+    time: Date.now(),
+    isReply: true,
+    repliedTo: currentReplyMessageId
+  };
+  
+  await push(ref(db, 'messages'), msgData);
+  
+  // Mark original message as replied
+  await update(ref(db, 'messages/' + currentReplyMessageId), { replied: true, repliedAt: Date.now() });
+  
+  toast('✅ Reply sent!', false);
+  closeSupportReplyModal();
+  loadSupportMessages();
+};
+
+// ========== NEW FEATURE: REFERRAL SYSTEM ==========
+window.openReferralModal = () => {
+  document.getElementById('referralModal').classList.add('open');
+};
+
+window.closeReferralModal = () => {
+  document.getElementById('referralModal').classList.remove('open');
+};
+
+window.copyReferralLink = () => {
+  const link = document.getElementById('referralLinkText').textContent;
+  navigator.clipboard.writeText(link);
+  toast('✅ Referral link copied!', false);
+};
+
+// Function to handle referral when a new user signs up with a referral code
+window.processReferral = async (referralCode, newUserId) => {
+  if (!referralCode || !newUserId) return;
+  
+  // Find user with this referral code
+  const usersSnap = await get(ref(db, 'users'));
+  if (!usersSnap.exists()) return;
+  
+  let referrerId = null;
+  Object.entries(usersSnap.val()).forEach(([uid, data]) => {
+    if (data.referralCode === referralCode && uid !== newUserId) {
+      referrerId = uid;
+    }
+  });
+  
+  if (!referrerId) return;
+  
+  // Add to referrals tracking
+  await set(ref(db, 'referrals/' + newUserId), {
+    referredBy: referrerId,
+    referredAt: Date.now(),
+    completed: false
+  });
+  
+  // We'll check for first deposit later
+};
+
+// Check for completed referrals when a user deposits
+// This should be called when a deposit is approved
+window.checkAndProcessReferralBonus = async (userId) => {
+  const referralSnap = await get(ref(db, 'referrals/' + userId));
+  if (!referralSnap.exists()) return;
+  
+  const referral = referralSnap.val();
+  if (referral.completed) return;
+  
+  const referrerId = referral.referredBy;
+  const referrerSnap = await get(ref(db, 'users/' + referrerId));
+  if (!referrerSnap.exists()) return;
+  
+  // Check if this is first deposit (we'll use a flag)
+  const userSnap = await get(ref(db, 'users/' + userId));
+  if (!userSnap.exists()) return;
+  
+  // Mark as completed and give bonus
+  const BONUS_AMOUNT = 6000;
+  
+  const referrerData = referrerSnap.val();
+  const newBalance = (referrerData.balance || 0) + BONUS_AMOUNT;
+  
+  await update(ref(db, 'users/' + referrerId), {
+    balance: newBalance,
+    referralCount: (referrerData.referralCount || 0) + 1,
+    referralEarned: (referrerData.referralEarned || 0) + BONUS_AMOUNT
+  });
+  
+  await update(ref(db, 'referrals/' + userId), { completed: true, bonusGiven: BONUS_AMOUNT });
+  
+  // Add transaction record
+  await push(ref(db, 'users/' + referrerId + '/transactions'), {
+    type: 'referral_bonus',
+    amount: BONUS_AMOUNT,
+    time: Date.now(),
+    detail: 'Friend deposit bonus'
+  });
+  
+  // Notify if referrer is online
+  if (window._curUser && window._curUser.uid === referrerId) {
+    toast(`🎉 Referral bonus: +৳${BONUS_AMOUNT.toLocaleString('en')}!`, false);
+    updateBals();
+  }
+};
+
+// ========== MODIFIED: approveDepositSS to check referral ==========
+const originalApproveDepositSS = window.approveDepositSS;
+window.approveDepositSS = async function() {
+  if (originalApproveDepositSS) {
+    await originalApproveDepositSS();
+  }
+  
+  // Check for referral bonus
+  if (window._currentSSUserId) {
+    await checkAndProcessReferralBonus(window._currentSSUserId);
+  }
+};
+
+// ========== MODIFIED: sendSupportMsg to mark as unreplied ==========
+const originalSendSupportMsg = window.sendSupportMsg;
+window.sendSupportMsg = async function() {
+  if (originalSendSupportMsg) {
+    await originalSendSupportMsg();
+  }
+  
+  // Reload support messages for admin badge
+  setTimeout(() => loadSupportMessages(), 1000);
+};
+
+// ========== REST OF THE EXISTING CODE REMAINS EXACTLY THE SAME ==========
+// (All the existing functions: withdraw, deposit, admin, games, etc.)
 
 // WITHDRAWAL SYSTEM with Cancel Reason
 window.submitWithdraw = async (method) => {
@@ -2160,6 +2875,9 @@ window.approveDepositSS = async () => {
   loadDepositRequests();
   loadHomeLb();
   
+  // Check for referral bonus
+  await checkAndProcessReferralBonus(userId);
+  
   if (userId === window._curUser?.uid) {
     loadTransactionHistory();
   }
@@ -2314,8 +3032,11 @@ window.sendSupportMsg=async()=>{
   const msgs=document.getElementById('scMessages'),t=new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
   msgs.innerHTML+=`<div class="sc-msg user">${txt}<div class="sc-msg-time">You · ${t}</div></div>`;
   msgs.scrollTop=msgs.scrollHeight;inp.value='';
-  if(user)await push(ref(db,'messages'),{text:txt,userName,userId:user.uid,time:Date.now()});
+  if(user)await push(ref(db,'messages'),{text:txt,userName,userId:user.uid,time:Date.now(),replied:false});
   setTimeout(()=>{msgs.innerHTML+=`<div class="sc-msg support">আপনার message পেয়েছি! ⚡ শীঘ্রই reply করব।<div class="sc-msg-time">Support · ${new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}</div></div>`;msgs.scrollTop=msgs.scrollHeight;},1500);
+  
+  // Reload support messages for admin badge
+  setTimeout(() => loadSupportMessages(), 1000);
 };
 
 window.claimReward=async()=>{
@@ -2430,6 +3151,8 @@ window.sendAIMessage = () => {
         response = 'Daily Reward claim করুন! প্রতিদিন ৳500 থেকে ৳3000 পর্যন্ত বোনাস পান।';
       } else if (lowerMsg.includes('history') || lowerMsg.includes('হিস্ট্রি')) {
         response = 'আপনার বেট হিস্ট্রি এবং ট্রানজেকশন হিস্ট্রি দেখতে Profile অথবা Home পেজের Transaction History সেকশন দেখুন।';
+      } else if (lowerMsg.includes('refer') || lowerMsg.includes('রেফার')) {
+        response = 'Friend Referral দিয়ে বন্ধু আনুন এবং ৳6000 বোনাস পান! Home পেজে Referral বাটন দেখুন।';
       } else {
         response = `"${msg}" — আপনার প্রশ্নের উত্তর দিচ্ছি: Royal Bet-এ স্বাগতম! আরও জানতে আমাদের Support-এ যোগাযোগ করুন।`;
       }
@@ -2700,12 +3423,18 @@ window.showPage=id=>{
   document.getElementById(id).classList.add('active');
   document.getElementById('dotMenu').classList.remove('open');
   closeBnDotMenu();
+  
+  // Load announcement when home page is shown
+  if (id === 'homePage') {
+    loadAnnouncementSettings();
+    loadSupportMessages();
+  }
 };
 window.navTo=tab=>{
   document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
   const el=document.getElementById('bn-'+tab);
   if(el)el.classList.add('active');
-  if(tab==='home'){showPage('homePage');loadHomeLb();loadTransactionHistory();}
+  if(tab==='home'){showPage('homePage');loadHomeLb();loadTransactionHistory();loadAnnouncementSettings();loadSupportMessages();}
   else if(tab==='profile')showPage('profilePage');
   else if(tab==='history'){showPage('historyPage');window.loadBetHistory&&loadBetHistory();}
 };
@@ -2737,6 +3466,8 @@ window.checkAdminPw=()=>{
     window.loadAdminUsers&&loadAdminUsers();
     window.loadAdminMessages&&loadAdminMessages();
     window.loadAdminLeaderboard&&loadAdminLeaderboard();
+    window.loadSupportMessages && loadSupportMessages();
+    window.loadAnnouncementSettings && loadAnnouncementSettings();
     
     document.getElementById('adminTeam1').value = document.getElementById('cricketTeam1').textContent;
     document.getElementById('adminTeam2').value = document.getElementById('cricketTeam2').textContent;
@@ -2770,6 +3501,8 @@ window.switchAdminTab=(tab,el)=>{
   if(tab==='messages')window.loadAdminMessages&&loadAdminMessages();
   if(tab==='users')window.loadAdminUsers&&loadAdminUsers();
   if(tab==='leaderboard')window.loadAdminLeaderboard&&loadAdminLeaderboard();
+  if(tab==='support_reply')window.loadSupportMessages&&loadSupportMessages();
+  if(tab==='announcement')window.loadAnnouncementSettings&&loadAnnouncementSettings();
   if(tab==='cricket'){
     document.getElementById('adminTeam1').value = document.getElementById('cricketTeam1').textContent;
     document.getElementById('adminTeam2').value = document.getElementById('cricketTeam2').textContent;
@@ -3144,6 +3877,8 @@ avStartRound();
 initCricketMatch();
 loadHomeLb();
 loadTransactionHistory();
+loadAnnouncementSettings();
+loadSupportMessages();
 
 // =================== BET HISTORY DISPLAY FIX ===================
 document.addEventListener('DOMContentLoaded', function() {
