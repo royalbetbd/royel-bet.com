@@ -849,7 +849,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .sc-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(52,152,219,0.2);border-radius:24px;padding:10px 16px;color:#fff;font-family:'Lato',sans-serif;font-size:13px;outline:none;}
 .sc-send{width:42px;height:42px;background:linear-gradient(135deg,#1a5c9b,#3498db);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
-/* AVIATOR PAGE (updates) */
+/* AVIATOR PAGE (UPDATED: slower speed for 10x ~40s) */
 #aviatorPage{align-items:flex-start;padding:0;}
 .av-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:linear-gradient(180deg,#0d0018,#0a0014);padding-bottom:68px;}
 .av-topbar{background:linear-gradient(135deg,#1a0030,#2d0050,#1a0030);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,100,100,0.2);flex-shrink:0;}
@@ -1061,8 +1061,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .btn-coin-flip:hover:not(:disabled){transform:translateY(-2px);}
 .btn-coin-flip:disabled{opacity:0.4;cursor:not-allowed;}
 
-/* LIMBO PAGE - REMOVED (no longer needed) */
-
 /* REWARD MODAL */
 .reward-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
 .reward-modal.open{opacity:1;pointer-events:all;}
@@ -1239,7 +1237,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="game-banner"><div><div class="game-title">🪙 FLIP</div><div class="game-sub">HEADS/TAILS</div></div><div class="game-ico">🪙</div></div>
         <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#3498db">2×</div><div class="game-ci-key">Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
       </div>
-      <!-- Limbo game card removed -->
     </div>
     <!-- LEADERBOARD SECTION -->
     <div class="sec-title">🏆 Top Winners</div>
@@ -1297,7 +1294,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
         <div class="prof-info-row"><span class="pir-key">Total Profit</span><span class="pir-val green" id="piProfit">৳0</span></div>
         <div class="prof-info-row"><span class="pir-key">Daily Streak</span><span class="pir-val gold" id="piStreak">0 Days 🔥</span></div>
         <div class="prof-info-row"><span class="pir-key">Account ID</span><span class="pir-val" id="piUID" style="font-size:10px">—</span></div>
-        <!-- ========== NEW FEATURE: REFERRAL INFO IN PROFILE ========== -->
         <div class="prof-info-row"><span class="pir-key">Referrals</span><span class="pir-val gold" id="piReferrals">0</span></div>
         <div class="prof-info-row"><span class="pir-key">Referral Code</span><span class="pir-val" id="piReferralCode" style="font-size:11px">loading...</span></div>
       </div>
@@ -1343,7 +1339,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <button class="admin-tab" onclick="switchAdminTab('cricket',this)">🏏 Cricket</button>
       <button class="admin-tab" onclick="switchAdminTab('ai',this)">🤖 AI</button>
       <button class="admin-tab" onclick="switchAdminTab('aviator',this)">✈ Aviator Ctrl</button>
-      <!-- ========== NEW FEATURE: ANNOUNCEMENT & SUPPORT TABS ========== -->
       <button class="admin-tab" onclick="switchAdminTab('announcement',this)">📢 Announce</button>
       <button class="admin-tab" onclick="switchAdminTab('support_reply',this)">💬 Support</button>
     </div>
@@ -1488,7 +1483,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       </div>
     </div>
 
-    <!-- AVIATOR CONTROL TAB (new) -->
+    <!-- AVIATOR CONTROL TAB (updated: slower speed by design) -->
     <div class="admin-tab-content" id="atab-aviator">
       <div class="admin-section" style="margin-top:14px">
         <div class="admin-sec-title">✈ AVIATOR CONTROL (Set Next Crash Multiplier)</div>
@@ -1502,7 +1497,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
             <button onclick="setAvForcedMult()" class="btn-sub" style="background:linear-gradient(135deg,#8a6a1f,#c9a84c);">🎯 SET NEXT CRASH</button>
             <button onclick="clearAvForcedMult()" class="btn-sub" style="background:linear-gradient(135deg,#5c0a0a,#c0392b);">🔄 RANDOM MODE</button>
           </div>
-          <div class="notice" style="margin-top:12px;" id="avAdminStatus">Current: Random (10x-100x)</div>
+          <div class="notice" style="margin-top:12px;" id="avAdminStatus">Current: Random (10x-100x) - Slower speed (10x ~40s)</div>
         </div>
       </div>
     </div>
@@ -1874,7 +1869,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
-<!-- AVIATOR PAGE -->
+<!-- AVIATOR PAGE (slower speed applied) -->
 <div class="page" id="aviatorPage">
   <div class="av-wrap">
     <div class="av-topbar">
@@ -2137,8 +2132,6 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
-<!-- Limbo page removed completely -->
-
 <!-- BOTTOM NAV -->
 <div class="bottom-nav" id="bottomNav" style="display:none">
   <button class="bn-item active" id="bn-home" onclick="navTo('home')"><div class="bn-icon">🏠</div><div class="bn-label">Home</div></button>
@@ -2164,7 +2157,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 
 <div class="toast" id="toast"></div>
 
-<!-- FIREBASE and scripts remain, but Limbo removed and Aviator updated -->
+<!-- FIREBASE and scripts (unchanged except Aviator speed adjustment) -->
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -2211,7 +2204,6 @@ onAuthStateChanged(auth,async user=>{
     const snap=await get(userRef);
     if(!snap.exists()){const today=new Date().toDateString();await set(userRef,{name:user.displayName||'Player',email:user.email||'',balance:0,photoURL:user.photoURL||'',createdAt:Date.now(),totalBets:0,totalProfit:0,dailyStreak:0,lastClaimedDay:0,lastClaimDate:'',referralCount:0,referralEarned:0});}
     
-    // ========== NEW FEATURE: Generate or get referral code ==========
     if(!snap.exists() || !snap.val().referralCode){
       const referralCode = 'RB' + user.uid.substring(0,6).toUpperCase() + Date.now().toString().slice(-4);
       await update(ref(db,'users/'+user.uid),{referralCode:referralCode,referralCount:0,referralEarned:0});
@@ -2226,7 +2218,6 @@ onAuthStateChanged(auth,async user=>{
       loadBetHistory();
       loadTransactionHistory();
       
-      // ========== NEW FEATURE: Update referral info in profile ==========
       document.getElementById('piReferrals').textContent = d.referralCount || 0;
       document.getElementById('piReferralCode').textContent = d.referralCode || 'N/A';
       document.getElementById('referralCode').textContent = d.referralCode || 'RB-XXXX';
@@ -2242,13 +2233,9 @@ onAuthStateChanged(auth,async user=>{
     await loadHomeLb();
     await loadTransactionHistory();
     
-    // ========== NEW FEATURE: Load announcement settings ==========
     loadAnnouncementSettings();
-    
-    // ========== NEW FEATURE: Load support messages & check for unread ==========
     loadSupportMessages();
     
-    // ========== NEW FEATURE: Check for referral in URL ==========
     const urlParams = new URLSearchParams(window.location.search);
     const refCode = urlParams.get('ref');
     if (refCode && user) {
@@ -2325,7 +2312,7 @@ window.loadTransactionHistory = async () => {
         id,
         type: 'deposit',
         method: 'Binance',
-        amount: d.amount * 120, // Convert to BDT
+        amount: d.amount * 120,
         status: d.status || 'pending',
         time: d.time || Date.now(),
         detail: `${d.amount} USDT ~ ৳${(d.amount * 120).toLocaleString('en')}`
@@ -2352,7 +2339,6 @@ window.loadTransactionHistory = async () => {
   
   renderTransactionHistory(allTxs);
   
-  // Update time
   document.getElementById('txUpdateTime').textContent = new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'});
 };
 
@@ -2409,7 +2395,7 @@ window.switchTxTab = (tab) => {
   loadTransactionHistory();
 };
 
-// ========== NEW FEATURE: ANNOUNCEMENT SYSTEM ==========
+// ANNOUNCEMENT
 window.loadAnnouncementSettings = async () => {
   if (!db) return;
   try {
@@ -2423,13 +2409,11 @@ window.loadAnnouncementSettings = async () => {
         document.getElementById('announcementBar').style.display = 'none';
       }
       
-      // Admin form fill
       if (document.getElementById('adminAnnouncementText')) {
         document.getElementById('adminAnnouncementText').value = data.text || '📢 Welcome to Royal Bet! New features added.';
         document.getElementById('adminAnnouncementStatus').value = data.show === true ? 'show' : 'hide';
       }
     } else {
-      // Default
       document.getElementById('announcementBar').style.display = 'none';
       if (document.getElementById('adminAnnouncementText')) {
         document.getElementById('adminAnnouncementText').value = '📢 Welcome to Royal Bet! New features added.';
@@ -2466,7 +2450,7 @@ window.saveAnnouncementSettings = async () => {
   loadAnnouncementSettings();
 };
 
-// ========== NEW FEATURE: SUPPORT REPLY SYSTEM ==========
+// SUPPORT REPLY
 let currentReplyMessageId = null;
 let currentReplyUserId = null;
 
@@ -2484,7 +2468,6 @@ window.loadSupportMessages = async () => {
   
   const msgs = Object.entries(snap.val()).map(([id, m]) => ({ id, ...m })).sort((a, b) => b.time - a.time);
   
-  // Check for new messages in last 24 hours
   const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
   const newMessages = msgs.filter(m => !m.replied && m.time > oneDayAgo).length;
   
@@ -2537,7 +2520,6 @@ window.sendSupportReply = async () => {
     return;
   }
   
-  // Send reply as a new message to the user's support chat
   const msgData = {
     text: reply,
     userName: 'Support Team',
@@ -2549,7 +2531,6 @@ window.sendSupportReply = async () => {
   
   await push(ref(db, 'messages'), msgData);
   
-  // Mark original message as replied
   await update(ref(db, 'messages/' + currentReplyMessageId), { replied: true, repliedAt: Date.now() });
   
   toast('✅ Reply sent!', false);
@@ -2557,7 +2538,7 @@ window.sendSupportReply = async () => {
   loadSupportMessages();
 };
 
-// ========== NEW FEATURE: REFERRAL SYSTEM ==========
+// REFERRAL
 window.openReferralModal = () => {
   document.getElementById('referralModal').classList.add('open');
 };
@@ -2572,11 +2553,9 @@ window.copyReferralLink = () => {
   toast('✅ Referral link copied!', false);
 };
 
-// Function to handle referral when a new user signs up with a referral code
 window.processReferral = async (referralCode, newUserId) => {
   if (!referralCode || !newUserId) return;
   
-  // Find user with this referral code
   const usersSnap = await get(ref(db, 'users'));
   if (!usersSnap.exists()) return;
   
@@ -2589,18 +2568,13 @@ window.processReferral = async (referralCode, newUserId) => {
   
   if (!referrerId) return;
   
-  // Add to referrals tracking
   await set(ref(db, 'referrals/' + newUserId), {
     referredBy: referrerId,
     referredAt: Date.now(),
     completed: false
   });
-  
-  // We'll check for first deposit later
 };
 
-// Check for completed referrals when a user deposits
-// This should be called when a deposit is approved
 window.checkAndProcessReferralBonus = async (userId) => {
   const referralSnap = await get(ref(db, 'referrals/' + userId));
   if (!referralSnap.exists()) return;
@@ -2612,11 +2586,9 @@ window.checkAndProcessReferralBonus = async (userId) => {
   const referrerSnap = await get(ref(db, 'users/' + referrerId));
   if (!referrerSnap.exists()) return;
   
-  // Check if this is first deposit (we'll use a flag)
   const userSnap = await get(ref(db, 'users/' + userId));
   if (!userSnap.exists()) return;
   
-  // Mark as completed and give bonus
   const BONUS_AMOUNT = 6000;
   
   const referrerData = referrerSnap.val();
@@ -2630,7 +2602,6 @@ window.checkAndProcessReferralBonus = async (userId) => {
   
   await update(ref(db, 'referrals/' + userId), { completed: true, bonusGiven: BONUS_AMOUNT });
   
-  // Add transaction record
   await push(ref(db, 'users/' + referrerId + '/transactions'), {
     type: 'referral_bonus',
     amount: BONUS_AMOUNT,
@@ -2638,39 +2609,31 @@ window.checkAndProcessReferralBonus = async (userId) => {
     detail: 'Friend deposit bonus'
   });
   
-  // Notify if referrer is online
   if (window._curUser && window._curUser.uid === referrerId) {
     toast(`🎉 Referral bonus: +৳${BONUS_AMOUNT.toLocaleString('en')}!`, false);
     updateBals();
   }
 };
 
-// ========== MODIFIED: approveDepositSS to check referral ==========
 const originalApproveDepositSS = window.approveDepositSS;
 window.approveDepositSS = async function() {
   if (originalApproveDepositSS) {
     await originalApproveDepositSS();
   }
   
-  // Check for referral bonus
   if (window._currentSSUserId) {
     await checkAndProcessReferralBonus(window._currentSSUserId);
   }
 };
 
-// ========== MODIFIED: sendSupportMsg to mark as unreplied ==========
 const originalSendSupportMsg = window.sendSupportMsg;
 window.sendSupportMsg = async function() {
   if (originalSendSupportMsg) {
     await originalSendSupportMsg();
   }
   
-  // Reload support messages for admin badge
   setTimeout(() => loadSupportMessages(), 1000);
 };
-
-// ========== REST OF THE EXISTING CODE REMAINS EXACTLY THE SAME ==========
-// (All the existing functions: withdraw, deposit, admin, games, etc.)
 
 // WITHDRAWAL SYSTEM with Cancel Reason
 window.submitWithdraw = async (method) => {
@@ -2723,7 +2686,6 @@ window.submitWithdraw = async (method) => {
   toast('✅ আপনার উইথড্রয়াল অনুরোধ পাঠানো হয়েছে! অ্যাডমিন যাচাই করবে।', false);
   closeModal('withdraw');
   
-  // Refresh transaction history
   setTimeout(() => loadTransactionHistory(), 500);
 };
 
@@ -2758,7 +2720,6 @@ window.rejectWithdrawal = async (wdId, userId) => {
   loadWithdrawalRequests();
   if (userId === window._curUser?.uid) {
     loadTransactionHistory();
-    // Show reason to user
     setTimeout(() => {
       document.getElementById('wdReasonText').textContent = reason;
       document.getElementById('wdReasonModal').classList.add('open');
@@ -2832,7 +2793,6 @@ window.submitDepositWithSS = async () => {
     toast('✅ আপনার স্ক্রিনশট যাচাই করা হচ্ছে, ২–৫ মিনিটের মধ্যে ব্যালেন্স যোগ হবে।', false);
     closeDepositSSModal();
     
-    // Refresh transaction history
     setTimeout(() => loadTransactionHistory(), 500);
     
     setTimeout(() => {
@@ -2842,7 +2802,6 @@ window.submitDepositWithSS = async () => {
   reader.readAsDataURL(file);
 };
 
-// Admin view screenshot
 window.viewDepositSS = (depId, userId, userName, amount, screenshot) => {
   document.getElementById('adminSSImg').src = screenshot;
   document.getElementById('adminSSInfo').innerHTML = `
@@ -2882,7 +2841,6 @@ window.approveDepositSS = async () => {
   loadDepositRequests();
   loadHomeLb();
   
-  // Check for referral bonus
   await checkAndProcessReferralBonus(userId);
   
   if (userId === window._curUser?.uid) {
@@ -3042,7 +3000,6 @@ window.sendSupportMsg=async()=>{
   if(user)await push(ref(db,'messages'),{text:txt,userName,userId:user.uid,time:Date.now(),replied:false});
   setTimeout(()=>{msgs.innerHTML+=`<div class="sc-msg support">আপনার message পেয়েছি! ⚡ শীঘ্রই reply করব।<div class="sc-msg-time">Support · ${new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}</div></div>`;msgs.scrollTop=msgs.scrollHeight;},1500);
   
-  // Reload support messages for admin badge
   setTimeout(() => loadSupportMessages(), 1000);
 };
 
@@ -3105,7 +3062,6 @@ window._trDemoActive=false; window._trDemoBal=10000;
 window._diceDemoActive=false; window._diceDemoBal=10000;
 window._minesDemoActive=false; window._minesDemoBal=10000;
 window._coinDemoActive=false; window._coinDemoBal=10000;
-// Limbo removed
 window._userProfile={};
 
 // =================== AI ASSISTANT ===================
@@ -3394,7 +3350,6 @@ function getBalForGame(game){
   if(game==='dice') return window._diceDemoActive?window._diceDemoBal:window._realBal;
   if(game==='mines') return window._minesDemoActive?window._minesDemoBal:window._realBal;
   if(game==='coin') return window._coinDemoActive?window._coinDemoBal:window._realBal;
-  // Limbo removed
   return window._realBal;
 }
 function setBalForGame(game,v){
@@ -3431,7 +3386,6 @@ window.showPage=id=>{
   document.getElementById('dotMenu').classList.remove('open');
   closeBnDotMenu();
   
-  // Load announcement when home page is shown
   if (id === 'homePage') {
     loadAnnouncementSettings();
     loadSupportMessages();
@@ -3489,9 +3443,8 @@ window.checkAdminPw=()=>{
     document.getElementById('aiWelcome').value = aiWelcome;
     document.getElementById('aiMode').value = aiMode;
 
-    // Aviator control defaults
     document.getElementById('adminAvMult').value = 15;
-    document.getElementById('avAdminStatus').innerHTML = 'Current: Random (10x-100x)';
+    document.getElementById('avAdminStatus').innerHTML = 'Current: Random (10x-100x) - Slower speed (10x ~40s)';
     window._avForcedMult = null;
   } else {
     document.getElementById('apwError').style.display='block';
@@ -3551,7 +3504,7 @@ window.toggleDiceDemo=()=>{window._diceDemoActive=document.getElementById('diceD
 window.toggleMinesDemo=()=>{window._minesDemoActive=document.getElementById('minesDemoTog').checked;document.getElementById('minesDemoBadge').style.display=window._minesDemoActive?'inline-block':'none';if(window._minesDemoActive&&window._minesDemoBal<=0)window._minesDemoBal=10000;updateBals();};
 window.toggleCoinDemo=()=>{window._coinDemoActive=document.getElementById('coinDemoTog').checked;document.getElementById('coinDemoBadge').style.display=window._coinDemoActive?'inline-block':'none';if(window._coinDemoActive&&window._coinDemoBal<=0)window._coinDemoBal=10000;updateBals();};
 
-// AVIATOR with shared multiplier and admin control (10x-100x)
+// =================== AVIATOR with SLOWER SPEED (10x ~40s) ===================
 let avPhase='idle',avBetPlaced=false,avBetAmt=0,avMult=1.00,avCrashAt=1.00,avRaf=null,avRoundStart=0,avCdTimer=null;
 const avPts=[];let avCtx=null;
 let avForcedMult = null; // Admin set
@@ -3559,22 +3512,38 @@ let avForcedMult = null; // Admin set
 function avCrashPt(){
   if (avForcedMult) {
     const m = avForcedMult;
-    avForcedMult = null; // use once
+    avForcedMult = null;
     return m;
   }
-  // 10x to 100x distribution
   const r = Math.random();
-  if (r < 0.25) return 10 + Math.random() * 10;   // 10-20x
-  if (r < 0.5) return 20 + Math.random() * 20;    // 20-40x
-  if (r < 0.7) return 40 + Math.random() * 30;    // 40-70x
-  if (r < 0.9) return 70 + Math.random() * 20;    // 70-90x
-  return 90 + Math.random() * 10;                  // 90-100x
+  if (r < 0.25) return 10 + Math.random() * 10;
+  if (r < 0.5) return 20 + Math.random() * 20;
+  if (r < 0.7) return 40 + Math.random() * 30;
+  if (r < 0.9) return 70 + Math.random() * 20;
+  return 90 + Math.random() * 10;
 }
 function avInitCanvas(){const cv=document.getElementById('avCv'),c=document.getElementById('avCanvas');cv.width=c.offsetWidth||420;cv.height=c.offsetHeight||200;avCtx=cv.getContext('2d');avCtx.clearRect(0,0,cv.width,cv.height);}
 function avStartRound(){cancelAnimationFrame(avRaf);clearInterval(avCdTimer);avPhase='countdown';avMult=1.00;avCrashAt=avCrashPt();avBetPlaced=false;avPts.length=0;document.getElementById('avCdOv').style.display='flex';document.getElementById('avMW').style.display='none';document.getElementById('avPlane').style.display='none';document.getElementById('avCrashFl').style.display='none';document.getElementById('avMW').querySelector('.av-mn').className='av-mn';avInitCanvas();avSetBadge('bet');avUpdateUI();avBuildLB();let n=10;avSetCd(n);avCdTimer=setInterval(()=>{n--;if(n>0)avSetCd(n);else{clearInterval(avCdTimer);avCdTimer=null;avBeginFly();}},1000);}
 function avSetCd(n){const el=document.getElementById('avCdNum');el.textContent=n;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}
 function avBeginFly(){avPhase='flying';avRoundStart=performance.now();document.getElementById('avCdOv').style.display='none';document.getElementById('avMW').style.display='block';document.getElementById('avMN').innerHTML='1.00<span class="av-mn-x">x</span>';document.getElementById('avPL').textContent='FLYING...';document.getElementById('avPlane').style.display='block';avSetBadge('fly');avUpdateUI();avTick();}
-function avTick(){if(avPhase!=='flying')return;const t=(performance.now()-avRoundStart)/1000;avMult=parseFloat((1+t*2+t*t*0.8).toFixed(2));document.getElementById('avMN').innerHTML=avMult.toFixed(2)+'<span class="av-mn-x">x</span>';if(avBetPlaced){const pot=Math.floor(avBetAmt*avMult);document.getElementById('avCashBtn').textContent='💰 STOP — ৳'+pot.toLocaleString('en');}updateBals();const cv=document.getElementById('avCv'),prog=Math.min(t/20,1),px=4+prog*82,py=7+prog*74+prog*prog*8;document.getElementById('avPlane').style.left=px+'%';document.getElementById('avPlane').style.bottom=py+'%';avPts.push({x:px/100*cv.width,y:cv.height-py/100*cv.height});avDrawCurve(cv.width,cv.height);if(avMult>=avCrashAt){avDoCrash();return;}avRaf=requestAnimationFrame(avTick);}
+function avTick(){
+  if(avPhase!=='flying')return;
+  const t=(performance.now()-avRoundStart)/1000;
+  // Slower growth: 10x ~40s (previously ~5s)
+  avMult = parseFloat((1 + 0.225 * t + 0.001 * t * t).toFixed(2));
+  document.getElementById('avMN').innerHTML=avMult.toFixed(2)+'<span class="av-mn-x">x</span>';
+  if(avBetPlaced){
+    const pot=Math.floor(avBetAmt*avMult);
+    document.getElementById('avCashBtn').textContent='💰 STOP — ৳'+pot.toLocaleString('en');
+  }
+  updateBals();
+  const cv=document.getElementById('avCv'),prog=Math.min(t/80,1),px=4+prog*82,py=7+prog*74+prog*prog*8;
+  document.getElementById('avPlane').style.left=px+'%';document.getElementById('avPlane').style.bottom=py+'%';
+  avPts.push({x:px/100*cv.width,y:cv.height-py/100*cv.height});
+  avDrawCurve(cv.width,cv.height);
+  if(avMult>=avCrashAt){avDoCrash();return;}
+  avRaf=requestAnimationFrame(avTick);
+}
 function avDrawCurve(w,h){if(!avCtx||avPts.length<2)return;avCtx.clearRect(0,0,w,h);const gr=avCtx.createLinearGradient(0,h,w*0.9,0);gr.addColorStop(0,'rgba(255,80,80,0.1)');gr.addColorStop(0.5,'rgba(255,100,100,0.7)');gr.addColorStop(1,'rgba(255,220,80,1)');avCtx.beginPath();avCtx.moveTo(avPts[0].x,avPts[0].y);for(let i=1;i<avPts.length;i++)avCtx.lineTo(avPts[i].x,avPts[i].y);avCtx.strokeStyle=gr;avCtx.lineWidth=3;avCtx.shadowColor='rgba(255,120,80,0.8)';avCtx.shadowBlur=12;avCtx.stroke();avCtx.lineTo(avPts[avPts.length-1].x,h);avCtx.lineTo(avPts[0].x,h);avCtx.closePath();const fg=avCtx.createLinearGradient(0,0,0,h);fg.addColorStop(0,'rgba(255,100,100,0.15)');fg.addColorStop(1,'rgba(255,100,100,0)');avCtx.fillStyle=fg;avCtx.shadowBlur=0;avCtx.fill();}
 function avDoCrash(){avPhase='crashed';cancelAnimationFrame(avRaf);document.getElementById('avPlane').style.display='none';document.getElementById('avMN').className='av-mn crashed';document.getElementById('avPL').textContent='💥 CRASHED!';document.getElementById('avCrashFl').style.display='flex';avSetBadge('crash');avUpdateUI();if(avBetPlaced){avBetPlaced=false;avUpdateUI();toast(`💥 ${avMult.toFixed(2)}x crash! ৳${avBetAmt.toLocaleString('en')} হারালেন`,true);if(!window._isDemo)window._saveBetHistory&&window._saveBetHistory({game:'Aviator',detail:`Crash at ${avMult.toFixed(2)}x`,bet:avBetAmt,profit:-avBetAmt,time:Date.now()});}setTimeout(()=>{document.getElementById('avCrashFl').style.display='none';avStartRound();},2800);}
 window.avPlaceBet=()=>{if(avPhase!=='countdown'){toast('⏳ Countdown এ Bet দিন!',true);return;}if(avBetPlaced){toast('✅ ইতোমধ্যে Bet!',false);return;}const v=parseInt(document.getElementById('avBetInp').value);if(isNaN(v)||v<200){toast('⚠️ Min ৳200',true);return;}if(v>200000){toast('⚠️ Max ৳200,000',true);return;}if(getBalForGame('av')<v){toast(window._isDemo?'❌ Demo balance শেষ!':'❌ Balance কম!',true);if(!window._isDemo)setTimeout(()=>openDepositSSModal(),800);return;}avBetAmt=v;setBalForGame('av',getBalForGame('av')-v);avBetPlaced=true;avUpdateUI();toast(`✅ Bet: ৳${v.toLocaleString('en')}`,false);avBuildLB(true);};
@@ -3742,8 +3711,6 @@ window.flipCoin=async()=>{
   loadHomeLb();
 };
 
-// Limbo removed
-
 // HOME LEADERBOARD - SYNCED WITH ADMIN (with position)
 const DEFAULT_LB = [
   {id:'lb1', name:'RahimBetKing', country:'🇧🇩 Bangladesh', amount:485000},
@@ -3868,13 +3835,13 @@ window.setAvForcedMult = () => {
     return;
   }
   avForcedMult = mult;
-  document.getElementById('avAdminStatus').innerHTML = `Current: Forced next crash at ${mult.toFixed(1)}x`;
+  document.getElementById('avAdminStatus').innerHTML = `Current: Forced next crash at ${mult.toFixed(1)}x - Slower speed (10x ~40s)`;
   toast(`✅ Next Aviator crash set to ${mult}x`, false);
 };
 
 window.clearAvForcedMult = () => {
   avForcedMult = null;
-  document.getElementById('avAdminStatus').innerHTML = 'Current: Random (10x-100x)';
+  document.getElementById('avAdminStatus').innerHTML = 'Current: Random (10x-100x) - Slower speed (10x ~40s)';
   toast('🔄 Random mode enabled', false);
 };
 
@@ -3920,6 +3887,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
-
-
