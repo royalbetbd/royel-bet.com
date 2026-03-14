@@ -612,7 +612,7 @@ body{font-family:'Lato',sans-serif;background:#061509;min-height:100vh;overflow-
 .cricket-odds-box{flex:1;background:linear-gradient(135deg,#001a2a,#002b3f);border:1px solid rgba(255,215,0,0.3);border-radius:12px;padding:12px;text-align:center;cursor:pointer;transition:all 0.2s;}
 .cricket-odds-box:hover{transform:translateY(-2px);border-color:#ffd700;background:rgba(255,215,0,0.1);}
 .cricket-odds-box.selected{border:2px solid #ffd700;background:rgba(255,215,0,0.15);box-shadow:0 0 20px rgba(255,215,0,0.3);}
-.cricket-odds-label{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:1px;margin-bottom:4px;}
+.cricket-odds-label{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px;}
 .cricket-odds-value{font-family:'Cinzel',serif;font-size:24px;font-weight:900;color:#ffd700;}
 .cricket-bet-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .cricket-bet-input{flex:1;background:rgba(0,0,0,0.5);border:1px solid rgba(255,215,0,0.3);border-radius:8px;padding:12px;color:#fff;font-family:'Cinzel',serif;font-size:16px;font-weight:700;outline:none;text-align:center;}
@@ -1695,6 +1695,898 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   letter-spacing: 1px;
 }
 </style>
+<!-- ========== NEW STYLES FOR 6 GAMES: FROG JUMP, TOWER CLIMB, LIGHTNING PICK, DRAGON TOWER, ICE BREAK, TARGET SHOT ========== -->
+<style>
+/* Frog Jump Game - unique classes */
+#frogJumpPage {
+  background: linear-gradient(135deg, #1a4a1a, #2a5a2a);
+}
+.frogWrap {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 68px;
+}
+.frogTopbar {
+  background: linear-gradient(135deg, #1a5a3a, #2a6a4a);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(100,255,100,0.2);
+  flex-shrink: 0;
+}
+.frogBack {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(100,255,100,0.15);
+  border-radius: 8px;
+  padding: 7px 12px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+}
+.frogTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #aaffaa;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(100,255,100,0.5);
+}
+.frogBalance {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(100,255,100,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: #aaffaa;
+  font-weight: 700;
+}
+.frogDemoBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 7px 16px;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(100,255,100,0.05);
+  flex-wrap: wrap;
+}
+.frogDemoTog {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.frogDemoTog input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.frogDemoSlider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+  border-radius: 24px;
+  transition: 0.3s;
+  border: 1px solid rgba(100,255,100,0.2);
+}
+.frogDemoSlider:before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 3px;
+  bottom: 3px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.frogDemoTog input:checked + .frogDemoSlider {
+  background: rgba(100,255,100,0.3);
+  border-color: rgba(100,255,100,0.5);
+}
+.frogDemoTog input:checked + .frogDemoSlider:before {
+  transform: translateX(20px);
+  background: #aaffaa;
+}
+.frogDemoBadge {
+  background: rgba(100,255,100,0.15);
+  border: 1px solid rgba(100,255,100,0.4);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: #aaffaa;
+  font-weight: 700;
+}
+.frogGameArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  min-height: 300px;
+  background: linear-gradient(180deg, #2a6a2a, #1a4a1a);
+}
+.frogPond {
+  width: 100%;
+  height: 200px;
+  background: #1a3a1a;
+  border-radius: 20px;
+  border: 2px solid #aaffaa;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.frogLilyPad {
+  position: absolute;
+  bottom: 10px;
+  width: 40px;
+  height: 10px;
+  background: #5a9e5a;
+  border-radius: 20px;
+  border: 1px solid #aaffaa;
+}
+.frogPlayer {
+  position: absolute;
+  bottom: 25px;
+  font-size: 32px;
+  transition: left 0.2s ease;
+}
+.frogScore {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: #aaffaa;
+  margin: 10px 0;
+}
+.frogMultiplier {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffd700;
+}
+.frogControls {
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(100,255,100,0.1);
+  padding: 12px 16px;
+  flex-shrink: 0;
+}
+.frogBetRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.frogBetLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+.frogInput {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(100,255,100,0.2);
+  border-radius: 8px;
+  padding: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+}
+.frogQuick {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.frogQuickBtn {
+  flex: 1;
+  padding: 5px;
+  background: rgba(100,255,100,0.06);
+  border: 1px solid rgba(100,255,100,0.15);
+  border-radius: 6px;
+  color: rgba(100,255,100,0.6);
+  font-size: 9px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  min-width: 40px;
+}
+.frogQuickBtn:hover {
+  background: rgba(100,255,100,0.15);
+}
+.frogAction {
+  display: flex;
+  gap: 10px;
+}
+.btnFrogJump {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg,#2a7a2a,#4caf50);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btnFrogCashout {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg,#0e5c2b,#27ae60);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: none;
+}
+.btnFrogJump:hover:not(:disabled),
+.btnFrogCashout:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(100,255,100,0.3);
+}
+.btnFrogJump:disabled,
+.btnFrogCashout:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.frogStats {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(0,0,0,0.3);
+  margin: 8px 16px;
+  border-radius: 8px;
+}
+.frogStatItem {
+  text-align: center;
+}
+.frogStatValue {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #aaffaa;
+}
+.frogStatLabel {
+  font-size: 8px;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Tower Climb Game */
+#towerClimbPage {
+  background: linear-gradient(135deg, #2a1a0a, #3a2a1a);
+}
+.towerWrap {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 68px;
+}
+.towerTopbar {
+  background: linear-gradient(135deg, #3a2a1a, #4a3a2a);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,200,100,0.2);
+  flex-shrink: 0;
+}
+.towerBack {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,200,100,0.15);
+  border-radius: 8px;
+  padding: 7px 12px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+}
+.towerTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #ffcc88;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(255,200,100,0.5);
+}
+.towerBalance {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,200,100,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: #ffcc88;
+  font-weight: 700;
+}
+.towerDemoBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 7px 16px;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255,200,100,0.05);
+  flex-wrap: wrap;
+}
+.towerDemoTog {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.towerDemoTog input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.towerDemoSlider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+  border-radius: 24px;
+  transition: 0.3s;
+  border: 1px solid rgba(255,200,100,0.2);
+}
+.towerDemoSlider:before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 3px;
+  bottom: 3px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.towerDemoTog input:checked + .towerDemoSlider {
+  background: rgba(255,200,100,0.3);
+  border-color: rgba(255,200,100,0.5);
+}
+.towerDemoTog input:checked + .towerDemoSlider:before {
+  transform: translateX(20px);
+  background: #ffcc88;
+}
+.towerDemoBadge {
+  background: rgba(255,200,100,0.15);
+  border: 1px solid rgba(255,200,100,0.4);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: #ffcc88;
+  font-weight: 700;
+}
+.towerGameArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  background: #1a1a0a;
+}
+.towerFloor {
+  width: 100%;
+  background: #3a2a1a;
+  border: 2px solid #ffcc88;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.towerDoor {
+  width: 60px;
+  height: 80px;
+  background: #8b6b4b;
+  border: 2px solid #ffcc88;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.towerDoor:hover {
+  transform: scale(1.05);
+  background: #a07a5a;
+}
+.towerDoor.correct {
+  background: #2ecc71;
+}
+.towerDoor.wrong {
+  background: #e74c3c;
+}
+.towerFloorNum {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  margin: 5px 0;
+}
+.towerMult {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffcc88;
+  margin: 10px 0;
+}
+.towerControls {
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(255,200,100,0.1);
+  padding: 12px 16px;
+}
+.towerBetRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.towerBetLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  color: rgba(255,255,255,0.3);
+  white-space: nowrap;
+}
+.towerInput {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,200,100,0.2);
+  border-radius: 8px;
+  padding: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+.btnTowerStart {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg,#8a5a2a,#c9a84c);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btnTowerCashout {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg,#0e5c2b,#27ae60);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: none;
+}
+
+/* Lightning Pick Game */
+#lightningPickPage {
+  background: linear-gradient(135deg, #1a1a3a, #2a2a4a);
+}
+.lightningWrap {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 68px;
+}
+.lightningTopbar {
+  background: linear-gradient(135deg, #2a2a5a, #3a3a6a);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(150,150,255,0.2);
+}
+.lightningBack {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(150,150,255,0.15);
+  border-radius: 8px;
+  padding: 7px 12px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+.lightningTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #aaaaff;
+  text-shadow: 0 0 15px rgba(150,150,255,0.5);
+}
+.lightningBalance {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(150,150,255,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: #aaaaff;
+}
+.lightningGameArea {
+  flex: 1;
+  padding: 16px;
+}
+.lightningGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+.lightningCard {
+  aspect-ratio: 1;
+  background: #2a2a4a;
+  border: 2px solid #aaaaff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.lightningCard:hover {
+  transform: scale(1.05);
+  background: #3a3a6a;
+}
+.lightningCard.revealed.lightning {
+  background: #ffaa00;
+  color: #000;
+}
+.lightningCard.revealed.storm {
+  background: #444;
+  color: #fff;
+}
+.lightningMult {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  color: #ffaa00;
+  text-align: center;
+  margin: 15px 0;
+}
+.lightningControls {
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(150,150,255,0.1);
+  padding: 12px 16px;
+}
+
+/* Dragon Tower Game */
+#dragonTowerPage {
+  background: linear-gradient(135deg, #2a1a1a, #3a2a2a);
+}
+.dragonWrap {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 68px;
+}
+.dragonTopbar {
+  background: linear-gradient(135deg, #3a2a2a, #4a3a3a);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,100,100,0.2);
+}
+.dragonBack {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,100,100,0.15);
+  border-radius: 8px;
+  padding: 7px 12px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+.dragonTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #ffaaaa;
+  text-shadow: 0 0 15px rgba(255,100,100,0.5);
+}
+.dragonBalance {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,100,100,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: #ffaaaa;
+}
+.dragonGameArea {
+  flex: 1;
+  padding: 16px;
+}
+.dragonEggs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 30px 0;
+}
+.dragonEgg {
+  aspect-ratio: 1;
+  background: #f0e68c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 3px solid #aaa;
+}
+.dragonEgg:hover {
+  transform: scale(1.05);
+}
+.dragonEgg.revealed.safe {
+  background: #2ecc71;
+}
+.dragonEgg.revealed.fire {
+  background: #e74c3c;
+}
+.dragonMult {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  color: #ffaaaa;
+  text-align: center;
+  margin: 15px 0;
+}
+.dragonControls {
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(255,100,100,0.1);
+  padding: 12px 16px;
+}
+
+/* Ice Break Game */
+#iceBreakPage {
+  background: linear-gradient(135deg, #2a6a8a, #3a7a9a);
+}
+.iceWrap {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 68px;
+}
+.iceTopbar {
+  background: linear-gradient(135deg, #3a7a9a, #4a8aaa);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(100,200,255,0.2);
+}
+.iceBack {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(100,200,255,0.15);
+  border-radius: 8px;
+  padding: 7px 12px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+.iceTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #aaddff;
+  text-shadow: 0 0 15px rgba(100,200,255,0.5);
+}
+.iceBalance {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(100,200,255,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: #aaddff;
+}
+.iceGameArea {
+  flex: 1;
+  padding: 16px;
+}
+.iceGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 20px 0;
+}
+.iceBlock {
+  aspect-ratio: 1;
+  background: #b0e0e6;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.iceBlock.safe {
+  background: #2ecc71;
+}
+.iceBlock.crack {
+  background: #e74c3c;
+}
+.iceBlock.revealed {
+  opacity: 0.7;
+}
+.iceMult {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  color: #aaddff;
+  text-align: center;
+  margin: 15px 0;
+}
+.iceControls {
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(100,200,255,0.1);
+  padding: 12px 16px;
+}
+
+/* Target Shot Game */
+#targetShotPage {
+  background: linear-gradient(135deg, #2a2a1a, #3a3a2a);
+}
+.targetWrap {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 68px;
+}
+.targetTopbar {
+  background: linear-gradient(135deg, #3a3a2a, #4a4a3a);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,100,0.2);
+}
+.targetBack {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,100,0.15);
+  border-radius: 8px;
+  padding: 7px 12px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+.targetTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #ffffaa;
+  text-shadow: 0 0 15px rgba(255,255,100,0.5);
+}
+.targetBalance {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,100,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: #ffffaa;
+}
+.targetGameArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.targetContainer {
+  width: 100%;
+  height: 250px;
+  background: #1a2a1a;
+  border: 2px solid #ffffaa;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.targetMoving {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #ff4444;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: left 0.05s linear, top 0.05s linear;
+}
+.targetScore {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: #ffffaa;
+  margin: 10px 0;
+}
+.targetMult {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  color: #ffd700;
+}
+.targetControls {
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(255,255,100,0.1);
+  padding: 12px 16px;
+}
+.targetBetRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.targetBetLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  color: rgba(255,255,255,0.3);
+  white-space: nowrap;
+}
+.targetInput {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,100,0.2);
+  border-radius: 8px;
+  padding: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+.btnTargetShoot {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg,#8a6a1f,#c9a84c);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+</style>
 </head>
 <body>
 <div class="felt-bg"></div>
@@ -1860,6 +2752,36 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div class="game-card" style="background:linear-gradient(160deg,#2a4a2a,#3a5a3a);border:1px solid #ffa500;" onclick="showPage('chickenGamePage');updateChickenBalance();">
         <div class="game-banner" style="background:linear-gradient(135deg,#3a5a3a,#4a6a4a);"><div><div class="game-title" style="color:#ffa500;">🐔 CHICKEN</div><div class="game-sub" style="color:rgba(255,165,0,0.6);">CRASH RUN</div></div><div class="game-ico">🐥</div></div>
         <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ffa500">∞×</div><div class="game-ci-key">Multiplier</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
+      </div>
+      <!-- NEW FROG JUMP CARD -->
+      <div class="game-card" style="background:linear-gradient(160deg,#2a5a2a,#3a6a3a);border:1px solid #aaffaa;" onclick="showPage('frogJumpPage');updateFrogBalance();">
+        <div class="game-banner" style="background:linear-gradient(135deg,#3a6a3a,#4a7a4a);"><div><div class="game-title" style="color:#aaffaa;">🐸 FROG</div><div class="game-sub" style="color:rgba(170,255,170,0.6);">JUMP</div></div><div class="game-ico">🐸</div></div>
+        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#aaffaa">30×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
+      </div>
+      <!-- NEW TOWER CLIMB CARD -->
+      <div class="game-card" style="background:linear-gradient(160deg,#3a2a1a,#4a3a2a);border:1px solid #ffcc88;" onclick="showPage('towerClimbPage');updateTowerBalance();">
+        <div class="game-banner" style="background:linear-gradient(135deg,#4a3a2a,#5a4a3a);"><div><div class="game-title" style="color:#ffcc88;">🏰 TOWER</div><div class="game-sub" style="color:rgba(255,204,136,0.6);">CLIMB</div></div><div class="game-ico">🏛️</div></div>
+        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ffcc88">40×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
+      </div>
+      <!-- NEW LIGHTNING PICK CARD -->
+      <div class="game-card" style="background:linear-gradient(160deg,#2a2a4a,#3a3a5a);border:1px solid #aaaaff;" onclick="showPage('lightningPickPage');updateLightningBalance();">
+        <div class="game-banner" style="background:linear-gradient(135deg,#3a3a5a,#4a4a6a);"><div><div class="game-title" style="color:#aaaaff;">⚡ LIGHTNING</div><div class="game-sub" style="color:rgba(170,170,255,0.6);">PICK</div></div><div class="game-ico">⚡</div></div>
+        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#aaaaff">20×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
+      </div>
+      <!-- NEW DRAGON TOWER CARD -->
+      <div class="game-card" style="background:linear-gradient(160deg,#3a2a2a,#4a3a3a);border:1px solid #ffaaaa;" onclick="showPage('dragonTowerPage');updateDragonBalance();">
+        <div class="game-banner" style="background:linear-gradient(135deg,#4a3a3a,#5a4a4a);"><div><div class="game-title" style="color:#ffaaaa;">🐉 DRAGON</div><div class="game-sub" style="color:rgba(255,170,170,0.6);">TOWER</div></div><div class="game-ico">🐉</div></div>
+        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ffaaaa">20×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
+      </div>
+      <!-- NEW ICE BREAK CARD -->
+      <div class="game-card" style="background:linear-gradient(160deg,#3a7a9a,#4a8aaa);border:1px solid #aaddff;" onclick="showPage('iceBreakPage');updateIceBalance();">
+        <div class="game-banner" style="background:linear-gradient(135deg,#4a8aaa,#5a9aba);"><div><div class="game-title" style="color:#aaddff;">🧊 ICE</div><div class="game-sub" style="color:rgba(170,221,255,0.6);">BREAK</div></div><div class="game-ico">🧊</div></div>
+        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#aaddff">15×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
+      </div>
+      <!-- NEW TARGET SHOT CARD -->
+      <div class="game-card" style="background:linear-gradient(160deg,#3a3a2a,#4a4a3a);border:1px solid #ffffaa;" onclick="showPage('targetShotPage');updateTargetBalance();">
+        <div class="game-banner" style="background:linear-gradient(135deg,#4a4a3a,#5a5a4a);"><div><div class="game-title" style="color:#ffffaa;">🎯 TARGET</div><div class="game-sub" style="color:rgba(255,255,170,0.6);">SHOT</div></div><div class="game-ico">🎯</div></div>
+        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ffffaa">50×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
       </div>
     </div>
     <!-- LEADERBOARD SECTION -->
@@ -2870,6 +3792,213 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
+<!-- ========== NEW FROG JUMP PAGE ========== -->
+<div class="page" id="frogJumpPage">
+  <div class="frogWrap">
+    <div class="frogTopbar">
+      <button class="frogBack" onclick="showPage('homePage')">← Back</button>
+      <div class="frogTitle">🐸 FROG JUMP</div>
+      <div class="frogBalance">৳<span id="frogBalNum">0.00</span></div>
+    </div>
+    <div class="frogDemoBar">
+      <span class="demo-lbl">REAL</span>
+      <label class="frogDemoTog"><input type="checkbox" id="frogDemoTog" onchange="toggleFrogDemo()"><span class="frogDemoSlider"></span></label>
+      <span class="demo-lbl">DEMO</span>
+      <div id="frogDemoBadge" style="display:none" class="frogDemoBadge">DEMO</div>
+    </div>
+    <div class="frogGameArea">
+      <div class="frogPond" id="frogPond">
+        <div class="frogLilyPad" style="left:10%"></div>
+        <div class="frogLilyPad" style="left:30%"></div>
+        <div class="frogLilyPad" style="left:50%"></div>
+        <div class="frogLilyPad" style="left:70%"></div>
+        <div class="frogPlayer" id="frogPlayer" style="left:5%">🐸</div>
+      </div>
+      <div class="frogScore" id="frogScore">Jumps: 0</div>
+      <div class="frogMultiplier" id="frogMultiplier">1.0×</div>
+    </div>
+    <div class="frogControls">
+      <div class="frogBetRow">
+        <span class="frogBetLabel">BET ৳</span>
+        <input type="number" class="frogInput" id="frogBetInp" value="200" min="200" max="20000"/>
+      </div>
+      <div class="frogQuick">
+        <div class="frogQuickBtn" onclick="document.getElementById('frogBetInp').value=200">200</div>
+        <div class="frogQuickBtn" onclick="document.getElementById('frogBetInp').value=500">500</div>
+        <div class="frogQuickBtn" onclick="document.getElementById('frogBetInp').value=1000">1K</div>
+        <div class="frogQuickBtn" onclick="document.getElementById('frogBetInp').value=5000">5K</div>
+      </div>
+      <div class="frogAction">
+        <button class="btnFrogJump" id="frogJumpBtn" onclick="frogJump()">🐸 JUMP</button>
+        <button class="btnFrogCashout" id="frogCashBtn" onclick="frogCashout()">💰 STOP</button>
+      </div>
+    </div>
+    <div class="frogStats">
+      <div class="frogStatItem"><div class="frogStatValue" id="frogStatMult">1.0x</div><div class="frogStatLabel">Mult</div></div>
+      <div class="frogStatItem"><div class="frogStatValue" id="frogStatJumps">0</div><div class="frogStatLabel">Jumps</div></div>
+      <div class="frogStatItem"><div class="frogStatValue" id="frogStatPotential">0</div><div class="frogStatLabel">Potential</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== NEW TOWER CLIMB PAGE ========== -->
+<div class="page" id="towerClimbPage">
+  <div class="towerWrap">
+    <div class="towerTopbar">
+      <button class="towerBack" onclick="showPage('homePage')">← Back</button>
+      <div class="towerTitle">🏰 TOWER CLIMB</div>
+      <div class="towerBalance">৳<span id="towerBalNum">0.00</span></div>
+    </div>
+    <div class="towerDemoBar">
+      <span class="demo-lbl">REAL</span>
+      <label class="towerDemoTog"><input type="checkbox" id="towerDemoTog" onchange="toggleTowerDemo()"><span class="towerDemoSlider"></span></label>
+      <span class="demo-lbl">DEMO</span>
+      <div id="towerDemoBadge" style="display:none" class="towerDemoBadge">DEMO</div>
+    </div>
+    <div class="towerGameArea" id="towerGameArea">
+      <div class="towerFloor" id="towerFloor1">
+        <div class="towerDoor" onclick="towerPickDoor(0)">🚪</div>
+        <div class="towerDoor" onclick="towerPickDoor(1)">🚪</div>
+        <div class="towerDoor" onclick="towerPickDoor(2)">🚪</div>
+      </div>
+      <div class="towerFloorNum" id="towerFloorNum">Floor 1 · Multiplier 1.0x</div>
+    </div>
+    <div class="towerMult" id="towerMult">1.0x</div>
+    <div class="towerControls">
+      <div class="towerBetRow">
+        <span class="towerBetLabel">BET ৳</span>
+        <input type="number" class="towerInput" id="towerBetInp" value="200" min="200" max="20000"/>
+      </div>
+      <button class="btnTowerStart" id="towerStartBtn" onclick="towerStart()">🏰 START CLIMB</button>
+      <button class="btnTowerCashout" id="towerCashBtn" onclick="towerCashout()">💰 STOP</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== NEW LIGHTNING PICK PAGE ========== -->
+<div class="page" id="lightningPickPage">
+  <div class="lightningWrap">
+    <div class="lightningTopbar">
+      <button class="lightningBack" onclick="showPage('homePage')">← Back</button>
+      <div class="lightningTitle">⚡ LIGHTNING PICK</div>
+      <div class="lightningBalance">৳<span id="lightningBalNum">0.00</span></div>
+    </div>
+    <div class="towerDemoBar">
+      <span class="demo-lbl">REAL</span>
+      <label class="towerDemoTog"><input type="checkbox" id="lightningDemoTog" onchange="toggleLightningDemo()"><span class="towerDemoSlider"></span></label>
+      <span class="demo-lbl">DEMO</span>
+      <div id="lightningDemoBadge" style="display:none" class="towerDemoBadge">DEMO</div>
+    </div>
+    <div class="lightningGameArea">
+      <div class="lightningGrid" id="lightningGrid"></div>
+      <div class="lightningMult" id="lightningMult">1.0x</div>
+    </div>
+    <div class="lightningControls">
+      <div class="towerBetRow">
+        <span class="towerBetLabel">BET ৳</span>
+        <input type="number" class="towerInput" id="lightningBetInp" value="200" min="200" max="20000"/>
+      </div>
+      <button class="btnTowerStart" id="lightningStartBtn" onclick="lightningStart()">⚡ START PICK</button>
+      <button class="btnTowerCashout" id="lightningCashBtn" onclick="lightningCashout()">💰 STOP</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== NEW DRAGON TOWER PAGE ========== -->
+<div class="page" id="dragonTowerPage">
+  <div class="dragonWrap">
+    <div class="dragonTopbar">
+      <button class="dragonBack" onclick="showPage('homePage')">← Back</button>
+      <div class="dragonTitle">🐉 DRAGON TOWER</div>
+      <div class="dragonBalance">৳<span id="dragonBalNum">0.00</span></div>
+    </div>
+    <div class="towerDemoBar">
+      <span class="demo-lbl">REAL</span>
+      <label class="towerDemoTog"><input type="checkbox" id="dragonDemoTog" onchange="toggleDragonDemo()"><span class="towerDemoSlider"></span></label>
+      <span class="demo-lbl">DEMO</span>
+      <div id="dragonDemoBadge" style="display:none" class="towerDemoBadge">DEMO</div>
+    </div>
+    <div class="dragonGameArea">
+      <div class="dragonEggs" id="dragonEggs">
+        <div class="dragonEgg" onclick="dragonPick(0)">🥚</div>
+        <div class="dragonEgg" onclick="dragonPick(1)">🥚</div>
+        <div class="dragonEgg" onclick="dragonPick(2)">🥚</div>
+        <div class="dragonEgg" onclick="dragonPick(3)">🥚</div>
+      </div>
+      <div class="dragonMult" id="dragonMult">1.0x</div>
+    </div>
+    <div class="towerControls">
+      <div class="towerBetRow">
+        <span class="towerBetLabel">BET ৳</span>
+        <input type="number" class="towerInput" id="dragonBetInp" value="200" min="200" max="20000"/>
+      </div>
+      <button class="btnTowerStart" id="dragonStartBtn" onclick="dragonStart()">🐉 START</button>
+      <button class="btnTowerCashout" id="dragonCashBtn" onclick="dragonCashout()">💰 STOP</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== NEW ICE BREAK PAGE ========== -->
+<div class="page" id="iceBreakPage">
+  <div class="iceWrap">
+    <div class="iceTopbar">
+      <button class="iceBack" onclick="showPage('homePage')">← Back</button>
+      <div class="iceTitle">🧊 ICE BREAK</div>
+      <div class="iceBalance">৳<span id="iceBalNum">0.00</span></div>
+    </div>
+    <div class="towerDemoBar">
+      <span class="demo-lbl">REAL</span>
+      <label class="towerDemoTog"><input type="checkbox" id="iceDemoTog" onchange="toggleIceDemo()"><span class="towerDemoSlider"></span></label>
+      <span class="demo-lbl">DEMO</span>
+      <div id="iceDemoBadge" style="display:none" class="towerDemoBadge">DEMO</div>
+    </div>
+    <div class="iceGameArea">
+      <div class="iceGrid" id="iceGrid"></div>
+      <div class="iceMult" id="iceMult">1.0x</div>
+    </div>
+    <div class="iceControls">
+      <div class="towerBetRow">
+        <span class="towerBetLabel">BET ৳</span>
+        <input type="number" class="towerInput" id="iceBetInp" value="200" min="200" max="20000"/>
+      </div>
+      <button class="btnTowerStart" id="iceStartBtn" onclick="iceStart()">🧊 START</button>
+      <button class="btnTowerCashout" id="iceCashBtn" onclick="iceCashout()">💰 STOP</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== NEW TARGET SHOT PAGE ========== -->
+<div class="page" id="targetShotPage">
+  <div class="targetWrap">
+    <div class="targetTopbar">
+      <button class="targetBack" onclick="showPage('homePage')">← Back</button>
+      <div class="targetTitle">🎯 TARGET SHOT</div>
+      <div class="targetBalance">৳<span id="targetBalNum">0.00</span></div>
+    </div>
+    <div class="towerDemoBar">
+      <span class="demo-lbl">REAL</span>
+      <label class="towerDemoTog"><input type="checkbox" id="targetDemoTog" onchange="toggleTargetDemo()"><span class="towerDemoSlider"></span></label>
+      <span class="demo-lbl">DEMO</span>
+      <div id="targetDemoBadge" style="display:none" class="towerDemoBadge">DEMO</div>
+    </div>
+    <div class="targetGameArea">
+      <div class="targetContainer" id="targetContainer">
+        <div class="targetMoving" id="targetMoving">🎯</div>
+      </div>
+      <div class="targetScore" id="targetScore">Shots: 0</div>
+      <div class="targetMult" id="targetMult">1.0x</div>
+    </div>
+    <div class="targetControls">
+      <div class="targetBetRow">
+        <span class="targetBetLabel">BET ৳</span>
+        <input type="number" class="targetInput" id="targetBetInp" value="200" min="200" max="20000"/>
+      </div>
+      <button class="btnTargetShoot" id="targetShootBtn" onclick="targetShoot()">🎯 SHOOT</button>
+      <button class="btnTowerCashout" id="targetCashBtn" onclick="targetCashout()" style="display:none">💰 STOP</button>
+    </div>
+  </div>
+</div>
+
 <!-- BOTTOM NAV -->
 <div class="bottom-nav" id="bottomNav" style="display:none">
   <button class="bn-item active" id="bn-home" onclick="navTo('home')"><div class="bn-icon">🏠</div><div class="bn-label">Home</div></button>
@@ -3029,7 +4158,7 @@ window.loadBetHistory=async()=>{
   const bets=Object.values(snap.val()).sort((a,b)=>b.time - a.time);
   let totalProfit=0,totalLoss=0;
   document.getElementById('hsTotalBets').textContent=bets.length;
-  const gameIcons={Aviator:'✈️',Trading:'📈',Dice:'🎲',Mines:'💣','Coin Flip':'🪙',Cricket:'🏏'};
+  const gameIcons={Aviator:'✈️',Trading:'📈',Dice:'🎲',Mines:'💣','Coin Flip':'🪙',Cricket:'🏏', 'Spin Wheel':'🎰', 'Chicken Run':'🐔', 'Frog Jump':'🐸', 'Tower Climb':'🏰', 'Lightning Pick':'⚡', 'Dragon Tower':'🐉', 'Ice Break':'🧊', 'Target Shot':'🎯'};
   histList.innerHTML=bets.map(b=>{
     const isProfit=b.profit>=0;
     if(isProfit)totalProfit+=b.profit;else totalLoss+=Math.abs(b.profit);
@@ -3841,6 +4970,20 @@ window._spinDemoActive = false;
 window._spinDemoBal = 10000;
 window._chickenDemoActive = false;
 window._chickenDemoBal = 10000;
+// 6 new games demo state
+window._frogDemoActive = false;
+window._frogDemoBal = 10000;
+window._towerDemoActive = false;
+window._towerDemoBal = 10000;
+window._lightningDemoActive = false;
+window._lightningDemoBal = 10000;
+window._dragonDemoActive = false;
+window._dragonDemoBal = 10000;
+window._iceDemoActive = false;
+window._iceDemoBal = 10000;
+window._targetDemoActive = false;
+window._targetDemoBal = 10000;
+
 window._userProfile={};
 
 // =================== AI ASSISTANT ===================
@@ -3882,7 +5025,7 @@ window.sendAIMessage = () => {
       } else if (lowerMsg.includes('withdraw') || lowerMsg.includes('উইথড্র')) {
         response = 'উইথড্রয়াল করতে Profile পেজে গিয়ে Withdraw অপশন ব্যবহার করুন। মিনিমাম ৳200, সর্বোচ্চ ৳200,000।';
       } else if (lowerMsg.includes('game') || lowerMsg.includes('গেম')) {
-        response = 'আমাদের গেমগুলো: Aviator, Trading, Dice, Mines, Coin Flip, Spin Wheel, Chicken Run, এবং Live Cricket! সবগুলোতেই মজা নিন।';
+        response = 'আমাদের গেমগুলো: Aviator, Trading, Dice, Mines, Coin Flip, Spin Wheel, Chicken Run, Frog Jump, Tower Climb, Lightning Pick, Dragon Tower, Ice Break, Target Shot, এবং Live Cricket! সবগুলোতেই মজা নিন।';
       } else if (lowerMsg.includes('aviator') || lowerMsg.includes('এভিয়েটর')) {
         response = 'Aviator গেমে বিমান উড়ে এবং মাল্টিপ্লায়ার বাড়ে। সঠিক সময় cashout করে জিতুন! সর্বোচ্চ 100x পর্যন্ত।';
       } else if (lowerMsg.includes('cricket') || lowerMsg.includes('ক্রিকেট')) {
@@ -3899,6 +5042,18 @@ window.sendAIMessage = () => {
         response = 'Spin Wheel গেমে Lucky Wheel ঘুরিয়ে 2x,3x,5x,10x,20x,50x,10x জিতুন অথবা Loss/Refund পেতে পারেন। মিনিমাম বেট ৳200, সর্বোচ্চ ৳50,000।';
       } else if (lowerMsg.includes('chicken') || lowerMsg.includes('চিকেন')) {
         response = 'Chicken Run গেমে মুরগি দৌড়ায়, প্রতিটি ধাপে multiplier 2x করে বাড়ে। Crash হওয়ার আগে cashout করে জিতুন!';
+      } else if (lowerMsg.includes('frog') || lowerMsg.includes('ব্যাঙ')) {
+        response = 'Frog Jump গেমে ব্যাঙ পাথরে পাথরে লাফায়, প্রতিটি লাফে multiplier বাড়ে। ভুল পাথরে পড়লে হারবেন।';
+      } else if (lowerMsg.includes('tower') || lowerMsg.includes('টাওয়ার')) {
+        response = 'Tower Climb গেমে প্রতিটি ফ্লোরে সঠিক দরজা বাছাই করে উপরে উঠুন। মাল্টিপ্লায়ার বাড়তে থাকে, ভুল দরজা খুললে গেম ওভার।';
+      } else if (lowerMsg.includes('lightning') || lowerMsg.includes('বজ্র')) {
+        response = 'Lightning Pick গেমে ১২টি কার্ড থেকে বাছাই করুন। Lightning পেলে জিতবেন, Storm পেলে হারবেন।';
+      } else if (lowerMsg.includes('dragon') || lowerMsg.includes('ড্রাগন')) {
+        response = 'Dragon Tower গেমে ৪টি ডিমের মধ্যে ১টিতে ড্রাগন, বাকিগুলো নিরাপদ। নিরাপদ ডিম খুলতে থাকুন, মাল্টিপ্লায়ার বাড়বে।';
+      } else if (lowerMsg.includes('ice') || lowerMsg.includes('বরফ')) {
+        response = 'Ice Break গেমে বরফের ব্লক ভাঙুন। নিরাপদ ব্লক ভাঙলে মাল্টিপ্লায়ার বাড়ে, ক্র্যাক ব্লক ভাঙলে হারেন।';
+      } else if (lowerMsg.includes('target') || lowerMsg.includes('টার্গেট')) {
+        response = 'Target Shot গেমে চলমান টার্গেটে শুট করুন। নির্ভুলতা অনুযায়ী 5x থেকে 50x জিততে পারেন।';
       } else {
         response = `"${msg}" — আপনার প্রশ্নের উত্তর দিচ্ছি: Royal Bet-এ স্বাগতম! আরও জানতে আমাদের Support-এ যোগাযোগ করুন।`;
       }
@@ -4135,6 +5290,12 @@ function getBalForGame(game){
   if(game==='coin') return window._coinDemoActive?window._coinDemoBal:window._realBal;
   if(game==='spin') return window._spinDemoActive?window._spinDemoBal:window._realBal;
   if(game==='chicken') return window._chickenDemoActive?window._chickenDemoBal:window._realBal;
+  if(game==='frog') return window._frogDemoActive?window._frogDemoBal:window._realBal;
+  if(game==='tower') return window._towerDemoActive?window._towerDemoBal:window._realBal;
+  if(game==='lightning') return window._lightningDemoActive?window._lightningDemoBal:window._realBal;
+  if(game==='dragon') return window._dragonDemoActive?window._dragonDemoBal:window._realBal;
+  if(game==='ice') return window._iceDemoActive?window._iceDemoBal:window._realBal;
+  if(game==='target') return window._targetDemoActive?window._targetDemoBal:window._realBal;
   return window._realBal;
 }
 function setBalForGame(game,v){
@@ -4146,7 +5307,13 @@ function setBalForGame(game,v){
     mines:window._minesDemoActive,
     coin:window._coinDemoActive,
     spin:window._spinDemoActive,
-    chicken:window._chickenDemoActive
+    chicken:window._chickenDemoActive,
+    frog:window._frogDemoActive,
+    tower:window._towerDemoActive,
+    lightning:window._lightningDemoActive,
+    dragon:window._dragonDemoActive,
+    ice:window._iceDemoActive,
+    target:window._targetDemoActive
   }[game];
   if(isDemo){
     if(game==='av')window._demoBal=v;
@@ -4156,6 +5323,12 @@ function setBalForGame(game,v){
     else if(game==='coin')window._coinDemoBal=v;
     else if(game==='spin')window._spinDemoBal=v;
     else if(game==='chicken')window._chickenDemoBal=v;
+    else if(game==='frog')window._frogDemoBal=v;
+    else if(game==='tower')window._towerDemoBal=v;
+    else if(game==='lightning')window._lightningDemoBal=v;
+    else if(game==='dragon')window._dragonDemoBal=v;
+    else if(game==='ice')window._iceDemoBal=v;
+    else if(game==='target')window._targetDemoBal=v;
     updateBals();
   } else {
     window._realBal=v;updateBals();window._writeBalance(v);
@@ -4172,6 +5345,12 @@ function updateBals(){
   document.getElementById('coinBalNum').textContent=getBalForGame('coin').toLocaleString('en',{minimumFractionDigits:2});
   document.getElementById('spinBalNum').textContent=getBalForGame('spin').toLocaleString('en',{minimumFractionDigits:2});
   document.getElementById('chickenBalNum').textContent=getBalForGame('chicken').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('frogBalNum').textContent=getBalForGame('frog').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('towerBalNum').textContent=getBalForGame('tower').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('lightningBalNum').textContent=getBalForGame('lightning').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('dragonBalNum').textContent=getBalForGame('dragon').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('iceBalNum').textContent=getBalForGame('ice').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('targetBalNum').textContent=getBalForGame('target').toLocaleString('en',{minimumFractionDigits:2});
   if(window._isDemo) document.getElementById('demoBalNumAv').textContent=window._demoBal.toLocaleString('en');
   if(window._trDemoActive) document.getElementById('trDemoBalNum').textContent=window._trDemoBal.toLocaleString('en');
 }
@@ -4302,7 +5481,6 @@ window.toggleTrDemo=()=>{window._trDemoActive=document.getElementById('trDemoTog
 window.toggleDiceDemo=()=>{window._diceDemoActive=document.getElementById('diceDemoTog').checked;document.getElementById('diceDemoBadge').style.display=window._diceDemoActive?'inline-block':'none';if(window._diceDemoActive&&window._diceDemoBal<=0)window._diceDemoBal=10000;updateBals();};
 window.toggleMinesDemo=()=>{window._minesDemoActive=document.getElementById('minesDemoTog').checked;document.getElementById('minesDemoBadge').style.display=window._minesDemoActive?'inline-block':'none';if(window._minesDemoActive&&window._minesDemoBal<=0)window._minesDemoBal=10000;updateBals();};
 window.toggleCoinDemo=()=>{window._coinDemoActive=document.getElementById('coinDemoTog').checked;document.getElementById('coinDemoBadge').style.display=window._coinDemoActive?'inline-block':'none';if(window._coinDemoActive&&window._coinDemoBal<=0)window._coinDemoBal=10000;updateBals();};
-// New demo toggles
 window.toggleSpinDemo=()=>{
   window._spinDemoActive = document.getElementById('spinDemoTog').checked;
   document.getElementById('spinDemoBadge').style.display = window._spinDemoActive ? 'inline-block' : 'none';
@@ -4313,6 +5491,42 @@ window.toggleChickenDemo=()=>{
   window._chickenDemoActive = document.getElementById('chickenDemoTog').checked;
   document.getElementById('chickenDemoBadge').style.display = window._chickenDemoActive ? 'inline-block' : 'none';
   if (window._chickenDemoActive && window._chickenDemoBal <= 0) window._chickenDemoBal = 10000;
+  updateBals();
+};
+window.toggleFrogDemo=()=>{
+  window._frogDemoActive = document.getElementById('frogDemoTog').checked;
+  document.getElementById('frogDemoBadge').style.display = window._frogDemoActive ? 'inline-block' : 'none';
+  if (window._frogDemoActive && window._frogDemoBal <= 0) window._frogDemoBal = 10000;
+  updateBals();
+};
+window.toggleTowerDemo=()=>{
+  window._towerDemoActive = document.getElementById('towerDemoTog').checked;
+  document.getElementById('towerDemoBadge').style.display = window._towerDemoActive ? 'inline-block' : 'none';
+  if (window._towerDemoActive && window._towerDemoBal <= 0) window._towerDemoBal = 10000;
+  updateBals();
+};
+window.toggleLightningDemo=()=>{
+  window._lightningDemoActive = document.getElementById('lightningDemoTog').checked;
+  document.getElementById('lightningDemoBadge').style.display = window._lightningDemoActive ? 'inline-block' : 'none';
+  if (window._lightningDemoActive && window._lightningDemoBal <= 0) window._lightningDemoBal = 10000;
+  updateBals();
+};
+window.toggleDragonDemo=()=>{
+  window._dragonDemoActive = document.getElementById('dragonDemoTog').checked;
+  document.getElementById('dragonDemoBadge').style.display = window._dragonDemoActive ? 'inline-block' : 'none';
+  if (window._dragonDemoActive && window._dragonDemoBal <= 0) window._dragonDemoBal = 10000;
+  updateBals();
+};
+window.toggleIceDemo=()=>{
+  window._iceDemoActive = document.getElementById('iceDemoTog').checked;
+  document.getElementById('iceDemoBadge').style.display = window._iceDemoActive ? 'inline-block' : 'none';
+  if (window._iceDemoActive && window._iceDemoBal <= 0) window._iceDemoBal = 10000;
+  updateBals();
+};
+window.toggleTargetDemo=()=>{
+  window._targetDemoActive = document.getElementById('targetDemoTog').checked;
+  document.getElementById('targetDemoBadge').style.display = window._targetDemoActive ? 'inline-block' : 'none';
+  if (window._targetDemoActive && window._targetDemoBal <= 0) window._targetDemoBal = 10000;
   updateBals();
 };
 
@@ -4790,6 +6004,814 @@ window.cashoutChicken = () => {
       game: 'Chicken Run',
       detail: `Cashed out at ${chickenMultiplier}x, steps ${chickenSteps}`,
       bet: chickenBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+};
+
+// =================== NEW FROG JUMP GAME ===================
+let frogActive = false;
+let frogBetAmt = 0;
+let frogJumps = 0;
+let frogMult = 1.0;
+let frogCurrentPad = 0;
+const frogPads = [5, 15, 25, 35, 45, 55, 65, 75, 85]; // positions
+
+window.updateFrogBalance = () => {
+  document.getElementById('frogBalNum').textContent = getBalForGame('frog').toLocaleString('en',{minimumFractionDigits:2});
+};
+
+function resetFrog() {
+  frogJumps = 0;
+  frogMult = 1.0;
+  frogCurrentPad = 0;
+  document.getElementById('frogPlayer').style.left = frogPads[0] + '%';
+  document.getElementById('frogScore').textContent = 'Jumps: 0';
+  document.getElementById('frogMultiplier').textContent = frogMult.toFixed(1) + 'x';
+  document.getElementById('frogStatMult').textContent = frogMult.toFixed(1) + 'x';
+  document.getElementById('frogStatJumps').textContent = '0';
+  document.getElementById('frogStatPotential').textContent = '0';
+}
+
+window.frogJump = () => {
+  if (!frogActive) {
+    // Start game
+    const bet = parseInt(document.getElementById('frogBetInp').value);
+    if (isNaN(bet) || bet < 200) { toast('⚠️ Min ৳200', true); return; }
+    if (bet > 20000) { toast('⚠️ Max ৳20,000', true); return; }
+    if (getBalForGame('frog') < bet) { 
+      toast('❌ Balance কম!', true); 
+      if (!window._frogDemoActive) setTimeout(()=>openDepositSSModal(),800); 
+      return; 
+    }
+    frogBetAmt = bet;
+    setBalForGame('frog', getBalForGame('frog') - bet);
+    frogActive = true;
+    resetFrog();
+    document.getElementById('frogJumpBtn').style.display = 'none';
+    document.getElementById('frogCashBtn').style.display = 'flex';
+    document.getElementById('frogJumpBtn').textContent = '🐸 JUMP';
+  }
+  
+  if (!frogActive) return;
+  
+  // Determine next pad
+  let nextPad = frogCurrentPad + 1;
+  if (nextPad >= frogPads.length) {
+    // Reached end, win!
+    frogWin();
+    return;
+  }
+  
+  // Random chance to slip (lose)
+  if (Math.random() < 0.15) { // 15% chance to slip
+    frogLose();
+    return;
+  }
+  
+  // Successful jump
+  frogCurrentPad = nextPad;
+  frogJumps++;
+  frogMult *= 1.2; // Increase multiplier by 20%
+  if (frogMult > 30) frogMult = 30;
+  
+  document.getElementById('frogPlayer').style.left = frogPads[frogCurrentPad] + '%';
+  document.getElementById('frogScore').textContent = 'Jumps: ' + frogJumps;
+  document.getElementById('frogMultiplier').textContent = frogMult.toFixed(1) + 'x';
+  document.getElementById('frogStatMult').textContent = frogMult.toFixed(1) + 'x';
+  document.getElementById('frogStatJumps').textContent = frogJumps;
+  const potential = Math.floor(frogBetAmt * frogMult);
+  document.getElementById('frogStatPotential').textContent = potential.toLocaleString('en');
+  
+  if (frogCurrentPad === frogPads.length - 1) {
+    frogWin();
+  }
+};
+
+function frogWin() {
+  const win = Math.floor(frogBetAmt * frogMult);
+  const profit = win - frogBetAmt;
+  setBalForGame('frog', getBalForGame('frog') + win);
+  frogActive = false;
+  document.getElementById('frogJumpBtn').style.display = 'flex';
+  document.getElementById('frogCashBtn').style.display = 'none';
+  toast(`🎉 FROG WON! ${frogMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._frogDemoActive) {
+    window._saveBetHistory({
+      game: 'Frog Jump',
+      detail: `Won at ${frogJumps} jumps, ${frogMult.toFixed(1)}x`,
+      bet: frogBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+function frogLose() {
+  frogActive = false;
+  document.getElementById('frogJumpBtn').style.display = 'flex';
+  document.getElementById('frogCashBtn').style.display = 'none';
+  toast(`💥 FROG SLIPPED! -৳${frogBetAmt.toLocaleString('en')}`, true);
+  if (!window._frogDemoActive) {
+    window._saveBetHistory({
+      game: 'Frog Jump',
+      detail: `Slipped at jump ${frogJumps}`,
+      bet: frogBetAmt,
+      profit: -frogBetAmt,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+window.frogCashout = () => {
+  if (!frogActive) return;
+  frogActive = false;
+  const win = Math.floor(frogBetAmt * frogMult);
+  const profit = win - frogBetAmt;
+  setBalForGame('frog', getBalForGame('frog') + win);
+  document.getElementById('frogJumpBtn').style.display = 'flex';
+  document.getElementById('frogCashBtn').style.display = 'none';
+  toast(`💰 FROG CASHOUT! ${frogMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._frogDemoActive) {
+    window._saveBetHistory({
+      game: 'Frog Jump',
+      detail: `Cashed out at ${frogJumps} jumps, ${frogMult.toFixed(1)}x`,
+      bet: frogBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+};
+
+// =================== NEW TOWER CLIMB GAME ===================
+let towerActive = false;
+let towerBetAmt = 0;
+let towerFloor = 0;
+let towerMult = 1.0;
+let towerDoors = [];
+
+window.updateTowerBalance = () => {
+  document.getElementById('towerBalNum').textContent = getBalForGame('tower').toLocaleString('en',{minimumFractionDigits:2});
+};
+
+window.towerStart = () => {
+  const bet = parseInt(document.getElementById('towerBetInp').value);
+  if (isNaN(bet) || bet < 200) { toast('⚠️ Min ৳200', true); return; }
+  if (bet > 20000) { toast('⚠️ Max ৳20,000', true); return; }
+  if (getBalForGame('tower') < bet) { 
+    toast('❌ Balance কম!', true); 
+    if (!window._towerDemoActive) setTimeout(()=>openDepositSSModal(),800); 
+    return; 
+  }
+  towerBetAmt = bet;
+  setBalForGame('tower', getBalForGame('tower') - bet);
+  towerActive = true;
+  towerFloor = 0;
+  towerMult = 1.0;
+  document.getElementById('towerStartBtn').style.display = 'none';
+  document.getElementById('towerCashBtn').style.display = 'flex';
+  document.getElementById('towerFloorNum').textContent = `Floor 1 · Multiplier 1.0x`;
+  document.getElementById('towerMult').textContent = '1.0x';
+  towerNextFloor();
+};
+
+function towerNextFloor() {
+  if (!towerActive) return;
+  towerFloor++;
+  if (towerFloor > 1) {
+    towerMult *= 1.5;
+    if (towerMult > 40) towerMult = 40;
+  }
+  document.getElementById('towerMult').textContent = towerMult.toFixed(1) + 'x';
+  
+  // Generate doors: 2 or 3 doors, one correct
+  const doorCount = 2 + Math.floor(Math.random() * 2); // 2 or 3
+  towerDoors = [];
+  const correctIdx = Math.floor(Math.random() * doorCount);
+  for (let i = 0; i < doorCount; i++) {
+    towerDoors.push(i === correctIdx);
+  }
+  
+  let floorHtml = '';
+  for (let i = 0; i < doorCount; i++) {
+    floorHtml += `<div class="towerDoor" onclick="towerPickDoor(${i})">🚪</div>`;
+  }
+  document.getElementById('towerFloor1').innerHTML = floorHtml;
+  document.getElementById('towerFloorNum').textContent = `Floor ${towerFloor} · Multiplier ${towerMult.toFixed(1)}x`;
+}
+
+window.towerPickDoor = (idx) => {
+  if (!towerActive) return;
+  if (towerDoors[idx]) {
+    // Correct door
+    if (towerFloor >= 5) {
+      // Win at floor 5
+      towerWin();
+    } else {
+      towerNextFloor();
+    }
+  } else {
+    // Wrong door - lose
+    towerLose();
+  }
+};
+
+function towerWin() {
+  const win = Math.floor(towerBetAmt * towerMult);
+  const profit = win - towerBetAmt;
+  setBalForGame('tower', getBalForGame('tower') + win);
+  towerActive = false;
+  document.getElementById('towerStartBtn').style.display = 'flex';
+  document.getElementById('towerCashBtn').style.display = 'none';
+  toast(`🎉 TOWER CLIMB WON! ${towerMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._towerDemoActive) {
+    window._saveBetHistory({
+      game: 'Tower Climb',
+      detail: `Won at floor ${towerFloor}, ${towerMult.toFixed(1)}x`,
+      bet: towerBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+function towerLose() {
+  towerActive = false;
+  document.getElementById('towerStartBtn').style.display = 'flex';
+  document.getElementById('towerCashBtn').style.display = 'none';
+  toast(`💥 WRONG DOOR! -৳${towerBetAmt.toLocaleString('en')}`, true);
+  if (!window._towerDemoActive) {
+    window._saveBetHistory({
+      game: 'Tower Climb',
+      detail: `Lost at floor ${towerFloor}`,
+      bet: towerBetAmt,
+      profit: -towerBetAmt,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+window.towerCashout = () => {
+  if (!towerActive) return;
+  towerActive = false;
+  const win = Math.floor(towerBetAmt * towerMult);
+  const profit = win - towerBetAmt;
+  setBalForGame('tower', getBalForGame('tower') + win);
+  document.getElementById('towerStartBtn').style.display = 'flex';
+  document.getElementById('towerCashBtn').style.display = 'none';
+  toast(`💰 TOWER CASHOUT! ${towerMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._towerDemoActive) {
+    window._saveBetHistory({
+      game: 'Tower Climb',
+      detail: `Cashed out at floor ${towerFloor}, ${towerMult.toFixed(1)}x`,
+      bet: towerBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+};
+
+// =================== NEW LIGHTNING PICK GAME ===================
+let lightningActive = false;
+let lightningBetAmt = 0;
+let lightningPicks = 0;
+let lightningMult = 1.0;
+let lightningCards = [];
+
+window.updateLightningBalance = () => {
+  document.getElementById('lightningBalNum').textContent = getBalForGame('lightning').toLocaleString('en',{minimumFractionDigits:2});
+};
+
+function buildLightningGrid() {
+  const grid = document.getElementById('lightningGrid');
+  grid.innerHTML = '';
+  lightningCards = [];
+  const totalCards = 12;
+  const lightningCount = 4 + Math.floor(Math.random() * 3); // 4-6 lightning
+  for (let i = 0; i < totalCards; i++) {
+    lightningCards.push({ type: i < lightningCount ? 'lightning' : 'storm', revealed: false });
+  }
+  // Shuffle
+  for (let i = lightningCards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [lightningCards[i], lightningCards[j]] = [lightningCards[j], lightningCards[i]];
+  }
+  
+  lightningCards.forEach((card, idx) => {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'lightningCard';
+    cardDiv.dataset.idx = idx;
+    cardDiv.textContent = '?';
+    cardDiv.onclick = () => lightningPick(idx);
+    grid.appendChild(cardDiv);
+  });
+}
+
+window.lightningStart = () => {
+  const bet = parseInt(document.getElementById('lightningBetInp').value);
+  if (isNaN(bet) || bet < 200) { toast('⚠️ Min ৳200', true); return; }
+  if (bet > 20000) { toast('⚠️ Max ৳20,000', true); return; }
+  if (getBalForGame('lightning') < bet) { 
+    toast('❌ Balance কম!', true); 
+    if (!window._lightningDemoActive) setTimeout(()=>openDepositSSModal(),800); 
+    return; 
+  }
+  lightningBetAmt = bet;
+  setBalForGame('lightning', getBalForGame('lightning') - bet);
+  lightningActive = true;
+  lightningPicks = 0;
+  lightningMult = 1.0;
+  document.getElementById('lightningStartBtn').style.display = 'none';
+  document.getElementById('lightningCashBtn').style.display = 'flex';
+  document.getElementById('lightningMult').textContent = '1.0x';
+  buildLightningGrid();
+};
+
+function lightningPick(idx) {
+  if (!lightningActive) return;
+  if (lightningCards[idx].revealed) return;
+  
+  lightningCards[idx].revealed = true;
+  const cardDiv = document.querySelector(`.lightningCard[data-idx="${idx}"]`);
+  
+  if (lightningCards[idx].type === 'lightning') {
+    cardDiv.textContent = '⚡';
+    cardDiv.classList.add('revealed', 'lightning');
+    lightningPicks++;
+    lightningMult *= 1.5;
+    if (lightningMult > 20) lightningMult = 20;
+    document.getElementById('lightningMult').textContent = lightningMult.toFixed(1) + 'x';
+    
+    if (lightningPicks >= 4) {
+      lightningWin();
+    }
+  } else {
+    cardDiv.textContent = '🌩️';
+    cardDiv.classList.add('revealed', 'storm');
+    lightningLose();
+  }
+}
+
+function lightningWin() {
+  const win = Math.floor(lightningBetAmt * lightningMult);
+  const profit = win - lightningBetAmt;
+  setBalForGame('lightning', getBalForGame('lightning') + win);
+  lightningActive = false;
+  document.getElementById('lightningStartBtn').style.display = 'flex';
+  document.getElementById('lightningCashBtn').style.display = 'none';
+  toast(`⚡ LIGHTNING WIN! ${lightningMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._lightningDemoActive) {
+    window._saveBetHistory({
+      game: 'Lightning Pick',
+      detail: `Picked ${lightningPicks} lightning, ${lightningMult.toFixed(1)}x`,
+      bet: lightningBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+function lightningLose() {
+  lightningActive = false;
+  document.getElementById('lightningStartBtn').style.display = 'flex';
+  document.getElementById('lightningCashBtn').style.display = 'none';
+  toast(`🌩️ STORM HIT! -৳${lightningBetAmt.toLocaleString('en')}`, true);
+  if (!window._lightningDemoActive) {
+    window._saveBetHistory({
+      game: 'Lightning Pick',
+      detail: `Hit storm`,
+      bet: lightningBetAmt,
+      profit: -lightningBetAmt,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+window.lightningCashout = () => {
+  if (!lightningActive) return;
+  lightningActive = false;
+  const win = Math.floor(lightningBetAmt * lightningMult);
+  const profit = win - lightningBetAmt;
+  setBalForGame('lightning', getBalForGame('lightning') + win);
+  document.getElementById('lightningStartBtn').style.display = 'flex';
+  document.getElementById('lightningCashBtn').style.display = 'none';
+  toast(`💰 LIGHTNING CASHOUT! ${lightningMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._lightningDemoActive) {
+    window._saveBetHistory({
+      game: 'Lightning Pick',
+      detail: `Cashed out with ${lightningPicks} lightning, ${lightningMult.toFixed(1)}x`,
+      bet: lightningBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+};
+
+// =================== NEW DRAGON TOWER GAME ===================
+let dragonActive = false;
+let dragonBetAmt = 0;
+let dragonPicks = 0;
+let dragonMult = 1.0;
+let dragonEggs = [];
+
+window.updateDragonBalance = () => {
+  document.getElementById('dragonBalNum').textContent = getBalForGame('dragon').toLocaleString('en',{minimumFractionDigits:2});
+};
+
+window.dragonStart = () => {
+  const bet = parseInt(document.getElementById('dragonBetInp').value);
+  if (isNaN(bet) || bet < 200) { toast('⚠️ Min ৳200', true); return; }
+  if (bet > 20000) { toast('⚠️ Max ৳20,000', true); return; }
+  if (getBalForGame('dragon') < bet) { 
+    toast('❌ Balance কম!', true); 
+    if (!window._dragonDemoActive) setTimeout(()=>openDepositSSModal(),800); 
+    return; 
+  }
+  dragonBetAmt = bet;
+  setBalForGame('dragon', getBalForGame('dragon') - bet);
+  dragonActive = true;
+  dragonPicks = 0;
+  dragonMult = 1.0;
+  
+  // Reset eggs
+  dragonEggs = [false, false, false, false]; // false = not picked
+  const dragonIdx = Math.floor(Math.random() * 4);
+  dragonEggs[dragonIdx] = 'dragon';
+  for (let i = 0; i < 4; i++) {
+    if (i !== dragonIdx) dragonEggs[i] = 'safe';
+  }
+  
+  document.getElementById('dragonStartBtn').style.display = 'none';
+  document.getElementById('dragonCashBtn').style.display = 'flex';
+  document.getElementById('dragonMult').textContent = '1.0x';
+  
+  // Reset egg display
+  const eggs = document.querySelectorAll('.dragonEgg');
+  eggs.forEach((egg, idx) => {
+    egg.textContent = '🥚';
+    egg.classList.remove('revealed', 'safe', 'fire');
+  });
+};
+
+window.dragonPick = (idx) => {
+  if (!dragonActive) return;
+  const egg = document.querySelectorAll('.dragonEgg')[idx];
+  if (dragonEggs[idx] === 'dragon') {
+    egg.textContent = '🐉';
+    egg.classList.add('revealed', 'fire');
+    dragonLose();
+  } else if (dragonEggs[idx] === 'safe') {
+    egg.textContent = '🥚✅';
+    egg.classList.add('revealed', 'safe');
+    dragonPicks++;
+    dragonMult *= 2;
+    if (dragonMult > 20) dragonMult = 20;
+    document.getElementById('dragonMult').textContent = dragonMult.toFixed(1) + 'x';
+    
+    if (dragonPicks >= 3) {
+      dragonWin();
+    }
+  }
+};
+
+function dragonWin() {
+  const win = Math.floor(dragonBetAmt * dragonMult);
+  const profit = win - dragonBetAmt;
+  setBalForGame('dragon', getBalForGame('dragon') + win);
+  dragonActive = false;
+  document.getElementById('dragonStartBtn').style.display = 'flex';
+  document.getElementById('dragonCashBtn').style.display = 'none';
+  toast(`🐉 DRAGON TOWER WIN! ${dragonMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._dragonDemoActive) {
+    window._saveBetHistory({
+      game: 'Dragon Tower',
+      detail: `Picked ${dragonPicks} safe, ${dragonMult.toFixed(1)}x`,
+      bet: dragonBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+function dragonLose() {
+  dragonActive = false;
+  document.getElementById('dragonStartBtn').style.display = 'flex';
+  document.getElementById('dragonCashBtn').style.display = 'none';
+  toast(`🔥 DRAGON FIRE! -৳${dragonBetAmt.toLocaleString('en')}`, true);
+  if (!window._dragonDemoActive) {
+    window._saveBetHistory({
+      game: 'Dragon Tower',
+      detail: `Hit dragon`,
+      bet: dragonBetAmt,
+      profit: -dragonBetAmt,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+window.dragonCashout = () => {
+  if (!dragonActive) return;
+  dragonActive = false;
+  const win = Math.floor(dragonBetAmt * dragonMult);
+  const profit = win - dragonBetAmt;
+  setBalForGame('dragon', getBalForGame('dragon') + win);
+  document.getElementById('dragonStartBtn').style.display = 'flex';
+  document.getElementById('dragonCashBtn').style.display = 'none';
+  toast(`💰 DRAGON CASHOUT! ${dragonMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._dragonDemoActive) {
+    window._saveBetHistory({
+      game: 'Dragon Tower',
+      detail: `Cashed out with ${dragonPicks} safe, ${dragonMult.toFixed(1)}x`,
+      bet: dragonBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+};
+
+// =================== NEW ICE BREAK GAME ===================
+let iceActive = false;
+let iceBetAmt = 0;
+let icePicks = 0;
+let iceMult = 1.0;
+let iceBlocks = [];
+
+window.updateIceBalance = () => {
+  document.getElementById('iceBalNum').textContent = getBalForGame('ice').toLocaleString('en',{minimumFractionDigits:2});
+};
+
+function buildIceGrid() {
+  const grid = document.getElementById('iceGrid');
+  grid.innerHTML = '';
+  iceBlocks = [];
+  const totalBlocks = 16;
+  const crackCount = 3 + Math.floor(Math.random() * 3); // 3-5 cracks
+  for (let i = 0; i < totalBlocks; i++) {
+    iceBlocks.push({ type: i < crackCount ? 'crack' : 'safe', revealed: false });
+  }
+  // Shuffle
+  for (let i = iceBlocks.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [iceBlocks[i], iceBlocks[j]] = [iceBlocks[j], iceBlocks[i]];
+  }
+  
+  iceBlocks.forEach((block, idx) => {
+    const blockDiv = document.createElement('div');
+    blockDiv.className = 'iceBlock';
+    blockDiv.dataset.idx = idx;
+    blockDiv.textContent = '🧊';
+    blockDiv.onclick = () => icePick(idx);
+    grid.appendChild(blockDiv);
+  });
+}
+
+window.iceStart = () => {
+  const bet = parseInt(document.getElementById('iceBetInp').value);
+  if (isNaN(bet) || bet < 200) { toast('⚠️ Min ৳200', true); return; }
+  if (bet > 20000) { toast('⚠️ Max ৳20,000', true); return; }
+  if (getBalForGame('ice') < bet) { 
+    toast('❌ Balance কম!', true); 
+    if (!window._iceDemoActive) setTimeout(()=>openDepositSSModal(),800); 
+    return; 
+  }
+  iceBetAmt = bet;
+  setBalForGame('ice', getBalForGame('ice') - bet);
+  iceActive = true;
+  icePicks = 0;
+  iceMult = 1.0;
+  document.getElementById('iceStartBtn').style.display = 'none';
+  document.getElementById('iceCashBtn').style.display = 'flex';
+  document.getElementById('iceMult').textContent = '1.0x';
+  buildIceGrid();
+};
+
+function icePick(idx) {
+  if (!iceActive) return;
+  if (iceBlocks[idx].revealed) return;
+  
+  iceBlocks[idx].revealed = true;
+  const blockDiv = document.querySelector(`.iceBlock[data-idx="${idx}"]`);
+  blockDiv.classList.add('revealed');
+  
+  if (iceBlocks[idx].type === 'safe') {
+    blockDiv.textContent = '✅';
+    blockDiv.classList.add('safe');
+    icePicks++;
+    iceMult *= 1.5;
+    if (iceMult > 15) iceMult = 15;
+    document.getElementById('iceMult').textContent = iceMult.toFixed(1) + 'x';
+    
+    if (icePicks >= 5) {
+      iceWin();
+    }
+  } else {
+    blockDiv.textContent = '💥';
+    blockDiv.classList.add('crack');
+    iceLose();
+  }
+}
+
+function iceWin() {
+  const win = Math.floor(iceBetAmt * iceMult);
+  const profit = win - iceBetAmt;
+  setBalForGame('ice', getBalForGame('ice') + win);
+  iceActive = false;
+  document.getElementById('iceStartBtn').style.display = 'flex';
+  document.getElementById('iceCashBtn').style.display = 'none';
+  toast(`🧊 ICE BREAK WIN! ${iceMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._iceDemoActive) {
+    window._saveBetHistory({
+      game: 'Ice Break',
+      detail: `Broke ${icePicks} safe, ${iceMult.toFixed(1)}x`,
+      bet: iceBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+function iceLose() {
+  iceActive = false;
+  document.getElementById('iceStartBtn').style.display = 'flex';
+  document.getElementById('iceCashBtn').style.display = 'none';
+  toast(`💥 ICE CRACKED! -৳${iceBetAmt.toLocaleString('en')}`, true);
+  if (!window._iceDemoActive) {
+    window._saveBetHistory({
+      game: 'Ice Break',
+      detail: `Hit crack`,
+      bet: iceBetAmt,
+      profit: -iceBetAmt,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+window.iceCashout = () => {
+  if (!iceActive) return;
+  iceActive = false;
+  const win = Math.floor(iceBetAmt * iceMult);
+  const profit = win - iceBetAmt;
+  setBalForGame('ice', getBalForGame('ice') + win);
+  document.getElementById('iceStartBtn').style.display = 'flex';
+  document.getElementById('iceCashBtn').style.display = 'none';
+  toast(`💰 ICE CASHOUT! ${iceMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._iceDemoActive) {
+    window._saveBetHistory({
+      game: 'Ice Break',
+      detail: `Cashed out with ${icePicks} safe, ${iceMult.toFixed(1)}x`,
+      bet: iceBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+};
+
+// =================== NEW TARGET SHOT GAME ===================
+let targetActive = false;
+let targetBetAmt = 0;
+let targetShots = 0;
+let targetMult = 1.0;
+let targetInterval = null;
+let targetX = 10, targetY = 10;
+let targetDx = 3, targetDy = 2;
+
+window.updateTargetBalance = () => {
+  document.getElementById('targetBalNum').textContent = getBalForGame('target').toLocaleString('en',{minimumFractionDigits:2});
+};
+
+function moveTarget() {
+  const container = document.getElementById('targetContainer');
+  const target = document.getElementById('targetMoving');
+  const containerRect = container.getBoundingClientRect();
+  const targetRect = target.getBoundingClientRect();
+  
+  targetX += targetDx;
+  targetY += targetDy;
+  
+  if (targetX <= 0 || targetX + targetRect.width >= containerRect.width) {
+    targetDx *= -1;
+  }
+  if (targetY <= 0 || targetY + targetRect.height >= containerRect.height) {
+    targetDy *= -1;
+  }
+  
+  target.style.left = targetX + 'px';
+  target.style.top = targetY + 'px';
+}
+
+window.targetShoot = () => {
+  if (!targetActive) {
+    // Start game
+    const bet = parseInt(document.getElementById('targetBetInp').value);
+    if (isNaN(bet) || bet < 200) { toast('⚠️ Min ৳200', true); return; }
+    if (bet > 20000) { toast('⚠️ Max ৳20,000', true); return; }
+    if (getBalForGame('target') < bet) { 
+      toast('❌ Balance কম!', true); 
+      if (!window._targetDemoActive) setTimeout(()=>openDepositSSModal(),800); 
+      return; 
+    }
+    targetBetAmt = bet;
+    setBalForGame('target', getBalForGame('target') - bet);
+    targetActive = true;
+    targetShots = 0;
+    targetMult = 1.0;
+    document.getElementById('targetShootBtn').style.display = 'none';
+    document.getElementById('targetCashBtn').style.display = 'flex';
+    document.getElementById('targetScore').textContent = 'Shots: 0';
+    document.getElementById('targetMult').textContent = '1.0x';
+    
+    targetX = 10; targetY = 10;
+    targetDx = 3; targetDy = 2;
+    const target = document.getElementById('targetMoving');
+    target.style.left = targetX + 'px';
+    target.style.top = targetY + 'px';
+    
+    if (targetInterval) clearInterval(targetInterval);
+    targetInterval = setInterval(moveTarget, 50);
+  }
+  
+  // Shoot
+  targetShots++;
+  const target = document.getElementById('targetMoving');
+  const container = document.getElementById('targetContainer');
+  const containerRect = container.getBoundingClientRect();
+  const targetRect = target.getBoundingClientRect();
+  
+  // Simulate accuracy: check if click was near target center
+  // For simplicity, we'll use a random hit chance that increases with multiplier
+  const hitChance = 0.3 + (targetShots * 0.1);
+  const hit = Math.random() < hitChance;
+  
+  if (hit) {
+    targetMult *= 1.5 + (Math.random() * 0.5);
+    if (targetMult > 50) targetMult = 50;
+    toast(`🎯 HIT! Multiplier ${targetMult.toFixed(1)}x`, false);
+  } else {
+    targetMult *= 0.8;
+    toast(`💨 MISS! Multiplier ${targetMult.toFixed(1)}x`, true);
+  }
+  
+  document.getElementById('targetScore').textContent = 'Shots: ' + targetShots;
+  document.getElementById('targetMult').textContent = targetMult.toFixed(1) + 'x';
+  
+  if (targetMult >= 50) {
+    targetWin();
+  }
+};
+
+function targetWin() {
+  const win = Math.floor(targetBetAmt * targetMult);
+  const profit = win - targetBetAmt;
+  setBalForGame('target', getBalForGame('target') + win);
+  targetActive = false;
+  clearInterval(targetInterval);
+  document.getElementById('targetShootBtn').style.display = 'flex';
+  document.getElementById('targetCashBtn').style.display = 'none';
+  toast(`🎯 TARGET WIN! ${targetMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._targetDemoActive) {
+    window._saveBetHistory({
+      game: 'Target Shot',
+      detail: `Won with ${targetShots} shots, ${targetMult.toFixed(1)}x`,
+      bet: targetBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+window.targetCashout = () => {
+  if (!targetActive) return;
+  targetActive = false;
+  clearInterval(targetInterval);
+  const win = Math.floor(targetBetAmt * targetMult);
+  const profit = win - targetBetAmt;
+  setBalForGame('target', getBalForGame('target') + win);
+  document.getElementById('targetShootBtn').style.display = 'flex';
+  document.getElementById('targetCashBtn').style.display = 'none';
+  toast(`💰 TARGET CASHOUT! ${targetMult.toFixed(1)}x +৳${profit.toLocaleString('en')}`, false);
+  if (!window._targetDemoActive) {
+    window._saveBetHistory({
+      game: 'Target Shot',
+      detail: `Cashed out with ${targetShots} shots, ${targetMult.toFixed(1)}x`,
+      bet: targetBetAmt,
       profit: profit,
       time: Date.now()
     });
