@@ -849,7 +849,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .sc-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(52,152,219,0.2);border-radius:24px;padding:10px 16px;color:#fff;font-family:'Lato',sans-serif;font-size:13px;outline:none;}
 .sc-send{width:42px;height:42px;background:linear-gradient(135deg,#1a5c9b,#3498db);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
-/* AVIATOR PAGE (UPDATED: slower speed for 10x ~23s) */
+/* AVIATOR PAGE (updates) */
 #aviatorPage{align-items:flex-start;padding:0;}
 .av-wrap{width:100%;max-width:480px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:linear-gradient(180deg,#0d0018,#0a0014);padding-bottom:68px;}
 .av-topbar{background:linear-gradient(135deg,#1a0030,#2d0050,#1a0030);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,100,100,0.2);flex-shrink:0;}
@@ -1061,6 +1061,8 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 .btn-coin-flip:hover:not(:disabled){transform:translateY(-2px);}
 .btn-coin-flip:disabled{opacity:0.4;cursor:not-allowed;}
 
+/* LIMBO PAGE - REMOVED (no longer needed) */
+
 /* REWARD MODAL */
 .reward-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
 .reward-modal.open{opacity:1;pointer-events:all;}
@@ -1080,6 +1082,618 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:rgba(0,0,0,0.2);}
 ::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.3);border-radius:2px;}
+</style>
+<!-- ========== NEW STYLES FOR SPIN GAME AND SUBWAY CHICKEN ========== -->
+<style>
+/* New Spin Game Page - completely unique classes, no interference */
+#spinGamePage {
+  background: linear-gradient(135deg, #0a0f1e, #1a1f2e);
+}
+.spinWrap {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 68px;
+}
+.spinTopbar {
+  background: linear-gradient(135deg, #2a1f3a, #3a2a4a);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,215,0,0.2);
+  flex-shrink: 0;
+}
+.spinBack {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,215,0,0.15);
+  border-radius: 8px;
+  padding: 7px 12px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+}
+.spinTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #ffd700;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(255,215,0,0.5);
+}
+.spinBalance {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: #ffd700;
+  font-weight: 700;
+}
+.spinDemoBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 7px 16px;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255,215,0,0.05);
+  flex-wrap: wrap;
+}
+.spinCanvas {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  min-height: 350px;
+}
+.spinWheelContainer {
+  width: 280px;
+  height: 280px;
+  margin: 20px auto;
+  position: relative;
+}
+.spinWheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    #ff4d4d 0deg 45deg,
+    #ffa64d 45deg 90deg,
+    #ffff4d 90deg 135deg,
+    #4dff4d 135deg 180deg,
+    #4dffff 180deg 225deg,
+    #4d4dff 225deg 270deg,
+    #ff4dff 270deg 315deg,
+    #ff4d4d 315deg 360deg
+  );
+  border: 4px solid #ffd700;
+  box-shadow: 0 0 30px rgba(255,215,0,0.3);
+  position: relative;
+  overflow: hidden;
+  transition: transform 3s cubic-bezier(0.25, 0.1, 0.15, 1);
+}
+.spinWheel::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: #ffd700;
+  border-radius: 50%;
+  border: 3px solid #0a0f1e;
+  z-index: 10;
+}
+.spinPointer {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 40px solid #ffd700;
+  filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5));
+  z-index: 20;
+}
+.spinOptions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0;
+  padding: 0 16px;
+}
+.spinOption {
+  background: rgba(255,215,0,0.1);
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: #ffd700;
+}
+.spinResultMsg {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+  margin: 15px 0;
+  min-height: 40px;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255,215,0,0.5);
+}
+.spinControls {
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(255,215,0,0.1);
+  padding: 12px 16px;
+  flex-shrink: 0;
+}
+.spinBetRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.spinBetLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+.spinInput {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,215,0,0.2);
+  border-radius: 8px;
+  padding: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+}
+.spinQuickBet {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.spinQuick {
+  flex: 1;
+  padding: 5px;
+  background: rgba(255,215,0,0.06);
+  border: 1px solid rgba(255,215,0,0.15);
+  border-radius: 6px;
+  color: rgba(255,215,0,0.6);
+  font-size: 9px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  min-width: 40px;
+}
+.spinQuick:hover {
+  background: rgba(255,215,0,0.15);
+}
+.spinAction {
+  display: flex;
+  gap: 10px;
+}
+.btnSpin {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, #b8860b, #ffd700);
+  border: none;
+  border-radius: 8px;
+  color: #0a0f1e;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btnSpin:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255,215,0,0.3);
+}
+.btnSpin:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.spinDemoTog {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.spinDemoTog input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.spinDemoSlider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+  border-radius: 24px;
+  transition: 0.3s;
+  border: 1px solid rgba(255,215,0,0.2);
+}
+.spinDemoSlider:before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 3px;
+  bottom: 3px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.spinDemoTog input:checked + .spinDemoSlider {
+  background: rgba(255,215,0,0.3);
+  border-color: rgba(255,215,0,0.5);
+}
+.spinDemoTog input:checked + .spinDemoSlider:before {
+  transform: translateX(20px);
+  background: #ffd700;
+}
+.spinDemoBadge {
+  background: rgba(255,215,0,0.15);
+  border: 1px solid rgba(255,215,0,0.4);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: #ffd700;
+  font-weight: 700;
+}
+
+/* Subway Chicken Crash Game Page - completely unique */
+#chickenGamePage {
+  background: linear-gradient(135deg, #1a2a1a, #2a3a2a);
+}
+.chickenWrap {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 68px;
+}
+.chickenTopbar {
+  background: linear-gradient(135deg, #2a4a2a, #3a5a3a);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,165,0,0.2);
+  flex-shrink: 0;
+}
+.chickenBack {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,165,0,0.15);
+  border-radius: 8px;
+  padding: 7px 12px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+}
+.chickenTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #ffa500;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(255,165,0,0.5);
+}
+.chickenBalance {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,165,0,0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: #ffa500;
+  font-weight: 700;
+}
+.chickenDemoBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 7px 16px;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255,165,0,0.05);
+  flex-wrap: wrap;
+}
+.chickenDemoTog {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.chickenDemoTog input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.chickenDemoSlider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+  border-radius: 24px;
+  transition: 0.3s;
+  border: 1px solid rgba(255,165,0,0.2);
+}
+.chickenDemoSlider:before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 3px;
+  bottom: 3px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.chickenDemoTog input:checked + .chickenDemoSlider {
+  background: rgba(255,165,0,0.3);
+  border-color: rgba(255,165,0,0.5);
+}
+.chickenDemoTog input:checked + .chickenDemoSlider:before {
+  transform: translateX(20px);
+  background: #ffa500;
+}
+.chickenDemoBadge {
+  background: rgba(255,165,0,0.15);
+  border: 1px solid rgba(255,165,0,0.4);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: #ffa500;
+  font-weight: 700;
+}
+.chickenCanvas {
+  min-height: 200px;
+  background: linear-gradient(180deg, #1a3a1a, #2a4a2a);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.chickenRoad {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: #4a3a2a;
+  border-top: 4px solid #ffa500;
+}
+.chickenGrid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,165,0,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,165,0,0.05) 1px, transparent 1px);
+  background-size: 40px 30px;
+}
+.chickenSprite {
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  font-size: 48px;
+  filter: drop-shadow(0 0 10px rgba(255,165,0,0.5));
+  transition: left 0.1s linear;
+  z-index: 10;
+}
+.chickenObstacle {
+  position: absolute;
+  bottom: 15%;
+  width: 30px;
+  height: 30px;
+  background: #ff4444;
+  border-radius: 5px;
+  border: 2px solid #ffa500;
+  box-shadow: 0 0 15px rgba(255,68,68,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  z-index: 5;
+}
+.chickenObstacle::after {
+  content: '💥';
+}
+.chickenMultDisplay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  border: 2px solid #ffa500;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffa500;
+  z-index: 20;
+}
+.chickenStatus {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,165,0,0.3);
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: #ffa500;
+  z-index: 20;
+}
+.chickenCountdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cinzel', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: #ffa500;
+  text-shadow: 0 0 20px rgba(255,165,0,0.8);
+  z-index: 30;
+  display: none;
+}
+.chickenCrashOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,0,0,0.2);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 20px #ff0000;
+  z-index: 25;
+}
+.chickenControls {
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(255,165,0,0.1);
+  padding: 12px 16px;
+  flex-shrink: 0;
+}
+.chickenBetRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.chickenBetLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+.chickenInput {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,165,0,0.2);
+  border-radius: 8px;
+  padding: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+}
+.chickenQuickBet {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.chickenQuick {
+  flex: 1;
+  padding: 5px;
+  background: rgba(255,165,0,0.06);
+  border: 1px solid rgba(255,165,0,0.15);
+  border-radius: 6px;
+  color: rgba(255,165,0,0.6);
+  font-size: 9px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  min-width: 40px;
+}
+.chickenQuick:hover {
+  background: rgba(255,165,0,0.15);
+}
+.chickenActions {
+  display: flex;
+  gap: 10px;
+}
+.btnChickenStart {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg,#7a3a00,#ff9900);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btnChickenCashout {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg,#0e5c2b,#27ae60);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: none;
+  transition: all 0.3s;
+}
+.btnChickenStart:hover:not(:disabled),
+.btnChickenCashout:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255,165,0,0.3);
+}
+.btnChickenStart:disabled,
+.btnChickenCashout:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.chickenStats {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(0,0,0,0.3);
+  margin: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,165,0,0.1);
+}
+.chickenStatItem {
+  text-align: center;
+}
+.chickenStatValue {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: #ffa500;
+}
+.chickenStatLabel {
+  font-size: 8px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+}
 </style>
 </head>
 <body>
@@ -1236,6 +1850,16 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       <div class="game-card gc-coin" onclick="showPage('coinPage');updateBals()">
         <div class="game-banner"><div><div class="game-title">🪙 FLIP</div><div class="game-sub">HEADS/TAILS</div></div><div class="game-ico">🪙</div></div>
         <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#3498db">2×</div><div class="game-ci-key">Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
+      </div>
+      <!-- NEW SPIN GAME CARD -->
+      <div class="game-card" style="background:linear-gradient(160deg,#2a1f3a,#3a2a4a);border:1px solid #ffd700;" onclick="showPage('spinGamePage');updateSpinBalance();">
+        <div class="game-banner" style="background:linear-gradient(135deg,#3a2a4a,#4a3a5a);"><div><div class="game-title" style="color:#ffd700;">🎰 SPIN</div><div class="game-sub" style="color:rgba(255,215,0,0.6);">LUCKY WHEEL</div></div><div class="game-ico">🎡</div></div>
+        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ffd700">50×</div><div class="game-ci-key">Max Win</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
+      </div>
+      <!-- NEW CHICKEN GAME CARD -->
+      <div class="game-card" style="background:linear-gradient(160deg,#2a4a2a,#3a5a3a);border:1px solid #ffa500;" onclick="showPage('chickenGamePage');updateChickenBalance();">
+        <div class="game-banner" style="background:linear-gradient(135deg,#3a5a3a,#4a6a4a);"><div><div class="game-title" style="color:#ffa500;">🐔 CHICKEN</div><div class="game-sub" style="color:rgba(255,165,0,0.6);">CRASH RUN</div></div><div class="game-ico">🐥</div></div>
+        <div class="game-info"><div class="game-ci"><div class="game-ci-val" style="color:#ffa500">∞×</div><div class="game-ci-key">Multiplier</div></div><div class="game-ci"><div class="game-ci-val" style="color:#2ecc71">LIVE</div><div class="game-ci-key">Status</div></div></div>
       </div>
     </div>
     <!-- LEADERBOARD SECTION -->
@@ -1483,7 +2107,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
       </div>
     </div>
 
-    <!-- AVIATOR CONTROL TAB (updated: slower speed by design) -->
+    <!-- AVIATOR CONTROL TAB (new) -->
     <div class="admin-tab-content" id="atab-aviator">
       <div class="admin-section" style="margin-top:14px">
         <div class="admin-sec-title">✈ AVIATOR CONTROL (Set Next Crash Multiplier)</div>
@@ -1497,7 +2121,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
             <button onclick="setAvForcedMult()" class="btn-sub" style="background:linear-gradient(135deg,#8a6a1f,#c9a84c);">🎯 SET NEXT CRASH</button>
             <button onclick="clearAvForcedMult()" class="btn-sub" style="background:linear-gradient(135deg,#5c0a0a,#c0392b);">🔄 RANDOM MODE</button>
           </div>
-          <div class="notice" style="margin-top:12px;" id="avAdminStatus">Current: Random (10x-100x) - Slower speed (10x ~23s)</div>
+          <div class="notice" style="margin-top:12px;" id="avAdminStatus">Current: Random (10x-100x)</div>
         </div>
       </div>
     </div>
@@ -1869,7 +2493,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
-<!-- AVIATOR PAGE (slower speed applied: 10x ~23s) -->
+<!-- AVIATOR PAGE -->
 <div class="page" id="aviatorPage">
   <div class="av-wrap">
     <div class="av-topbar">
@@ -2132,6 +2756,120 @@ input::placeholder{color:rgba(253,246,227,0.18);}
   </div>
 </div>
 
+<!-- ========== NEW SPIN GAME PAGE ========== -->
+<div class="page" id="spinGamePage">
+  <div class="spinWrap">
+    <div class="spinTopbar">
+      <button class="spinBack" onclick="showPage('homePage')">← Back</button>
+      <div class="spinTitle">🎰 SPIN WHEEL</div>
+      <div class="spinBalance">৳<span id="spinBalNum">0.00</span></div>
+    </div>
+    <div class="spinDemoBar">
+      <span class="demo-lbl">REAL</span>
+      <label class="spinDemoTog"><input type="checkbox" id="spinDemoTog" onchange="toggleSpinDemo()"><span class="spinDemoSlider"></span></label>
+      <span class="demo-lbl">DEMO</span>
+      <div id="spinDemoBadge" style="display:none" class="spinDemoBadge">DEMO</div>
+    </div>
+    <div class="spinCanvas">
+      <div class="spinWheelContainer">
+        <div class="spinWheel" id="spinWheel"></div>
+        <div class="spinPointer"></div>
+      </div>
+      <div class="spinOptions">
+        <span class="spinOption">2x</span>
+        <span class="spinOption">3x</span>
+        <span class="spinOption">5x</span>
+        <span class="spinOption">10x</span>
+        <span class="spinOption">20x</span>
+        <span class="spinOption">50x</span>
+        <span class="spinOption">10x</span>
+        <span class="spinOption">LOSS</span>
+        <span class="spinOption">LOSS</span>
+        <span class="spinOption">LOSS</span>
+        <span class="spinOption">REFUND</span>
+      </div>
+      <div class="spinResultMsg" id="spinResultMsg"></div>
+    </div>
+    <div class="spinControls">
+      <div class="spinBetRow">
+        <span class="spinBetLabel">BET ৳</span>
+        <input type="number" class="spinInput" id="spinBetInp" value="200" min="200" max="50000"/>
+      </div>
+      <div class="spinQuickBet">
+        <div class="spinQuick" onclick="document.getElementById('spinBetInp').value=200">200</div>
+        <div class="spinQuick" onclick="document.getElementById('spinBetInp').value=500">500</div>
+        <div class="spinQuick" onclick="document.getElementById('spinBetInp').value=1000">1K</div>
+        <div class="spinQuick" onclick="document.getElementById('spinBetInp').value=5000">5K</div>
+        <div class="spinQuick" onclick="document.getElementById('spinBetInp').value=10000">10K</div>
+        <div class="spinQuick" onclick="document.getElementById('spinBetInp').value=25000">25K</div>
+        <div class="spinQuick" onclick="document.getElementById('spinBetInp').value=50000">50K</div>
+      </div>
+      <div class="spinAction">
+        <button class="btnSpin" id="spinBtn" onclick="spinWheel()">🎡 SPIN</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== NEW SUBWAY CHICKEN CRASH GAME PAGE ========== -->
+<div class="page" id="chickenGamePage">
+  <div class="chickenWrap">
+    <div class="chickenTopbar">
+      <button class="chickenBack" onclick="showPage('homePage')">← Back</button>
+      <div class="chickenTitle">🐔 CHICKEN RUN</div>
+      <div class="chickenBalance">৳<span id="chickenBalNum">0.00</span></div>
+    </div>
+    <div class="chickenDemoBar">
+      <span class="demo-lbl">REAL</span>
+      <label class="chickenDemoTog"><input type="checkbox" id="chickenDemoTog" onchange="toggleChickenDemo()"><span class="chickenDemoSlider"></span></label>
+      <span class="demo-lbl">DEMO</span>
+      <div id="chickenDemoBadge" style="display:none" class="chickenDemoBadge">DEMO</div>
+    </div>
+    <div class="chickenCanvas" id="chickenCanvas">
+      <div class="chickenRoad"></div>
+      <div class="chickenGrid"></div>
+      <div class="chickenSprite" id="chickenSprite">🐔</div>
+      <div id="chickenObstacles"></div>
+      <div class="chickenMultDisplay" id="chickenMultDisplay">1x</div>
+      <div class="chickenStatus" id="chickenStatus">Ready</div>
+      <div class="chickenCountdown" id="chickenCountdown">3</div>
+      <div class="chickenCrashOverlay" id="chickenCrashOverlay">💥 CRASHED!</div>
+    </div>
+    <div class="chickenStats">
+      <div class="chickenStatItem">
+        <div class="chickenStatValue" id="chickenMultiplier">1.00x</div>
+        <div class="chickenStatLabel">Multiplier</div>
+      </div>
+      <div class="chickenStatItem">
+        <div class="chickenStatValue" id="chickenSteps">0</div>
+        <div class="chickenStatLabel">Steps</div>
+      </div>
+      <div class="chickenStatItem">
+        <div class="chickenStatValue" id="chickenPotential">0</div>
+        <div class="chickenStatLabel">Potential</div>
+      </div>
+    </div>
+    <div class="chickenControls">
+      <div class="chickenBetRow">
+        <span class="chickenBetLabel">BET ৳</span>
+        <input type="number" class="chickenInput" id="chickenBetInp" value="200" min="200" max="20000"/>
+      </div>
+      <div class="chickenQuickBet">
+        <div class="chickenQuick" onclick="document.getElementById('chickenBetInp').value=200">200</div>
+        <div class="chickenQuick" onclick="document.getElementById('chickenBetInp').value=500">500</div>
+        <div class="chickenQuick" onclick="document.getElementById('chickenBetInp').value=1000">1K</div>
+        <div class="chickenQuick" onclick="document.getElementById('chickenBetInp').value=5000">5K</div>
+        <div class="chickenQuick" onclick="document.getElementById('chickenBetInp').value=10000">10K</div>
+        <div class="chickenQuick" onclick="document.getElementById('chickenBetInp').value=20000">20K</div>
+      </div>
+      <div class="chickenActions">
+        <button class="btnChickenStart" id="chickenStartBtn" onclick="startChickenGame()">🐔 START</button>
+        <button class="btnChickenCashout" id="chickenCashBtn" onclick="cashoutChicken()">💰 STOP</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- BOTTOM NAV -->
 <div class="bottom-nav" id="bottomNav" style="display:none">
   <button class="bn-item active" id="bn-home" onclick="navTo('home')"><div class="bn-icon">🏠</div><div class="bn-label">Home</div></button>
@@ -2157,7 +2895,7 @@ input::placeholder{color:rgba(253,246,227,0.18);}
 
 <div class="toast" id="toast"></div>
 
-<!-- FIREBASE and scripts (unchanged except Aviator speed adjustment) -->
+<!-- FIREBASE and scripts remain, but Limbo removed and Aviator updated -->
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -2204,6 +2942,7 @@ onAuthStateChanged(auth,async user=>{
     const snap=await get(userRef);
     if(!snap.exists()){const today=new Date().toDateString();await set(userRef,{name:user.displayName||'Player',email:user.email||'',balance:0,photoURL:user.photoURL||'',createdAt:Date.now(),totalBets:0,totalProfit:0,dailyStreak:0,lastClaimedDay:0,lastClaimDate:'',referralCount:0,referralEarned:0});}
     
+    // ========== NEW FEATURE: Generate or get referral code ==========
     if(!snap.exists() || !snap.val().referralCode){
       const referralCode = 'RB' + user.uid.substring(0,6).toUpperCase() + Date.now().toString().slice(-4);
       await update(ref(db,'users/'+user.uid),{referralCode:referralCode,referralCount:0,referralEarned:0});
@@ -2218,6 +2957,7 @@ onAuthStateChanged(auth,async user=>{
       loadBetHistory();
       loadTransactionHistory();
       
+      // ========== NEW FEATURE: Update referral info in profile ==========
       document.getElementById('piReferrals').textContent = d.referralCount || 0;
       document.getElementById('piReferralCode').textContent = d.referralCode || 'N/A';
       document.getElementById('referralCode').textContent = d.referralCode || 'RB-XXXX';
@@ -2233,9 +2973,13 @@ onAuthStateChanged(auth,async user=>{
     await loadHomeLb();
     await loadTransactionHistory();
     
+    // ========== NEW FEATURE: Load announcement settings ==========
     loadAnnouncementSettings();
+    
+    // ========== NEW FEATURE: Load support messages & check for unread ==========
     loadSupportMessages();
     
+    // ========== NEW FEATURE: Check for referral in URL ==========
     const urlParams = new URLSearchParams(window.location.search);
     const refCode = urlParams.get('ref');
     if (refCode && user) {
@@ -2312,7 +3056,7 @@ window.loadTransactionHistory = async () => {
         id,
         type: 'deposit',
         method: 'Binance',
-        amount: d.amount * 120,
+        amount: d.amount * 120, // Convert to BDT
         status: d.status || 'pending',
         time: d.time || Date.now(),
         detail: `${d.amount} USDT ~ ৳${(d.amount * 120).toLocaleString('en')}`
@@ -2339,6 +3083,7 @@ window.loadTransactionHistory = async () => {
   
   renderTransactionHistory(allTxs);
   
+  // Update time
   document.getElementById('txUpdateTime').textContent = new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'});
 };
 
@@ -2395,7 +3140,7 @@ window.switchTxTab = (tab) => {
   loadTransactionHistory();
 };
 
-// ANNOUNCEMENT
+// ========== NEW FEATURE: ANNOUNCEMENT SYSTEM ==========
 window.loadAnnouncementSettings = async () => {
   if (!db) return;
   try {
@@ -2409,11 +3154,13 @@ window.loadAnnouncementSettings = async () => {
         document.getElementById('announcementBar').style.display = 'none';
       }
       
+      // Admin form fill
       if (document.getElementById('adminAnnouncementText')) {
         document.getElementById('adminAnnouncementText').value = data.text || '📢 Welcome to Royal Bet! New features added.';
         document.getElementById('adminAnnouncementStatus').value = data.show === true ? 'show' : 'hide';
       }
     } else {
+      // Default
       document.getElementById('announcementBar').style.display = 'none';
       if (document.getElementById('adminAnnouncementText')) {
         document.getElementById('adminAnnouncementText').value = '📢 Welcome to Royal Bet! New features added.';
@@ -2450,7 +3197,7 @@ window.saveAnnouncementSettings = async () => {
   loadAnnouncementSettings();
 };
 
-// SUPPORT REPLY
+// ========== NEW FEATURE: SUPPORT REPLY SYSTEM ==========
 let currentReplyMessageId = null;
 let currentReplyUserId = null;
 
@@ -2468,6 +3215,7 @@ window.loadSupportMessages = async () => {
   
   const msgs = Object.entries(snap.val()).map(([id, m]) => ({ id, ...m })).sort((a, b) => b.time - a.time);
   
+  // Check for new messages in last 24 hours
   const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
   const newMessages = msgs.filter(m => !m.replied && m.time > oneDayAgo).length;
   
@@ -2520,6 +3268,7 @@ window.sendSupportReply = async () => {
     return;
   }
   
+  // Send reply as a new message to the user's support chat
   const msgData = {
     text: reply,
     userName: 'Support Team',
@@ -2531,6 +3280,7 @@ window.sendSupportReply = async () => {
   
   await push(ref(db, 'messages'), msgData);
   
+  // Mark original message as replied
   await update(ref(db, 'messages/' + currentReplyMessageId), { replied: true, repliedAt: Date.now() });
   
   toast('✅ Reply sent!', false);
@@ -2538,7 +3288,7 @@ window.sendSupportReply = async () => {
   loadSupportMessages();
 };
 
-// REFERRAL
+// ========== NEW FEATURE: REFERRAL SYSTEM ==========
 window.openReferralModal = () => {
   document.getElementById('referralModal').classList.add('open');
 };
@@ -2553,9 +3303,11 @@ window.copyReferralLink = () => {
   toast('✅ Referral link copied!', false);
 };
 
+// Function to handle referral when a new user signs up with a referral code
 window.processReferral = async (referralCode, newUserId) => {
   if (!referralCode || !newUserId) return;
   
+  // Find user with this referral code
   const usersSnap = await get(ref(db, 'users'));
   if (!usersSnap.exists()) return;
   
@@ -2568,13 +3320,18 @@ window.processReferral = async (referralCode, newUserId) => {
   
   if (!referrerId) return;
   
+  // Add to referrals tracking
   await set(ref(db, 'referrals/' + newUserId), {
     referredBy: referrerId,
     referredAt: Date.now(),
     completed: false
   });
+  
+  // We'll check for first deposit later
 };
 
+// Check for completed referrals when a user deposits
+// This should be called when a deposit is approved
 window.checkAndProcessReferralBonus = async (userId) => {
   const referralSnap = await get(ref(db, 'referrals/' + userId));
   if (!referralSnap.exists()) return;
@@ -2586,9 +3343,11 @@ window.checkAndProcessReferralBonus = async (userId) => {
   const referrerSnap = await get(ref(db, 'users/' + referrerId));
   if (!referrerSnap.exists()) return;
   
+  // Check if this is first deposit (we'll use a flag)
   const userSnap = await get(ref(db, 'users/' + userId));
   if (!userSnap.exists()) return;
   
+  // Mark as completed and give bonus
   const BONUS_AMOUNT = 6000;
   
   const referrerData = referrerSnap.val();
@@ -2602,6 +3361,7 @@ window.checkAndProcessReferralBonus = async (userId) => {
   
   await update(ref(db, 'referrals/' + userId), { completed: true, bonusGiven: BONUS_AMOUNT });
   
+  // Add transaction record
   await push(ref(db, 'users/' + referrerId + '/transactions'), {
     type: 'referral_bonus',
     amount: BONUS_AMOUNT,
@@ -2609,31 +3369,39 @@ window.checkAndProcessReferralBonus = async (userId) => {
     detail: 'Friend deposit bonus'
   });
   
+  // Notify if referrer is online
   if (window._curUser && window._curUser.uid === referrerId) {
     toast(`🎉 Referral bonus: +৳${BONUS_AMOUNT.toLocaleString('en')}!`, false);
     updateBals();
   }
 };
 
+// ========== MODIFIED: approveDepositSS to check referral ==========
 const originalApproveDepositSS = window.approveDepositSS;
 window.approveDepositSS = async function() {
   if (originalApproveDepositSS) {
     await originalApproveDepositSS();
   }
   
+  // Check for referral bonus
   if (window._currentSSUserId) {
     await checkAndProcessReferralBonus(window._currentSSUserId);
   }
 };
 
+// ========== MODIFIED: sendSupportMsg to mark as unreplied ==========
 const originalSendSupportMsg = window.sendSupportMsg;
 window.sendSupportMsg = async function() {
   if (originalSendSupportMsg) {
     await originalSendSupportMsg();
   }
   
+  // Reload support messages for admin badge
   setTimeout(() => loadSupportMessages(), 1000);
 };
+
+// ========== REST OF THE EXISTING CODE REMAINS EXACTLY THE SAME ==========
+// (All the existing functions: withdraw, deposit, admin, games, etc.)
 
 // WITHDRAWAL SYSTEM with Cancel Reason
 window.submitWithdraw = async (method) => {
@@ -2686,6 +3454,7 @@ window.submitWithdraw = async (method) => {
   toast('✅ আপনার উইথড্রয়াল অনুরোধ পাঠানো হয়েছে! অ্যাডমিন যাচাই করবে।', false);
   closeModal('withdraw');
   
+  // Refresh transaction history
   setTimeout(() => loadTransactionHistory(), 500);
 };
 
@@ -2720,6 +3489,7 @@ window.rejectWithdrawal = async (wdId, userId) => {
   loadWithdrawalRequests();
   if (userId === window._curUser?.uid) {
     loadTransactionHistory();
+    // Show reason to user
     setTimeout(() => {
       document.getElementById('wdReasonText').textContent = reason;
       document.getElementById('wdReasonModal').classList.add('open');
@@ -2793,6 +3563,7 @@ window.submitDepositWithSS = async () => {
     toast('✅ আপনার স্ক্রিনশট যাচাই করা হচ্ছে, ২–৫ মিনিটের মধ্যে ব্যালেন্স যোগ হবে।', false);
     closeDepositSSModal();
     
+    // Refresh transaction history
     setTimeout(() => loadTransactionHistory(), 500);
     
     setTimeout(() => {
@@ -2802,6 +3573,7 @@ window.submitDepositWithSS = async () => {
   reader.readAsDataURL(file);
 };
 
+// Admin view screenshot
 window.viewDepositSS = (depId, userId, userName, amount, screenshot) => {
   document.getElementById('adminSSImg').src = screenshot;
   document.getElementById('adminSSInfo').innerHTML = `
@@ -2841,6 +3613,7 @@ window.approveDepositSS = async () => {
   loadDepositRequests();
   loadHomeLb();
   
+  // Check for referral bonus
   await checkAndProcessReferralBonus(userId);
   
   if (userId === window._curUser?.uid) {
@@ -3000,6 +3773,7 @@ window.sendSupportMsg=async()=>{
   if(user)await push(ref(db,'messages'),{text:txt,userName,userId:user.uid,time:Date.now(),replied:false});
   setTimeout(()=>{msgs.innerHTML+=`<div class="sc-msg support">আপনার message পেয়েছি! ⚡ শীঘ্রই reply করব।<div class="sc-msg-time">Support · ${new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}</div></div>`;msgs.scrollTop=msgs.scrollHeight;},1500);
   
+  // Reload support messages for admin badge
   setTimeout(() => loadSupportMessages(), 1000);
 };
 
@@ -3056,12 +3830,17 @@ function updateProfileUI(d){
 </script>
 
 <script>
-// =================== GLOBAL STATE (Limbo removed) ===================
+// =================== GLOBAL STATE ===================
 window._realBal=0; window._demoBal=10000; window._isDemo=false;
 window._trDemoActive=false; window._trDemoBal=10000;
 window._diceDemoActive=false; window._diceDemoBal=10000;
 window._minesDemoActive=false; window._minesDemoBal=10000;
 window._coinDemoActive=false; window._coinDemoBal=10000;
+// New games demo state
+window._spinDemoActive = false;
+window._spinDemoBal = 10000;
+window._chickenDemoActive = false;
+window._chickenDemoBal = 10000;
 window._userProfile={};
 
 // =================== AI ASSISTANT ===================
@@ -3103,7 +3882,7 @@ window.sendAIMessage = () => {
       } else if (lowerMsg.includes('withdraw') || lowerMsg.includes('উইথড্র')) {
         response = 'উইথড্রয়াল করতে Profile পেজে গিয়ে Withdraw অপশন ব্যবহার করুন। মিনিমাম ৳200, সর্বোচ্চ ৳200,000।';
       } else if (lowerMsg.includes('game') || lowerMsg.includes('গেম')) {
-        response = 'আমাদের গেমগুলো: Aviator, Trading, Dice, Mines, Coin Flip, এবং Live Cricket! সবগুলোতেই মজা নিন।';
+        response = 'আমাদের গেমগুলো: Aviator, Trading, Dice, Mines, Coin Flip, Spin Wheel, Chicken Run, এবং Live Cricket! সবগুলোতেই মজা নিন।';
       } else if (lowerMsg.includes('aviator') || lowerMsg.includes('এভিয়েটর')) {
         response = 'Aviator গেমে বিমান উড়ে এবং মাল্টিপ্লায়ার বাড়ে। সঠিক সময় cashout করে জিতুন! সর্বোচ্চ 100x পর্যন্ত।';
       } else if (lowerMsg.includes('cricket') || lowerMsg.includes('ক্রিকেট')) {
@@ -3116,6 +3895,10 @@ window.sendAIMessage = () => {
         response = 'আপনার বেট হিস্ট্রি এবং ট্রানজেকশন হিস্ট্রি দেখতে Profile অথবা Home পেজের Transaction History সেকশন দেখুন।';
       } else if (lowerMsg.includes('refer') || lowerMsg.includes('রেফার')) {
         response = 'Friend Referral দিয়ে বন্ধু আনুন এবং ৳6000 বোনাস পান! Home পেজে Referral বাটন দেখুন।';
+      } else if (lowerMsg.includes('spin') || lowerMsg.includes('স্পিন')) {
+        response = 'Spin Wheel গেমে Lucky Wheel ঘুরিয়ে 2x,3x,5x,10x,20x,50x,10x জিতুন অথবা Loss/Refund পেতে পারেন। মিনিমাম বেট ৳200, সর্বোচ্চ ৳50,000।';
+      } else if (lowerMsg.includes('chicken') || lowerMsg.includes('চিকেন')) {
+        response = 'Chicken Run গেমে মুরগি দৌড়ায়, প্রতিটি ধাপে multiplier 2x করে বাড়ে। Crash হওয়ার আগে cashout করে জিতুন!';
       } else {
         response = `"${msg}" — আপনার প্রশ্নের উত্তর দিচ্ছি: Royal Bet-এ স্বাগতম! আরও জানতে আমাদের Support-এ যোগাযোগ করুন।`;
       }
@@ -3350,17 +4133,29 @@ function getBalForGame(game){
   if(game==='dice') return window._diceDemoActive?window._diceDemoBal:window._realBal;
   if(game==='mines') return window._minesDemoActive?window._minesDemoBal:window._realBal;
   if(game==='coin') return window._coinDemoActive?window._coinDemoBal:window._realBal;
+  if(game==='spin') return window._spinDemoActive?window._spinDemoBal:window._realBal;
+  if(game==='chicken') return window._chickenDemoActive?window._chickenDemoBal:window._realBal;
   return window._realBal;
 }
 function setBalForGame(game,v){
   v=Math.max(0,v);
-  const isDemo={av:window._isDemo,tr:window._trDemoActive,dice:window._diceDemoActive,mines:window._minesDemoActive,coin:window._coinDemoActive}[game];
+  const isDemo={
+    av:window._isDemo,
+    tr:window._trDemoActive,
+    dice:window._diceDemoActive,
+    mines:window._minesDemoActive,
+    coin:window._coinDemoActive,
+    spin:window._spinDemoActive,
+    chicken:window._chickenDemoActive
+  }[game];
   if(isDemo){
     if(game==='av')window._demoBal=v;
     else if(game==='tr')window._trDemoBal=v;
     else if(game==='dice')window._diceDemoBal=v;
     else if(game==='mines')window._minesDemoBal=v;
     else if(game==='coin')window._coinDemoBal=v;
+    else if(game==='spin')window._spinDemoBal=v;
+    else if(game==='chicken')window._chickenDemoBal=v;
     updateBals();
   } else {
     window._realBal=v;updateBals();window._writeBalance(v);
@@ -3375,6 +4170,8 @@ function updateBals(){
   document.getElementById('diceBalNum').textContent=getBalForGame('dice').toLocaleString('en',{minimumFractionDigits:2});
   document.getElementById('minesBalNum').textContent=getBalForGame('mines').toLocaleString('en',{minimumFractionDigits:2});
   document.getElementById('coinBalNum').textContent=getBalForGame('coin').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('spinBalNum').textContent=getBalForGame('spin').toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('chickenBalNum').textContent=getBalForGame('chicken').toLocaleString('en',{minimumFractionDigits:2});
   if(window._isDemo) document.getElementById('demoBalNumAv').textContent=window._demoBal.toLocaleString('en');
   if(window._trDemoActive) document.getElementById('trDemoBalNum').textContent=window._trDemoBal.toLocaleString('en');
 }
@@ -3386,6 +4183,7 @@ window.showPage=id=>{
   document.getElementById('dotMenu').classList.remove('open');
   closeBnDotMenu();
   
+  // Load announcement when home page is shown
   if (id === 'homePage') {
     loadAnnouncementSettings();
     loadSupportMessages();
@@ -3443,8 +4241,9 @@ window.checkAdminPw=()=>{
     document.getElementById('aiWelcome').value = aiWelcome;
     document.getElementById('aiMode').value = aiMode;
 
+    // Aviator control defaults
     document.getElementById('adminAvMult').value = 15;
-    document.getElementById('avAdminStatus').innerHTML = 'Current: Random (10x-100x) - Slower speed (10x ~23s)';
+    document.getElementById('avAdminStatus').innerHTML = 'Current: Random (10x-100x)';
     window._avForcedMult = null;
   } else {
     document.getElementById('apwError').style.display='block';
@@ -3503,8 +4302,21 @@ window.toggleTrDemo=()=>{window._trDemoActive=document.getElementById('trDemoTog
 window.toggleDiceDemo=()=>{window._diceDemoActive=document.getElementById('diceDemoTog').checked;document.getElementById('diceDemoBadge').style.display=window._diceDemoActive?'inline-block':'none';if(window._diceDemoActive&&window._diceDemoBal<=0)window._diceDemoBal=10000;updateBals();};
 window.toggleMinesDemo=()=>{window._minesDemoActive=document.getElementById('minesDemoTog').checked;document.getElementById('minesDemoBadge').style.display=window._minesDemoActive?'inline-block':'none';if(window._minesDemoActive&&window._minesDemoBal<=0)window._minesDemoBal=10000;updateBals();};
 window.toggleCoinDemo=()=>{window._coinDemoActive=document.getElementById('coinDemoTog').checked;document.getElementById('coinDemoBadge').style.display=window._coinDemoActive?'inline-block':'none';if(window._coinDemoActive&&window._coinDemoBal<=0)window._coinDemoBal=10000;updateBals();};
+// New demo toggles
+window.toggleSpinDemo=()=>{
+  window._spinDemoActive = document.getElementById('spinDemoTog').checked;
+  document.getElementById('spinDemoBadge').style.display = window._spinDemoActive ? 'inline-block' : 'none';
+  if (window._spinDemoActive && window._spinDemoBal <= 0) window._spinDemoBal = 10000;
+  updateBals();
+};
+window.toggleChickenDemo=()=>{
+  window._chickenDemoActive = document.getElementById('chickenDemoTog').checked;
+  document.getElementById('chickenDemoBadge').style.display = window._chickenDemoActive ? 'inline-block' : 'none';
+  if (window._chickenDemoActive && window._chickenDemoBal <= 0) window._chickenDemoBal = 10000;
+  updateBals();
+};
 
-// =================== AVIATOR with SLOWER SPEED (10x ~23s) ===================
+// =================== AVIATOR with shared multiplier and admin control (10x-100x) ===================
 let avPhase='idle',avBetPlaced=false,avBetAmt=0,avMult=1.00,avCrashAt=1.00,avRaf=null,avRoundStart=0,avCdTimer=null;
 const avPts=[];let avCtx=null;
 let avForcedMult = null; // Admin set
@@ -3512,15 +4324,16 @@ let avForcedMult = null; // Admin set
 function avCrashPt(){
   if (avForcedMult) {
     const m = avForcedMult;
-    avForcedMult = null;
+    avForcedMult = null; // use once
     return m;
   }
+  // 10x to 100x distribution
   const r = Math.random();
-  if (r < 0.25) return 10 + Math.random() * 10;
-  if (r < 0.5) return 20 + Math.random() * 20;
-  if (r < 0.7) return 40 + Math.random() * 30;
-  if (r < 0.9) return 70 + Math.random() * 20;
-  return 90 + Math.random() * 10;
+  if (r < 0.25) return 10 + Math.random() * 10;   // 10-20x
+  if (r < 0.5) return 20 + Math.random() * 20;    // 20-40x
+  if (r < 0.7) return 40 + Math.random() * 30;    // 40-70x
+  if (r < 0.9) return 70 + Math.random() * 20;    // 70-90x
+  return 90 + Math.random() * 10;                  // 90-100x
 }
 function avInitCanvas(){const cv=document.getElementById('avCv'),c=document.getElementById('avCanvas');cv.width=c.offsetWidth||420;cv.height=c.offsetHeight||200;avCtx=cv.getContext('2d');avCtx.clearRect(0,0,cv.width,cv.height);}
 function avStartRound(){cancelAnimationFrame(avRaf);clearInterval(avCdTimer);avPhase='countdown';avMult=1.00;avCrashAt=avCrashPt();avBetPlaced=false;avPts.length=0;document.getElementById('avCdOv').style.display='flex';document.getElementById('avMW').style.display='none';document.getElementById('avPlane').style.display='none';document.getElementById('avCrashFl').style.display='none';document.getElementById('avMW').querySelector('.av-mn').className='av-mn';avInitCanvas();avSetBadge('bet');avUpdateUI();avBuildLB();let n=10;avSetCd(n);avCdTimer=setInterval(()=>{n--;if(n>0)avSetCd(n);else{clearInterval(avCdTimer);avCdTimer=null;avBeginFly();}},1000);}
@@ -3529,7 +4342,7 @@ function avBeginFly(){avPhase='flying';avRoundStart=performance.now();document.g
 function avTick(){
   if(avPhase!=='flying')return;
   const t=(performance.now()-avRoundStart)/1000;
-  // Adjusted growth: 10x at ~23s (previously ~5s)
+  // Slower growth: 10x ~23s
   avMult = parseFloat((1 + 0.39 * t + 0.0017 * t * t).toFixed(2));
   document.getElementById('avMN').innerHTML=avMult.toFixed(2)+'<span class="av-mn-x">x</span>';
   if(avBetPlaced){
@@ -3711,6 +4524,279 @@ window.flipCoin=async()=>{
   loadHomeLb();
 };
 
+// =================== NEW SPIN GAME ===================
+let spinSpinning = false;
+let spinResult = '';
+const spinOptions = ['2x','3x','5x','10x','20x','50x','10x','LOSS','LOSS','LOSS','REFUND'];
+const spinMultipliers = {
+  '2x':2,'3x':3,'5x':5,'10x':10,'20x':20,'50x':50,'LOSS':0,'REFUND':1
+};
+
+window.updateSpinBalance = () => {
+  document.getElementById('spinBalNum').textContent = getBalForGame('spin').toLocaleString('en',{minimumFractionDigits:2});
+};
+
+window.spinWheel = () => {
+  if (spinSpinning) return;
+  const bet = parseInt(document.getElementById('spinBetInp').value);
+  if (isNaN(bet) || bet < 200) { toast('⚠️ Min ৳200', true); return; }
+  if (bet > 50000) { toast('⚠️ Max ৳50,000', true); return; }
+  if (getBalForGame('spin') < bet) { 
+    toast('❌ Balance কম!', true); 
+    if (!window._spinDemoActive) setTimeout(()=>openDepositSSModal(),800); 
+    return; 
+  }
+  
+  setBalForGame('spin', getBalForGame('spin') - bet);
+  spinSpinning = true;
+  document.getElementById('spinBtn').disabled = true;
+  
+  const wheel = document.getElementById('spinWheel');
+  const spins = 5 + Math.floor(Math.random() * 5);
+  const degrees = spins * 360 + Math.floor(Math.random() * 360);
+  wheel.style.transform = `rotate(${degrees}deg)`;
+  
+  setTimeout(() => {
+    // Determine result based on final angle
+    const finalAngle = degrees % 360;
+    const sliceAngle = 360 / spinOptions.length;
+    let index = Math.floor(finalAngle / sliceAngle);
+    // Adjust for 0 index
+    if (index >= spinOptions.length) index = 0;
+    spinResult = spinOptions[index];
+    
+    const multiplier = spinMultipliers[spinResult] || 0;
+    let winAmount = 0;
+    let profit = 0;
+    
+    if (multiplier === 0) { // Loss
+      winAmount = 0;
+      profit = -bet;
+      toast(`💥 LOSS! -৳${bet.toLocaleString('en')}`, true);
+    } else if (multiplier === 1) { // Refund
+      winAmount = bet;
+      profit = 0;
+      setBalForGame('spin', getBalForGame('spin') + bet);
+      toast(`🔄 REFUND! ৳${bet.toLocaleString('en')} returned`, false);
+    } else {
+      winAmount = bet * multiplier;
+      profit = winAmount - bet;
+      setBalForGame('spin', getBalForGame('spin') + winAmount);
+      toast(`🎉 ${spinResult}! +৳${profit.toLocaleString('en')}`, false);
+    }
+    
+    document.getElementById('spinResultMsg').textContent = `Result: ${spinResult} - ${multiplier===0?'LOSS':multiplier===1?'REFUND':winAmount.toLocaleString('en')}`;
+    
+    if (!window._spinDemoActive && spinResult !== 'REFUND') {
+      window._saveBetHistory({
+        game: 'Spin Wheel',
+        detail: `Result: ${spinResult}`,
+        bet: bet,
+        profit: profit,
+        time: Date.now()
+      });
+    }
+    
+    spinSpinning = false;
+    document.getElementById('spinBtn').disabled = false;
+    updateBals();
+    loadHomeLb();
+  }, 3000);
+};
+
+// =================== NEW CHICKEN CRASH GAME ===================
+let chickenActive = false;
+let chickenBetAmt = 0;
+let chickenMultiplier = 1;
+let chickenSteps = 0;
+let chickenInterval = null;
+let chickenObstacles = [];
+let chickenCrashPoint = 0;
+
+window.updateChickenBalance = () => {
+  document.getElementById('chickenBalNum').textContent = getBalForGame('chicken').toLocaleString('en',{minimumFractionDigits:2});
+};
+
+window.startChickenGame = () => {
+  if (chickenActive) return;
+  const bet = parseInt(document.getElementById('chickenBetInp').value);
+  if (isNaN(bet) || bet < 200) { toast('⚠️ Min ৳200', true); return; }
+  if (bet > 20000) { toast('⚠️ Max ৳20,000', true); return; }
+  if (getBalForGame('chicken') < bet) { 
+    toast('❌ Balance কম!', true); 
+    if (!window._chickenDemoActive) setTimeout(()=>openDepositSSModal(),800); 
+    return; 
+  }
+  
+  setBalForGame('chicken', getBalForGame('chicken') - bet);
+  chickenBetAmt = bet;
+  chickenMultiplier = 1;
+  chickenSteps = 0;
+  chickenActive = true;
+  chickenCrashPoint = 3 + Math.floor(Math.random() * 15); // crash between 3-17 steps
+  
+  document.getElementById('chickenStartBtn').disabled = true;
+  document.getElementById('chickenStartBtn').style.display = 'none';
+  document.getElementById('chickenCashBtn').style.display = 'flex';
+  document.getElementById('chickenStatus').textContent = 'Running...';
+  document.getElementById('chickenMultDisplay').textContent = '1x';
+  document.getElementById('chickenMultiplier').textContent = '1.00x';
+  document.getElementById('chickenSteps').textContent = '0';
+  document.getElementById('chickenPotential').textContent = bet;
+  document.getElementById('chickenCrashOverlay').style.display = 'none';
+  
+  // Clear old obstacles
+  document.getElementById('chickenObstacles').innerHTML = '';
+  chickenObstacles = [];
+  
+  // Start countdown
+  let count = 3;
+  const cdEl = document.getElementById('chickenCountdown');
+  cdEl.style.display = 'flex';
+  cdEl.textContent = count;
+  const cdInterval = setInterval(() => {
+    count--;
+    if (count > 0) {
+      cdEl.textContent = count;
+    } else {
+      clearInterval(cdInterval);
+      cdEl.style.display = 'none';
+      startChickenRun();
+    }
+  }, 1000);
+};
+
+function startChickenRun() {
+  const chicken = document.getElementById('chickenSprite');
+  chicken.style.left = '10%';
+  
+  chickenInterval = setInterval(() => {
+    if (!chickenActive) return;
+    
+    // Move chicken
+    let left = parseFloat(chicken.style.left) || 10;
+    left += 2;
+    chicken.style.left = left + '%';
+    
+    // Randomly add obstacle
+    if (Math.random() < 0.3 && chickenObstacles.length < 5) {
+      addObstacle();
+    }
+    
+    // Move obstacles and check collision
+    moveObstacles();
+    
+    // Check if step completed (every 20% of width)
+    if (left >= 20 && chickenSteps === 0) { chickenStep(); }
+    else if (left >= 30 && chickenSteps === 1) { chickenStep(); }
+    else if (left >= 40 && chickenSteps === 2) { chickenStep(); }
+    else if (left >= 50 && chickenSteps === 3) { chickenStep(); }
+    else if (left >= 60 && chickenSteps === 4) { chickenStep(); }
+    else if (left >= 70 && chickenSteps === 5) { chickenStep(); }
+    else if (left >= 80 && chickenSteps === 6) { chickenStep(); }
+    else if (left >= 90 && chickenSteps === 7) { chickenStep(); }
+    
+    // Check if reached crash point
+    if (chickenSteps >= chickenCrashPoint) {
+      chickenCrash();
+    }
+  }, 200);
+}
+
+function chickenStep() {
+  chickenSteps++;
+  chickenMultiplier *= 2;
+  document.getElementById('chickenMultDisplay').textContent = chickenMultiplier + 'x';
+  document.getElementById('chickenMultiplier').textContent = chickenMultiplier.toFixed(2) + 'x';
+  document.getElementById('chickenSteps').textContent = chickenSteps;
+  const potential = Math.floor(chickenBetAmt * chickenMultiplier);
+  document.getElementById('chickenPotential').textContent = potential.toLocaleString('en');
+}
+
+function addObstacle() {
+  const obsDiv = document.getElementById('chickenObstacles');
+  const obstacle = document.createElement('div');
+  obstacle.className = 'chickenObstacle';
+  obstacle.style.left = '100%';
+  obstacle.style.bottom = '15%';
+  obsDiv.appendChild(obstacle);
+  chickenObstacles.push(obstacle);
+}
+
+function moveObstacles() {
+  const chicken = document.getElementById('chickenSprite');
+  const chickenLeft = parseFloat(chicken.style.left) || 10;
+  
+  chickenObstacles.forEach((obs, index) => {
+    let left = parseFloat(obs.style.left) || 100;
+    left -= 1.5;
+    obs.style.left = left + '%';
+    
+    // Check collision
+    if (left <= chickenLeft + 5 && left >= chickenLeft - 5) {
+      chickenCrash();
+    }
+    
+    // Remove if off screen
+    if (left < -10) {
+      obs.remove();
+      chickenObstacles.splice(index, 1);
+    }
+  });
+}
+
+function chickenCrash() {
+  if (!chickenActive) return;
+  chickenActive = false;
+  clearInterval(chickenInterval);
+  document.getElementById('chickenCrashOverlay').style.display = 'flex';
+  document.getElementById('chickenStatus').textContent = 'Crashed!';
+  document.getElementById('chickenStartBtn').disabled = false;
+  document.getElementById('chickenStartBtn').style.display = 'flex';
+  document.getElementById('chickenCashBtn').style.display = 'none';
+  
+  toast(`💥 CRASHED! -৳${chickenBetAmt.toLocaleString('en')}`, true);
+  
+  if (!window._chickenDemoActive) {
+    window._saveBetHistory({
+      game: 'Chicken Run',
+      detail: `Crashed at step ${chickenSteps}, multiplier ${chickenMultiplier}x`,
+      bet: chickenBetAmt,
+      profit: -chickenBetAmt,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+}
+
+window.cashoutChicken = () => {
+  if (!chickenActive) return;
+  chickenActive = false;
+  clearInterval(chickenInterval);
+  
+  const win = Math.floor(chickenBetAmt * chickenMultiplier);
+  const profit = win - chickenBetAmt;
+  setBalForGame('chicken', getBalForGame('chicken') + win);
+  
+  document.getElementById('chickenStartBtn').disabled = false;
+  document.getElementById('chickenStartBtn').style.display = 'flex';
+  document.getElementById('chickenCashBtn').style.display = 'none';
+  document.getElementById('chickenStatus').textContent = 'Cashed Out!';
+  
+  toast(`🎉 CASHED OUT! ${chickenMultiplier}x +৳${profit.toLocaleString('en')}`, false);
+  
+  if (!window._chickenDemoActive) {
+    window._saveBetHistory({
+      game: 'Chicken Run',
+      detail: `Cashed out at ${chickenMultiplier}x, steps ${chickenSteps}`,
+      bet: chickenBetAmt,
+      profit: profit,
+      time: Date.now()
+    });
+  }
+  loadHomeLb();
+};
+
 // HOME LEADERBOARD - SYNCED WITH ADMIN (with position)
 const DEFAULT_LB = [
   {id:'lb1', name:'RahimBetKing', country:'🇧🇩 Bangladesh', amount:485000},
@@ -3835,13 +4921,13 @@ window.setAvForcedMult = () => {
     return;
   }
   avForcedMult = mult;
-  document.getElementById('avAdminStatus').innerHTML = `Current: Forced next crash at ${mult.toFixed(1)}x - Slower speed (10x ~23s)`;
+  document.getElementById('avAdminStatus').innerHTML = `Current: Forced next crash at ${mult.toFixed(1)}x`;
   toast(`✅ Next Aviator crash set to ${mult}x`, false);
 };
 
 window.clearAvForcedMult = () => {
   avForcedMult = null;
-  document.getElementById('avAdminStatus').innerHTML = 'Current: Random (10x-100x) - Slower speed (10x ~23s)';
+  document.getElementById('avAdminStatus').innerHTML = 'Current: Random (10x-100x)';
   toast('🔄 Random mode enabled', false);
 };
 
